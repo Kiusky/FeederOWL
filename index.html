@@ -66,8 +66,9 @@
         display: none;
     }
     #discordWidget {
-        width: 350px;
-        height: 500px;
+        width: 450px; /* aumenta a largura do widget */
+        height: 600px; /* aumenta a altura do widget */
+        font-size: 16px; /* aumenta o tamanho da fonte dentro do widget */
     }
     #closeButton {
         position: absolute;
@@ -78,6 +79,40 @@
         color: white;
         font-size: 20px;
         cursor: pointer;
+    }
+    .floating-widget {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 9999;
+    }
+    #closeFloatingWidgetButton {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .widget-logo {
+        max-width: 400px;
+        margin-bottom: 10px;
+    }
+    .floating-widget ul li {
+        list-style: none; /* remove os marcadores de lista */
+        margin-bottom: 10px; /* espaçamento entre os itens da lista */
+        color: white; /* cor dos links dentro do widget */
+    }
+    .floating-widget ul li a {
+        color: white; /* cor dos links dentro do widget */
+        text-decoration: none; /* remove o sublinhado dos links */
+        font-size: 20px; /* ajuste o tamanho da fonte */
     }
 </style>
 <script>
@@ -103,6 +138,24 @@
         var widgetContainer = document.getElementById("discordWidgetContainer");
         widgetContainer.style.display = "none";
     }
+
+    function openFloatingWidget() {
+        var floatingWidget = document.getElementById("floatingWidget");
+        floatingWidget.style.display = "block";
+    }
+
+    function closeFloatingWidget() {
+        var floatingWidget = document.getElementById("floatingWidget");
+        floatingWidget.style.display = "none";
+    }
+
+    // Adicionando funcionalidade para abrir o widget do Discord quando o link da Steam for clicado
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var steamButton = document.getElementById("steamButton");
+        steamButton.addEventListener('click', function(event) {
+            openDiscordWidget(); // Abre o widget do Discord ao clicar no botão da Steam
+        });
+    });
 </script>
 </head>
 <body>
@@ -113,15 +166,15 @@ seu navegador não suporta HTML5
 </audio>
 
 <div class="content">
-    <img class="logo" src="https://cdn.discordapp.com/attachments/755487453565026374/1209911282375852082/5464564465-removebg-preview_1.png?ex=65e8a4b0&is=65d62fb0&hm=a623082f105e02868751c080ba47179b641366d67ca868cced2febb8f600b2e5&" alt="Logo">
+    <img class="logo" src="https://cdn.discordapp.com/attachments/755487453565026374/1209911282375852082/5464564465-removebg-preview_1.png?ex=65e8a4b0&is=65d62fb0&hm=a623082f105e02868751c080ba47179b641366d67ca868cced2febb8f600b2e5" alt="Logo">
 
     <div class="links">
-        <a class="link" href="https://steamcommunity.com/groups/feederowl" draggable="false" target="_blank">
-            <img src="https://cdn.discordapp.com/attachments/755487453565026374/1209904797277491220/STEAM-LOGO.png?ex=65e89ea6&is=65d629a6&hm=bf19a5d1c3ff3b555a8383e0680f12ef269cc2b128f7d8456b773ef5033d01f6&" alt="" draggable="false">
+        <button class="link" onclick="openFloatingWidget()">
+            <img src="https://cdn.discordapp.com/attachments/755487453565026374/1209904797277491220/STEAM-LOGO.png?ex=65e89ea6&is=65d629a6&hm=bf19a5d1c3ff3b555a8383e0680f12ef269cc2b128f7d8456b773ef5033d01f6" alt="" draggable="false">
             <span></span>
-        </a>
-        <button class="link" onclick="openDiscordWidget()">
-            <img src="https://cdn.discordapp.com/attachments/755487453565026374/1209904797034217552/DISCORD-LOGO.png?ex=65e89ea6&is=65d629a6&hm=1e58a7bac01ad8e94ff0c1322ea03ba8987280c0be75ebef521efad9c3e38653&" alt="" draggable="false">
+        </button>
+        <button id="steamButton" class="link" onclick="openDiscordWidget()">
+            <img src="https://cdn.discordapp.com/attachments/755487453565026374/1209904797034217552/DISCORD-LOGO.png?ex=65e89ea6&is=65d629a6&hm=1e58a7bac01ad8e94ff0c1322ea03ba8987280c0be75ebef521efad9c3e38653" alt="" draggable="false">
             <span></span>
         </button>
     </div>
@@ -130,6 +183,20 @@ seu navegador não suporta HTML5
 <div id="discordWidgetContainer">
     <button id="closeButton" onclick="closeDiscordWidget()">X</button>
     <iframe id="discordWidget" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" src="https://discord.com/widget?id=653379836164702228&theme=dark"></iframe>
+</div>
+
+<div id="floatingWidget" class="floating-widget" style="display: none;">
+    <button id="closeFloatingWidgetButton" onclick="closeFloatingWidget()">✖️</button>
+    <img src="https://cdn.discordapp.com/attachments/755487453565026374/1211744723539075192/steamwindgetimagem.png?ex=65ef5037&is=65dcdb37&hm=1696a85b4524c016931ced582840d0434900efbc07e717ce0d1c9479dc297dd8" class="widget-logo" alt="Logo">
+    <ul>
+        <li><a href="https://steamcommunity.com/groups/feederowl" target="_blank">🔗 Comunidade</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/announcements/listing" target="_blank">🔗 Anuncios</a></li>
+        <li><a href="https://store.steampowered.com/curator/32849147/" target="_blank">🔗 Curador</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/events" target="_blank">🔗 Eventos</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/discussions" target="_blank">🔗 Discussôes</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/comments" target="_blank">🔗 Comentarios</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/members" target="_blank">🔗 Membros</a></li>
+    </ul>
 </div>
 
 </body>
