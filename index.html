@@ -46,6 +46,8 @@
         flex-direction: column;
         align-items: center;
         transition: transform 0.2s;
+        background-color: transparent; /* torna o fundo transparente */
+        border: none; /* remove a borda */
     }
     .link img {
         max-width: 70px;
@@ -56,6 +58,26 @@
     }
     .audio-controls {
         margin-top: 20px;
+    }
+    #discordWidgetContainer {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        display: none;
+    }
+    #discordWidget {
+        width: 350px;
+        height: 500px;
+    }
+    #closeButton {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
     }
 </style>
 <script>
@@ -70,6 +92,16 @@
     function playAudio() {
         var audio = document.getElementById("myAudio");
         audio.play();
+    }
+
+    function openDiscordWidget() {
+        var widgetContainer = document.getElementById("discordWidgetContainer");
+        widgetContainer.style.display = "block";
+    }
+
+    function closeDiscordWidget() {
+        var widgetContainer = document.getElementById("discordWidgetContainer");
+        widgetContainer.style.display = "none";
     }
 </script>
 </head>
@@ -88,11 +120,16 @@ seu navegador não suporta HTML5
             <img src="https://cdn.discordapp.com/attachments/755487453565026374/1209904797277491220/STEAM-LOGO.png?ex=65e89ea6&is=65d629a6&hm=bf19a5d1c3ff3b555a8383e0680f12ef269cc2b128f7d8456b773ef5033d01f6&" alt="" draggable="false">
             <span></span>
         </a>
-        <a class="link" href="https://feederowl.com/discord" draggable="false" target="_blank">
+        <button class="link" onclick="openDiscordWidget()">
             <img src="https://cdn.discordapp.com/attachments/755487453565026374/1209904797034217552/DISCORD-LOGO.png?ex=65e89ea6&is=65d629a6&hm=1e58a7bac01ad8e94ff0c1322ea03ba8987280c0be75ebef521efad9c3e38653&" alt="" draggable="false">
             <span></span>
-        </a>
+        </button>
     </div>
+</div>
+
+<div id="discordWidgetContainer">
+    <button id="closeButton" onclick="closeDiscordWidget()">X</button>
+    <iframe id="discordWidget" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" src="https://discord.com/widget?id=653379836164702228&theme=dark"></iframe>
 </div>
 
 </body>
