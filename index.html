@@ -46,8 +46,8 @@
         flex-direction: column;
         align-items: center;
         transition: transform 0.2s;
-        background-color: transparent; /* torna o fundo transparente */
-        border: none; /* remove a borda */
+        background-color: transparent;
+        border: none;
     }
     .link img {
         max-width: 70px;
@@ -67,9 +67,9 @@
         display: none;
     }
     #discordWidget {
-        width: 450px; /* aumenta a largura do widget */
-        height: 600px; /* aumenta a altura do widget */
-        font-size: 16px; /* aumenta o tamanho da fonte dentro do widget */
+        width: 450px;
+        height: 600px;
+        font-size: 16px;
     }
     #closeButton {
         position: absolute;
@@ -107,14 +107,14 @@
         margin-bottom: 10px;
     }
     .floating-widget ul li {
-        list-style: none; /* remove os marcadores de lista */
-        margin-bottom: 10px; /* espaçamento entre os itens da lista */
-        color: white; /* cor dos links dentro do widget */
+        list-style: none;
+        margin-bottom: 10px;
+        color: white;
     }
     .floating-widget ul li a {
-        color: white; /* cor dos links dentro do widget */
-        text-decoration: none; /* remove o sublinhado dos links */
-        font-size: 20px; /* ajuste o tamanho da fonte */
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
     }
 </style>
 <script>
@@ -150,12 +150,10 @@
         var floatingWidget = document.getElementById("floatingWidget");
         floatingWidget.style.display = "none";
     }
-
-    // Adicionando funcionalidade para abrir o widget do Discord quando o link da Steam for clicado
     document.addEventListener('DOMContentLoaded', (event) => {
         var steamButton = document.getElementById("steamButton");
         steamButton.addEventListener('click', function(event) {
-            openDiscordWidget(); // Abre o widget do Discord ao clicar no botão da Steam
+            openDiscordWidget();
         });
     });
 </script>
