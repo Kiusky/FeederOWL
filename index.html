@@ -71,14 +71,15 @@
         height: 600px;
         font-size: 16px;
     }
-    #closeButton {
+    #closeButtonBottom {
         position: absolute;
-        top: 5px;
-        right: 5px;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
         background-color: transparent;
         border: none;
-        color: white;
-        font-size: 20px;
+        color: back;
+        font-size: 16px;
         cursor: pointer;
     }
     .floating-widget {
@@ -94,11 +95,12 @@
     }
     #closeFloatingWidgetButton {
         position: absolute;
-        top: 5px;
-        right: 5px;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
         background-color: transparent;
         border: none;
-        color: white;
+        color: black;
         font-size: 16px;
         cursor: pointer;
     }
@@ -181,12 +183,11 @@ seu navegador não suporta HTML5
 </div>
 
 <div id="discordWidgetContainer">
-    <button id="closeButton" onclick="closeDiscordWidget()">X</button>
     <iframe id="discordWidget" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" src="https://discord.com/widget?id=653379836164702228&theme=dark"></iframe>
+    <button id="closeButtonBottom" onclick="closeDiscordWidget()" class="floating-widget-close-button">❌</button> <!-- Alteração do texto do botão para "Fechar" -->
 </div>
 
 <div id="floatingWidget" class="floating-widget" style="display: none;">
-    <button id="closeFloatingWidgetButton" onclick="closeFloatingWidget()">✖️</button>
     <img src="https://cdn.discordapp.com/attachments/755487453565026374/1211744723539075192/steamwindgetimagem.png?ex=65ef5037&is=65dcdb37&hm=1696a85b4524c016931ced582840d0434900efbc07e717ce0d1c9479dc297dd8" class="widget-logo" alt="Logo">
     <ul>
         <li><a href="https://steamcommunity.com/groups/feederowl" target="_blank">🔗 Comunidade</a></li>
@@ -197,6 +198,7 @@ seu navegador não suporta HTML5
         <li><a href="https://steamcommunity.com/groups/feederowl/comments" target="_blank">🔗 Comentarios</a></li>
         <li><a href="https://steamcommunity.com/groups/feederowl/members" target="_blank">🔗 Membros</a></li>
     </ul>
+    <button id="closeFloatingWidgetButton" onclick="closeFloatingWidget()">❌</button>
 </div>
 
 </body>
