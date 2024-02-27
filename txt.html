@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁">
+<meta property="og:description" content="Somos uma comunidade online na Steam e Discord, reunindo jogadores para partidas em grupo. Oferecemos anúncios de ofertas, jogos grátis e curiosidades. Junte-se a nós para encontrar companheiros de equipe, discutir jogos e aproveitar a diversão dos jogos em grupo!">
+<meta property="og:image" content="https://cdn.discordapp.com/attachments/755487453565026374/1208055212481319013/Feeder_Owl.gif?ex=65eb1e97&is=65d8a997&hm=c52f58f8bc5d74f97959b1b8f46d4344b8c9390db4c7fbaac42e941db26d74c3&">
+<meta property="og:url" content="https://www.feederowl.com/">
+<title>ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁</title>
+<style>
+    html {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        min-width: 100vw;
+        background-color: #;
+    }
+    .content {
+        text-align: center;
+    }
+    .logo {
+        max-width: 90%;
+        margin-bottom: 40px;
+        pointer-events: none;
+    }
+    .links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 50px;
+    }
+    .link {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.2s;
+        background-color: transparent;
+        border: none;
+    }
+    .link img {
+        max-width: 70px;
+        margin-bottom: 10px;
+    }
+    .link:hover {
+        transform: scale(1.1);
+    }
+    .audio-controls {
+        margin-top: 20px;
+    }
+    #discordWidgetContainer {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+    #discordWidget {
+        width: 450px;
+        height: 600px;
+        font-size: 16px;
+    }
+    #closeButtonBottom {
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: transparent;
+        border: none;
+        color: back;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .floating-widget {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 9999;
+    }
+    #closeFloatingWidgetButton {
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: transparent;
+        border: none;
+        color: black;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .widget-logo {
+        max-width: 400px;
+        margin-bottom: 10px;
+    }
+    .floating-widget ul li {
+        list-style: none;
+        margin-bottom: 10px;
+        color: white;
+    }
+    .floating-widget ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+        document.body.addEventListener('click', function() {
+            playAudio();
+        });
+    });
+    function playAudio() {
+        var audio = document.getElementById("myAudio");
+        audio.play();
+    }
+
+    function openDiscordWidget() {
+        var widgetContainer = document.getElementById("discordWidgetContainer");
+        widgetContainer.style.display = "block";
+    }
+
+    function closeDiscordWidget() {
+        var widgetContainer = document.getElementById("discordWidgetContainer");
+        widgetContainer.style.display = "none";
+    }
+
+    function openFloatingWidget() {
+        var floatingWidget = document.getElementById("floatingWidget");
+        floatingWidget.style.display = "block";
+    }
+
+    function closeFloatingWidget() {
+        var floatingWidget = document.getElementById("floatingWidget");
+        floatingWidget.style.display = "none";
+    }
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var steamButton = document.getElementById("steamButton");
+        steamButton.addEventListener('click', function(event) {
+            openDiscordWidget();
+        });
+    });
+</script>
+</head>
+<body>
+
+<audio id="myAudio" loop>
+<source src="https://cdn.discordapp.com/attachments/755487453565026374/1210000867181465640/Dota-Mix.mp3?ex=65e8f81f&is=65d6831f&hm=8c41fc786490c7b39cf57c5c264abb939f431810cf1319b7c103e276fab51778&" type="audio/mp3" />
+seu navegador não suporta HTML5
+</audio>
+
+<div class="content">
+    <img class="logo" src="https://cdn.discordapp.com/attachments/755487453565026374/1209911282375852082/5464564465-removebg-preview_1.png?ex=65e8a4b0&is=65d62fb0&hm=a623082f105e02868751c080ba47179b641366d67ca868cced2febb8f600b2e5" alt="Logo">
+
+    <div class="links">
+        <button class="link" onclick="openFloatingWidget()">
+            <img src="https://cdn.discordapp.com/attachments/755487453565026374/1209904797277491220/STEAM-LOGO.png?ex=65e89ea6&is=65d629a6&hm=bf19a5d1c3ff3b555a8383e0680f12ef269cc2b128f7d8456b773ef5033d01f6" alt="" draggable="false">
+            <span></span>
+        </button>
+        <button id="steamButton" class="link" onclick="openDiscordWidget()">
+            <img src="https://cdn.discordapp.com/attachments/755487453565026374/1209904797034217552/DISCORD-LOGO.png?ex=65e89ea6&is=65d629a6&hm=1e58a7bac01ad8e94ff0c1322ea03ba8987280c0be75ebef521efad9c3e38653" alt="" draggable="false">
+            <span></span>
+        </button>
+    </div>
+</div>
+
+<div id="discordWidgetContainer">
+    <iframe id="discordWidget" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" src="https://discord.com/widget?id=653379836164702228&theme=dark"></iframe>
+    <button id="closeButtonBottom" onclick="closeDiscordWidget()" class="floating-widget-close-button">❌</button> <!-- Alteração do texto do botão para "Fechar" -->
+</div>
+
+<div id="floatingWidget" class="floating-widget" style="display: none;">
+    <img src="https://cdn.discordapp.com/attachments/755487453565026374/1211744723539075192/steamwindgetimagem.png?ex=65ef5037&is=65dcdb37&hm=1696a85b4524c016931ced582840d0434900efbc07e717ce0d1c9479dc297dd8" class="widget-logo" alt="Logo">
+    <ul>
+        <li><a href="https://steamcommunity.com/groups/feederowl" target="_blank">🔗 Comunidade</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/announcements/listing" target="_blank">🔗 Anuncios</a></li>
+        <li><a href="https://store.steampowered.com/curator/32849147/" target="_blank">🔗 Curador</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/events" target="_blank">🔗 Eventos</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/discussions" target="_blank">🔗 Discussôes</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/comments" target="_blank">🔗 Comentarios</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/members" target="_blank">🔗 Membros</a></li>
+    </ul>
+    <button id="closeFloatingWidgetButton" onclick="closeFloatingWidget()">❌</button>
+</div>
+
+</body>
+</html>
