@@ -59,16 +59,19 @@
     .audio-controls {
         margin-top: 20px;
     }
-    #discordWidgetContainer {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: none;
+#discordWidgetContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-image: url('https://cdn.discordapp.com/attachments/755487453565026374/1212014928404156496/000.gif?ex=65f04bdd&is=65ddd6dd&hm=d2ac7547fcb566dc5477a24bd7ccbc4d8aad99d0249549697a81416dc10fbad4&'); /* Substitua 'caminho/para/sua/imagem.jpg' pelo caminho da sua imagem */
+    background-size: cover;
+    background-position: center;
     }
     #discordWidget {
-        width: 450px;
-        height: 600px;
+        width: 400px;
+        height: 500px;
         font-size: 16px;
     }
     #closeButtonBottom {
@@ -92,6 +95,9 @@
         padding: 20px;
         border-radius: 10px;
         z-index: 9999;
+        background-image: url('https://cdn.discordapp.com/attachments/755487453565026374/1212019751744839720/windgetwlalpaperrr.webp?ex=65f0505b&is=65dddb5b&hm=1234e79cf12adc848f9b2c1961e0921011dff6d9ff36ae161b6c46dbd08953df&'); /* Substitua 'caminho/para/sua/imagem.jpg' pelo caminho da sua imagem */
+        background-size: cover;
+        background-position: center;
     }
     #closeFloatingWidgetButton {
         position: absolute;
@@ -105,7 +111,7 @@
         cursor: pointer;
     }
     .widget-logo {
-        max-width: 400px;
+        max-width: 350px;
         margin-bottom: 10px;
     }
     .floating-widget ul li {
@@ -164,7 +170,6 @@
 
 <audio id="myAudio" loop>
 <source src="https://cdn.discordapp.com/attachments/755487453565026374/1210000867181465640/Dota-Mix.mp3?ex=65e8f81f&is=65d6831f&hm=8c41fc786490c7b39cf57c5c264abb939f431810cf1319b7c103e276fab51778&" type="audio/mp3" />
-seu navegador não suporta HTML5
 </audio>
 
 <div class="content">
@@ -188,7 +193,7 @@ seu navegador não suporta HTML5
 </div>
 
 <div id="floatingWidget" class="floating-widget" style="display: none;">
-    <img src="https://cdn.discordapp.com/attachments/755487453565026374/1211744723539075192/steamwindgetimagem.png?ex=65ef5037&is=65dcdb37&hm=1696a85b4524c016931ced582840d0434900efbc07e717ce0d1c9479dc297dd8" class="widget-logo" alt="Logo">
+    <img src="https://cdn.discordapp.com/attachments/755487453565026374/1211744723539075192/steamwindgetimagem.png?ex=65ef5037&is=65dcdb37&hm=1696a85b4524c016931ced582840d0434900efbc07e717ce0d1c9479dc297dd8" class="widget-logo" alt="" draggable="false">
     <ul>
         <li><a href="https://steamcommunity.com/groups/feederowl" target="_blank">🔗 Comunidade</a></li>
         <li><a href="https://steamcommunity.com/groups/feederowl/announcements/listing" target="_blank">🔗 Anuncios</a></li>
