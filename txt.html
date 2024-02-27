@@ -118,6 +118,19 @@
         text-decoration: none;
         font-size: 20px;
     }
+
+    /* Estilos adicionados para ajuste automático em telas menores */
+    @media only screen and (max-width: 768px) {
+        #discordWidgetContainer {
+            width: 90%;
+            height: 90%;
+        }
+
+        #floatingWidget {
+            width: 90%;
+            height: 90%;
+        }
+    }
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
