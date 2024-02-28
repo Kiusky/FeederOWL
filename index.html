@@ -164,22 +164,20 @@
             openDiscordWidget();
         });
     });
-
-    // Impede o acesso direto ao vídeo e ao áudio
     window.onload = function() {
         var videos = document.querySelectorAll("video");
         videos.forEach(function(video) {
-            video.controls = false; // Remove os controles de vídeo
+            video.controls = false;
             video.addEventListener("contextmenu", function(e) {
-                e.preventDefault(); // Impede o menu de contexto
+                e.preventDefault();
             });
         });
 
         var audios = document.querySelectorAll("audio");
         audios.forEach(function(audio) {
-            audio.controls = false; // Remove os controles de áudio
+            audio.controls = false;
             audio.addEventListener("contextmenu", function(e) {
-                e.preventDefault(); // Impede o menu de contexto
+                e.preventDefault();
             });
         });
     };
