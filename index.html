@@ -8,7 +8,7 @@
 <meta property="og:image" content="https://cdn.discordapp.com/attachments/755487453565026374/1208055212481319013/Feeder_Owl.gif?ex=65eb1e97&is=65d8a997&hm=c52f58f8bc5d74f97959b1b8f46d4344b8c9390db4c7fbaac42e941db26d74c3&">
 <meta property="og:url" content="https://www.feederowl.com/">
 <title>ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁</title>
-<link rel="icon" href="https://cdn.discordapp.com/attachments/755487453565026374/1212177419419648120/F.OWL.png?ex=65f0e331&is=65de6e31&hm=89da09f50d2ac3f2b47cf5b0c6a89ffe535394c623a8cda221f346a2b51bdaa9&" type="https://cdn.discordapp.com/attachments/755487453565026374/1212177723649294336/F.OWL.ico?ex=65f0e37a&is=65de6e7a&hm=253a0ded6c30bd0e8e0500e2930183245c5d8e103ad5f336dc92cc15b5a74808&">
+<link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/attachments/755487453565026374/1212177419419648120/F.OWL.png?ex=65f0e331&is=65de6e31&hm=89da09f50d2ac3f2b47cf5b0c6a89ffe535394c623a8cda221f346a2b51bdaa9&">
 <style>
     html {
         user-select: none;
@@ -24,7 +24,7 @@
         align-items: center;
         min-height: 100vh;
         min-width: 100vw;
-        background-color: #;
+        background-color: #303136;
     }
     .content {
         text-align: center;
@@ -164,6 +164,25 @@
             openDiscordWidget();
         });
     });
+
+    // Impede o acesso direto ao vídeo e ao áudio
+    window.onload = function() {
+        var videos = document.querySelectorAll("video");
+        videos.forEach(function(video) {
+            video.controls = false; // Remove os controles de vídeo
+            video.addEventListener("contextmenu", function(e) {
+                e.preventDefault(); // Impede o menu de contexto
+            });
+        });
+
+        var audios = document.querySelectorAll("audio");
+        audios.forEach(function(audio) {
+            audio.controls = false; // Remove os controles de áudio
+            audio.addEventListener("contextmenu", function(e) {
+                e.preventDefault(); // Impede o menu de contexto
+            });
+        });
+    };
 </script>
 </head>
 <body>
@@ -173,7 +192,9 @@
 </audio>
 
 <div class="content">
-    <img class="logo" src="https://cdn.discordapp.com/attachments/755487453565026374/1209911282375852082/5464564465-removebg-preview_1.png?ex=65e8a4b0&is=65d62fb0&hm=a623082f105e02868751c080ba47179b641366d67ca868cced2febb8f600b2e5" alt="Logo">
+    <video class="logo" autoplay loop muted>
+        <source src="https://cdn.discordapp.com/attachments/1212435400342110350/1212484195323084850/logoweb.mp4?ex=65f200e7&is=65df8be7&hm=56d48d4f858420f6319b4a69ea303bd5829107789dc7ccf4076a4877e00d718f&" type="video/mp4">
+    </video>
 
     <div class="links">
         <button class="link" onclick="openFloatingWidget()">
