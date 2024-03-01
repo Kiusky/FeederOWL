@@ -73,8 +73,8 @@ body {
 }
 
 #discordWidget {
-    width: 400px;
-    height: 500px;
+    width: 360px;
+    height: 475px;
     font-size: 16px;
 }
 
@@ -103,7 +103,7 @@ body {
     z-index: 9999;
     background-image: url('https://cdn.discordapp.com/attachments/755487453565026374/1212019751744839720/windgetwlalpaperrr.webp?ex=65f0505b&is=65dddb5b&hm=1234e79cf12adc848f9b2c1961e0921011dff6d9ff36ae161b6c46dbd08953df&');
     background-position: center;
-    width: 400px;
+    width: 350px;
     height: 465px;
 }
 
