@@ -20,6 +20,7 @@ body {
 
 .content {
     text-align: center;
+    overflow-x: hidden;
 }
 
 .logo {
