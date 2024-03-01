@@ -22,12 +22,12 @@ function closeDiscordWidget() {
     widgetContainer.style.display = "none";
 }
 
-function openFloatingWidget() {
-    var floatingWidget = document.getElementById("floatingWidget");
-    floatingWidget.style.display = "block";
+function openSteamWidget() {
+    var steamWidget = document.getElementById("steam");
+    steamWidget.style.display = "block";
 }
 
-function closeFloatingWidget() {
-    var floatingWidget = document.getElementById("floatingWidget");
-    floatingWidget.style.display = "none";
+function closeSteamWidget() {
+    var steamWidget = document.getElementById("steam");
+    steamWidget.style.display = "none";
 }
