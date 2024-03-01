@@ -5,6 +5,8 @@ html {
     -ms-user-select: none;
 }
 body {
+    overflow-x: hidden;
+	overflow: hidden;
     margin: 0;
     padding: 0;
     display: flex;
