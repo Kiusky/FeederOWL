@@ -1,3 +1,7 @@
+*:focus {
+    outline: none;
+}
+
 html {
     user-select: none;
     -webkit-user-select: none;
