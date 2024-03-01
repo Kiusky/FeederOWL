@@ -18,16 +18,19 @@ body {
     text-align: center;
 }
 .logo {
-    max-width: 90%;
+    width: 90%;
+    max-width: 600px;
     margin-bottom: 40px;
     pointer-events: none;
 }
 .links {
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 20px;
 }
 .link {
     text-decoration: none;
