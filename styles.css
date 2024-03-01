@@ -4,9 +4,10 @@ html {
     -moz-user-select: none;
     -ms-user-select: none;
 }
+
 body {
-	overflow-x: hidden;
-	overflow: hidden;
+    overflow-x: hidden;
+    overflow: hidden;
     margin: 0;
     padding: 0;
     display: flex;
@@ -16,15 +17,18 @@ body {
     min-width: 100vw;
     background-color: #303136;
 }
+
 .content {
     text-align: center;
 }
+
 .logo {
     width: 90%;
     max-width: 600px;
     margin-bottom: 40px;
     pointer-events: none;
 }
+
 .links {
     max-width: 600px;
     width: 90%;
@@ -34,6 +38,7 @@ body {
     flex-wrap: wrap;
     gap: 20px;
 }
+
 .link {
     text-decoration: none;
     display: flex;
@@ -43,16 +48,20 @@ body {
     background-color: transparent;
     border: none;
 }
+
 .link img {
     max-width: 70px;
     margin-bottom: 10px;
 }
+
 .link:hover {
     transform: scale(1.1);
 }
+
 .audio-controls {
     margin-top: 20px;
 }
+
 #discordWidgetContainer {
     position: fixed;
     top: 50%;
@@ -62,11 +71,13 @@ body {
     background-size: cover;
     background-position: center;
 }
+
 #discordWidget {
     width: 400px;
     height: 500px;
     font-size: 16px;
 }
+
 #closeButtonBottom {
     position: absolute;
     bottom: -40px;
@@ -74,25 +85,29 @@ body {
     transform: translateX(-50%);
     background-color: transparent;
     border: none;
-    color: back;
+    color: black; /* Cor corrigida aqui */
     font-size: 16px;
     cursor: pointer;
 }
-.floating-widget {
+
+#steam {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: none;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 10px;
     border-radius: 10px;
     z-index: 9999;
     background-image: url('https://cdn.discordapp.com/attachments/755487453565026374/1212019751744839720/windgetwlalpaperrr.webp?ex=65f0505b&is=65dddb5b&hm=1234e79cf12adc848f9b2c1961e0921011dff6d9ff36ae161b6c46dbd08953df&');
-    background-size: cover;
     background-position: center;
+    width: 400px;
+    height: 460px;
 }
-#closeFloatingWidgetButton {
+
+#closeSteamWidgetButton {
     position: absolute;
     bottom: -40px;
     left: 50%;
@@ -103,16 +118,19 @@ body {
     font-size: 16px;
     cursor: pointer;
 }
+
 .widget-logo {
     max-width: 350px;
     margin-bottom: 10px;
 }
-.floating-widget ul li {
+
+#steam ul li {
     list-style: none;
     margin-bottom: 10px;
     color: white;
 }
-.floating-widget ul li a {
+
+#steam ul li a {
     color: white;
     text-decoration: none;
     font-size: 20px;
