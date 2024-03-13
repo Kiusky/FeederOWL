@@ -19,7 +19,8 @@ body {
     align-items: center;
     min-height: 100vh;
     min-width: 100vw;
-    background-color: #303036;
+    background-color: #303136;
+	background-color: rgba(48,49,54,255);
 }
 
 .content {
