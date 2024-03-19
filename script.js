@@ -1,28 +1,29 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    let touchStartTime = 0;
-    let touchEndTime = 0;
-    let touchTimeout;
-    let longPressDuration = 2500; // Tempo em milissegundos para considerar um toque longo
+    let touchStartCount = 0;
+    let touchEndCount = 0;
+    let longPressDuration = 1500; // Tempo em milissegundos para considerar um toque longo
 
     document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
     });
 
     document.body.addEventListener('touchstart', function(event) {
-        if (event.touches.length === 2) {
-            touchStartTime = Date.now();
-            touchTimeout = setTimeout(function() {
-                redirectToPage();
+        touchStartCount += event.touches.length;
+        if (touchStartCount === 2) {
+            setTimeout(() => {
+                if (touchEndCount !== 2) {
+                    redirectToPage();
+                }
             }, longPressDuration);
         }
     });
 
     document.body.addEventListener('touchend', function(event) {
-        clearTimeout(touchTimeout);
-    });
-
-    document.body.addEventListener('touchmove', function(event) {
-        clearTimeout(touchTimeout);
+        touchEndCount += event.changedTouches.length;
+        if (touchEndCount === 2) {
+            touchStartCount = 0;
+            touchEndCount = 0;
+        }
     });
 
     document.body.addEventListener('click', function() {
