@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    let touchStart = 0;
-    let touchEnd = 0;
+    let touchStartTime = 0;
+    let touchEndTime = 0;
     let touchTimeout;
-    let touchMoveThreshold = 20;
-    let longPressDuration = 2500;
+    let longPressDuration = 2500; // Tempo em milissegundos para considerar um toque longo
 
     document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
@@ -11,17 +10,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     document.body.addEventListener('touchstart', function(event) {
         if (event.touches.length === 2) {
-            touchStart = Date.now();
-            let touch1 = event.touches[0];
-            let touch2 = event.touches[1];
-            let initialDistance = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
+            touchStartTime = Date.now();
             touchTimeout = setTimeout(function() {
-                let touch1 = event.touches[0];
-                let touch2 = event.touches[1];
-                let currentDistance = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
-                if (Math.abs(currentDistance - initialDistance) < touchMoveThreshold) {
-                    redirectToPage();
-                }
+                redirectToPage();
             }, longPressDuration);
         }
     });
