@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     let scrollStart = 0;
     let scrollEnd = 0;
-    let longPressDuration = 2500;
+    let longPressDuration = 3500;
 
     document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
