@@ -2,10 +2,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
     });
+    document.body.addEventListener('mousedown', function(event) {
+        if (event.button == 1) {
+            scrollStart = Date.now();
+        }
+    });
+    document.body.addEventListener('mouseup', function(event) {
+        if (event.button == 1) {
+            let scrollEnd = Date.now();
+            if (scrollEnd - scrollStart >= 2500) {
+                redirectToPage();
+            }
+        }
+    });
     document.body.addEventListener('click', function() {
         playAudio();
     });
 });
+
+function redirectToPage() {
+    window.location.href = "https://feederowl.com/jogos";
+}
 
 function playAudio() {
     var audio = document.getElementById("myAudio");
