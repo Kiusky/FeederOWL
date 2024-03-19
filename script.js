@@ -1,28 +1,35 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    let touchStartCount = 0;
-    let touchEndCount = 0;
-    let longPressDuration = 1500; // Tempo em milissegundos para considerar um toque longo
+    let scrollStart = 0;
+    let scrollEnd = 0;
+    let longPressDuration = 2500;
 
     document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
     });
 
-    document.body.addEventListener('touchstart', function(event) {
-        touchStartCount += event.touches.length;
-        if (touchStartCount === 2) {
-            setTimeout(() => {
-                if (touchEndCount !== 2) {
-                    redirectToPage();
-                }
-            }, longPressDuration);
+    document.body.addEventListener('mousedown', function(event) {
+        if (event.button == 1) {
+            scrollStart = Date.now();
         }
     });
 
+    document.body.addEventListener('mouseup', function(event) {
+        if (event.button == 1) {
+            scrollEnd = Date.now();
+            if (scrollEnd - scrollStart >= longPressDuration) {
+                redirectToPage();
+            }
+        }
+    });
+
+    document.body.addEventListener('touchstart', function(event) {
+        scrollStart = Date.now();
+    });
+
     document.body.addEventListener('touchend', function(event) {
-        touchEndCount += event.changedTouches.length;
-        if (touchEndCount === 2) {
-            touchStartCount = 0;
-            touchEndCount = 0;
+        scrollEnd = Date.now();
+        if (scrollEnd - scrollStart >= longPressDuration) {
+            redirectToPage();
         }
     });
 
