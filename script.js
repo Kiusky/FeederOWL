@@ -1,3 +1,15 @@
+
+window.addEventListener('load', (event) => {
+    const loader = document.querySelector('.loader');
+    if (loader) {
+        loader.style.display = 'none';
+    }
+    const content = document.querySelector('.content');
+    if (content) {
+        content.style.display = 'block';
+    }
+});
+
 document.addEventListener('DOMContentLoaded', (event) => {
     let scrollStart = 0;
     let scrollEnd = 0;
@@ -39,12 +51,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     var img = new Image();
     img.onload = function() {
-        var steamWidget = document.getElementById("steam");
+        var steamWidget = document.getElementById('steam');
         steamWidget.style.backgroundImage = "url('https://feederowl.com/01001111%2001010111%2001001100%20=steam-windget.webp')";
-        steamWidget.style.backgroundSize = "cover";
-        steamWidget.style.backgroundPosition = "center";
+        steamWidget.style.backgroundSize = 'cover';
+        steamWidget.style.backgroundPosition = 'center';
     };
-    img.src = "https://feederowl.com/01001111%2001010111%2001001100%20=steam-windget.webp";
+    img.src = 'https://feederowl.com/01001111%2001010111%2001001100%20=steam-windget.webp';
 
     var steamLinks = document.querySelectorAll('#steam ul li a');
     steamLinks.forEach(link => {
@@ -55,30 +67,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function redirectToPage() {
-    window.location.href = "https://feederowl.com/jogos";
+    window.location.href = 'https://feederowl.com/jogos';
 }
 
 function playAudio() {
-    var audio = document.getElementById("myAudio");
+    var audio = document.getElementById('myAudio');
     audio.play();
 }
 
 function openDiscordWidget() {
-    var widgetContainer = document.getElementById("discordWidgetContainer");
-    widgetContainer.style.display = "block";
+    var widgetContainer = document.getElementById('discordWidgetContainer');
+    if (widgetContainer) {
+        widgetContainer.style.display = 'block';
+    }
 }
 
 function closeDiscordWidget() {
-    var widgetContainer = document.getElementById("discordWidgetContainer");
-    widgetContainer.style.display = "none";
+    var widgetContainer = document.getElementById('discordWidgetContainer');
+    if (widgetContainer) {
+        widgetContainer.style.display = 'none';
+    }
 }
 
 function openSteamWidget() {
-    var steamWidget = document.getElementById("steam");
-    steamWidget.style.display = "block";
+    var steamWidget = document.getElementById('steam');
+    if (steamWidget) {
+        steamWidget.style.display = 'block';
+    }
 }
 
 function closeSteamWidget() {
-    var steamWidget = document.getElementById("steam");
-    steamWidget.style.display = "none";
+    var steamWidget = document.getElementById('steam');
+    if (steamWidget) {
+        steamWidget.style.display = 'none';
+    }
 }
