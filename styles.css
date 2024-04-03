@@ -1,3 +1,66 @@
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #303136;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #c6c0be;
+    margin: 0 10px;
+    animation: loader-dot 0.5s infinite ease-in-out;
+	animation-delay: calc(0.5s);
+}
+
+.loader-dot:nth-child(2) {
+    animation-delay: calc(0.5s + 0.25s);
+}
+
+.loader-dot:nth-child(3) {
+    animation-delay: calc(0.5s + 0.5s);
+}
+
+@keyframes loader-dot {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+}
+
+.loader-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #c6c0be;
+    margin: 0 10px;
+    animation: loader-dot 0.5s infinite ease-in-out;
+}
+
+.loader-dot:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+.loader-dot:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+/* Hide content when loading */
+.content {
+    display: none;
+}
+
+/* Resto do seu CSS... */
 *:focus {
     outline: none;
 }
@@ -145,14 +208,14 @@ body {
 #steam ul li a {
     display: inline-block;
     padding: 2px;
-	margin: 2px;
+    margin: 2px;
     color: white;
     text-decoration: none;
     font-size: 15px;
-	font-weight: bold;
-	font-family: Arial, sans-serif;
-	user-select: none;
-	...
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    user-select: none;
+    ...
     draggable: false;
 }
 
