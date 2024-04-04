@@ -19,13 +19,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     document.body.addEventListener('mousedown', function(event) {
-        if (event.button == 1) {
+        if (event.button === 1) {
             scrollStart = Date.now();
         }
     });
 
     document.body.addEventListener('mouseup', function(event) {
-        if (event.button == 1) {
+        if (event.button === 1) {
             scrollEnd = Date.now();
             if (scrollEnd - scrollStart >= longPressDuration) {
                 redirectToPage();
@@ -48,25 +48,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
         playAudio();
     });
 
-    function preloadSteamWidget() {
-        var img = new Image();
-        img.src = 'https://feederowl.com/01001111%2001010111%2001001100%20=steam-windget.webp' + Date.now();
-    }
-    preloadSteamWidget();
-
-    var steamLinks = document.querySelectorAll('#steam ul li a');
-    steamLinks.forEach(link => {
-        link.addEventListener('dragstart', function(event) {
-            event.preventDefault();
-        });
-    });
-
-    function preloadDiscordWidget() {
-        var img = new Image();
-        img.src = 'https://discord.com/widget?id=653379836164702228&theme=dark' + Date.now();
-    }
+    preloadBackgroundImage();
     preloadDiscordWidget();
 });
+
+function preloadBackgroundImage() {
+    var img = new Image();
+    img.src = 'https://feederowl.com/01001111%2001010111%2001001100%20=steam-widget.webp';
+}
+
+function preloadDiscordWidget() {
+    var img = new Image();
+    img.src = 'https://discord.com/widget?id=653379836164702228&theme=dark&' + Date.now();
+}
 
 function redirectToPage() {
     window.location.href = 'https://feederowl.com/jogos';
