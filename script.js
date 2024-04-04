@@ -1,4 +1,4 @@
-window.addEventListener('load', (event) => {
+window.onload = function() {
     const loader = document.querySelector('.loader');
     if (loader) {
         loader.style.display = 'none';
@@ -7,7 +7,8 @@ window.addEventListener('load', (event) => {
     if (content) {
         content.style.display = 'block';
     }
-});
+    preloadBackgroundImage();
+};
 
 document.addEventListener('DOMContentLoaded', (event) => {
     let scrollStart = 0;
@@ -48,7 +49,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         playAudio();
     });
 
-    preloadBackgroundImage();
     preloadDiscordWidget();
 });
 
@@ -86,10 +86,13 @@ function closeDiscordWidget() {
 }
 
 function openSteamWidget() {
-    var steamWidget = document.getElementById('steam');
-    if (steamWidget) {
-        steamWidget.style.display = 'block';
-    }
+    preloadBackgroundImage();
+    setTimeout(() => {
+        var steamWidget = document.getElementById('steam');
+        if (steamWidget) {
+            steamWidget.style.display = 'block';
+        }
+    }, 0);
 }
 
 function closeSteamWidget() {
