@@ -1,4 +1,3 @@
-
 window.addEventListener('load', (event) => {
     const loader = document.querySelector('.loader');
     if (loader) {
@@ -49,14 +48,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         playAudio();
     });
 
-    var img = new Image();
-    img.onload = function() {
-        var steamWidget = document.getElementById('steam');
-        steamWidget.style.backgroundImage = "url('https://feederowl.com/01001111%2001010111%2001001100%20=steam-windget.webp')";
-        steamWidget.style.backgroundSize = 'cover';
-        steamWidget.style.backgroundPosition = 'center';
-    };
-    img.src = 'https://feederowl.com/01001111%2001010111%2001001100%20=steam-windget.webp';
+    function preloadSteamWidget() {
+        var img = new Image();
+        img.src = 'https://feederowl.com/01001111%2001010111%2001001100%20=steam-windget.webp' + Date.now();
+    }
+    preloadSteamWidget();
 
     var steamLinks = document.querySelectorAll('#steam ul li a');
     steamLinks.forEach(link => {
@@ -64,6 +60,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             event.preventDefault();
         });
     });
+
+    function preloadDiscordWidget() {
+        var img = new Image();
+        img.src = 'https://discord.com/widget?id=653379836164702228&theme=dark' + Date.now();
+    }
+    preloadDiscordWidget();
 });
 
 function redirectToPage() {
