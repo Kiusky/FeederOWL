@@ -1,66 +1,31 @@
 .loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background-color: #303136;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.loader-dot {
-    width: 20px;
-    height: 20px;
+    border: 64px solid;
+    border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
     border-radius: 50%;
-    background-color: #c6c0be;
-    margin: 0 10px;
-    animation: loader-dot 0.5s infinite ease-in-out;
-	animation-delay: calc(0.5s);
-}
+    display: inline-block;
+    box-sizing: border-box;
+    animation: animloader 1s linear infinite;
+  }
 
-.loader-dot:nth-child(2) {
-    animation-delay: calc(0.5s + 0.25s);
+@keyframes animloader {
+    0% {
+      border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
 }
-
-.loader-dot:nth-child(3) {
-    animation-delay: calc(0.5s + 0.5s);
+    33% {
+      border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
 }
-
-@keyframes loader-dot {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.5);
-    }
+    66% {
+      border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
 }
-
-.loader-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #c6c0be;
-    margin: 0 10px;
-    animation: loader-dot 0.5s infinite ease-in-out;
+    100% {
+      border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
 }
+  }
 
-.loader-dot:nth-child(2) {
-    animation-delay: 0.25s;
-}
-
-.loader-dot:nth-child(3) {
-    animation-delay: 0.5s;
-}
-
-/* Hide content when loading */
 .content {
     display: none;
 }
 
-/* Resto do seu CSS... */
 *:focus {
     outline: none;
 }
