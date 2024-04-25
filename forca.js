@@ -1,3 +1,17 @@
+var imagens = [
+    "forca01.png",
+    "forca02.png",
+    "forca03.png",
+    "forca04.png",
+    "forca05.png",
+    "forca06.png"
+];
+
+for (var i = 0; i < imagens.length; i++) {
+    var img = new Image();
+    img.src = imagens[i];
+}
+
 let jogarNovamente = true;
 let tentativas = 6;
 let listaDinamica = [];
@@ -122,6 +136,7 @@ function comparalistas(letra){
 async function atraso(tempo){
     return new Promise(x => setTimeout(x, tempo))     
 }
+var imagemElement = document.getElementById("imagem");
 
 function carregaImagemForca(){
     switch(tentativas){
