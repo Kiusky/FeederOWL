@@ -189,14 +189,14 @@ function listaAutomatica(){ // ativa o modo manual
         jogoAutomatico = false;
 
         document.getElementById("abreModalAddPalavra").style.display = "block";
-        document.getElementById("status").innerHTML = "Jogo Manual";
+        document.getElementById("status").innerHTML = "";
     }
     else if(jogoAutomatico == false){ // ativa o modo automático
         document.getElementById("jogarAutomatico").innerHTML = "<i class='bx bx-pause-circle'></i>"
         jogoAutomatico = true;
 
         document.getElementById("abreModalAddPalavra").style.display = "none";
-        document.getElementById("status").innerHTML = "∞";
+        document.getElementById("status").innerHTML = "";
         
     }
 }
