@@ -116,7 +116,7 @@ function comparalistas(letra){
 
     if(vitoria == true)
     {
-        abreModal("PARABÉNS!", "Você venceu...");
+        abreModal("PARABÉNS!", "Acertou mizeravi...");
         tentativas = 0;
         piscarBotaoJogarNovamente(true);
     }
@@ -477,7 +477,7 @@ function adicionarPalavra(){
     let addCategoria = document.getElementById("addCategoria").value.toUpperCase();
 
     if (isNullOrWhiteSpace(addPalavra) || isNullOrWhiteSpace(addCategoria) || addPalavra.length < 3 || addCategoria.length < 3) {
-        abreModal("ATENÇÃO"," Palavra e/ou Categoria inválidos");
+        abreModal("ATENÇÃO"," Palavra chave ou dica inválidos");
         return;
     }
 
