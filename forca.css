@@ -101,7 +101,7 @@ body{
 
 #abreModalAddPalavra{
     display: none;
-    bottom: 160px;
+    bottom: 80px;
     right: 5px;
 }
 
@@ -124,9 +124,9 @@ body{
 
 #jogarNovamente{
     display: none;
-    bottom: 15px;
-    right: 30px;
-    transform: rotate(-90deg);
+    bottom: 70px;
+    right: 65px;
+    transform: rotate(-180deg);
     transform-origin: left top 0;
 }
 
