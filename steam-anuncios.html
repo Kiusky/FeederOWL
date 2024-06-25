@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirecionador para Steam</title>
-<script>
-// Função para redirecionar
-function redirecionarParaSteam(url) {
-    var novoUrl = 'steam://openurl/' + encodeURIComponent(url);
-    window.location.href = novoUrl;
-}
-
-// Chamar a função para redirecionar para o URL desejado
-redirecionarParaSteam('https://steamcommunity.com/groups/feederowl/announcements/listing');
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionamento para Steam</title>
+    <script>
+        // Função para redirecionar o URL e tentar fechar a aba
+        function redirecionarParaSteam() {
+            // URL de redirecionamento para o aplicativo Steam
+            var steamURL = "steam://openurl/https://steamcommunity.com/groups/feederowl/announcements/listing";
+            
+            // Redirecionar para o URL da Steam
+            window.location.href = steamURL;
+            
+            // Tentar fechar a aba após 1 segundo
+            setTimeout(function() {
+                window.close();
+            }, 5000);
+        }
+        
+        // Redirecionar automaticamente ao carregar a página
+        window.onload = function() {
+            redirecionarParaSteam();
+        };
+    </script>
 </head>
 <body>
-<!-- Conteúdo opcional da página -->
+    <p></p>
 </body>
 </html>
