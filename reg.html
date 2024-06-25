@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Redirecionamento Steam</title>
-    <script type="text/javascript">
-        window.onload = function() {
-            const baseSteamUrl = "steam://openurl/https://steamcommunity.com/groups/feederowl/announcements/detail";
-            const caminhoAdicional = window.location.pathname.substring(1); // Captura o caminho após a primeira barra
-            const urlCompleta = baseSteamUrl + caminhoAdicional;
-            window.location.href = urlCompleta;
-        };
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abrir link no Steam</title>
 </head>
 <body>
+    <p>Clique no botão abaixo para abrir o link no Steam:</p>
+    <button onclick="abrirSteam()">Abrir Link no Steam</button>
+
+    <script>
+        function abrirSteam() {
+            // Substitua o URL abaixo pelo que você quer abrir no Steam
+            var url = "steam://openurl/http://www.example.com";
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>
