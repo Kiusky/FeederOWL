@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abrir link no Steam</title>
+    <title>Redirecionando para a Steam...</title>
+    <script>
+        window.onload = function() {
+            var url = window.location.href;
+            var steamUrl = "steam://openurl/" + encodeURIComponent(url);
+            window.location.href = steamUrl;
+        };
+    </script>
 </head>
 <body>
-    <p>Clique no link abaixo para abrir o Steam com o URL desejado:</p>
-    <a href="steam://openurl/https://steamcommunity.com">Abrir Link no Steam</a>
+    <p>Redirecionando para a Steam...</p>
+    <p>Se o redirecionamento não ocorrer, verifique se você possui a Steam instalada ou clique <a href="steam://openurl/seu_link_aqui">aqui</a>.</p>
 </body>
 </html>
