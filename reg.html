@@ -3,25 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecionamento automático para a Steam</title>
+    <title>Redirecionamento para a Steam</title>
     <script>
-        window.onload = function() {
-            // URL base para o aplicativo da Steam
-            var baseSteamUrl = "steam://openurl/";
+        function redirecionarParaSteam() {
+            // URL base para a página inicial da Steam
+            var urlSteam = "https://store.steampowered.com/";
             
-            // URL específico a ser adicionado pelo usuário
-            var restoDoUrl = "https://steamcommunity.com";
-            
-            // Constrói o URL completo para o aplicativo da Steam
-            var urlCompletoSteam = baseSteamUrl + encodeURIComponent(restoDoUrl);
-            
-            // Redireciona para o aplicativo da Steam
-            window.location.href = urlCompletoSteam;
-        };
+            // Abrir a página inicial da Steam
+            window.location.href = urlSteam;
+        }
     </script>
 </head>
 <body>
-    <h1>Redirecionamento automático para a Steam</h1>
-    <p>Redirecionando para o aplicativo da Steam...</p>
+    <h1>Redirecionamento para a Steam</h1>
+    
+    <p>Clique no botão abaixo para abrir a página inicial da Steam:</p>
+    <button onclick="redirecionarParaSteam()">Abrir Steam</button>
+
 </body>
 </html>
