@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirecionador para Steam</title>
+<script>
+// Função para redirecionar
+function redirecionarParaSteam(url) {
+    var novoUrl = 'steam://openurl/' + encodeURIComponent(url);
+    window.location.href = novoUrl;
+}
+
+// Chamar a função para redirecionar para o URL desejado
+redirecionarParaSteam('https://steamcommunity.com/groups/feederowl/announcements/listing');
+</script>
+</head>
+<body>
+<!-- Conteúdo opcional da página -->
+</body>
+</html>
