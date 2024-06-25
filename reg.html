@@ -3,28 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Executar Steam URL</title>
+<title>Redirecionador para steam://openurl/</title>
 <script>
-function executarSteamURL() {
-    var inputUrl = document.getElementById('urlInput').value.trim();
-
-    // Verifica se o link inserido começa com "https://feederowl.com/"
-    if (inputUrl.startsWith("https://feederowl.com/")) {
-        // Constrói a URL de execução no formato "steam://openurl/"
-        var modifiedUrl = "steam://openurl/" + inputUrl.substring("https://feederowl.com/".length);
-
-        // Redireciona o navegador para a URL Steam
-        window.location.href = modifiedUrl;
-    } else {
-        alert("Por favor, insira um link válido de feederowl.com");
+function redirect() {
+    var inputUrl = document.getElementById('inputUrl').value.trim();
+    if (inputUrl !== '') {
+        var redirectUrl = 'steam://openurl/' + encodeURIComponent(inputUrl);
+        window.location.href = redirectUrl;
     }
 }
 </script>
 </head>
 <body>
-    <h1>Executar Steam URL</h1>
-    <p>Insira o link do feederowl.com que deseja executar:</p>
-    <input type="text" id="urlInput" placeholder="Insira o link aqui">
-    <button onclick="executarSteamURL()">Executar Steam URL</button>
+    <h2>Redirecionador para steam://openurl/</h2>
+    <p>Digite o URL abaixo:</p>
+    <input type="text" id="inputUrl" placeholder="Digite o URL">
+    <button onclick="redirect()">Redirecionar para steam://openurl/</button>
 </body>
 </html>
