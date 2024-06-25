@@ -1,24 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecionamento para a Steam</title>
-    <script>
-        function redirecionarParaSteam() {
-            // URL base para a página inicial da Steam
-            var urlSteam = "https://store.steampowered.com/";
-            
-            // Abrir a página inicial da Steam
-            window.location.href = urlSteam;
-        }
+    <title>Redirecionamento Steam</title>
+    <script type="text/javascript">
+        window.onload = function() {
+            const baseSteamUrl = "steam://openurl/https://steamcommunity.com/groups/feederowl/announcements/detail";
+            const caminhoAdicional = window.location.pathname.substring(1); // Captura o caminho após a primeira barra
+            const urlCompleta = baseSteamUrl + caminhoAdicional;
+            window.location.href = urlCompleta;
+        };
     </script>
 </head>
 <body>
-    <h1>Redirecionamento para a Steam</h1>
-    
-    <p>Clique no botão abaixo para abrir a página inicial da Steam:</p>
-    <button onclick="redirecionarParaSteam()">Abrir Steam</button>
-
 </body>
 </html>
