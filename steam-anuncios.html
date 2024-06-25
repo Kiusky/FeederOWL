@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecionamento para Steam</title>
+    <style>
+        body {
+            /* Definir a imagem de fundo e centralizá-la */
+            background-image: url('https://feederowl.com/01100110%2001110101%2001101110%2001100100%2001101111%2001110011%2001110100%2001100101%2001100001%2001101101.png');
+            background-size: cover; /* Cobrir todo o espaço disponível */
+            background-position: center; /* Centralizar a imagem */
+            background-repeat: no-repeat; /* Evitar repetição da imagem */
+            height: 100vh; /* Altura total da tela */
+            margin: 0; /* Remover margens padrão */
+            display: flex; /* Usar flexbox para centralizar conteúdo */
+            justify-content: center; /* Centralizar horizontalmente */
+            align-items: center; /* Centralizar verticalmente */
+            text-align: center; /* Alinhar texto ao centro se houver */
+        }
+    </style>
     <script>
         // Função para redirecionar o URL e tentar fechar a aba
         function redirecionarParaSteam() {
@@ -13,7 +28,7 @@
             // Redirecionar para o URL da Steam
             window.location.href = steamURL;
             
-            // Tentar fechar a aba após 1 segundo
+            // Tentar fechar a aba após 5 segundos
             setTimeout(function() {
                 window.close();
             }, 5000);
@@ -26,6 +41,6 @@
     </script>
 </head>
 <body>
-    <p></p>
+    <!-- Conteúdo opcional se desejar -->
 </body>
 </html>
