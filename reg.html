@@ -6,13 +6,22 @@
     <title>Redirecionamento automático para a Steam</title>
     <script>
         window.onload = function() {
-            var urlSteam = "steam://openurl/http://store.steampowered.com/";
-            window.location.href = urlSteam;
+            // URL base para o aplicativo da Steam
+            var baseSteamUrl = "steam://openurl/";
+            
+            // URL específico a ser adicionado pelo usuário
+            var restoDoUrl = "http://store.steampowered.com";
+            
+            // Constrói o URL completo para o aplicativo da Steam
+            var urlCompletoSteam = baseSteamUrl + encodeURIComponent(restoDoUrl);
+            
+            // Redireciona para o aplicativo da Steam
+            window.location.href = urlCompletoSteam;
         };
     </script>
 </head>
 <body>
     <h1>Redirecionamento automático para a Steam</h1>
-    <p>Seu navegador será redirecionado para a Steam em breve...</p>
+    <p>Redirecionando para o aplicativo da Steam...</p>
 </body>
 </html>
