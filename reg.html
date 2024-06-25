@@ -3,16 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abrir URL no Steam</title>
+<title>Redirecionador de Links</title>
 <script>
-function abrirUrlSteam(url) {
-    var steamUrl = 'steam://openurl/' + encodeURIComponent(url);
-    window.location.href = steamUrl;
+function redirecionar() {
+    // Obtém o valor do input
+    var inputUrl = document.getElementById('urlInput').value.trim();
+
+    // Verifica se começa com "https://feederowl.com/"
+    if (inputUrl.startsWith("https://feederowl.com/")) {
+        // Substitui "https://feederowl.com/" por "steam://openurl/"
+        var modifiedUrl = "steam://openurl/" + inputUrl.substring("https://feederowl.com/".length);
+        
+        // Exibe o resultado modificado
+        document.getElementById('result').innerText = modifiedUrl;
+    } else {
+        // Se não começar com o prefixo correto, exibe uma mensagem de erro
+        document.getElementById('result').innerText = "Por favor, insira um link válido de feederowl.com";
+    }
 }
 </script>
 </head>
 <body>
-<input type="text" id="urlInput" placeholder="Digite o URL">
-<button onclick="abrirUrlSteam(document.getElementById('urlInput').value)">Abrir URL no Steam</button>
+    <h1>Redirecionador de Links</h1>
+    <p>Insira o link do feederowl.com que deseja modificar:</p>
+    <input type="text" id="urlInput" placeholder="Insira o link aqui">
+    <button onclick="redirecionar()">Modificar</button>
+    <p>Link modificado:</p>
+    <p id="result"></p>
 </body>
 </html>
