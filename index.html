@@ -1,105 +1,107 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁">
-    <meta property="og:description" content="Somos uma comunidade online na Steam e Discord, reunindo jogadores para partidas em grupo. Oferecemos anúncios de jogos grátis, ofertas imperdíveis e fórum para discussões e soluções. Junte-se a nós para encontrar companheiros de equipe e aproveitar a diversão dos jogos em grupo!">
-    <meta property="og:image" content="https://feederowl.com/01001111%2001010111%2001001100%2000101101%2001000100%2001001001%2001010011%2001000011%2001001111%2001010010%2001000100.gif">
-    <meta property="og:url" content="https://www.feederowl.com/">
-    <title>ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁</title>
-    <link rel="icon" type="image/x-icon" href="https://feederowl.com/01001111%2001010111%2001001100=icon.ico">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="script.js" defer></script>
-    <style>
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            color: #484a51;
-            font-size: 10px;
-            padding: 5px 0;
-        }
-        .floating-widget {
-            position: absolute;
-            z-index: 999;
-        }
-        #playButton {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 10px 15px;
-            background-color: #484a51;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 1000;
-        }
-    </style>
-</head>
-<body>
-<audio id="myAudio" loop>
-    <source src="https://feederowl.com/01001111%2001010111%2001001100%20=Dota-Mix.mp3" type="audio/mp3">
-    Seu navegador não suporta áudio HTML5.
-</audio>
-<button id="playButton">Tocar Música</button>
-<div class="loader"></div>
-<div class="content">
-    <video class="logo" autoplay loop muted preload="auto">
-        <source src="https://feederowl.com/01001111%2001010111%2001001100=logo-f.owl.webm" type="video/webm">
-    </video>
-    <div class="links">
-        <button class="link" onclick="openSteamWidget()">
-            <img src="https://feederowl.com/01001111%2001010111%2001001100=steam-botao.png" alt="Logo do Steam" draggable="false">
-        </button>
-        <button id="discordButton" class="link" onclick="openDiscordWidget()">
-            <img src="https://feederowl.com/01001111%2001010111%2001001100=discord-botao.png" alt="Logo do Discord" draggable="false">
-        </button>
-    </div>
-</div>
-<div id="discordWidgetContainer" style="display: none;">
-    <iframe id="discordWidget" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" src="https://discord.com/widget?id=653379836164702228&theme=dark" style="background-color: transparent;"></iframe>
-</div>
-<div id="steam" class="floating-widget" style="display: none;">
-    <div id="steam-loading-overlay"></div>
-    <img src="https://feederowl.com/01001111%2001010111%2001001100=steam-logo-windget.png" class="widget-logo" alt="Logo do Widget" draggable="false">
-    <ul>
-        <li><a href="https://steamcommunity.com/groups/feederowl" target="_blank" class="steam-link">COMUNIDADE</a></li>
-        <li><a href="https://steamcommunity.com/groups/feederowl/announcements/listing" target="_blank" class="steam-link">ANÚNCIO</a></li>
-        <li><a href="https://store.steampowered.com/curator/32849147/" target="_blank" class="steam-link">CURADOR</a></li>
-        <li><a href="https://steamcommunity.com/groups/feederowl/events" target="_blank" class="steam-link">EVENTOS</a></li>
-        <li><a href="https://steamcommunity.com/groups/feederowl/discussions" target="_blank" class="steam-link">DISCUSSÕES</a></li>
-        <li><a href="https://steamcommunity.com/groups/feederowl/comments" target="_blank" class="steam-link">COMENTÁRIO</a></li>
-        <li><a href="https://steamcommunity.com/groups/feederowl/members" target="_blank" class="steam-link">MEMBROS</a></li>
-    </ul>
-</div>
-<footer>
-    🅳🅴🆂🅸🅶🅽🅴🆁   ᵇʸ   𝓚𝓲𝓾𝓼𝓴𝔂 𝓢𝓪𝓲𝓷𝓽𝓼
-</footer>
-<script>
-    // Inicia o áudio ao clicar no botão ou na página
-    const audio = document.getElementById('myAudio');
-    const playButton = document.getElementById('playButton');
+<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁"><meta property="og:description" content="Somos uma comunidade online na Steam e Discord, reunindo jogadores para partidas em grupo. Oferecemos anúncios de jogos grátis, ofertas imperdíveis e fórum para discussões e soluções. Junte-se a nós para encontrar companheiros de equipe e aproveitar a diversão dos jogos em grupo!"><meta property="og:image" content="https://feederowl.com/01001111%2001010111%2001001100%2000101101%2001000100%2001001001%2001010011%2001000011%2001001111%2001010010%2001000100.gif"><meta property="og:url" content="https://www.feederowl.com/"><title>ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁</title><link rel="icon" type="image/x-icon" href="https://feederowl.com/01001111%2001010111%2001001100=icon.ico"><link rel="stylesheet" type="text/css" href="styles.css"><script src="script.js" defer="defer"></script><style>footer{position:fixed;bottom:0;width:100%;text-align:center;color:#484a51;font-size:10px;padding:5px 0}.floating-widget{position:absolute;z-index:999}</style></head><body><audio id="myAudio" loop><source src="https://feederowl.com/01001111%2001010111%2001001100%20=Dota-Mix.mp3" type="audio/mp3"></audio><div class="loader"></div><div class="content"><video class="logo" autoplay loop muted preload="auto"><source src="https://feederowl.com/01001111%2001010111%2001001100=logo-f.owl.webm" type="video/webm"></video><div class="links"><button class="link" onclick="openSteamWidget()"><img src="https://feederowl.com/01001111%2001010111%2001001100=steam-botao.png" alt="Logo do Steam" draggable="false"></button><button id="discordButton" class="link" onclick="openDiscordWidget()"><img src="https://feederowl.com/01001111%2001010111%2001001100=discord-botao.png" alt="Logo do Discord" draggable="false"></button></div></div><div id="discordWidgetContainer" style="display:none"><iframe id="discordWidget" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" src="https://discord.com/widget?id=653379836164702228&theme=dark" style="background-color:transparent"></iframe></div><div id="steam" class="floating-widget" style="display:none"><div id="steam-loading-overlay"></div><img src="https://feederowl.com/01001111%2001010111%2001001100=steam-logo-windget.png" class="widget-logo" alt="Logo do Widget" draggable="false"><ul><li><a href="https://steamcommunity.com/groups/feederowl" target="_blank" class="steam-link">COMUNIDADE</a></li><li><a href="https://steamcommunity.com/groups/feederowl/announcements/listing" target="_blank" class="steam-link">ANÚNCIO</a></li><li><a href="https://store.steampowered.com/curator/32849147/" target="_blank" class="steam-link">CURADOR</a></li><li><a href="https://steamcommunity.com/groups/feederowl/events" target="_blank" class="steam-link">EVENTOS</a></li><li><a href="https://steamcommunity.com/groups/feederowl/discussions" target="_blank" class="steam-link">DISCUSSÕES</a></li><li><a href="https://steamcommunity.com/groups/feederowl/comments" target="_blank" class="steam-link">COMENTÁRIO</a></li><li><a href="https://steamcommunity.com/groups/feederowl/members" target="_blank" class="steam-link">MEMBROS</a></li></ul></div><script>function preloadImage(url) {
+        var img = new Image();
+        img.src = url;
+    }
+    preloadImage('https://feederowl.com/01001111%2001010111%2001001100%20=steam-windget.webp');
 
-    playButton.addEventListener('click', () => {
-        audio.play()
-            .then(() => {
-                console.log('Áudio está tocando.');
-                playButton.style.display = 'none'; // Oculta o botão após iniciar o áudio
-            })
-            .catch(error => {
-                console.error('Erro ao tentar reproduzir o áudio:', error);
-            });
+    function preloadDiscordWidget() {
+        var iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = 'https://discord.com/widget?id=653379836164702228&theme=dark';
+        document.body.appendChild(iframe);
+    }
+
+    window.onload = function() {
+        preloadDiscordWidget();
+    };
+
+    function openSteamWidget() {
+        document.getElementById('steam').style.display = 'block';
+        document.getElementById('discordWidgetContainer').style.display = 'none';
+    }
+
+    function openDiscordWidget() {
+        document.getElementById('discordWidgetContainer').style.display = 'block';
+        document.getElementById('steam').style.display = 'none';
+    }
+
+    function closeWidgets() {
+        document.getElementById('steam').style.display = 'none';
+        document.getElementById('discordWidgetContainer').style.display = 'none';
+    }
+
+    document.addEventListener('click', function(event) {
+        const steamWidget = document.getElementById('steam');
+        const discordWidgetContainer = document.getElementById('discordWidgetContainer');
+        
+        if (!steamWidget.contains(event.target) && !discordWidgetContainer.contains(event.target) && 
+            !event.target.closest('.link')) {
+            closeWidgets();
+        }
+    });</script><footer>🅳🅴🆂🅸🅶🅽🅴🆁 ᵇʸ 𝓚𝓲𝓾𝓼𝓴𝔂 𝓢𝓪𝓲𝓷𝓽𝓼</footer><canvas id="fireworksCanvas"></canvas><script src="script.js" defer="defer"></script><script>const canvas = document.getElementById("fireworksCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     });
 
-    // Caso deseje que o clique na página também inicie o áudio
-    document.body.addEventListener('click', (event) => {
-        if (event.target.id !== 'playButton') {
-            audio.play().catch(error => console.error('Erro ao tentar reproduzir o áudio:', error));
+    const particles = [];
+    const colors = ["#ff004c", "#ffff00", "#00e7ff", "#ff00f7", "#ffa500"];
+
+    function createParticles(x, y) {
+        const count = Math.random() * 50 + 50;
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: x,
+                y: y,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                angle: Math.random() * 2 * Math.PI,
+                speed: Math.random() * 4 + 1,
+                radius: Math.random() * 3 + 1,
+                alpha: 1,
+                decay: Math.random() * 0.03 + 0.01,
+            });
         }
-    }, { once: true });
-</script>
-</body>
-</html>
+    }
+
+    function updateParticles() {
+        particles.forEach((particle, index) => {
+            particle.x += Math.cos(particle.angle) * particle.speed;
+            particle.y += Math.sin(particle.angle) * particle.speed;
+            particle.alpha -= particle.decay;
+
+            if (particle.alpha <= 0) {
+                particles.splice(index, 1);
+            }
+        });
+    }
+
+    function drawParticles() {
+        particles.forEach((particle) => {
+            ctx.globalAlpha = particle.alpha;
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI);
+            ctx.fillStyle = particle.color;
+            ctx.fill();
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        updateParticles();
+        drawParticles();
+        requestAnimationFrame(animate);
+    }
+
+    function launchFirework() {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height / 2;
+        createParticles(x, y);
+    }
+
+    setInterval(launchFirework, 500);
+    animate();</script></body></html>
