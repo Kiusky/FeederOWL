@@ -77,15 +77,13 @@ function stopFireworks() {
     }
 }
 
-// Listen for page visibility changes
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
-        stopFireworks(); // Pause when the page is not visible
+        stopFireworks();
     } else {
-        startFireworks(); // Resume when the page becomes visible
+        startFireworks();
     }
 });
 
-// Start the animation and fireworks
 startFireworks();
 animate();
