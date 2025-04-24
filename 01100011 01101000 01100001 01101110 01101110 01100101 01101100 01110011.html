@@ -1,227 +1,227 @@
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁">
-    <meta property="og:description" content="Somos uma comunidade online na Steam e Discord, reunindo jogadores para partidas em grupo. Oferecemos anúncios de jogos grátis, ofertas imperdíveis e fórum para discussões e soluções. Junte-se a nós para encontrar companheiros de equipe e aproveitar a diversão dos jogos em grupo!">
-    <meta property="og:image" content="https://feederowl.com/01101101%2000101101%2001101100%2000101101%2001100110.gif">
-    <meta property="og:url" content="https://www.feederowl.com/">
-    <title>Canais</title>
-    <link rel="icon" type="image/x-icon" href="01101001 01100011 01101111 01101110.ico">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #2F3135;
-            display: flex;
-            flex-direction: column;
-            min-height: 50vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁">
+<meta property="og:description" content="Somos uma comunidade online na Steam e Discord, reunindo jogadores para partidas em grupo. Oferecemos anúncios de jogos grátis, ofertas imperdíveis e fórum para discussões e soluções. Junte-se a nós para encontrar companheiros de equipe e aproveitar a diversão dos jogos em grupo!">
+<meta property="og:image" content="https://feederowl.com/01101101%2000101101%2001101100%2000101101%2001100110.gif">
+<meta property="og:url" content="https://www.feederowl.com/">
+<title>Canais</title>
+<link rel="icon" type="image/x-icon" href="01101001 01100011 01101111 01101110.ico">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #2F3135;
+        display: flex;
+        flex-direction: column;
+        min-height: 50vh;
+    }
 
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        flex: 1;
+    }
+
+    .botao-imagem {
+        position: relative;
+        cursor: pointer;
+        background-color: #333333;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: all 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 180px;
+    }
+
+    .botao-imagem:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255);
+    }
+
+    .botao-imagem:active {
+        transform: scale(0.95);
+    }
+
+    .botao-imagem img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        max-height: 140px;
+    }
+
+    .status-indicator {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid white;
+        z-index: 2;
+    }
+
+    .online {
+        background-color: #4CAF50;
+    }
+
+    .offline {
+        background-color: #f44336;
+    }
+
+    .sem-resultado {
+        text-align: center;
+        color: #666;
+        font-style: italic;
+        margin-top: 20px;
+        display: none;
+        grid-column: 1 / -1;
+    }
+
+    .embed-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 800px;
+        max-height: 90vh;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(255, 255, 255);
+        z-index: 1000;
+        background-color: #333333;
+    }
+
+    .active-embed {
+        display: block;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        z-index: 999;
+    }
+
+    .active-overlay {
+        display: block;
+    }
+
+    .close-embed {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px auto;
+        display: block;
+        font-size: 14px;
+        transition: background-color 0.3s;
+    }
+
+    .close-embed:hover {
+        background-color: #d32f2f;
+    }
+
+    iframe {
+        width: 100%;
+        height: 450px;
+        border: none;
+    }
+
+    /* Estilos para a barra de busca flutuante */
+    .search-container {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 100;
+        transition: all 0.3s ease;
+    }
+
+    .search-button {
+        width: 60px;
+        height: 60px;
+        background-color: #333333;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .search-button:hover {
+        background-color: #45a049;
+        transform: scale(1.1);
+    }
+
+    .search-button i {
+        color: white;
+        font-size: 24px;
+    }
+
+    #campo-busca {
+        position: absolute;
+        bottom: 70px;
+        right: 0;
+        padding: 12px 20px;
+        width: 0;
+        opacity: 0;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    #campo-busca.active {
+        width: 350px;
+        opacity: 1;
+        right: 0;
+    }
+
+    @media (max-width: 768px) {
         .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            flex: 1;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         }
 
         .botao-imagem {
-            position: relative;
-            cursor: pointer;
-            background-color: #333333;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 180px;
-        }
-
-        .botao-imagem:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255);
-        }
-
-        .botao-imagem:active {
-            transform: scale(0.95);
-        }
-
-        .botao-imagem img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            max-height: 140px;
-        }
-
-        .status-indicator {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 2px solid white;
-            z-index: 2;
-        }
-
-        .online {
-            background-color: #4CAF50;
-        }
-
-        .offline {
-            background-color: #f44336;
-        }
-
-        .sem-resultado {
-            text-align: center;
-            color: #666;
-            font-style: italic;
-            margin-top: 20px;
-            display: none;
-            grid-column: 1 / -1;
-        }
-
-        .embed-container {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(255, 255, 255);
-            z-index: 1000;
-            background-color: #333333;
-        }
-
-        .active-embed {
-            display: block;
-        }
-
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            z-index: 999;
-        }
-
-        .active-overlay {
-            display: block;
-        }
-
-        .close-embed {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px auto;
-            display: block;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-
-        .close-embed:hover {
-            background-color: #d32f2f;
+            height: 150px;
         }
 
         iframe {
-            width: 100%;
-            height: 450px;
-            border: none;
-        }
-
-        /* Estilos para a barra de busca flutuante */
-        .search-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        .search-button {
-            width: 60px;
-            height: 60px;
-            background-color: #333333;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .search-button:hover {
-            background-color: #45a049;
-            transform: scale(1.1);
-        }
-
-        .search-button i {
-            color: white;
-            font-size: 24px;
-        }
-
-        #campo-busca {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            padding: 12px 20px;
-            width: 0;
-            opacity: 0;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            height: 300px;
         }
 
         #campo-busca.active {
-            width: 300px;
-            opacity: 1;
-            right: 0;
+            width: 250px;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-
-            .botao-imagem {
-                height: 150px;
-            }
-
-            iframe {
-                height: 300px;
-            }
-
-            #campo-busca.active {
-                width: 250px;
-            }
-
-            .embed-container {
-                width: 95%;
-                max-height: 80vh;
-            }
-            
-            .search-container {
-                bottom: 20px;
-                right: 20px;
-            }
+        .embed-container {
+            width: 95%;
+            max-height: 80vh;
         }
+        
+        .search-container {
+            bottom: 20px;
+            right: 20px;
+        }
+    }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -396,303 +396,9 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/TelecineAction2021.png/657px-TelecineAction2021.png" alt="TELE CINE ACTION">
         </div></div>
 
-    <p class="sem-resultado">𝗔𝗤𝗨𝗜 𝗡𝗔𝗢 𝗧𝗘𝗠 𝗘𝗦𝗦𝗘 𝗖𝗔𝗡𝗔𝗟 𝗙𝗜𝗟𝗛𝗢 𝗗𝗔 𝗣𝗨𝗧𝗔 ⵑ</p>
+<p class="sem-resultado">𝗔𝗤𝗨𝗜 𝗡𝗔𝗢 𝗧𝗘𝗠 𝗘𝗦𝗦𝗘 𝗖𝗔𝗡𝗔𝗟 𝗙𝗜𝗟𝗛𝗢 𝗗𝗔 𝗣𝗨𝗧𝗔 ⵑ</p>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+<!-- Todos os seus embeds aqui (mantive apenas um exemplo para encurtar) -->
     <div id="embed-combate" class="embed-container">
         <iframe id="iframe-combate" src="https://embedcanaistv.com/combate/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
         <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
@@ -918,316 +624,30 @@
         <button class="close-embed" onclick="fecharEmbed('tcaction')">Fechar</button>
     </div><div class="overlay" id="overlay"></div>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="search-container">
-        <input type="text" id="campo-busca" placeholder="Tenta achar por aqui cego do caralho...">
-        <div class="search-button" id="search-button">
-            <i class="fas fa-search"></i>
-        </div>
+<div class="search-container">
+    <input type="text" id="campo-busca" placeholder="Tenta achar por aqui cego do caralho...">
+    <div class="search-button" id="search-button">
+        <i class="fas fa-search"></i>
     </div>
+</div>
 
 <script>
+    // Função para misturar os botões aleatoriamente
+    function shuffleButtons() {
+        const container = document.getElementById('container-botoes');
+        const buttons = Array.from(container.querySelectorAll('.botao-imagem'));
+        
+        // Misturar os botões usando o algoritmo Fisher-Yates
+        for (let i = buttons.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            container.insertBefore(buttons[j], buttons[i]);
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
+        // Misturar os botões quando a página carregar
+        shuffleButtons();
+        
         const campoBusca = document.getElementById('campo-busca');
         const searchButton = document.getElementById('search-button');
         const botoes = document.querySelectorAll('.botao-imagem');
