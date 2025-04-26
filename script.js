@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function preloadBackgroundImage() {
     var img = new Image();
-    img.src = 'img\feederowl\fundo windget steam.webp';
+    img.src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
 }
 
 function preloadDiscordWidget() {
