@@ -1,1 +1,195 @@
-.links,.logo{max-width:600px;width:90%}#discordWidgetContainer,#steam{top:50%;transform:translate(-50%,-50%);background-position:center;left:50%}#steam ul li a,.link{text-decoration:none}#fireworksCanvas,footer{position:fixed;width:100%}#steam ul,.content,footer{text-align:center}.loader{border:64px solid;border-color:rgba(255,255,255,.15) rgba(255,255,255,.25) rgba(255,255,255,.35) rgba(255,255,255,.5);border-radius:50%;display:inline-block;box-sizing:border-box;animation:1s linear infinite animloader}@keyframes animloader{0%{border-color:rgba(255,255,255,.15) rgba(255,255,255,.25) rgba(255,255,255,.35) rgba(255,255,255,.75)}33%{border-color:rgba(255,255,255,.75) rgba(255,255,255,.15) rgba(255,255,255,.25) rgba(255,255,255,.35)}66%{border-color:rgba(255,255,255,.35) rgba(255,255,255,.75) rgba(255,255,255,.15) rgba(255,255,255,.25)}100%{border-color:rgba(255,255,255,.25) rgba(255,255,255,.35) rgba(255,255,255,.75) rgba(255,255,255,.15)}}.content{display:none}.link,.links,body{display:flex}:focus{outline:0}html{user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none}body{overflow-x:hidden;overflow:hidden;margin:0;padding:0;justify-content:center;align-items:center;min-height:100vh;min-width:100vw;background-color:#2f3135;background-color:rgba(47,49,53)}.logo{margin-bottom:40px;pointer-events:none}.links{margin:0 auto;justify-content:space-around;flex-wrap:wrap;gap:20px}.link{flex-direction:column;align-items:center;transition:transform .2s;background-color:transparent;border:none}.link img{max-width:70px;margin-bottom:10px}.audio-controls{margin-top:20px}#discordWidgetContainer{position:fixed;display:none;background-size:cover}#discordWidget{width:360px;height:475px;font-size:16px}#closeButtonBottom,#closeSteamWidgetButton{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);background-color:transparent;border:none;color:#000;font-size:16px;cursor:pointer}#steam{position:fixed;display:none;background-color:rgba(0,0,0,.8);color:#fff;padding:10px;border-radius:10px;z-index:9999;background-image:url('https://feederowl.com/01001111%2001010111%2001001100%20=steam-windget.webp');width:350px;height:465px}.widget-logo{position:absolute;top:30px;left:50%;transform:translateX(-50%);max-width:250px;margin-bottom:10px}#steam ul{margin:150px auto;max-width:300px;padding:0}#steam ul li{list-style:none;margin-bottom:15px;color:#fff}#steam ul li a{display:inline-block;padding:2px;margin:2px;color:#fff;font-size:15px;font-weight:700;font-family:Arial,sans-serif;user-select:none}#steam ul li a:hover{transform:scale(1.8);transition:transform .3s}.link:hover{transform:scale(1.3);transition:transform .3s}#fireworksCanvas{top:0;left:0;height:100%;pointer-events:none;z-index:9999}footer{bottom:0;color:#484a51;font-size:5px;padding:5px 0}.floating-widget{position:absolute;z-index:999}
+.loader {
+    border: 64px solid;
+    border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: animloader 1s linear infinite;
+  }
+
+@keyframes animloader {
+    0% {
+      border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
+}
+    33% {
+      border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
+}
+    66% {
+      border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
+}
+    100% {
+      border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
+}
+  }
+
+.content {
+    display: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+html {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+body {
+    overflow-x: hidden;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #2F3135;
+    background-color: rgba(47, 49, 53, 255);
+}
+
+.content {
+    text-align: center;
+}
+
+.logo {
+    width: 90%;
+    max-width: 600px;
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+
+.links {
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+    background-color: transparent;
+    border: none;
+}
+
+.link img {
+    max-width: 70px;
+    margin-bottom: 10px;
+}
+
+.audio-controls {
+    margin-top: 20px;
+}
+
+#discordWidgetContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-size: cover;
+    background-position: center;
+}
+
+#discordWidget {
+    width: 360px;
+    height: 475px;
+    font-size: 16px;
+}
+
+#closeButtonBottom {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#steam {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 9999;
+    background-image: url('img\feederowl\fundo windget steam.webp');
+    background-position: center;
+    width: 350px;
+    height: 465px;
+}
+
+#closeSteamWidgetButton {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.widget-logo {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 250px;
+    margin-bottom: 10px;
+}
+
+#steam ul {
+    margin: 150px auto;
+    text-align: center;
+    max-width: 300px;
+    padding: 0;
+}
+
+#steam ul li {
+    list-style: none;
+    margin-bottom: 15px;
+    color: white;
+}
+
+#steam ul li a {
+    display: inline-block;
+    padding: 2px;
+    margin: 2px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    user-select: none;
+    ...
+    draggable: false;
+}
+
+#steam ul li a:hover {
+    transform: scale(1.8);
+    transition: transform 0.3s;
+}
+
+.link:hover {
+    transform: scale(1.3);
+    transition: transform 0.3s ease;
+}
