@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁">
+    <meta property="og:description" content="Somos uma comunidade online na Steam e Discord...">
+    <meta property="og:image" content="https://feederowl.com/01101101%2000101101%2001101101%2000101101%2001100110.gif">
+    <meta property="og:url" content="https://www.feederowl.com/">
+    <title>Canais</title>
+    <link rel="icon" type="image/x-icon" href="01101001 01100011 01101111 01101110.ico">
+    <link rel="stylesheet" href="comand\CH\style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="adguard-popup" id="adguardPopup">
+        <h2>🛡️</h2>
+        <p>Para uma experiência ideal em nosso site, recomendamos instalar a extensão AdGuard...</p>
+        <div class="adguard-popup-buttons">
+            <button class="adguard-popup-button primary" onclick="installAdGuard()">Instalar</button>
+            <button class="adguard-popup-button secondary" onclick="closeAdGuardPopup()">Fechar</button>
+        </div>
+        <span class="dont-show-again" onclick="dontShowAgain()">NAO MOSTRAR NOVAMENTE</span>
+    </div>
+
+    <div class="container" id="container-botoes">
+        <div class="botao-imagem" data-nome="combate" onclick="mostrarEmbed('combate')">
+            <img src="https://feederowl.com/01000011%2001001111%2001001101%2001000010%2001000001%2001010100%2001000101.png" alt="COMBATE">
+        </div>
+        <div class="botao-imagem" data-nome="cartoonnetwork" onclick="mostrarEmbed('cartoonnetwork')">
+            <img src="https://feederowl.com/01000011%2001000001%2001010010%2001010100%2001001111%2001001111%2001001110%2001001110%2001000101%2001010100%2001010111%2001001111%2001010010%2001001011.png" alt="CARTOONNETWORK">
+        </div>
+        <div class="botao-imagem" data-nome="nickelodeon" onclick="mostrarEmbed('nickelodeon')">
+            <img src="https://feederowl.com/01001110%2001101001%2001100011%2001101011%2001100101%2001101100%2001101111%2001100100%2001100101%2001101111%2001101110.png" alt="Nickelodeon">
+        </div>
+        <div class="botao-imagem" data-nome="discoverykids" onclick="mostrarEmbed('discoverykids')">
+            <img src="https://feederowl.com/01000100%2001101001%2001110011%2001100011%2001101111%2001110110%2001100101%2001110010%2001111001%2000100000%2001001011%2001101001%2001100100%2001110011.png" alt="Discovery Kids">
+        </div>
+        <div class="botao-imagem" data-nome="gloobinho" onclick="mostrarEmbed('gloobinho')">
+            <img src="https://feederowl.com/01100111%2001101100%2001101111%2001101111%2001100010%2001101001%2001101110%2001101000%2001101111.png" alt="Gloobinho">
+        </div>
+        <div class="botao-imagem" data-nome="dreamworkschannel" onclick="mostrarEmbed('dreamworkschannel')">
+            <img src="https://feederowl.com/01100100%2001110010%2001100101%2001100001%2001101101%2001110111%2001101111%2001110010%2001101011%2001110011.png" alt="Dreamworks">
+        </div>
+        <div class="botao-imagem" data-nome="tvratimbum" onclick="mostrarEmbed('tvratimbum')">
+            <img src="https://feederowl.com/01110100%2001110110%2001110010%2001100001%2001110100%2001101001%2001101101%2001100010%2001110101%2001101101.png" alt="TV Ratimbum">
+        </div>
+        <div class="botao-imagem" data-nome="zoomookids" onclick="mostrarEmbed('zoomookids')">
+            <img src="https://feederowl.com/01011010%2001101111%2001101111%2001001101%2001101111%2001101111%2001001011%2001101001%2001100100%2001110011.png" alt="ZooMoo Kids">
+        </div>
+        <div class="botao-imagem" data-nome="gloob" onclick="mostrarEmbed('gloob')">
+            <img src="https://feederowl.com/01100111%2001101100%2001101111%2001101111%2001100010.png" alt="Gloob">
+        </div>
+        <div class="botao-imagem" data-nome="nickjr" onclick="mostrarEmbed('nickjr')">
+            <img src="https://feederowl.com/01101110%2001101001%2001100011%2001101011%2001101010%2001110010.png" alt="Nick Jr">
+        </div>
+        <div class="botao-imagem" data-nome="cartoonito" onclick="mostrarEmbed('cartoonito')">
+            <img src="https://feederowl.com/01000011%2001100001%2001110010%2001110100%2001101111%2001101111%2001101110%2001101001%2001110100%2001101111.png" alt="Cartoonito">
+        </div>
+        <div class="botao-imagem" data-nome="tooncast" onclick="mostrarEmbed('tooncast')">
+            <img src="https://feederowl.com/01110100%2001101111%2001101111%2001101110%2001100011%2001100001%2001110011%2001110100.png" alt="Tooncast">
+        </div>
+        <div class="botao-imagem" data-nome="adultswim" onclick="mostrarEmbed('adultswim')">
+            <img src="https://feederowl.com/01100001%2001100100%2001110101%2001101100%2001110100%2001110011%2001110111%2001101001%2001101101.png" alt="Adult Swim">
+        </div>
+        <div class="botao-imagem" data-nome="disneychannel" onclick="mostrarEmbed('disneychannel')">
+            <img src="https://feederowl.com/01000100%2001101001%2001110011%2001101110%2001100101%2001111001%2000100000%2001000011%2001101000%2001100001%2001101110%2001101110%2001100101%2001101100.png" alt="Disney Channel">
+        </div>
+        <div class="botao-imagem" data-nome="cnnbrasil" onclick="mostrarEmbed('cnnbrasil')">
+            <img src="https://feederowl.com/01000011%2001001110%2001001110%2001000010%2001110010%2001100001%2001110011%2001101001%2001101100.png" alt="CNN brasil">
+        </div>
+        <div class="botao-imagem" data-nome="globonews" onclick="mostrarEmbed('globonews')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Logotipo_da_GloboNews.png/960px-Logotipo_da_GloboNews.png" alt="Globo News">
+        </div>
+        <div class="botao-imagem" data-nome="jovempannews" onclick="mostrarEmbed('jovempannews')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Jovem_Pan_News.png" alt="Jovempan News">
+        </div>
+        <div class="botao-imagem" data-nome="bandnews" onclick="mostrarEmbed('bandnews')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/BandNews_TV_logo_2010.svg/960px-BandNews_TV_logo_2010.svg.png" alt="Band News">
+        </div>
+        <div class="botao-imagem" data-nome="recordnews" onclick="mostrarEmbed('recordnews')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Record_News_logo_2022.svg/410px-Record_News_logo_2022.svg.png" alt="Record News">
+        </div>
+        <div class="botao-imagem" data-nome="viva" onclick="mostrarEmbed('viva')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Canal_Viva_2018_wordmark.svg/960px-Canal_Viva_2018_wordmark.svg.png" alt="Viva">
+        </div>
+        <div class="botao-imagem" data-nome="tlc" onclick="mostrarEmbed('tlc')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/TLC-Logo_2016.png/960px-TLC-Logo_2016.png" alt="TLC">
+        </div>
+        <div class="botao-imagem" data-nome="nationalgeografic" onclick="mostrarEmbed('nationalgeografic')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Nat_Geo_HD.png" alt="National Geografic">
+        </div>
+        <div class="botao-imagem" data-nome="mtv" onclick="mostrarEmbed('mtv')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/MTV-Logo.svg/673px-MTV-Logo.svg.png" alt="MTV">
+        </div>
+        <div class="botao-imagem" data-nome="multishow" onclick="mostrarEmbed('multishow')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Multishow.png/960px-Multishow.png" alt="Multishow">
+        </div>
+        <div class="botao-imagem" data-nome="gnt" onclick="mostrarEmbed('gnt')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/GNT_logo-roxo.png" alt="GNT">
+        </div>
+        <div class="botao-imagem" data-nome="hgtv" onclick="mostrarEmbed('hgtv')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/HGTV_US_Logo_2015.svg/960px-HGTV_US_Logo_2015.svg.png" alt="HGTV">
+        </div>
+        <div class="botao-imagem" data-nome="history" onclick="mostrarEmbed('history')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/960px-History_Logo.svg.png" alt="History">
+        </div>
+        <div class="botao-imagem" data-nome="history2" onclick="mostrarEmbed('history2')">
+            <img src="https://feederowl.com/01101000%2001101001%2001110011%2001110100%2001101111%2001110010%2001111001%2000110010.png" alt="History 2">
+        </div>
+        <div class="botao-imagem" data-nome="lifetime" onclick="mostrarEmbed('lifetime')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_Lifetime_2020.svg/800px-Logo_Lifetime_2020.svg.png" alt="Lifetime">
+        </div>
+        <div class="botao-imagem" data-nome="discoveryturbo" onclick="mostrarEmbed('discoveryturbo')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Discovery_Turbo_logo.svg/100px-Discovery_Turbo_logo.svg.png" alt="Discovery Turbo">
+        </div>
+        <div class="botao-imagem" data-nome="filmarts" onclick="mostrarEmbed('filmarts')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/FILMANDARTS.png" alt="Film Arts">
+        </div>
+        <div class="botao-imagem" data-nome="fishtv" onclick="mostrarEmbed('fishtv')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Fish_TV_logo_2022.svg/384px-Fish_TV_logo_2022.svg.png" alt="Fish TV">
+        </div>
+        <div class="botao-imagem" data-nome="foodnetwork" onclick="mostrarEmbed('foodnetwork')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Food_Network_-_Logo_2016.png" alt="Food Network">
+        </div>
+        <div class="botao-imagem" data-nome="fueltv" onclick="mostrarEmbed('fueltv')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Fuel_TV.svg/592px-Fuel_TV.svg.png" alt="Fuel TV">
+        </div>
+        <div class="botao-imagem" data-nome="discoveryhh" onclick="mostrarEmbed('discoveryhh')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Discovery_H%26H_Logo_2022.webp/500px-Discovery_H%26H_Logo_2022.webp.png" alt="Discovery HH">
+        </div>
+        <div class="botao-imagem" data-nome="discoveryscience" onclick="mostrarEmbed('discoveryscience')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Discovery_science.png" alt="Discovery Science">
+        </div>
+        <div class="botao-imagem" data-nome="discoverytheater" onclick="mostrarEmbed('discoverytheater')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/2015_Discovery_theater_HD_logo.svg/1280px-2015_Discovery_theater_HD_logo.svg.png" alt="Discovery Theater">
+        </div>
+        <div class="botao-imagem" data-nome="discoveryworld" onclick="mostrarEmbed('discoveryworld')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/World_Discovery_HD_logo.svg/1280px-World_Discovery_HD_logo.svg.png" alt="Discovery World">
+        </div>
+        <div class="botao-imagem" data-nome="discoveryid" onclick="mostrarEmbed('discoveryid')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/ID_-_Investiga%C3%A7%C3%A3o_Discovery.png/960px-ID_-_Investiga%C3%A7%C3%A3o_Discovery.png" alt="Discovery ID">
+        </div>
+        <div class="botao-imagem" data-nome="animalplanet" onclick="mostrarEmbed('animalplanet')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/2018_Animal_Planet_logo.svg/960px-2018_Animal_Planet_logo.svg.png" alt="Animal Planet">
+        </div>
+        <div class="botao-imagem" data-nome="arte1" onclick="mostrarEmbed('arte1')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Arte_1_logo.svg/1024px-Arte_1_logo.svg.png" alt="Arte 1">
+        </div>
+        <div class="botao-imagem" data-nome="canalbrasil" onclick="mostrarEmbed('canalbrasil')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/CanalBrasil_logos_700px_0-03.png/600px-CanalBrasil_logos_700px_0-03.png" alt="Canal Brasil">
+        </div>
+        <div class="botao-imagem" data-nome="comedycentral" onclick="mostrarEmbed('comedycentral')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Comedy_Central_2018.svg/960px-Comedy_Central_2018.svg.png" alt="Comedy Central">
+        </div>
+        <div class="botao-imagem" data-nome="discoverychannel" onclick="mostrarEmbed('discoverychannel')">
+            <img src="https://www.nicepng.com/png/full/134-1341426_discovery-channel-logo-png.png" alt="discoverychannel">
+        </div>
+        <div class="botao-imagem" data-nome="warner" onclick="mostrarEmbed('warner')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Warner_Bros_logo.svg/355px-Warner_Bros_logo.svg.png" alt="Warner">
+        </div>
+        <div class="botao-imagem" data-nome="usa" onclick="mostrarEmbed('usa')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/USA_Network_logo_%282016%29.svg/960px-USA_Network_logo_%282016%29.svg.png" alt="USA">
+        </div>
+        <div class="botao-imagem" data-nome="universaltv" onclick="mostrarEmbed('universaltv')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Universal_TV_Logo_2018.png" alt="Universal TV">
+        </div>
+        <div class="botao-imagem" data-nome="tntseries" onclick="mostrarEmbed('tntseries')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/TNT_Serie_Logo_2016.png" alt="TNT Series">
+        </div>
+        <div class="botao-imagem" data-nome="tntnovelas" onclick="mostrarEmbed('tntnovelas')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Logo_TNT_Novelas.png/500px-Logo_TNT_Novelas.png" alt="TNT Novelas">
+        </div>
+        <div class="botao-imagem" data-nome="tnt" onclick="mostrarEmbed('tnt')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Tnt_tv_romania.png/960px-Tnt_tv_romania.png?20171022073635" alt="TNT">
+        </div>
+        <div class="botao-imagem" data-nome="tctouch" onclick="mostrarEmbed('tctouch')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Telecine_Touch_%282021%29.png/657px-Telecine_Touch_%282021%29.png" alt="TELE CINE TOUCH">
+        </div>
+        <div class="botao-imagem" data-nome="tcpremium" onclick="mostrarEmbed('tcpremium')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Telecine_Premium_%282021%29.png/657px-Telecine_Premium_%282021%29.png" alt="TELE CINE PREMIUM">
+        </div>
+        <div class="botao-imagem" data-nome="tcpipoca" onclick="mostrarEmbed('tcpipoca')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Telecine_Pipoca_%282021%29.png/657px-Telecine_Pipoca_%282021%29.png" alt="TELE CINE PICOCA">
+        </div>
+        <div class="botao-imagem" data-nome="tcfun" onclick="mostrarEmbed('tcfun')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Telecine_Fun_%282021%29.png/657px-Telecine_Fun_%282021%29.png" alt="TELE CINE FUN">
+        </div>
+        <div class="botao-imagem" data-nome="tccult" onclick="mostrarEmbed('tccult')">
+            <img src="https://vivo.com.br/content/dam/vivo-sites/vivo-com-br/homepage/imagens/logos/app-telecine-cult-252x252.png" alt="TELE CINE CULT">
+        </div>
+        <div class="botao-imagem" data-nome="tcaction" onclick="mostrarEmbed('tcaction')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/TelecineAction2021.png/657px-TelecineAction2021.png" alt="TELE CINE ACTION">
+        </div>
+        <div class="botao-imagem" data-nome="tvcultura" onclick="mostrarEmbed('tvcultura')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Cultura_logo_2013.svg" alt="TV Cultura">
+        </div>
+        <div class="botao-imagem" data-nome="sbtsp" onclick="mostrarEmbed('sbtsp')">
+            <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/4/41/Logotipo_do_SBT.svg/250px-Logotipo_do_SBT.svg.png" alt="SBT">
+        </div>
+        <div class="botao-imagem" data-nome="redevida" onclick="mostrarEmbed('redevida')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Rede_Vida_logo.png/666px-Rede_Vida_logo.png" alt="Rede Vida">
+        </div>
+        <div class="botao-imagem" data-nome="redetv" onclick="mostrarEmbed('redetv')">
+            <img src="https://upload.wikimedia.org/wikipedia/pt/8/89/Logotipo_da_RedeTV%21.png?20191113234216" alt="Rede TV">
+        </div>
+        <div class="botao-imagem" data-nome="recordsp" onclick="mostrarEmbed('recordsp')">
+            <img src="https://upload.wikimedia.org/wikipedia/pt/0/0e/Logotipo_da_Record_%28rede_de_televis%C3%A3o%29.png" alt="Record">
+        </div>
+        <div class="botao-imagem" data-nome="globosp" onclick="mostrarEmbed('globosp')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/TV_Globo_logo_%28April_2025%29.png/960px-TV_Globo_logo_%28April_2025%29.png" alt="Globo">
+        </div>
+        <div class="botao-imagem" data-nome="bandsp" onclick="mostrarEmbed('bandsp')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Band_Marca.png" alt="Band">
+        </div></div>
+
+    <p class="sem-resultado">𝗔𝗤𝗨𝗜 𝗡𝗔𝗢 𝗧𝗘𝗠 𝗘𝗦𝗦𝗘 𝗖𝗔𝗡𝗔𝗟 𝗙𝗜𝗟𝗛𝗢 𝗗𝗔 𝗣𝗨𝗧𝗔 ⵑ</p>
+
+    <div id="embed-combate" class="embed-container">
+        <iframe id="iframe-combate" src="https://embedcanaistv.com/combate/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
+    </div>
+    <div id="embed-cartoonnetwork" class="embed-container">
+        <iframe id="iframe-cartoonnetwork" src="https://embedcanaistv.com/cartoonnetwork/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('cartoonnetwork')">Fechar</button>
+    </div>
+    <div id="embed-nickelodeon" class="embed-container">
+        <iframe id="iframe-nickelodeon" src="https://embedcanaistv.com/nickelodeon/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('nickelodeon')">Fechar</button>
+    </div>
+    <div id="embed-discoverykids" class="embed-container">
+        <iframe id="iframe-discoverykids" src="https://embedcanaistv.com/discoverykids/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('discoverykids')">Fechar</button>
+    </div>
+    <div id="embed-gloobinho" class="embed-container">
+        <iframe id="iframe-gloobinho" src="https://embedcanaistv.com/gloobinho/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('gloobinho')">Fechar</button>
+    </div>
+    <div id="embed-dreamworkschannel" class="embed-container">
+        <iframe id="iframe-dreamworkschannel" src="https://embedcanaistv.com/dreamworkschannel/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('dreamworkschannel')">Fechar</button>
+    </div>
+    <div id="embed-tvratimbum" class="embed-container">
+        <iframe id="iframe-tvratimbum" src="https://embedcanaistv.com/tvratimbum/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tvratimbum')">Fechar</button>
+    </div>
+    <div id="embed-zoomookids" class="embed-container">
+        <iframe id="iframe-zoomookids" src="https://embedcanaistv.com/zoomookids/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('zoomookids')">Fechar</button>
+    </div>
+    <div id="embed-gloob" class="embed-container">
+        <iframe id="iframe-gloob" src="https://embedcanaistv.com/gloob/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('gloob')">Fechar</button>
+    </div>
+    <div id="embed-nickjr" class="embed-container">
+        <iframe id="iframe-nickjr" src="https://embedcanaistv.com/nickjr/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('nickjr')">Fechar</button>
+    </div>
+    <div id="embed-cartoonito" class="embed-container">
+        <iframe id="iframe-cartoonito" src="https://embedcanaistv.com/cartoonito/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('cartoonito')">Fechar</button>
+    </div>
+    <div id="embed-tooncast" class="embed-container">
+        <iframe id="iframe-tooncast" src="https://embedcanaistv.com/tooncast/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tooncast')">Fechar</button>
+    </div>
+    <div id="embed-adultswim" class="embed-container">
+        <iframe id="iframe-adultswim" src="https://embedcanaistv.com/adultswim/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('adultswim')">Fechar</button>
+    </div>
+    <div id="embed-disneychannel" class="embed-container">
+        <iframe id="iframe-disneychannel" src="https://embedcanaistv.com/disneychannel/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('disneychannel')">Fechar</button>
+    </div>
+    <div id="embed-cnnbrasil" class="embed-container">
+        <iframe id="iframe-cnnbrasil" src="https://embedcanaistv.com/cnnbrasil/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('cnnbrasil')">Fechar</button>
+    </div>
+    <div id="embed-globonews" class="embed-container">
+        <iframe id="iframe-globonews" src="https://embedcanaistv.com/globonews/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('globonews')">Fechar</button>
+    </div>
+    <div id="embed-jovempannews" class="embed-container">
+        <iframe id="iframe-jovempannews" src="https://embedcanaistv.com/jovempannews/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('jovempannews')">Fechar</button>
+    </div>
+    <div id="embed-bandnews" class="embed-container">
+        <iframe id="iframe-bandnews" src="https://embedcanaistv.com/bandnews/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('bandnews')">Fechar</button>
+    </div>
+    <div id="embed-recordnews" class="embed-container">
+        <iframe id="iframe-recordnews" src="https://embedcanaistv.com/recordnews/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('recordnews')">Fechar</button>
+    </div>
+    <div id="embed-viva" class="embed-container">
+        <iframe id="iframe-viva" src="https://embedcanaistv.com/viva/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('viva')">Fechar</button>
+    </div>
+    <div id="embed-tlc" class="embed-container">
+        <iframe id="iframe-tlc" src="https://embedcanaistv.com/tlc/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tlc')">Fechar</button>
+    </div>
+    <div id="embed-nationalgeografic" class="embed-container">
+        <iframe id="iframe-nationalgeografic" src="https://embedcanaistv.com/nationalgeografic/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('nationalgeografic')">Fechar</button>
+    </div>
+    <div id="embed-mtv" class="embed-container">
+        <iframe id="iframe-mtv" src="https://embedcanaistv.com/mtv/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('mtv')">Fechar</button>
+    </div>
+    <div id="embed-multishow" class="embed-container">
+        <iframe id="iframe-multishow" src="https://embedcanaistv.com/multishow/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('multishow')">Fechar</button>
+    </div>
+    <div id="embed-gnt" class="embed-container">
+        <iframe id="iframe-gnt" src="https://embedcanaistv.com/gnt/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('gnt')">Fechar</button>
+    </div>
+    <div id="embed-hgtv" class="embed-container">
+        <iframe id="iframe-hgtv" src="https://embedcanaistv.com/hgtv/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('hgtv')">Fechar</button>
+    </div>
+    <div id="embed-history" class="embed-container">
+        <iframe id="iframe-history" src="https://embedcanaistv.com/history/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('history')">Fechar</button>
+    </div>
+    <div id="embed-history2" class="embed-container">
+        <iframe id="iframe-history2" src="https://embedcanaistv.com/history2/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('history2')">Fechar</button>
+    </div>
+    <div id="embed-lifetime" class="embed-container">
+        <iframe id="iframe-lifetime" src="https://embedcanaistv.com/lifetime/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('lifetime')">Fechar</button>
+    </div>
+    <div id="embed-discoveryturbo" class="embed-container">
+        <iframe id="iframe-discoveryturbo" src="https://embedcanaistv.com/discoveryturbo/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('discoveryturbo')">Fechar</button>
+    </div>
+    <div id="embed-filmarts" class="embed-container">
+        <iframe id="iframe-filmarts" src="https://embedcanaistv.com/filmarts/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('filmarts')">Fechar</button>
+    </div>
+    <div id="embed-fishtv" class="embed-container">
+        <iframe id="iframe-fishtv" src="https://embedcanaistv.com/fishtv/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('fishtv')">Fechar</button>
+    </div>
+    <div id="embed-foodnetwork" class="embed-container">
+        <iframe id="iframe-foodnetwork" src="https://embedcanaistv.com/foodnetwork/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('foodnetwork')">Fechar</button>
+    </div>
+    <div id="embed-fueltv" class="embed-container">
+        <iframe id="iframe-fueltv" src="https://embedcanaistv.com/fueltv/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('fueltv')">Fechar</button>
+    </div>
+    <div id="embed-discoveryhh" class="embed-container">
+        <iframe id="iframe-discoveryhh" src="https://embedcanaistv.com/discoveryhh/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('discoveryhh')">Fechar</button>
+    </div>
+    <div id="embed-discoveryscience" class="embed-container">
+        <iframe id="iframe-discoveryscience" src="https://embedcanaistv.com/discoveryscience/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('discoveryscience')">Fechar</button>
+    </div>
+    <div id="embed-discoverytheater" class="embed-container">
+        <iframe id="iframe-discoverytheater" src="https://embedcanaistv.com/discoverytheater/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('discoverytheater')">Fechar</button>
+    </div>
+    <div id="embed-discoveryworld" class="embed-container">
+        <iframe id="iframe-discoveryworld" src="https://embedcanaistv.com/discoveryworld/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('discoveryworld')">Fechar</button>
+    </div>
+    <div id="embed-discoveryid" class="embed-container">
+        <iframe id="iframe-discoveryid" src="https://embedcanaistv.com/discoveryid/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('discoveryid')">Fechar</button>
+    </div>
+    <div id="embed-animalplanet" class="embed-container">
+        <iframe id="iframe-animalplanet" src="https://embedcanaistv.com/animalplanet/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('animalplanet')">Fechar</button>
+    </div>
+    <div id="embed-arte1" class="embed-container">
+        <iframe id="iframe-arte1" src="https://embedcanaistv.com/arte1/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('arte1')">Fechar</button>
+    </div>
+    <div id="embed-canalbrasil" class="embed-container">
+        <iframe id="iframe-canalbrasil" src="https://embedcanaistv.com/canalbrasil/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('canalbrasil')">Fechar</button>
+    </div>
+    <div id="embed-comedycentral" class="embed-container">
+        <iframe id="iframe-comedycentral" src="https://embedcanaistv.com/comedycentral/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('comedycentral')">Fechar</button>
+    </div>
+    <div id="embed-discoverychannel" class="embed-container">
+        <iframe id="iframe-discoverychannel" src="https://embedcanaistv.com/discoverychannel/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('discoverychannel')">Fechar</button>
+    </div>
+    <div id="embed-warner" class="embed-container">
+        <iframe id="iframe-warner" src="https://embedcanaistv.com/warner/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('warner')">Fechar</button>
+    </div>
+    <div id="embed-usa" class="embed-container">
+        <iframe id="iframe-usa" src="https://embedcanaistv.com/usa/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('usa')">Fechar</button>
+    </div>
+    <div id="embed-universaltv" class="embed-container">
+        <iframe id="iframe-universaltv" src="https://embedcanaistv.com/universaltv/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('universaltv')">Fechar</button>
+    </div>
+    <div id="embed-tntseries" class="embed-container">
+        <iframe id="iframe-tntseries" src="https://embedcanaistv.com/tntseries/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tntseries')">Fechar</button>
+    </div>
+    <div id="embed-tntnovelas" class="embed-container">
+        <iframe id="iframe-tntnovelas" src="https://embedcanaistv.com/tntnovelas/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tntnovelas')">Fechar</button>
+    </div>
+    <div id="embed-tnt" class="embed-container">
+        <iframe id="iframe-tnt" src="https://embedcanaistv.com/tnt/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tnt')">Fechar</button>
+    </div>
+    <div id="embed-tctouch" class="embed-container">
+        <iframe id="iframe-tctouch" src="https://embedcanaistv.com/tctouch/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tctouch')">Fechar</button>
+    </div>
+    <div id="embed-tcpremium" class="embed-container">
+        <iframe id="iframe-tcpremium" src="https://embedcanaistv.com/tcpremium/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tcpremium')">Fechar</button>
+    </div>
+    <div id="embed-tcpipoca" class="embed-container">
+        <iframe id="iframe-tcpipoca" src="https://embedcanaistv.com/tcpipoca/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tcpipoca')">Fechar</button>
+    </div>
+    <div id="embed-tcfun" class="embed-container">
+        <iframe id="iframe-tcfun" src="https://embedcanaistv.com/tcfun/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tcfun')">Fechar</button>
+    </div>
+    <div id="embed-tccult" class="embed-container">
+        <iframe id="iframe-tccult" src="https://embedcanaistv.com/tccult/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tccult')">Fechar</button>
+    </div>
+    <div id="embed-tcaction" class="embed-container">
+        <iframe id="iframe-tcaction" src="https://embedcanaistv.com/tcaction/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tcaction')">Fechar</button>
+    </div>
+    <div id="embed-tvcultura" class="embed-container">
+        <iframe id="iframe-tvcultura" src="https://embedcanaistv.com/tvcultura/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('tvcultura')">Fechar</button>
+    </div>
+    <div id="embed-sbtsp" class="embed-container">
+        <iframe id="iframe-sbtsp" src="https://embedcanaistv.com/sbtsp/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('sbtsp')">Fechar</button>
+    </div>
+    <div id="embed-redevida" class="embed-container">
+        <iframe id="iframe-redevida" src="https://embedcanaistv.com/redevida/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('redevida')">Fechar</button>
+    </div>
+    <div id="embed-redetv" class="embed-container">
+        <iframe id="iframe-redetv" src="https://embedcanaistv.com/redetv/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('redetv')">Fechar</button>
+    </div>
+    <div id="embed-recordsp" class="embed-container">
+        <iframe id="iframe-recordsp" src="https://embedcanaistv.com/recordsp/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('recordsp')">Fechar</button>
+    </div>
+    <div id="embed-globosp" class="embed-container">
+        <iframe id="iframe-globosp" src="https://embedcanaistv.com/globosp/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('globosp')">Fechar</button>
+    </div>
+    <div id="embed-bandsp" class="embed-container">
+        <iframe id="iframe-bandsp" src="https://embedcanaistv.com/bandsp/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('bandsp')">Fechar</button>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+    <div class="search-container" id="search-container">
+        <input type="text" id="campo-busca" placeholder="Tenta achar por aqui cego do caralho...">
+        <div class="search-button" id="search-button">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+
+    <script src="comand\CH\script.js"></script>
+</body>
+</html>

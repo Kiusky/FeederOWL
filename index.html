@@ -1,4 +1,68 @@
-<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁"><meta property="og:description" content="Somos uma comunidade online na Steam e Discord, reunindo jogadores para partidas em grupo. Oferecemos anúncios de jogos grátis, ofertas imperdíveis e fórum para discussões e soluções. Junte-se a nós para encontrar companheiros de equipe e aproveitar a diversão dos jogos em grupo!"><meta property="og:image" content="https://feederowl.com/01101101%2000101101%2001101100%2000101101%2001100110.gif"><meta property="og:url" content="https://www.feederowl.com/"><title>ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁</title><link rel="icon" type="image/x-icon" href="img\feederowl\icone.ico"><link rel="stylesheet" type="text/css" href="styles.css"><script src="script.js" defer="defer"></script><style>footer{position:fixed;bottom:0;width:100%;text-align:center;color:#484a51;font-size:10px;padding:5px 0}.floating-widget{position:absolute;z-index:999}</style></head><body><audio id="myAudio" loop><source src="aud\feederowl\musica fundo.mp3" type="audio/mp3"></audio><div class="loader"></div><div class="content"><video class="logo" autoplay loop muted preload="auto"><source src="vid\feederowl\fundo animado.webm" type="video/webm"></video><div class="links"><button class="link" onclick="openSteamWidget()"><img src="img\feederowl\logo steam.png" alt="Logo do Steam" draggable="false"></button><button id="discordButton" class="link" onclick="openDiscordWidget()"><img src="img\feederowl\logo discord.png" alt="Logo do Discord" draggable="false"></button></div></div><div id="discordWidgetContainer" style="display:none"><iframe id="discordWidget" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" src="https://discord.com/widget?id=653379836164702228&theme=dark" style="background-color:transparent"></iframe></div><div id="steam" class="floating-widget" style="display:none"><div id="steam-loading-overlay"></div><img src="img\feederowl\steam.png" class="widget-logo" alt="Logo do Widget" draggable="false"><ul><li><a href="https://steamcommunity.com/groups/feederowl" target="_blank" class="steam-link">COMUNIDADE</a></li><li><a href="https://steamcommunity.com/groups/feederowl/announcements/listing" target="_blank" class="steam-link">ANÚNCIO</a></li><li><a href="https://store.steampowered.com/curator/32849147/" target="_blank" class="steam-link">CURADOR</a></li><li><a href="https://steamcommunity.com/groups/feederowl/events" target="_blank" class="steam-link">EVENTOS</a></li><li><a href="https://steamcommunity.com/groups/feederowl/discussions" target="_blank" class="steam-link">DISCUSSÕES</a></li><li><a href="https://steamcommunity.com/groups/feederowl/comments" target="_blank" class="steam-link">COMENTÁRIO</a></li><li><a href="https://steamcommunity.com/groups/feederowl/members" target="_blank" class="steam-link">MEMBROS</a></li></ul></div><script>function preloadImage(url) {
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁">
+    <meta property="og:description" content="Somos uma comunidade online na Steam e Discord, reunindo jogadores para partidas em grupo. Oferecemos anúncios de jogos grátis, ofertas imperdíveis e fórum para discussões e soluções. Junte-se a nós para encontrar companheiros de equipe e aproveitar a diversão dos jogos em grupo!">
+    <meta property="og:image" content="https://feederowl.com/01101101%2000101101%2001101100%2000101101%2001100110.gif">
+    <meta property="og:url" content="https://www.feederowl.com/">
+    <title>ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁</title>
+    <link rel="icon" type="image/x-icon" href="img\feederowl\icone.ico">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: #484a51;
+            font-size: 10px;
+            padding: 5px 0;
+        }
+        .floating-widget {
+            position: absolute;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+<audio id="myAudio" loop>
+    <source src="aud\feederowl\musica fundo.mp3" type="audio/mp3" />
+</audio>
+<div class="loader"></div>
+<div class="content">
+    <video class="logo" autoplay loop muted preload="auto">
+        <source src="vid\feederowl\fundo animado.webm" type="video/webm">
+    </video>
+    <div class="links">
+        <button class="link" onclick="openSteamWidget()">
+            <img src="img\feederowl\logo steam.png" alt="Logo do Steam" draggable="false">
+        </button>
+        <button id="discordButton" class="link" onclick="openDiscordWidget()">
+            <img src="img\feederowl\logo discord.png" alt="Logo do Discord" draggable="false">
+        </button>
+    </div>
+</div>
+<div id="discordWidgetContainer" style="display: none;">
+    <iframe id="discordWidget" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" src="https://discord.com/widget?id=653379836164702228&theme=dark" style="background-color: transparent;"></iframe>
+</div>
+<div id="steam" class="floating-widget" style="display: none;">
+    <div id="steam-loading-overlay"></div>
+    <img src="img\feederowl\steam.png" class="widget-logo" alt="Logo do Widget" draggable="false">
+    <ul>
+        <li><a href="https://steamcommunity.com/groups/feederowl" target="_blank" class="steam-link">COMUNIDADE</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/announcements/listing" target="_blank" class="steam-link">ANÚNCIO</a></li>
+        <li><a href="https://store.steampowered.com/curator/32849147/" target="_blank" class="steam-link">CURADOR</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/events" target="_blank" class="steam-link">EVENTOS</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/discussions" target="_blank" class="steam-link">DISCUSSÕES</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/comments" target="_blank" class="steam-link">COMENTÁRIO</a></li>
+        <li><a href="https://steamcommunity.com/groups/feederowl/members" target="_blank" class="steam-link">MEMBROS</a></li>
+    </ul>
+</div>
+<script>
+    function preloadImage(url) {
         var img = new Image();
         img.src = url;
     }
@@ -38,4 +102,12 @@
             !event.target.closest('.link')) {
             closeWidgets();
         }
-    });</script><footer style="text-align:center;font-size:10px;line-height:-1"><div style="display:inline-block;text-align:center"><div style="font-family:'Lucida Calligraphy',cursive;font-size:7px">𝓚𝓲𝓾𝓼𝓴𝔂 𝓢𝓪𝓲𝓷𝓽𝓼</div></div><div style="font-family:Arial,sans-serif;margin-top:-4px">🅳🅴🆂🅸🅶🅽🅴🆁</div></footer></body></html>
+    });
+</script>
+
+<footer style="text-align: center; font-size: 10px; line-height: -1;">
+<div style="display: inline-block; text-align: center;"><div style="font-family: 'Lucida Calligraphy', cursive; font-size: 7px;">𝓚𝓲𝓾𝓼𝓴𝔂 𝓢𝓪𝓲𝓷𝓽𝓼</div></div>
+<div style="font-family: Arial, sans-serif; margin-top: -4px;">🅳🅴🆂🅸🅶🅽🅴🆁</div>
+</footer>
+</body>
+</html>
