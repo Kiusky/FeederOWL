@@ -103,7 +103,7 @@ function preloadDiscordWidget() {
 }
 
 function redirectToPage() {
-    window.location.href = 'https://feederowl.com/01100011%2001101000%2001100001%2001101110%2001101110%2001100101%2001101100%2001110011';
+    window.location.href = 'https://feederowl.com/01000011%2001001000';
 }
 
 function playAudio() {
