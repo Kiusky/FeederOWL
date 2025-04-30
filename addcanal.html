@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Canais</title>
+    <style>
+        :root {
+            --bg-color: #f5f5f5;
+            --panel-bg: white;
+            --text-color: #333;
+            --border-color: #ddd;
+            --section-border: #eee;
+            --channel-bg: #f9f9f9;
+            --button-primary: #4CAF50;
+            --button-primary-hover: #45a049;
+            --button-copy: #2196F3;
+            --button-copy-hover: #0b7dda;
+            --button-download: #ff9800;
+            --button-download-hover: #e68a00;
+            --button-delete: #f44336;
+            --button-delete-hover: #d32f2f;
+            --button-edit: #9c27b0;
+            --button-edit-hover: #7b1fa2;
+        }
+
+        .dark-mode {
+            --bg-color: #121212;
+            --panel-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --border-color: #444;
+            --section-border: #333;
+            --channel-bg: #2d2d2d;
+            --button-primary: #2e7d32;
+            --button-primary-hover: #1b5e20;
+            --button-copy: #1565c0;
+            --button-copy-hover: #0d47a1;
+            --button-download: #e65100;
+            --button-download-hover: #bf360c;
+            --button-delete: #c62828;
+            --button-delete-hover: #8e0000;
+            --button-edit: #7b1fa2;
+            --button-edit-hover: #6a1b9a;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .panel-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--panel-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], textarea, input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: var(--panel-bg);
+            color: var(--text-color);
+            transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+        }
+
+        textarea {
+            min-height: 200px;
+            font-family: monospace;
+        }
+
+        button {
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .primary-btn {
+            background-color: var(--button-primary);
+        }
+
+        .primary-btn:hover {
+            background-color: var(--button-primary-hover);
+        }
+
+        .copy-btn {
+            background-color: var(--button-copy);
+        }
+
+        .copy-btn:hover {
+            background-color: var(--button-copy-hover);
+        }
+
+        .download-btn {
+            background-color: var(--button-download);
+        }
+
+        .download-btn:hover {
+            background-color: var(--button-download-hover);
+        }
+
+        .edit-btn {
+            background-color: var(--button-edit);
+        }
+
+        .edit-btn:hover {
+            background-color: var(--button-edit-hover);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--section-border);
+            transition: border-color 0.3s;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .channel-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .channel-item {
+            background-color: var(--channel-bg);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .channel-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .channel-name {
+            font-weight: bold;
+            word-break: break-all;
+        }
+
+        .channel-buttons {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .channel-buttons button {
+            padding: 3px 6px;
+            font-size: 12px;
+            margin-top: 5px;
+            flex: 1;
+        }
+
+        .file-input-container {
+            margin-bottom: 15px;
+        }
+
+        .load-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--button-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--button-primary-hover);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--panel-bg);
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+		
+		 .delete-btn {
+        background-color: var(--button-delete) !important;
+        padding: 3px 6px;
+        font-size: 12px;
+        margin-top: 5px;
+        color: white !important;
+    }
+	
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" id="theme-toggle">
+        🌓
+    </div>
+
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <h2>Editar Canal</h2>
+            <div class="form-group">
+                <label for="edit-nome-canal">(ID) Canal:</label>
+                <input type="text" id="edit-nome-canal">
+            </div>
+            <div class="form-group">
+                <label for="edit-nome-exibicao">Nome do Canal:</label>
+                <input type="text" id="edit-nome-exibicao">
+            </div>
+            <div class="form-group">
+                <label for="edit-url-imagem">Imagem:</label>
+                <input type="text" id="edit-url-imagem">
+            </div>
+            <div class="modal-buttons">
+                <button id="cancel-edit" class="delete-btn">Cancelar</button>
+                <button id="save-edit" class="primary-btn">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-container">
+        <h1>Gerenciamento de Canais</h1>
+        
+        <div class="section">
+            <div class="section-title"></div>
+            
+            <div class="load-options">
+                <div class="file-input-container">
+                    <label for="file-input"></label>
+                    <input type="file" id="file-input" accept=".html,.htm">
+                </div>
+                
+                <div style="flex-grow: 1;">
+                    <label for="html-content"></label>
+                    <textarea id="html-content" placeholder=""></textarea>
+                </div>
+            </div>
+            
+            <button id="load-html" class="primary-btn">Carregar HTML</button>
+            <button id="analyze-html" class="copy-btn">Mostrar Canais</button>
+        </div>
+        
+        <div class="section">
+            <div class="section-title"></div>
+            <div id="existing-channels" class="channel-list">
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Adicionar Novo Canal</div>
+            <div class="form-group">
+                <label for="nome-canal">(ID) Canal:</label>
+                <input type="text" id="nome-canal" placeholder="">
+            </div>
+            
+            <div class="form-group">
+                <label for="nome-exibicao">Nome do Canal:</label>
+                <input type="text" id="nome-exibicao" placeholder="">
+            </div>
+            
+            <div class="form-group">
+                <label for="url-imagem">Imagem:</label>
+                <input type="text" id="url-imagem" placeholder="">
+            </div>
+            
+            <button id="add-channel" class="primary-btn">Adicionar Canal</button>
+        </div>
+        
+        <div class="section">
+            <div class="section-title"></div>
+            <div class="form-group">
+                <label for="modified-html">HTML Pronto:</label>
+                <textarea id="modified-html" readonly></textarea>
+            </div>
+            <button id="copy-html" class="copy-btn">Copiar</button>
+            <button id="download-html" class="download-btn">Baixar</button>
+        </div>
+    </div>
+
+    <script>
+        let currentHTML = '';
+        let channels = [];
+        let currentEditIndex = -1;
+        
+        const htmlContentTextarea = document.getElementById('html-content');
+        const modifiedHTMLTextarea = document.getElementById('modified-html');
+        const existingChannelsDiv = document.getElementById('existing-channels');
+        const fileInput = document.getElementById('file-input');
+        const themeToggle = document.getElementById('theme-toggle');
+        const editModal = document.getElementById('edit-modal');
+        const editNomeCanal = document.getElementById('edit-nome-canal');
+        const editNomeExibicao = document.getElementById('edit-nome-exibicao');
+        const editUrlImagem = document.getElementById('edit-url-imagem');
+        const cancelEditBtn = document.getElementById('cancel-edit');
+        const saveEditBtn = document.getElementById('save-edit');
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+        });
+        
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+        
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                htmlContentTextarea.value = e.target.result;
+            };
+            reader.readAsText(file);
+        });
+        
+        document.getElementById('load-html').addEventListener('click', function() {
+            currentHTML = htmlContentTextarea.value;
+            modifiedHTMLTextarea.value = currentHTML;
+        });
+        
+        document.getElementById('analyze-html').addEventListener('click', function() {
+            if (!currentHTML) {
+                return;
+            }
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = currentHTML;
+            
+            const channelButtons = tempDiv.querySelectorAll('.botao-imagem');
+            channels = [];
+            
+            channelButtons.forEach(button => {
+                const channelName = button.getAttribute('data-nome');
+                const imgElement = button.querySelector('img');
+                const channelAlt = imgElement ? imgElement.getAttribute('alt') : '';
+                const channelImg = imgElement ? imgElement.getAttribute('src') : '';
+                
+                channels.push({
+                    name: channelName,
+                    alt: channelAlt,
+                    img: channelImg
+                });
+            });
+            
+            displayExistingChannels();
+        });
+        
+        function displayExistingChannels() {
+            existingChannelsDiv.innerHTML = '';
+            
+            if (channels.length === 0) {
+                existingChannelsDiv.innerHTML = '<p>Nenhum canal encontrado.</p>';
+                return;
+            }
+            
+            channels.forEach((channel, index) => {
+                const channelItem = document.createElement('div');
+                channelItem.className = 'channel-item';
+                
+                channelItem.innerHTML = `
+    <div class="channel-name">${channel.name}</div>
+    <div>Nome: ${channel.alt}</div>
+    ${channel.img ? `<img src="${channel.img}" alt="Preview" style="max-height: 50px;">` : ''}
+    <div class="channel-buttons">
+        <button class="edit-btn" data-index="${index}">Editar</button>
+        <button class="delete-btn" data-index="${index}">Remover</button>
+    </div>
+`;
+                
+                existingChannelsDiv.appendChild(channelItem);
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    removeChannel(index);
+                });
+            });
+            
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    editChannel(index);
+                });
+            });
+        }
+        
+        function removeChannel(index) {
+            if (confirm(`Tem certeza que deseja remover o canal "${channels[index].name}"?`)) {
+                channels.splice(index, 1);
+                updateHTML();
+                displayExistingChannels();
+            }
+        }
+        
+        function editChannel(index) {
+            currentEditIndex = index;
+            const channel = channels[index];
+            
+            editNomeCanal.value = channel.name;
+            editNomeExibicao.value = channel.alt;
+            editUrlImagem.value = channel.img;
+            
+            editModal.style.display = 'flex';
+        }
+        
+        cancelEditBtn.addEventListener('click', function() {
+            editModal.style.display = 'none';
+        });
+        
+        saveEditBtn.addEventListener('click', function() {
+            const nomeCanal = editNomeCanal.value.trim();
+            const nomeExibicao = editNomeExibicao.value.trim();
+            const urlImagem = editUrlImagem.value.trim();
+            
+            if (!nomeCanal || !nomeExibicao || !urlImagem) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+            
+            if (channels.some((ch, i) => ch.name === nomeCanal && i !== currentEditIndex)) {
+                alert('Já existe um canal com este nome!');
+                return;
+            }
+            
+            channels[currentEditIndex] = {
+                name: nomeCanal,
+                alt: nomeExibicao,
+                img: urlImagem
+            };
+            
+            editModal.style.display = 'none';
+            updateHTML();
+            displayExistingChannels();
+        });
+        
+        document.getElementById('add-channel').addEventListener('click', function() {
+            const nomeCanal = document.getElementById('nome-canal').value.trim();
+            const nomeExibicao = document.getElementById('nome-exibicao').value.trim();
+            const urlImagem = document.getElementById('url-imagem').value.trim();
+            
+            if (!nomeCanal || !nomeExibicao || !urlImagem) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+            
+            if (channels.some(ch => ch.name === nomeCanal)) {
+                alert('Já existe um canal com este nome!');
+                return;
+            }
+            
+            channels.push({
+                name: nomeCanal,
+                alt: nomeExibicao,
+                img: urlImagem
+            });
+            
+            document.getElementById('nome-canal').value = '';
+            document.getElementById('nome-exibicao').value = '';
+            document.getElementById('url-imagem').value = '';
+            
+            updateHTML();
+            displayExistingChannels();
+        });
+        
+        function updateHTML() {
+            if (!currentHTML) {
+                return;
+            }
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = currentHTML;
+            
+            const buttonsContainer = tempDiv.querySelector('.container#container-botoes');
+            const embedContainer = tempDiv.querySelector('.overlay + div:not(.embed-container)') || 
+                                 tempDiv.querySelector('.sem-resultado + div:not(.embed-container)');
+            
+            if (buttonsContainer) {
+                buttonsContainer.innerHTML = '';
+            }
+            
+            const existingEmbeds = tempDiv.querySelectorAll('.embed-container');
+            existingEmbeds.forEach(embed => embed.remove());
+            
+            channels.forEach(channel => {
+                if (buttonsContainer) {
+                    const botaoHTML = `
+        <div class="botao-imagem" data-nome="${channel.name}" onclick="mostrarEmbed('${channel.name}')">
+            <img src="${channel.img}" alt="${channel.alt}">
+        </div>`;
+                    buttonsContainer.innerHTML += botaoHTML;
+                }
+                
+                if (embedContainer) {
+                    const embedHTML = `
+    <div id="embed-${channel.name}" class="embed-container">
+        <iframe id="iframe-${channel.name}" src="https://embedcanaistv.com/${channel.name}/" allow="encrypted-media" allowfullscreen frameborder="0"></iframe>
+        <button class="close-embed" onclick="fecharEmbed('${channel.name}')">Fechar</button>
+    </div>`;
+                    embedContainer.insertAdjacentHTML('beforebegin', embedHTML);
+                }
+            });
+            
+            currentHTML = tempDiv.innerHTML;
+            modifiedHTMLTextarea.value = currentHTML;
+        }
+        
+        document.getElementById('copy-html').addEventListener('click', function() {
+            modifiedHTMLTextarea.select();
+            document.execCommand('copy');
+            alert('HTML copiado para a área de transferência!');
+        });
+        
+        document.getElementById('download-html').addEventListener('click', function() {
+            if (!currentHTML) {
+                alert('Nenhum HTML para baixar!');
+                return;
+            }
+            
+            const blob = new Blob([currentHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'canais-atualizado.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
