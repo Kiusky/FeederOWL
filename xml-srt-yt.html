@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversor de Legendas XML para SRT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main-container {
+            width: 100%;
+            max-width: 800px;
+        }
+        .converter-container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        textarea {
+            width: calc(100% - 24px); /* Desconta o padding */
+            height: 150px;
+            margin: 10px 0;
+            background-color: #2d2d2d;
+            color: #ffffff;
+            border: 1px solid #444;
+            padding: 12px;
+            border-radius: 6px;
+            resize: vertical;
+            display: block;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        button {
+            padding: 12px 0;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 15px 0;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+        button:hover {
+            background-color: #1b5e20;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+            margin: 0 0 25px 0;
+            font-size: 28px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+        ::placeholder {
+            color: #777;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="converter-container">
+            <h1>Conversor de Legendas XML para SRT do YouTube</h1>
+            <textarea id="inputText" placeholder="Cola o XML aqui viado !"></textarea>
+            <button onclick="convertToSrt()">Converter para SRT</button>
+            <textarea id="outputText" placeholder="" readonly></textarea>
+            <button onclick="downloadSrt()">Baixar Arquivo SRT</button>
+        </div>
+    </div>
+
+    <script>
+        function convertToSrt() {
+            const inputText = document.getElementById('inputText').value;
+            const outputText = document.getElementById('outputText');
+            
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(`<root>${inputText}</root>`, "text/xml");
+            const textElements = xmlDoc.getElementsByTagName('text');
+            
+            let srtContent = '';
+            let counter = 1;
+            
+            for (let i = 0; i < textElements.length; i++) {
+                const element = textElements[i];
+                const start = parseFloat(element.getAttribute('start')).toFixed(2);
+                const dur = parseFloat(element.getAttribute('dur')).toFixed(2);
+                const text = element.textContent;
+                
+                const startTime = formatTime(start);
+                const endTime = formatTime((parseFloat(start) + parseFloat(dur)).toFixed(2));
+                
+                srtContent += `${counter}\n`;
+                srtContent += `${startTime} --> ${endTime}\n`;
+                srtContent += `${text}\n\n`;
+                
+                counter++;
+            }
+            
+            outputText.value = srtContent.trim();
+        }
+        
+        function formatTime(seconds) {
+            const secs = parseFloat(seconds);
+            const hours = Math.floor(secs / 3600);
+            const minutes = Math.floor((secs % 3600) / 60);
+            const remainingSeconds = (secs % 60).toFixed(3);
+            
+            return `${padZero(hours)}:${padZero(minutes)}:${padZero(remainingSeconds).replace('.', ',')}`;
+        }
+        
+        function padZero(num) {
+            return num.toString().padStart(2, '0');
+        }
+        
+        function downloadSrt() {
+            const content = document.getElementById('outputText').value;
+            if (!content) {
+                alert('Nada para baixar! Converta o primeiro ne viado !');
+                return;
+            }
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'legenda.srt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
