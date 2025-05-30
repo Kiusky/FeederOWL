@@ -1,156 +1,14 @@
-// Configurações
 const REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
-const EMBED_URL = "http://feederowl.linkpc.net:8000/";
 const PRESS_DURATION = 2000;
 const START_DELAY = 777;
-
-let pressTimer, delayTimeout;
-let leftButtonDown = false, rightButtonDown = false;
-let embedContainer = null;
+let pressTimer;
+let delayTimeout;
 
 const timerDiv = document.querySelector('.scroll-timer');
 
-const createEmbed = () => {
-    if (embedContainer) {
-        document.body.removeChild(embedContainer);
-    }
+function startScrollTimer() {
+    if (delayTimeout) clearTimeout(delayTimeout);
     
-embedContainer = document.createElement('div');
-embedContainer.id = 'embed-overlay';
-embedContainer.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    height: 90%;
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-    
-    const contentDiv = document.createElement('div');
-    contentDiv.style.cssText = `
-        position: relative;
-        width: 90%;
-        height: 90%;
-        max-width: 1200px;
-    `;
-    
-const closeBtn = document.createElement('button');
-closeBtn.textContent = 'FECHAR';
-closeBtn.style.cssText = `
-    position: absolute;
-    bottom: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10000;
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 5px 10px;
-    font-size: 12px;
-	font-family: Arial, sans-serif;
-	font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-`;
-    closeBtn.onclick = closeEmbed;
-    
-    const iframe = document.createElement('iframe');
-    iframe.src = EMBED_URL;
-    iframe.style.cssText = `
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 8px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    `;
-    
-    const rightClickBlocker = document.createElement('div');
-    rightClickBlocker.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 999999;
-        pointer-events: none;
-    `;
-    
-    const clickShield = document.createElement('div');
-    clickShield.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        cursor: default;
-    `;
-    clickShield.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        return false;
-    });
-    
-    iframe.addEventListener('load', function() {
-        try {
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            iframeDoc.addEventListener('contextmenu', (e) => {
-                e.preventDefault();
-                return false;
-            });
-            
-            iframeDoc.addEventListener('keydown', (e) => {
-                if (e.key === 'F12' || 
-                    (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-                    (e.ctrlKey && e.key === 'U')) {
-                    e.preventDefault();
-                    return false;
-                }
-            });
-        } catch (error) {
-            console.log('Não foi possível bloquear menu no iframe:', error);
-        }
-    });
-
-    rightClickBlocker.appendChild(clickShield);
-    contentDiv.appendChild(iframe);
-    contentDiv.appendChild(rightClickBlocker);
-    contentDiv.appendChild(closeBtn);
-    embedContainer.appendChild(contentDiv);
-    document.body.appendChild(embedContainer);
-    
-    // Anima a entrada
-    setTimeout(() => {
-        embedContainer.style.opacity = '1';
-    }, 10);
-    
-    return embedContainer;
-};
-
-const closeEmbed = () => {
-    if (embedContainer) {
-        embedContainer.style.opacity = '0';
-        
-        setTimeout(() => {
-            if (embedContainer && document.body.contains(embedContainer)) {
-                document.body.removeChild(embedContainer);
-                embedContainer = null;
-            }
-        }, 300);
-    }
-};
-
-const showEmbed = () => {
-    createEmbed();
-};
-
-const startTimer = (isEmbed) => {
-    clearTimeout(delayTimeout);
     delayTimeout = setTimeout(() => {
         let startTime = Date.now();
         
@@ -174,75 +32,187 @@ const startTimer = (isEmbed) => {
             if (remaining <= 0) {
                 clearInterval(pressTimer);
                 timerDiv.classList.add('active');
-                setTimeout(() => {
-                    if (isEmbed) {
-                        showEmbed();
-                    } else {
-                        window.location.href = REDIRECT_URL;
-                    }
-                    resetTimer();
-                }, 200);
+                setTimeout(() => window.location.href = REDIRECT_URL, 200);
             }
         }, 16);
     }, START_DELAY);
-};
+}
 
-const resetTimer = () => {
-    clearTimeout(delayTimeout);
+function stopScrollTimer() {
+    if (delayTimeout) clearTimeout(delayTimeout);
     clearInterval(pressTimer);
-    timerDiv.classList.remove('show', 'active', 'progress', 'loading');
-    timerDiv.style.display = 'none';
-    leftButtonDown = false;
-    rightButtonDown = false;
+    timerDiv.classList.remove('show', 'active', 'progress');
+    setTimeout(() => timerDiv.style.display = 'none', 200);
+}
+
+document.body.addEventListener('mousedown', (e) => {
+    if (e.button === 1) startScrollTimer();
+});
+
+document.body.addEventListener('mouseup', (e) => {
+    if (e.button === 1) stopScrollTimer();
+});
+
+document.body.addEventListener('touchstart', startScrollTimer);
+document.body.addEventListener('touchend', stopScrollTimer);
+
+window.onload = function() {
+    const loader = document.querySelector('.loader');
+    if (loader) {
+        loader.style.display = 'none';
+    }
+    const content = document.querySelector('.content');
+    if (content) {
+        content.style.display = 'block';
+    }
+    preloadBackgroundImage();
 };
 
-document.addEventListener('mousedown', (e) => {
-    try {
-        if (e.button === 1) {
-            startTimer(false);
-        } else if (e.button === 0) {
-            leftButtonDown = true;
-        } else if (e.button === 2) {
-            rightButtonDown = true;
-        }
-        
-        if (leftButtonDown && rightButtonDown) {
-            startTimer(true);
-        }
-    } catch (err) {
-        console.error('Erro no mousedown:', err);
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key.toUpperCase() === 'U') {
+        e.preventDefault();
+        return false;
     }
-});
 
-document.addEventListener('mouseup', (e) => {
-    try {
-        if ([0, 1, 2].includes(e.button)) {
-            resetTimer();
-        }
-    } catch (err) {
-        console.error('Erro no mouseup:', err);
+    if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') {
+        e.preventDefault();
+        return false;
     }
-});
 
-document.addEventListener('contextmenu', (e) => e.preventDefault());
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'F12' || 
-        (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-        (e.ctrlKey && e.key === 'U')) {
+    if (e.key === 'F12') {
         e.preventDefault();
         return false;
     }
 });
 
-window.addEventListener('load', function() {
-    try {
-        const loader = document.querySelector('.loader');
-        const content = document.querySelector('.content');
-        
-        if (loader) loader.style.display = 'none';
-        if (content) content.style.display = 'block';
-    } catch (err) {
-        console.error('Erro no load:', err);
-    }
+document.addEventListener('DOMContentLoaded', (event) => {
+    let scrollStart = 0;
+    let scrollEnd = 0;
+    let longPressDuration = 4500;
+
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    });
+
+    document.body.addEventListener('mousedown', function(event) {
+        if (event.button === 1) {
+            scrollStart = Date.now();
+        }
+    });
+
+    document.body.addEventListener('mouseup', function(event) {
+        if (event.button === 1) {
+            scrollEnd = Date.now();
+            if (scrollEnd - scrollStart >= longPressDuration) {
+                redirectToPage();
+            }
+        }
+    });
+
+    document.body.addEventListener('touchstart', function(event) {
+        scrollStart = Date.now();
+    });
+
+    document.body.addEventListener('touchend', function(event) {
+        scrollEnd = Date.now();
+        if (scrollEnd - scrollStart >= longPressDuration) {
+            redirectToPage();
+        }
+    });
+
+    document.body.addEventListener('click', function() {
+        playAudio();
+    });
+
+    preloadDiscordWidget();
 });
+
+let devToolsOpened = false;
+
+function checkDevTools() {
+    const widthDiff = window.outerWidth - window.innerWidth;
+    const heightDiff = window.outerHeight - window.innerHeight;
+    
+    const threshold = 150;
+    
+    if ((widthDiff > threshold || heightDiff > threshold) && !devToolsOpened) {
+        devToolsOpened = true;
+        document.body.innerHTML = `
+<div style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+">
+    <div>
+        <h1 style="color: blue; margin: 0; font-size: 80px;">🚧</h1>
+        <p style="color: red; margin: 20px 0 0 0; font-size: 15px; font-weight: bold;">
+            NÃO É PERMITIDO ALTERAÇÕES NA PÁGINA
+        </p>
+        <p style="color: #555; margin: 5px 0 0 0; font-size: 8px; font-family: Arial;">
+            USAR ZOOM NA PAGINA TAMBEM NÃO PERMITIDO !
+        </p>
+    </div>
+</div>
+        `;
+    } else if (widthDiff <= threshold && heightDiff <= threshold && devToolsOpened) {
+        devToolsOpened = false;
+        location.reload();
+    }
+}
+
+setInterval(checkDevTools, 1000);
+
+function preloadBackgroundImage() {
+    var img = new Image();
+    img.src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
+}
+
+function preloadDiscordWidget() {
+    var img = new Image();
+    img.src = 'https://discord.com/widget?id=653379836164702228&theme=dark&' + Date.now();
+}
+
+function redirectToPage() {
+    window.location.href = 'https://feederowl.com/01000011%2001001000';
+}
+
+function playAudio() {
+    var audio = document.getElementById('myAudio');
+    audio.play();
+}
+
+function openDiscordWidget() {
+    var widgetContainer = document.getElementById('discordWidgetContainer');
+    if (widgetContainer) {
+        widgetContainer.style.display = 'block';
+    }
+}
+
+function closeDiscordWidget() {
+    var widgetContainer = document.getElementById('discordWidgetContainer');
+    if (widgetContainer) {
+        widgetContainer.style.display = 'none';
+    }
+}
+
+function openSteamWidget() {
+    preloadBackgroundImage();
+    setTimeout(() => {
+        var steamWidget = document.getElementById('steam');
+        if (steamWidget) {
+            steamWidget.style.display = 'block';
+        }
+    }, 0);
+}
+
+function closeSteamWidget() {
+    var steamWidget = document.getElementById('steam');
+    if (steamWidget) {
+        steamWidget.style.display = 'none';
+    }
+}
