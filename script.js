@@ -1,13 +1,12 @@
 const REDIRECT_URL = "http://feederowl.linkpc.net:8000/";
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
-const PRESS_DURATION = 2000;
-const START_DELAY = 777;
+const PRESS_DURATION = 1100;
+const START_DELAY = 555;
 
 let pressTimer;
 let delayTimeout;
 const timerDiv = document.querySelector('.scroll-timer');
 
-// ========= [BLOQUEIO DO BOTÃO DIREITO] ========= //
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 
@@ -22,7 +21,6 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// ========= [FUNCIONALIDADES PRINCIPAIS] ========= //
 
 function startTimer(redirectUrl) {
     if (delayTimeout) clearTimeout(delayTimeout);
@@ -62,7 +60,6 @@ function stopTimer() {
     setTimeout(() => timerDiv.style.display = 'none', 200);
 }
 
-// ========= [ÁUDIO - TOCAR APENAS UMA VEZ EM LOOP] ========= //
 function playAudio() {
     const audio = document.getElementById('myAudio');
     if (audio && audio.paused) {
@@ -71,13 +68,12 @@ function playAudio() {
     }
 }
 
-// ========= [EVENTOS DE MOUSE] ========= //
 document.body.addEventListener('mousedown', (e) => {
     playAudio();
 
-    if (e.button === 1) { // Scroll
+    if (e.button === 1) {
         startTimer(REDIRECT_URL);
-    } else if (e.button === 0) { // Esquerdo
+    } else if (e.button === 0) {
         startTimer(LEFT_CLICK_REDIRECT_URL);
     }
 });
@@ -86,15 +82,12 @@ document.body.addEventListener('mouseup', () => {
     stopTimer();
 });
 
-// ========= [EVENTOS TOUCH COM DIFERENCIAÇÃO DE DEDOS] ========= //
 document.body.addEventListener('touchstart', (e) => {
     playAudio();
 
     if (e.touches.length === 1) {
-        // Um dedo → botão esquerdo do mouse
         startTimer(LEFT_CLICK_REDIRECT_URL);
     } else if (e.touches.length === 2) {
-        // Dois dedos → scroll do mouse
         startTimer(REDIRECT_URL);
     }
 });
@@ -103,7 +96,6 @@ document.body.addEventListener('touchend', () => {
     stopTimer();
 });
 
-// ========= [PROTEÇÕES] ========= //
 let devToolsOpened = false;
 function checkDevTools() {
     const widthDiff = window.outerWidth - window.innerWidth;
@@ -138,7 +130,6 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
 });
 
-// ========= [INICIALIZAÇÃO COM FADEOUT DO LOADER] ========= //
 window.onload = function() {
     const loader = document.querySelector('.loader');
     const content = document.querySelector('.content');
@@ -157,7 +148,6 @@ window.onload = function() {
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
 };
 
-// ========= [WIDGETS] ========= //
 function openDiscordWidget() {
     const widget = document.getElementById('discordWidgetContainer');
     if (widget) widget.style.display = 'block';
@@ -175,7 +165,6 @@ function closeSteamWidget() {
     if (widget) widget.style.display = 'none';
 }
 
-// ========= [CSS EXTRA DE PROTEÇÃO] ========= //
 const style = document.createElement('style');
 style.textContent = `
     body {
