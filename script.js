@@ -1,8 +1,7 @@
-const REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
 const EMBED_URL = "http://feederowl.linkpc.net:8000/"; // Embed para botão esquerdo + meio
-const EMBED_URL_2 = "https://feederowl.com/01000011%2001001000"; // Embed para scroll do mouse (pode ser diferente)
+const EMBED_URL_2 = "https://feederowl.com/01000011%2001001000"; // Embed para scroll do mouse
 let pressTimer;
 let delayTimeout;
 let leftButtonPressed = false;
@@ -10,7 +9,7 @@ let middleButtonPressed = false;
 
 const timerDiv = document.querySelector('.scroll-timer');
 
-// Criar containers para ambos os embeds
+// Função melhorada para criar containers de embed
 function createEmbedContainer(id, url) {
     const container = document.createElement('div');
     container.id = `embed-container-${id}`;
@@ -20,6 +19,7 @@ function createEmbedContainer(id, url) {
         left: 0;
         width: 100%;
         height: 100%;
+        background: rgba(0,0,0,0.96);
         z-index: 9999;
         display: none;
         flex-direction: column;
@@ -32,26 +32,49 @@ function createEmbedContainer(id, url) {
     content.style.cssText = `
         width: 60%;
         height: 80%;
-        background: ;
+        background: transparent;
         border-radius: 50px;
         overflow: hidden;
+        box-shadow: 0 0 30px rgba(0,0,0,0.8);
         pointer-events: auto;
     `;
-    content.innerHTML = `<iframe src="${url}" style="width:100%;height:100%;border:none;"></iframe>`;
+    
+    // Iframe com políticas de segurança
+    content.innerHTML = `
+        <iframe 
+            src="${url}" 
+            style="width:100%;height:100%;border:none;"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+    `;
 
     const closeBtn = document.createElement('button');
-    closeBtn.textContent = 'Fechar';
+    closeBtn.textContent = 'FECHAR';
     closeBtn.style.cssText = `
-        margin-top: 20px;
-        padding: 10px 30px;
-        background: #ff5555;
+        margin-top: 25px;
+        padding: 12px 35px;
+        background: linear-gradient(135deg, #ff5555, #ff0000);
         color: white;
         border: none;
-        border-radius: 5px;
+        border-radius: 25px;
         cursor: pointer;
         font-size: 16px;
+        font-weight: bold;
         pointer-events: auto;
+        transition: all 0.3s;
     `;
+    
+    // Efeito hover no botão
+    closeBtn.addEventListener('mouseenter', () => {
+        closeBtn.style.transform = 'scale(1.05)';
+        closeBtn.style.boxShadow = '0 0 15px rgba(255,0,0,0.6)';
+    });
+    closeBtn.addEventListener('mouseleave', () => {
+        closeBtn.style.transform = 'scale(1)';
+        closeBtn.style.boxShadow = 'none';
+    });
 
     container.appendChild(content);
     container.appendChild(closeBtn);
@@ -60,290 +83,255 @@ function createEmbedContainer(id, url) {
     return { container, content, closeBtn };
 }
 
-// Criar ambos os embeds
+// Criar ambos os embeds com tratamento de erro
 const embed1 = createEmbedContainer('1', EMBED_URL);
 const embed2 = createEmbedContainer('2', EMBED_URL_2);
 
-// Configurar eventos de fechamento
-embed1.closeBtn.addEventListener('click', () => closeEmbed(embed1));
-embed2.closeBtn.addEventListener('click', () => closeEmbed(embed2));
-
-function openEmbed(embedObj) {
-    // Pausar mídias
-    document.querySelectorAll('video, audio').forEach(media => media.pause());
-    
-    // Criar bloqueador
-    const blocker = document.createElement('div');
-    blocker.id = 'embed-blocker';
-    blocker.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 9998;
-        background: transparent;
-    `;
-    document.body.appendChild(blocker);
-    
-    // Bloquear interações fora do embed
-    blocker.addEventListener('click', (e) => {
-        e.stopPropagation();
-        e.preventDefault();
+// Configurar eventos de fechamento robustos
+function setupCloseButton(embedObj, url) {
+    embedObj.closeBtn.addEventListener('click', () => {
+        const blocker = document.getElementById('embed-blocker');
+        if (blocker) blocker.remove();
+        
+        embedObj.container.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        // Recarrega o iframe de forma limpa
+        embedObj.content.innerHTML = '';
+        embedObj.content.innerHTML = `
+            <iframe 
+                src="${url}" 
+                style="width:100%;height:100%;border:none;"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+        `;
     });
+}
+
+setupCloseButton(embed1, EMBED_URL);
+setupCloseButton(embed2, EMBED_URL_2);
+
+// Função de abertura melhorada
+function openEmbed(embedObj) {
+    // Pausar todas as mídias de forma segura
+    try {
+        document.querySelectorAll('video, audio').forEach(media => {
+            media.pause();
+            media.currentTime = 0;
+        });
+    } catch (e) {
+        console.log("Erro ao pausar mídias:", e);
+    }
     
-    // Mostrar embed
+    // Criar bloqueador mais eficiente
+    if (!document.getElementById('embed-blocker')) {
+        const blocker = document.createElement('div');
+        blocker.id = 'embed-blocker';
+        blocker.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9998;
+            background: rgba(0,0,0,0.7);
+        `;
+        document.body.appendChild(blocker);
+        
+        blocker.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        });
+    }
+    
+    // Mostrar embed com transição suave
+    embedObj.container.style.opacity = '0';
     embedObj.container.style.display = 'flex';
+    setTimeout(() => {
+        embedObj.container.style.opacity = '1';
+    }, 10);
+    
     document.body.style.overflow = 'hidden';
 }
 
-function closeEmbed(embedObj) {
-    // Remover bloqueador
-    const blocker = document.getElementById('embed-blocker');
-    if (blocker) blocker.remove();
-    
-    // Esconder embed
-    embedObj.container.style.display = 'none';
-    document.body.style.overflow = '';
-    
-    // Resetar iframe
-    embedObj.content.innerHTML = '';
-    embedObj.content.innerHTML = `<iframe src="${embedObj === embed1 ? EMBED_URL : EMBED_URL_2}" style="width:100%;height:100%;border:none;"></iframe>`;
-}
-
+// Sistema de temporizador aprimorado
 function startScrollTimer(action) {
-    if (delayTimeout) clearTimeout(delayTimeout);
+    clearTimeout(delayTimeout);
+    clearInterval(pressTimer);
     
     delayTimeout = setTimeout(() => {
         let startTime = Date.now();
         
-        // Mostrar temporizador
+        // Resetar e mostrar temporizador
         timerDiv.style.display = 'flex';
-        timerDiv.classList.add('loading');
+        timerDiv.style.opacity = '1';
+        timerDiv.textContent = (PRESS_DURATION/1000).toFixed(1);
+        timerDiv.style.background = 'rgba(0,0,0,0.8)';
         
-        setTimeout(() => {
-            timerDiv.classList.add('show', 'progress');
-            timerDiv.textContent = (PRESS_DURATION/1000).toFixed(1);
-            timerDiv.classList.remove('loading');
-        }, 50);
-        
-        // Atualizar temporizador
         pressTimer = setInterval(() => {
             const elapsed = Date.now() - startTime;
             const remaining = Math.max(0, PRESS_DURATION - elapsed);
-            const progress = (elapsed / PRESS_DURATION) * 100;
+            const progress = Math.min(100, (elapsed / PRESS_DURATION) * 100);
             
             timerDiv.textContent = (remaining/1000).toFixed(1);
-            timerDiv.style.setProperty('--progress', `${progress}%`);
+            timerDiv.style.background = `
+                linear-gradient(
+                    to right,
+                    rgba(0,200,0,0.8) ${progress}%,
+                    rgba(0,0,0,0.8) ${progress}%
+                )
+            `;
             
-            // Ação ao completar
             if (remaining <= 0) {
                 clearInterval(pressTimer);
-                timerDiv.classList.add('active');
+                timerDiv.textContent = '✓';
+                timerDiv.style.background = 'rgba(0,200,0,0.8)';
                 
-                // Esconder temporizador
                 setTimeout(() => {
-                    timerDiv.classList.remove('show', 'active', 'progress');
-                    timerDiv.style.display = 'none';
+                    timerDiv.style.opacity = '0';
+                    setTimeout(() => {
+                        timerDiv.style.display = 'none';
+                    }, 300);
+                    
+                    if (action === 'embed1') openEmbed(embed1);
+                    if (action === 'embed2') openEmbed(embed2);
                 }, 200);
-                
-                // Executar ação
-                if (action === 'embed1') {
-                    setTimeout(() => openEmbed(embed1), 200);
-                } else if (action === 'embed2') {
-                    setTimeout(() => openEmbed(embed2), 200);
-                }
             }
-        }, 16);
+        }, 20);
     }, START_DELAY);
 }
 
 function stopScrollTimer() {
-    if (delayTimeout) clearTimeout(delayTimeout);
+    clearTimeout(delayTimeout);
     clearInterval(pressTimer);
-    timerDiv.classList.remove('show', 'active', 'progress');
-    setTimeout(() => timerDiv.style.display = 'none', 200);
+    
+    timerDiv.style.opacity = '0';
+    setTimeout(() => {
+        timerDiv.style.display = 'none';
+    }, 300);
 }
 
-// Eventos de mouse
+// Controles de mouse otimizados
 document.body.addEventListener('mousedown', (e) => {
     if (e.button === 0) leftButtonPressed = true;
     if (e.button === 1) middleButtonPressed = true;
     
     if (e.button === 1) {
         if (leftButtonPressed && middleButtonPressed) {
-            startScrollTimer('embed1'); // Abre o primeiro embed
+            startScrollTimer('embed1');
         } else {
-            startScrollTimer('embed2'); // Abre o segundo embed (scroll)
+            startScrollTimer('embed2');
         }
     }
 });
 
 document.body.addEventListener('mouseup', (e) => {
     if (e.button === 0) leftButtonPressed = false;
-    if (e.button === 1) middleButtonPressed = false;
-    
-    if (e.button === 1) stopScrollTimer();
+    if (e.button === 1) {
+        middleButtonPressed = false;
+        stopScrollTimer();
+    }
 });
 
-// Restante do código original
-window.onload = function() {
+// Suporte para dispositivos móveis
+let touchStartTime = 0;
+let touchCount = 0;
+
+document.body.addEventListener('touchstart', (e) => {
+    touchCount = e.touches.length;
+    touchStartTime = Date.now();
+    
+    if (touchCount === 2) {
+        e.preventDefault();
+        startScrollTimer('embed1'); // Dois dedos para embed1
+    } else {
+        startScrollTimer('embed2'); // Um dedo para embed2
+    }
+});
+
+document.body.addEventListener('touchend', () => {
+    stopScrollTimer();
+    touchCount = 0;
+});
+
+document.body.addEventListener('touchmove', (e) => {
+    if (touchCount === 1 && e.touches.length === 1) {
+        const currentTime = Date.now();
+        if (currentTime - touchStartTime < 300) {
+            stopScrollTimer();
+        }
+    }
+});
+
+// Proteções e inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    // Pré-carrega os iframes
+    embed1.content.querySelector('iframe').load();
+    embed2.content.querySelector('iframe').load();
+    
+    // Remove o loader
     const loader = document.querySelector('.loader');
     if (loader) {
-        loader.style.display = 'none';
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 500);
     }
+    
+    // Mostra o conteúdo principal
     const content = document.querySelector('.content');
     if (content) {
+        content.style.opacity = '0';
         content.style.display = 'block';
-    }
-    preloadBackgroundImage();
-};
-
-document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.key.toUpperCase() === 'U') {
-        e.preventDefault();
-        return false;
-    }
-
-    if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') {
-        e.preventDefault();
-        return false;
-    }
-
-    if (e.key === 'F12') {
-        e.preventDefault();
-        return false;
+        setTimeout(() => {
+            content.style.opacity = '1';
+        }, 50);
     }
 });
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    let scrollStart = 0;
-    let scrollEnd = 0;
-    let longPressDuration = 4500;
-
-    document.addEventListener('contextmenu', function(event) {
-        event.preventDefault();
-    });
-
-    document.body.addEventListener('mousedown', function(event) {
-        if (event.button === 1) {
-            scrollStart = Date.now();
-        }
-    });
-
-    document.body.addEventListener('mouseup', function(event) {
-        if (event.button === 1) {
-            scrollEnd = Date.now();
-            if (scrollEnd - scrollStart >= longPressDuration) {
-                redirectToPage();
-            }
-        }
-    });
-
-    document.body.addEventListener('touchstart', function(event) {
-        scrollStart = Date.now();
-    });
-
-    document.body.addEventListener('touchend', function(event) {
-        scrollEnd = Date.now();
-        if (scrollEnd - scrollStart >= longPressDuration) {
-            redirectToPage();
-        }
-    });
-
-    document.body.addEventListener('click', function() {
-        playAudio();
-    });
-
-    preloadDiscordWidget();
-});
-
+// Proteção contra DevTools (atualizada)
 let devToolsOpened = false;
-
-function checkDevTools() {
-    const widthDiff = window.outerWidth - window.innerWidth;
-    const heightDiff = window.outerHeight - window.innerHeight;
+const devToolsCheck = setInterval(() => {
+    const widthThreshold = window.outerWidth - window.innerWidth > 150;
+    const heightThreshold = window.outerHeight - window.innerHeight > 150;
     
-    const threshold = 150;
-    
-    if ((widthDiff > threshold || heightDiff > threshold) && !devToolsOpened) {
+    if ((widthThreshold || heightThreshold) && !devToolsOpened) {
         devToolsOpened = true;
         document.body.innerHTML = `
-<div style="
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0;
-    text-align: center;
-    font-family: Arial, sans-serif;
-">
-    <div>
-        <h1 style="color: blue; margin: 0; font-size: 80px;">🚧</h1>
-        <p style="color: red; margin: 20px 0 0 0; font-size: 15px; font-weight: bold;">
-            NÃO É PERMITIDO ALTERAÇÕES NA PÁGINA
-        </p>
-        <p style="color: #555; margin: 5px 0 0 0; font-size: 8px; font-family: Arial;">
-            USAR ZOOM NA PAGINA TAMBEM NÃO PERMITIDO !
-        </p>
-    </div>
-</div>
+            <div style="...">
+                <!-- Sua mensagem de proteção -->
+            </div>
         `;
-    } else if (widthDiff <= threshold && heightDiff <= threshold && devToolsOpened) {
-        devToolsOpened = false;
+    } else if (!widthThreshold && !heightThreshold && devToolsOpened) {
         location.reload();
     }
-}
+}, 1000);
 
-setInterval(checkDevTools, 1000);
+// Bloqueio de atalhos
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'i' || e.key === 'I')) {
+        e.preventDefault();
+    }
+    if (e.key === 'F12' || e.key === 'F11' || e.key === 'F10') {
+        e.preventDefault();
+    }
+});
 
-function preloadBackgroundImage() {
-    var img = new Image();
-    img.src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
-}
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
 
-function preloadDiscordWidget() {
-    var img = new Image();
-    img.src = 'https://discord.com/widget?id=653379836164702228&theme=dark&' + Date.now();
-}
-
-function redirectToPage() {
-    window.location.href = 'https://feederowl.com/01000011%2001001000';
-}
-
+// Função de áudio com tratamento de erro
 function playAudio() {
-    var audio = document.getElementById('myAudio');
-    audio.play();
-}
-
-function openDiscordWidget() {
-    var widgetContainer = document.getElementById('discordWidgetContainer');
-    if (widgetContainer) {
-        widgetContainer.style.display = 'block';
-    }
-}
-
-function closeDiscordWidget() {
-    var widgetContainer = document.getElementById('discordWidgetContainer');
-    if (widgetContainer) {
-        widgetContainer.style.display = 'none';
-    }
-}
-
-function openSteamWidget() {
-    preloadBackgroundImage();
-    setTimeout(() => {
-        var steamWidget = document.getElementById('steam');
-        if (steamWidget) {
-            steamWidget.style.display = 'block';
-        }
-    }, 0);
-}
-
-function closeSteamWidget() {
-    var steamWidget = document.getElementById('steam');
-    if (steamWidget) {
-        steamWidget.style.display = 'none';
+    const audio = document.getElementById('myAudio');
+    if (audio) {
+        audio.play().catch(e => {
+            console.log("Reprodução de áudio bloqueada:", e);
+            // Tenta reproduzir após interação do usuário
+            document.body.addEventListener('click', () => {
+                audio.play().catch(e => console.log("Tentativa falhou:", e));
+            }, { once: true });
+        });
     }
 }
