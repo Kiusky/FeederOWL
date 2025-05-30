@@ -1,1 +1,176 @@
-const _0x3dfb8c=_0x2b73;(function(_0x19e64d,_0x383ea8){const _0x1792f7=_0x2b73,_0x2e0ee3=_0x19e64d();while(!![]){try{const _0x2b92dd=-parseInt(_0x1792f7(0x1a8))/0x1+parseInt(_0x1792f7(0x1a1))/0x2*(-parseInt(_0x1792f7(0x1a0))/0x3)+-parseInt(_0x1792f7(0x17d))/0x4*(-parseInt(_0x1792f7(0x17c))/0x5)+parseInt(_0x1792f7(0x180))/0x6*(-parseInt(_0x1792f7(0x176))/0x7)+-parseInt(_0x1792f7(0x19e))/0x8*(parseInt(_0x1792f7(0x182))/0x9)+parseInt(_0x1792f7(0x19f))/0xa*(-parseInt(_0x1792f7(0x1ac))/0xb)+-parseInt(_0x1792f7(0x1a2))/0xc*(-parseInt(_0x1792f7(0x1b0))/0xd);if(_0x2b92dd===_0x383ea8)break;else _0x2e0ee3['push'](_0x2e0ee3['shift']());}catch(_0x1f4b0b){_0x2e0ee3['push'](_0x2e0ee3['shift']());}}}(_0x3fa7,0x6ef75));const REDIRECT_URL=_0x3dfb8c(0x1a5),PRESS_DURATION=0x7d0,START_DELAY=0x309;let pressTimer,delayTimeout;function _0x2b73(_0x3d1451,_0x274d85){const _0x3fa706=_0x3fa7();return _0x2b73=function(_0x2b73a5,_0x22fb79){_0x2b73a5=_0x2b73a5-0x172;let _0x1c5af1=_0x3fa706[_0x2b73a5];return _0x1c5af1;},_0x2b73(_0x3d1451,_0x274d85);}const timerDiv=document[_0x3dfb8c(0x188)](_0x3dfb8c(0x193));function startScrollTimer(){if(delayTimeout)clearTimeout(delayTimeout);delayTimeout=setTimeout(()=>{const _0x321ba3=_0x2b73;let _0x25b1db=Date[_0x321ba3(0x17a)]();timerDiv[_0x321ba3(0x1a4)][_0x321ba3(0x19c)]='flex',timerDiv[_0x321ba3(0x175)][_0x321ba3(0x1af)]('loading'),setTimeout(()=>{const _0x38f32f=_0x321ba3;timerDiv[_0x38f32f(0x175)]['add'](_0x38f32f(0x18c),_0x38f32f(0x189)),timerDiv[_0x38f32f(0x18e)]=(PRESS_DURATION/0x3e8)[_0x38f32f(0x186)](0x1),timerDiv['classList'][_0x38f32f(0x195)](_0x38f32f(0x17f));},0x32),pressTimer=setInterval(()=>{const _0x315389=_0x321ba3,_0x43aaa8=Date[_0x315389(0x17a)]()-_0x25b1db,_0x50e66e=Math[_0x315389(0x1aa)](0x0,PRESS_DURATION-_0x43aaa8),_0x15c6d8=_0x43aaa8/PRESS_DURATION*0x64;timerDiv[_0x315389(0x18e)]=(_0x50e66e/0x3e8)[_0x315389(0x186)](0x1),timerDiv['style']['setProperty'](_0x315389(0x192),_0x15c6d8+'%'),_0x50e66e<=0x0&&(clearInterval(pressTimer),timerDiv['classList']['add']('active'),setTimeout(()=>window[_0x315389(0x179)][_0x315389(0x187)]=REDIRECT_URL,0xc8));},0x10);},START_DELAY);}function stopScrollTimer(){const _0x288f5f=_0x3dfb8c;if(delayTimeout)clearTimeout(delayTimeout);clearInterval(pressTimer),timerDiv['classList'][_0x288f5f(0x195)](_0x288f5f(0x18c),_0x288f5f(0x173),_0x288f5f(0x189)),setTimeout(()=>timerDiv[_0x288f5f(0x1a4)]['display']=_0x288f5f(0x17b),0xc8);}document[_0x3dfb8c(0x18f)][_0x3dfb8c(0x198)](_0x3dfb8c(0x19b),_0x11e5b3=>{const _0xc83b8e=_0x3dfb8c;if(_0x11e5b3[_0xc83b8e(0x199)]===0x1)startScrollTimer();}),document['body']['addEventListener'](_0x3dfb8c(0x19a),_0x471d96=>{const _0x2ce7b4=_0x3dfb8c;if(_0x471d96[_0x2ce7b4(0x199)]===0x1)stopScrollTimer();}),document[_0x3dfb8c(0x18f)][_0x3dfb8c(0x198)](_0x3dfb8c(0x1a9),startScrollTimer),document[_0x3dfb8c(0x18f)]['addEventListener'](_0x3dfb8c(0x1b1),stopScrollTimer),window[_0x3dfb8c(0x197)]=function(){const _0xc859b5=_0x3dfb8c,_0x66c766=document[_0xc859b5(0x188)](_0xc859b5(0x196));_0x66c766&&(_0x66c766[_0xc859b5(0x1a4)]['display']=_0xc859b5(0x17b));const _0x2bde9d=document[_0xc859b5(0x188)](_0xc859b5(0x1a7));_0x2bde9d&&(_0x2bde9d[_0xc859b5(0x1a4)][_0xc859b5(0x19c)]='block'),preloadBackgroundImage();},document[_0x3dfb8c(0x198)]('keydown',function(_0x471990){const _0x82d03d=_0x3dfb8c;if(_0x471990[_0x82d03d(0x184)]&&_0x471990[_0x82d03d(0x191)][_0x82d03d(0x18a)]()==='U')return _0x471990[_0x82d03d(0x18d)](),![];if(_0x471990['ctrlKey']&&_0x471990[_0x82d03d(0x1a3)]&&_0x471990[_0x82d03d(0x191)][_0x82d03d(0x18a)]()==='I')return _0x471990['preventDefault'](),![];if(_0x471990[_0x82d03d(0x191)]===_0x82d03d(0x1ab))return _0x471990['preventDefault'](),![];}),document[_0x3dfb8c(0x198)](_0x3dfb8c(0x174),_0x556b5c=>{const _0x5b6db8=_0x3dfb8c;let _0x664bab=0x0,_0x38b873=0x0,_0x4e23e0=0x1194;document[_0x5b6db8(0x198)](_0x5b6db8(0x18b),function(_0x19debc){const _0x17ce60=_0x5b6db8;_0x19debc[_0x17ce60(0x18d)]();}),document['body']['addEventListener'](_0x5b6db8(0x19b),function(_0x2258eb){const _0x830834=_0x5b6db8;_0x2258eb[_0x830834(0x199)]===0x1&&(_0x664bab=Date['now']());}),document['body']['addEventListener'](_0x5b6db8(0x19a),function(_0x1a941a){const _0x23e462=_0x5b6db8;_0x1a941a[_0x23e462(0x199)]===0x1&&(_0x38b873=Date[_0x23e462(0x17a)](),_0x38b873-_0x664bab>=_0x4e23e0&&redirectToPage());}),document[_0x5b6db8(0x18f)]['addEventListener'](_0x5b6db8(0x1a9),function(_0x7738be){const _0x467451=_0x5b6db8;_0x664bab=Date[_0x467451(0x17a)]();}),document[_0x5b6db8(0x18f)][_0x5b6db8(0x198)](_0x5b6db8(0x1b1),function(_0x323fcf){_0x38b873=Date['now'](),_0x38b873-_0x664bab>=_0x4e23e0&&redirectToPage();}),document[_0x5b6db8(0x18f)][_0x5b6db8(0x198)]('click',function(){playAudio();}),preloadDiscordWidget();});let devToolsOpened=![];function _0x3fa7(){const _0x316962=['preventDefault','textContent','body','block','key','--progress','.scroll-timer','https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp','remove','.loader','onload','addEventListener','button','mouseup','mousedown','display','src','152alKDym','33230VpckEA','3ChyQYx','906212qdBkgs','12xwzpZz','shiftKey','style','https://feederowl.com/01000011%2001001000','steam','.content','460012MKBbdi','touchstart','max','F12','1518rUXiSa','myAudio','\x0a<div\x20style=\x22\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20justify-content:\x20center;\x0a\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20flex-direction:\x20column;\x0a\x20\x20\x20\x20height:\x20100vh;\x0a\x20\x20\x20\x20margin:\x200;\x0a\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20font-family:\x20Arial,\x20sans-serif;\x0a\x22>\x0a\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<h1\x20style=\x22color:\x20blue;\x20margin:\x200;\x20font-size:\x2080px;\x22>🚧</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22color:\x20red;\x20margin:\x2020px\x200\x200\x200;\x20font-size:\x2015px;\x20font-weight:\x20bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20NÃO\x20É\x20PERMITIDO\x20ALTERAÇÕES\x20NA\x20PÁGINA\x0a\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22color:\x20#555;\x20margin:\x205px\x200\x200\x200;\x20font-size:\x208px;\x20font-family:\x20Arial;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20USAR\x20ZOOM\x20NA\x20PAGINA\x20TAMBEM\x20NÃO\x20PERMITIDO\x20!\x0a\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20</div>\x0a</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','add','24397438BkNfFe','touchend','discordWidgetContainer','innerHTML','active','DOMContentLoaded','classList','1899142zUEThs','outerWidth','play','location','now','none','10OLEonD','1272904CZXBiM','innerWidth','loading','6jYiAEO','getElementById','196893OBPbbo','outerHeight','ctrlKey','https://discord.com/widget?id=653379836164702228&theme=dark&','toFixed','href','querySelector','progress','toUpperCase','contextmenu','show'];_0x3fa7=function(){return _0x316962;};return _0x3fa7();}function checkDevTools(){const _0x164ea5=_0x3dfb8c,_0x4e6ba9=window[_0x164ea5(0x177)]-window[_0x164ea5(0x17e)],_0x1dc356=window[_0x164ea5(0x183)]-window['innerHeight'],_0x30c727=0x96;if((_0x4e6ba9>_0x30c727||_0x1dc356>_0x30c727)&&!devToolsOpened)devToolsOpened=!![],document['body'][_0x164ea5(0x172)]=_0x164ea5(0x1ae);else _0x4e6ba9<=_0x30c727&&_0x1dc356<=_0x30c727&&devToolsOpened&&(devToolsOpened=![],location['reload']());}setInterval(checkDevTools,0x3e8);function preloadBackgroundImage(){const _0x25b25c=_0x3dfb8c;var _0x590067=new Image();_0x590067['src']=_0x25b25c(0x194);}function preloadDiscordWidget(){const _0x25f054=_0x3dfb8c;var _0x34dfea=new Image();_0x34dfea[_0x25f054(0x19d)]=_0x25f054(0x185)+Date[_0x25f054(0x17a)]();}function redirectToPage(){const _0x501d22=_0x3dfb8c;window['location'][_0x501d22(0x187)]=_0x501d22(0x1a5);}function playAudio(){const _0x50b790=_0x3dfb8c;var _0x26e8c0=document['getElementById'](_0x50b790(0x1ad));_0x26e8c0[_0x50b790(0x178)]();}function openDiscordWidget(){const _0x91c3ed=_0x3dfb8c;var _0x974474=document[_0x91c3ed(0x181)](_0x91c3ed(0x1b2));_0x974474&&(_0x974474[_0x91c3ed(0x1a4)]['display']=_0x91c3ed(0x190));}function closeDiscordWidget(){const _0x221ab6=_0x3dfb8c;var _0x5b9500=document[_0x221ab6(0x181)]('discordWidgetContainer');_0x5b9500&&(_0x5b9500[_0x221ab6(0x1a4)][_0x221ab6(0x19c)]=_0x221ab6(0x17b));}function openSteamWidget(){preloadBackgroundImage(),setTimeout(()=>{const _0xadb377=_0x2b73;var _0x3cf688=document[_0xadb377(0x181)](_0xadb377(0x1a6));_0x3cf688&&(_0x3cf688[_0xadb377(0x1a4)][_0xadb377(0x19c)]=_0xadb377(0x190));},0x0);}function closeSteamWidget(){const _0xeedefe=_0x3dfb8c;var _0x3d5447=document[_0xeedefe(0x181)](_0xeedefe(0x1a6));_0x3d5447&&(_0x3d5447[_0xeedefe(0x1a4)][_0xeedefe(0x19c)]=_0xeedefe(0x17b));}
+const REDIRECT_URL = "http://feederowl.linkpc.net:8000/";
+const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
+const PRESS_DURATION = 2000;
+const START_DELAY = 777;
+
+let pressTimer;
+let delayTimeout;
+const timerDiv = document.querySelector('.scroll-timer');
+
+// ========= [BLOQUEIO DO BOTÃO DIREITO] ========= //
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+
+    const warn = document.createElement('div');
+    document.body.appendChild(warn);
+    setTimeout(() => warn.remove(), 2000);
+}, true);
+
+document.addEventListener('keydown', function(e) {
+    if (e.shiftKey && e.key === 'F10') {
+        e.preventDefault();
+    }
+});
+
+// ========= [FUNCIONALIDADES PRINCIPAIS] ========= //
+
+function startTimer(redirectUrl) {
+    if (delayTimeout) clearTimeout(delayTimeout);
+
+    delayTimeout = setTimeout(() => {
+        let startTime = Date.now();
+        timerDiv.style.display = 'flex';
+        timerDiv.classList.add('loading');
+
+        setTimeout(() => {
+            timerDiv.classList.add('show', 'progress');
+            timerDiv.textContent = (PRESS_DURATION / 1000).toFixed(1);
+            timerDiv.classList.remove('loading');
+        }, 50);
+
+        pressTimer = setInterval(() => {
+            const elapsed = Date.now() - startTime;
+            const remaining = Math.max(0, PRESS_DURATION - elapsed);
+            const progress = (elapsed / PRESS_DURATION) * 100;
+
+            timerDiv.textContent = (remaining / 1000).toFixed(1);
+            timerDiv.style.setProperty('--progress', `${progress}%`);
+
+            if (remaining <= 0) {
+                clearInterval(pressTimer);
+                timerDiv.classList.add('active');
+                setTimeout(() => window.location.href = redirectUrl, 200);
+            }
+        }, 16);
+    }, START_DELAY);
+}
+
+function stopTimer() {
+    if (delayTimeout) clearTimeout(delayTimeout);
+    clearInterval(pressTimer);
+    timerDiv.classList.remove('show', 'active', 'progress');
+    setTimeout(() => timerDiv.style.display = 'none', 200);
+}
+
+// ========= [ÁUDIO - TOCAR APENAS UMA VEZ EM LOOP] ========= //
+function playAudio() {
+    const audio = document.getElementById('myAudio');
+    if (audio && audio.paused) {
+        audio.loop = true;
+        audio.play().catch(e => console.log("Autoplay bloqueado:", e));
+    }
+}
+
+// ========= [EVENTOS DE MOUSE] ========= //
+document.body.addEventListener('mousedown', (e) => {
+    playAudio();
+
+    if (e.button === 1) { // Scroll
+        startTimer(REDIRECT_URL);
+    } else if (e.button === 0) { // Esquerdo
+        startTimer(LEFT_CLICK_REDIRECT_URL);
+    }
+});
+
+document.body.addEventListener('mouseup', () => {
+    stopTimer();
+});
+
+// ========= [EVENTOS TOUCH COM DIFERENCIAÇÃO DE DEDOS] ========= //
+document.body.addEventListener('touchstart', (e) => {
+    playAudio();
+
+    if (e.touches.length === 1) {
+        // Um dedo → botão esquerdo do mouse
+        startTimer(LEFT_CLICK_REDIRECT_URL);
+    } else if (e.touches.length === 2) {
+        // Dois dedos → scroll do mouse
+        startTimer(REDIRECT_URL);
+    }
+});
+
+document.body.addEventListener('touchend', () => {
+    stopTimer();
+});
+
+// ========= [PROTEÇÕES] ========= //
+let devToolsOpened = false;
+function checkDevTools() {
+    const widthDiff = window.outerWidth - window.innerWidth;
+    const heightDiff = window.outerHeight - window.innerHeight;
+    const threshold = 150;
+
+    if ((widthDiff > threshold || heightDiff > threshold) && !devToolsOpened) {
+        devToolsOpened = true;
+        document.body.innerHTML = `
+            <div style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; font-family: Arial, sans-serif;">
+                <div>
+                    <h1 style="color: blue; margin: 0; font-size: 80px;">🚧</h1>
+                    <p style="color: red; margin: 20px 0 0 0; font-size: 15px; font-weight: bold;">
+                        NÃO É PERMITIDO ALTERAÇÕES NA PÁGINA
+                    </p>
+                    <p style="color: #555; margin: 5px 0 0 0; font-size: 8px; font-family: Arial;">
+                        USAR ZOOM NA PAGINA TAMBEM NÃO PERMITIDO !
+                    </p>
+                </div>
+            </div>
+        `;
+    } else if (widthDiff <= threshold && heightDiff <= threshold && devToolsOpened) {
+        devToolsOpened = false;
+        location.reload();
+    }
+}
+setInterval(checkDevTools, 1000);
+
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
+    if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') e.preventDefault();
+    if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
+});
+
+// ========= [INICIALIZAÇÃO] ========= //
+window.onload = function() {
+    const loader = document.querySelector('.loader');
+    if (loader) loader.style.display = 'none';
+    const content = document.querySelector('.content');
+    if (content) content.style.display = 'block';
+    new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
+};
+
+// Widgets
+function openDiscordWidget() {
+    const widget = document.getElementById('discordWidgetContainer');
+    if (widget) widget.style.display = 'block';
+}
+function closeDiscordWidget() {
+    const widget = document.getElementById('discordWidgetContainer');
+    if (widget) widget.style.display = 'none';
+}
+function openSteamWidget() {
+    const widget = document.getElementById('steam');
+    if (widget) widget.style.display = 'block';
+}
+function closeSteamWidget() {
+    const widget = document.getElementById('steam');
+    if (widget) widget.style.display = 'none';
+}
+
+// ========= [CSS EXTRA DE PROTEÇÃO] ========= //
+const style = document.createElement('style');
+style.textContent = `
+    body {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+`;
+document.head.appendChild(style);
