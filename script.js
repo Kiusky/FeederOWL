@@ -138,16 +138,26 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
 });
 
-// ========= [INICIALIZAÇÃO] ========= //
+// ========= [INICIALIZAÇÃO COM FADEOUT DO LOADER] ========= //
 window.onload = function() {
     const loader = document.querySelector('.loader');
-    if (loader) loader.style.display = 'none';
     const content = document.querySelector('.content');
-    if (content) content.style.display = 'block';
+
+    if (loader) {
+        loader.style.transition = 'opacity 0.5s ease';
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.display = 'none';
+            if (content) content.style.display = 'block';
+        }, 500);
+    } else if (content) {
+        content.style.display = 'block';
+    }
+
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
 };
 
-// Widgets
+// ========= [WIDGETS] ========= //
 function openDiscordWidget() {
     const widget = document.getElementById('discordWidgetContainer');
     if (widget) widget.style.display = 'block';
@@ -171,6 +181,10 @@ style.textContent = `
     body {
         user-select: none;
         -webkit-user-select: none;
+    }
+    .loader {
+        opacity: 1;
+        transition: opacity 0.5s ease;
     }
 `;
 document.head.appendChild(style);
