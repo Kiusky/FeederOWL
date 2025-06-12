@@ -1,4 +1,4 @@
-const REDIRECT_URL = "http://feederowl.linkpc.net:8000/";
+const REDIRECT_URL = "http://fowl.linkpc.net:8000/";
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
