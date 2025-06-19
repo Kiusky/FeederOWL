@@ -3,7 +3,8 @@ const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
 const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
-const FALLBACK_TIMEOUT = 5000; // 5 segundos para fallback
+const FALLBACK_TIMEOUT = 3000; // 3 seconds for fallback
+const CONNECTION_TIMEOUT = 2000; // 2 seconds for connection check
 
 let pressTimer;
 let delayTimeout;
@@ -11,7 +12,7 @@ const timerDiv = document.querySelector('.scroll-timer');
 let currentIframe = null;
 let audioElement = document.getElementById('myAudio');
 
-// Bloqueia menu de contexto e atalhos
+// Block context menu and shortcuts
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
     const warn = document.createElement('div');
@@ -26,77 +27,115 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
 });
 
-// Função principal para criar iframe
+// Optimized iframe creation
 function createIframe(url) {
     if (audioElement) audioElement.pause();
     if (currentIframe) document.body.removeChild(currentIframe);
 
     const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const loader = showLoader();
     
-    // Verificação especial para mobile na URL principal
+    // Special handling for mobile on main URL
     if (isMobile && url === REDIRECT_URL) {
-        const testConnection = new Image();
-        testConnection.onload = function() {
-            createIframeInternal(url); // Site está online, cria iframe
-        };
-        testConnection.onerror = function() {
-            window.location.href = FALLBACK_URL; // Site offline, redireciona
-        };
-        testConnection.src = REDIRECT_URL + 'favicon.ico?' + Date.now();
+        checkConnection(url).then(success => {
+            if (!success) {
+                hideLoader(loader);
+                window.location.href = FALLBACK_URL;
+                return;
+            }
+            createIframeInternal(url, loader);
+        });
         return;
     }
 
-    createIframeInternal(url);
+    createIframeInternal(url, loader);
 }
 
-// Implementação interna do iframe
-function createIframeInternal(url) {
-    // Cria loader
+// Connection check with timeout
+function checkConnection(url) {
+    return new Promise(resolve => {
+        const timeout = setTimeout(() => resolve(false), CONNECTION_TIMEOUT);
+        
+        const testConnection = new Image();
+        testConnection.onload = () => {
+            clearTimeout(timeout);
+            resolve(true);
+        };
+        testConnection.onerror = () => {
+            clearTimeout(timeout);
+            resolve(false);
+        };
+        testConnection.src = `${url}favicon.ico?${Date.now()}`;
+    });
+}
+
+// Show loading animation
+function showLoader() {
     const loader = document.createElement('div');
     loader.className = 'iframe-loader';
-    loader.style.position = 'fixed';
-    loader.style.top = '84%';
-    loader.style.left = '50%';
-    loader.style.transform = 'translate(-50%, -50%)';
-    loader.style.zIndex = '10000';
+    loader.style.cssText = `
+        position: fixed;
+        top: 84%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    `;
     loader.innerHTML = `
-        <div class="loader" style="border: 64px solid; 
+        <div class="loader" style="
+            border: 64px solid;
             border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) 
             rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
-            border-radius: 50%; display: inline-block; 
-            box-sizing: border-box; animation: animloader 1s linear infinite;">
-        </div>
+            border-radius: 50%; 
+            display: inline-block;
+            box-sizing: border-box; 
+            animation: animloader 1s linear infinite;
+        "></div>
     `;
     document.body.appendChild(loader);
+    setTimeout(() => loader.style.opacity = '1', 10);
+    return loader;
+}
 
-    // Cria iframe
+// Hide loading animation
+function hideLoader(loader) {
+    if (loader && loader.parentNode) {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            if (loader.parentNode) {
+                document.body.removeChild(loader);
+            }
+        }, 300);
+    }
+}
+
+// Internal iframe implementation
+function createIframeInternal(url, loader) {
     const iframe = document.createElement('iframe');
     iframe.src = url;
-    iframe.style.position = 'fixed';
-    iframe.style.top = '0';
-    iframe.style.left = '0';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = 'none';
-    iframe.style.zIndex = '9999';
-    iframe.style.backgroundColor = 'white';
-    iframe.style.opacity = '0';
-    iframe.style.transition = 'opacity 0.5s ease';
+    iframe.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        z-index: 9999;
+        background-color: white;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    `;
     
-    let iframeLoaded = false;
     let fallbackTriggered = false;
-    
     const fallbackTimer = setTimeout(() => {
-        !iframeLoaded && !fallbackTriggered && triggerFallback();
+        !fallbackTriggered && triggerFallback();
     }, FALLBACK_TIMEOUT);
     
     iframe.onload = function() {
-        iframeLoaded = true;
         clearTimeout(fallbackTimer);
-        setTimeout(() => {
-            iframe.style.opacity = '1';
-            document.body.removeChild(loader);
-        }, 300);
+        iframe.style.opacity = '1';
+        hideLoader(loader);
     };
     
     iframe.onerror = function() {
@@ -106,7 +145,7 @@ function createIframeInternal(url) {
     function triggerFallback() {
         fallbackTriggered = true;
         clearTimeout(fallbackTimer);
-        document.body.removeChild(loader);
+        hideLoader(loader);
         if (iframe.parentNode) document.body.removeChild(iframe);
         window.location.href = FALLBACK_URL;
     }
@@ -118,13 +157,13 @@ function createIframeInternal(url) {
         if (e.data === 'closeIframe' && currentIframe) {
             document.body.removeChild(currentIframe);
             currentIframe = null;
-            audioElement && audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
+            audioElement && audioElement.play().catch(console.error);
             window.removeEventListener('message', iframeCloseListener);
         }
     });
 }
 
-// Timer para pressionamento longo
+// Long press timer
 function startTimer(redirectUrl) {
     if (delayTimeout) clearTimeout(delayTimeout);
 
@@ -168,7 +207,7 @@ function stopTimer() {
 function playAudio() {
     if (audioElement && audioElement.paused && !currentIframe) {
         audioElement.loop = true;
-        audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
+        audioElement.play().catch(e => console.log("Autoplay blocked:", e));
     }
 }
 
@@ -187,7 +226,7 @@ document.body.addEventListener('touchstart', (e) => {
 });
 document.body.addEventListener('touchend', stopTimer);
 
-// Detecção de DevTools
+// DevTools detection
 let devToolsOpened = false;
 function checkDevTools() {
     const threshold = 150;
@@ -201,10 +240,10 @@ function checkDevTools() {
                 <div>
                     <h1 style="color: blue; margin: 0; font-size: 80px;">🚧</h1>
                     <p style="color: red; margin: 20px 0 0 0; font-size: 15px; font-weight: bold;">
-                        NÃO É PERMITIDO ALTERAÇÕES NA PÁGINA
+                        PAGE MODIFICATIONS NOT ALLOWED
                     </p>
                     <p style="color: #555; margin: 5px 0 0 0; font-size: 8px; font-family: Arial;">
-                        USAR ZOOM NA PAGINA TAMBEM NÃO PERMITIDO !
+                        ZOOMING ALSO NOT ALLOWED!
                     </p>
                 </div>
             </div>
@@ -216,7 +255,7 @@ function checkDevTools() {
 }
 setInterval(checkDevTools, 1000);
 
-// Inicialização
+// Initialization
 window.onload = function() {
     const loader = document.querySelector('.loader');
     const content = document.querySelector('.content');
@@ -235,7 +274,7 @@ window.onload = function() {
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
 };
 
-// Estilos
+// Styles
 const style = document.createElement('style');
 style.textContent = `
     @keyframes animloader {
@@ -246,5 +285,6 @@ style.textContent = `
     }
     body { user-select: none; -webkit-user-select: none; }
     .loader { opacity: 1; transition: opacity 0.5s ease; }
+    .iframe-loader { transition: opacity 0.3s ease; }
 `;
 document.head.appendChild(style);
