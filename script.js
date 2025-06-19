@@ -3,7 +3,6 @@ const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
 const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
-const FALLBACK_TIMEOUT = 5000; // Reduzido para 5 segundos para mobile
 
 let pressTimer;
 let delayTimeout;
@@ -11,31 +10,25 @@ const timerDiv = document.querySelector('.scroll-timer');
 let currentIframe = null;
 let audioElement = document.getElementById('myAudio');
 
-// Verifica se é mobile
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    const warn = document.createElement('div');
-    document.body.appendChild(warn);
-    setTimeout(() => warn.remove(), 2000);
-}, true);
-
-document.addEventListener('keydown', function(e) {
-    if (e.shiftKey && e.key === 'F10') {
-        e.preventDefault();
+// Sistema de fallback reforçado
+function loadFallback() {
+    if (currentIframe && currentIframe.parentNode) {
+        document.body.removeChild(currentIframe);
     }
-});
+    window.location.href = FALLBACK_URL;
+}
 
 function createIframe(url) {
     if (audioElement) {
         audioElement.pause();
     }
 
+    // Remove iframe existente
     if (currentIframe) {
         document.body.removeChild(currentIframe);
     }
     
+    // Cria loader
     const loader = document.createElement('div');
     loader.className = 'iframe-loader';
     loader.style.position = 'fixed';
@@ -53,6 +46,7 @@ function createIframe(url) {
     `;
     document.body.appendChild(loader);
     
+    // Cria iframe
     const iframe = document.createElement('iframe');
     iframe.src = url;
     iframe.style.position = 'fixed';
@@ -66,67 +60,50 @@ function createIframe(url) {
     iframe.style.opacity = '0';
     iframe.style.transition = 'opacity 0.5s ease';
     
-    let iframeLoaded = false;
+    // Configura fallback
+    const FALLBACK_TIMEOUT = 4000; // 4 segundos
     let fallbackTriggered = false;
     
     const triggerFallback = () => {
         if (fallbackTriggered) return;
         fallbackTriggered = true;
-        
-        document.body.removeChild(loader);
-        if (iframe.parentNode) {
-            document.body.removeChild(iframe);
-        }
-        
-        // Método mais confiável para mobile
-        if (isMobile) {
-            window.location.replace(FALLBACK_URL);
-        } else {
-            window.location.href = FALLBACK_URL;
-        }
+        loadFallback();
     };
     
-    // Timeout reforçado para mobile
-    const fallbackTimer = setTimeout(triggerFallback, isMobile ? 3000 : FALLBACK_TIMEOUT);
+    // Timeout principal
+    const fallbackTimer = setTimeout(triggerFallback, FALLBACK_TIMEOUT);
     
-    // Verificação extra para mobile
-    const mobileCheckInterval = isMobile ? setInterval(() => {
-        try {
-            // Tenta acessar o conteúdo do iframe
-            if (iframe.contentWindow && iframe.contentWindow.document) {
-                if (iframe.contentWindow.document.readyState === 'complete') {
-                    iframeLoaded = true;
-                    clearInterval(mobileCheckInterval);
+    // Verificação redundante para mobile
+    const mobileCheck = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (mobileCheck) {
+        setTimeout(() => {
+            try {
+                if (!iframe.contentWindow || iframe.contentWindow.document.readyState !== 'complete') {
+                    triggerFallback();
                 }
+            } catch (e) {
+                // Se houver erro de cross-origin, consideramos como carregado
             }
-        } catch (e) {
-            // Bloqueio de cross-origin, consideramos como carregado
-            iframeLoaded = true;
-            clearInterval(mobileCheckInterval);
-        }
-    }, 500) : null;
+        }, 2000);
+    }
     
+    // Eventos do iframe
     iframe.onload = function() {
-        iframeLoaded = true;
         clearTimeout(fallbackTimer);
-        if (mobileCheckInterval) clearInterval(mobileCheckInterval);
-        
         setTimeout(() => {
             iframe.style.opacity = '1';
             document.body.removeChild(loader);
             
-            // Verificação adicional para mobile após carregamento
-            if (isMobile) {
-                setTimeout(() => {
-                    try {
-                        if (!iframe.contentWindow || iframe.contentWindow.document.body.innerHTML === '') {
-                            triggerFallback();
-                        }
-                    } catch (e) {
-                        // Ignora erros de cross-origin
+            // Verificação final após carregamento
+            setTimeout(() => {
+                try {
+                    if (iframe.contentWindow.document.body.children.length === 0) {
+                        triggerFallback();
                     }
-                }, 1000);
-            }
+                } catch (e) {
+                    // Ignora erros de cross-origin
+                }
+            }, 1000);
         }, 300);
     };
     
@@ -134,22 +111,10 @@ function createIframe(url) {
         triggerFallback();
     };
     
-    // Fallback para bloqueio de iframe em alguns mobile browsers
-    setTimeout(() => {
-        if (!iframeLoaded && !fallbackTriggered && isMobile) {
-            try {
-                if (!iframe.contentWindow || iframe.contentWindow.document.body.innerHTML === '') {
-                    triggerFallback();
-                }
-            } catch (e) {
-                triggerFallback();
-            }
-        }
-    }, 2000);
-    
     document.body.appendChild(iframe);
     currentIframe = iframe;
     
+    // Listener para fechar iframe
     window.addEventListener('message', function iframeCloseListener(e) {
         if (e.data === 'closeIframe' && currentIframe) {
             document.body.removeChild(currentIframe);
@@ -166,13 +131,11 @@ function createIframe(url) {
 
 // ... (restante do código permanece igual) ...
 
-// Adicionando verificação de conexão para mobile
-if (isMobile) {
-    document.addEventListener('offline', () => {
-        window.location.href = FALLBACK_URL;
-    });
-    
-    if (!navigator.onLine) {
-        window.location.href = FALLBACK_URL;
-    }
+// Adicionando verificação de conexão
+if (!navigator.onLine) {
+    window.location.href = FALLBACK_URL;
 }
+
+window.addEventListener('offline', () => {
+    window.location.href = FALLBACK_URL;
+});
