@@ -1,10 +1,8 @@
-const REDIRECT_URL = "https://fowl.linkpc.net";
+const REDIRECT_URL = "http://fowl.linkpc.net:8000/";
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
-const FALLBACK_URL = "http://fowl.linkpc.net:8000";
+const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
-const FALLBACK_TIMEOUT = 3000; // 3 seconds for fallback
-const CONNECTION_TIMEOUT = 2000; // 2 seconds for connection check
 
 let pressTimer;
 let delayTimeout;
@@ -12,7 +10,6 @@ const timerDiv = document.querySelector('.scroll-timer');
 let currentIframe = null;
 let audioElement = document.getElementById('myAudio');
 
-// Block context menu and shortcuts
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
     const warn = document.createElement('div');
@@ -21,134 +18,80 @@ document.addEventListener('contextmenu', function(e) {
 }, true);
 
 document.addEventListener('keydown', function(e) {
-    if (e.shiftKey && e.key === 'F10') e.preventDefault();
-    if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
-    if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') e.preventDefault();
-    if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
+    if (e.shiftKey && e.key === 'F10') {
+        e.preventDefault();
+    }
 });
 
-// Optimized iframe creation
 function createIframe(url) {
-    if (audioElement) audioElement.pause();
-    if (currentIframe) document.body.removeChild(currentIframe);
-
-    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const loader = showLoader();
-    
-    // Special handling for mobile on main URL
-    if (isMobile && url === REDIRECT_URL) {
-        checkConnection(url).then(success => {
-            if (!success) {
-                hideLoader(loader);
-                window.location.href = FALLBACK_URL;
-                return;
-            }
-            createIframeInternal(url, loader);
-        });
-        return;
+    if (audioElement) {
+        audioElement.pause();
     }
 
-    createIframeInternal(url, loader);
-}
-
-// Connection check with timeout
-function checkConnection(url) {
-    return new Promise(resolve => {
-        const timeout = setTimeout(() => resolve(false), CONNECTION_TIMEOUT);
-        
-        const testConnection = new Image();
-        testConnection.onload = () => {
-            clearTimeout(timeout);
-            resolve(true);
-        };
-        testConnection.onerror = () => {
-            clearTimeout(timeout);
-            resolve(false);
-        };
-        testConnection.src = `${url}favicon.ico?${Date.now()}`;
-    });
-}
-
-// Show loading animation
-function showLoader() {
+    if (currentIframe) {
+        document.body.removeChild(currentIframe);
+    }
+    
     const loader = document.createElement('div');
     loader.className = 'iframe-loader';
-    loader.style.cssText = `
-        position: fixed;
-        top: 84%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10000;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    `;
+    loader.style.position = 'fixed';
+    loader.style.top = '84%';
+    loader.style.left = '50%';
+    loader.style.transform = 'translate(-50%, -50%)';
+    loader.style.zIndex = '10000';
     loader.innerHTML = `
-        <div class="loader" style="
-            border: 64px solid;
+        <div class="loader" style="border: 64px solid; 
             border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) 
             rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
-            border-radius: 50%; 
-            display: inline-block;
-            box-sizing: border-box; 
-            animation: animloader 1s linear infinite;
-        "></div>
+            border-radius: 50%; display: inline-block; 
+            box-sizing: border-box; animation: animloader 1s linear infinite;">
+        </div>
     `;
     document.body.appendChild(loader);
-    setTimeout(() => loader.style.opacity = '1', 10);
-    return loader;
-}
-
-// Hide loading animation
-function hideLoader(loader) {
-    if (loader && loader.parentNode) {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            if (loader.parentNode) {
-                document.body.removeChild(loader);
-            }
-        }, 300);
-    }
-}
-
-// Internal iframe implementation
-function createIframeInternal(url, loader) {
+    
     const iframe = document.createElement('iframe');
     iframe.src = url;
-    iframe.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        z-index: 9999;
-        background-color: white;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    `;
+    iframe.style.position = 'fixed';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.style.zIndex = '9999';
+    iframe.style.backgroundColor = 'white';
+    iframe.style.opacity = '0';
+    iframe.style.transition = 'opacity 0.5s ease';
     
-    let fallbackTriggered = false;
+    let iframeLoaded = false;
+    const FALLBACK_TIMEOUT = 8000;
+    
     const fallbackTimer = setTimeout(() => {
-        !fallbackTriggered && triggerFallback();
+        if (!iframeLoaded) {
+            document.body.removeChild(loader);
+            if (iframe.parentNode) {
+                document.body.removeChild(iframe);
+            }
+            window.location.href = FALLBACK_URL;
+        }
     }, FALLBACK_TIMEOUT);
     
     iframe.onload = function() {
+        iframeLoaded = true;
         clearTimeout(fallbackTimer);
-        iframe.style.opacity = '1';
-        hideLoader(loader);
+        setTimeout(() => {
+            iframe.style.opacity = '1';
+            document.body.removeChild(loader);
+        }, 300);
     };
     
     iframe.onerror = function() {
-        !fallbackTriggered && triggerFallback();
-    };
-    
-    function triggerFallback() {
-        fallbackTriggered = true;
         clearTimeout(fallbackTimer);
-        hideLoader(loader);
-        if (iframe.parentNode) document.body.removeChild(iframe);
+        document.body.removeChild(loader);
+        if (iframe.parentNode) {
+            document.body.removeChild(iframe);
+        }
         window.location.href = FALLBACK_URL;
-    }
+    };
     
     document.body.appendChild(iframe);
     currentIframe = iframe;
@@ -157,13 +100,35 @@ function createIframeInternal(url, loader) {
         if (e.data === 'closeIframe' && currentIframe) {
             document.body.removeChild(currentIframe);
             currentIframe = null;
-            audioElement && audioElement.play().catch(console.error);
+            
+            if (audioElement) {
+                audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
+            }
+            
             window.removeEventListener('message', iframeCloseListener);
         }
     });
 }
 
-// Long press timer
+const loaderStyle = document.createElement('style');
+loaderStyle.textContent = `
+    @keyframes animloader {
+        0% {
+            border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
+        }
+        33% {
+            border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
+        }
+        66% {
+            border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
+        }
+        100% {
+            border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
+        }
+    }
+`;
+document.head.appendChild(loaderStyle);
+
 function startTimer(redirectUrl) {
     if (delayTimeout) clearTimeout(delayTimeout);
 
@@ -189,9 +154,13 @@ function startTimer(redirectUrl) {
             if (remaining <= 0) {
                 clearInterval(pressTimer);
                 timerDiv.classList.add('active');
+                
                 timerDiv.style.display = 'none';
                 timerDiv.classList.remove('show', 'active', 'progress');
-                setTimeout(() => createIframe(redirectUrl), 200);
+                
+                setTimeout(() => {
+                    createIframe(redirectUrl);
+                }, 200);
             }
         }, 16);
     }, START_DELAY);
@@ -205,33 +174,46 @@ function stopTimer() {
 }
 
 function playAudio() {
-    if (audioElement && audioElement.paused && !currentIframe) {
-        audioElement.loop = true;
-        audioElement.play().catch(e => console.log("Autoplay blocked:", e));
+    const audio = document.getElementById('myAudio');
+    if (audio && audio.paused && !currentIframe) {
+        audio.loop = true;
+        audio.play().catch(e => console.log("Autoplay bloqueado:", e));
     }
 }
 
-// Event listeners
 document.body.addEventListener('mousedown', (e) => {
     playAudio();
-    if (e.button === 1) startTimer(REDIRECT_URL);
-    else if (e.button === 0) startTimer(LEFT_CLICK_REDIRECT_URL);
+
+    if (e.button === 1) {
+        startTimer(REDIRECT_URL);
+    } else if (e.button === 0) {
+        startTimer(LEFT_CLICK_REDIRECT_URL);
+    }
 });
 
-document.body.addEventListener('mouseup', stopTimer);
+document.body.addEventListener('mouseup', () => {
+    stopTimer();
+});
+
 document.body.addEventListener('touchstart', (e) => {
     playAudio();
-    e.touches.length === 1 ? startTimer(LEFT_CLICK_REDIRECT_URL) : 
-    e.touches.length === 2 && startTimer(REDIRECT_URL);
-});
-document.body.addEventListener('touchend', stopTimer);
 
-// DevTools detection
+    if (e.touches.length === 1) {
+        startTimer(LEFT_CLICK_REDIRECT_URL);
+    } else if (e.touches.length === 2) {
+        startTimer(REDIRECT_URL);
+    }
+});
+
+document.body.addEventListener('touchend', () => {
+    stopTimer();
+});
+
 let devToolsOpened = false;
 function checkDevTools() {
-    const threshold = 150;
     const widthDiff = window.outerWidth - window.innerWidth;
     const heightDiff = window.outerHeight - window.innerHeight;
+    const threshold = 150;
 
     if ((widthDiff > threshold || heightDiff > threshold) && !devToolsOpened) {
         devToolsOpened = true;
@@ -240,10 +222,10 @@ function checkDevTools() {
                 <div>
                     <h1 style="color: blue; margin: 0; font-size: 80px;">🚧</h1>
                     <p style="color: red; margin: 20px 0 0 0; font-size: 15px; font-weight: bold;">
-                        PAGE MODIFICATIONS NOT ALLOWED
+                        NÃO É PERMITIDO ALTERAÇÕES NA PÁGINA
                     </p>
                     <p style="color: #555; margin: 5px 0 0 0; font-size: 8px; font-family: Arial;">
-                        ZOOMING ALSO NOT ALLOWED!
+                        USAR ZOOM NA PAGINA TAMBEM NÃO PERMITIDO !
                     </p>
                 </div>
             </div>
@@ -255,7 +237,12 @@ function checkDevTools() {
 }
 setInterval(checkDevTools, 1000);
 
-// Initialization
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
+    if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') e.preventDefault();
+    if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
+});
+
 window.onload = function() {
     const loader = document.querySelector('.loader');
     const content = document.querySelector('.content');
@@ -265,7 +252,7 @@ window.onload = function() {
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.style.display = 'none';
-            content && (content.style.display = 'block');
+            if (content) content.style.display = 'block';
         }, 500);
     } else if (content) {
         content.style.display = 'block';
@@ -274,17 +261,32 @@ window.onload = function() {
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
 };
 
-// Styles
+function openDiscordWidget() {
+    const widget = document.getElementById('discordWidgetContainer');
+    if (widget) widget.style.display = 'block';
+}
+function closeDiscordWidget() {
+    const widget = document.getElementById('discordWidgetContainer');
+    if (widget) widget.style.display = 'none';
+}
+function openSteamWidget() {
+    const widget = document.getElementById('steam');
+    if (widget) widget.style.display = 'block';
+}
+function closeSteamWidget() {
+    const widget = document.getElementById('steam');
+    if (widget) widget.style.display = 'none';
+}
+
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes animloader {
-        0% { border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75); }
-        33% { border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35); }
-        66% { border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25); }
-        100% { border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15); }
+    body {
+        user-select: none;
+        -webkit-user-select: none;
     }
-    body { user-select: none; -webkit-user-select: none; }
-    .loader { opacity: 1; transition: opacity 0.5s ease; }
-    .iframe-loader { transition: opacity 0.3s ease; }
+    .loader {
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
 `;
 document.head.appendChild(style);
