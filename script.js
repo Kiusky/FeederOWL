@@ -3,6 +3,7 @@ const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
 const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
+const FALLBACK_TIMEOUT = 10000; // Aumentado para 10 segundos
 
 let pressTimer;
 let delayTimeout;
@@ -10,25 +11,17 @@ const timerDiv = document.querySelector('.scroll-timer');
 let currentIframe = null;
 let audioElement = document.getElementById('myAudio');
 
-// Sistema de fallback reforçado
-function loadFallback() {
-    if (currentIframe && currentIframe.parentNode) {
-        document.body.removeChild(currentIframe);
-    }
-    window.location.href = FALLBACK_URL;
-}
+// ... (mantenha o resto do código existente até a função createIframe)
 
 function createIframe(url) {
     if (audioElement) {
         audioElement.pause();
     }
 
-    // Remove iframe existente
     if (currentIframe) {
         document.body.removeChild(currentIframe);
     }
     
-    // Cria loader
     const loader = document.createElement('div');
     loader.className = 'iframe-loader';
     loader.style.position = 'fixed';
@@ -46,7 +39,6 @@ function createIframe(url) {
     `;
     document.body.appendChild(loader);
     
-    // Cria iframe
     const iframe = document.createElement('iframe');
     iframe.src = url;
     iframe.style.position = 'fixed';
@@ -60,61 +52,80 @@ function createIframe(url) {
     iframe.style.opacity = '0';
     iframe.style.transition = 'opacity 0.5s ease';
     
-    // Configura fallback
-    const FALLBACK_TIMEOUT = 4000; // 4 segundos
+    let iframeLoaded = false;
     let fallbackTriggered = false;
     
-    const triggerFallback = () => {
-        if (fallbackTriggered) return;
-        fallbackTriggered = true;
-        loadFallback();
-    };
+    const fallbackTimer = setTimeout(() => {
+        if (!iframeLoaded && !fallbackTriggered) {
+            fallbackTriggered = true;
+            document.body.removeChild(loader);
+            if (iframe.parentNode) {
+                document.body.removeChild(iframe);
+            }
+            // Verifica se é um dispositivo móvel antes de redirecionar
+            if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.location.href = FALLBACK_URL;
+            } else {
+                window.open(FALLBACK_URL, '_blank');
+            }
+        }
+    }, FALLBACK_TIMEOUT);
     
-    // Timeout principal
-    const fallbackTimer = setTimeout(triggerFallback, FALLBACK_TIMEOUT);
-    
-    // Verificação redundante para mobile
-    const mobileCheck = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (mobileCheck) {
-        setTimeout(() => {
+    // Verificação adicional para dispositivos móveis
+    const mobileCheckInterval = setInterval(() => {
+        if (!iframeLoaded && !fallbackTriggered && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
             try {
-                if (!iframe.contentWindow || iframe.contentWindow.document.readyState !== 'complete') {
-                    triggerFallback();
+                // Tenta acessar o conteúdo do iframe para verificar se carregou
+                if (iframe.contentWindow && iframe.contentWindow.document) {
+                    if (iframe.contentWindow.document.readyState === 'complete') {
+                        iframeLoaded = true;
+                        clearTimeout(fallbackTimer);
+                        clearInterval(mobileCheckInterval);
+                        iframe.style.opacity = '1';
+                        document.body.removeChild(loader);
+                    }
                 }
             } catch (e) {
-                // Se houver erro de cross-origin, consideramos como carregado
+                // Se houver erro de cross-origin, consideramos que o iframe carregou
+                iframeLoaded = true;
+                clearTimeout(fallbackTimer);
+                clearInterval(mobileCheckInterval);
+                iframe.style.opacity = '1';
+                document.body.removeChild(loader);
             }
-        }, 2000);
-    }
+        }
+    }, 1000);
     
-    // Eventos do iframe
     iframe.onload = function() {
+        iframeLoaded = true;
         clearTimeout(fallbackTimer);
+        clearInterval(mobileCheckInterval);
         setTimeout(() => {
             iframe.style.opacity = '1';
             document.body.removeChild(loader);
-            
-            // Verificação final após carregamento
-            setTimeout(() => {
-                try {
-                    if (iframe.contentWindow.document.body.children.length === 0) {
-                        triggerFallback();
-                    }
-                } catch (e) {
-                    // Ignora erros de cross-origin
-                }
-            }, 1000);
         }, 300);
     };
     
     iframe.onerror = function() {
-        triggerFallback();
+        if (!fallbackTriggered) {
+            fallbackTriggered = true;
+            clearTimeout(fallbackTimer);
+            clearInterval(mobileCheckInterval);
+            document.body.removeChild(loader);
+            if (iframe.parentNode) {
+                document.body.removeChild(iframe);
+            }
+            if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.location.href = FALLBACK_URL;
+            } else {
+                window.open(FALLBACK_URL, '_blank');
+            }
+        }
     };
     
     document.body.appendChild(iframe);
     currentIframe = iframe;
     
-    // Listener para fechar iframe
     window.addEventListener('message', function iframeCloseListener(e) {
         if (e.data === 'closeIframe' && currentIframe) {
             document.body.removeChild(currentIframe);
@@ -129,13 +140,4 @@ function createIframe(url) {
     });
 }
 
-// ... (restante do código permanece igual) ...
-
-// Adicionando verificação de conexão
-if (!navigator.onLine) {
-    window.location.href = FALLBACK_URL;
-}
-
-window.addEventListener('offline', () => {
-    window.location.href = FALLBACK_URL;
-});
+// ... (mantenha o resto do código existente)
