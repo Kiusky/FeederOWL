@@ -3,40 +3,55 @@ const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
 const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
-const FALLBACK_TIMEOUT = 5000; // Reduzido para 5 segundos
+const FALLBACK_TIMEOUT = 5000; // 5 segundos para fallback
 
-// ... (código anterior mantido até a função createIframe)
+let pressTimer;
+let delayTimeout;
+const timerDiv = document.querySelector('.scroll-timer');
+let currentIframe = null;
+let audioElement = document.getElementById('myAudio');
 
+// Bloqueia menu de contexto e atalhos
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    const warn = document.createElement('div');
+    document.body.appendChild(warn);
+    setTimeout(() => warn.remove(), 2000);
+}, true);
+
+document.addEventListener('keydown', function(e) {
+    if (e.shiftKey && e.key === 'F10') e.preventDefault();
+    if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
+    if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') e.preventDefault();
+    if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
+});
+
+// Função principal para criar iframe
 function createIframe(url) {
-    if (audioElement) {
-        audioElement.pause();
-    }
-
-    if (currentIframe) {
-        document.body.removeChild(currentIframe);
-    }
+    if (audioElement) audioElement.pause();
+    if (currentIframe) document.body.removeChild(currentIframe);
 
     const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     
-    // Prioriza redirecionamento direto em mobile se for a URL principal
+    // Verificação especial para mobile na URL principal
     if (isMobile && url === REDIRECT_URL) {
-        const testImg = new Image();
-        testImg.onload = function() {
-            // Se a imagem carregar, o site está online, procede com iframe
-            createIframeInternal(url);
+        const testConnection = new Image();
+        testConnection.onload = function() {
+            createIframeInternal(url); // Site está online, cria iframe
         };
-        testImg.onerror = function() {
-            // Se não conseguir carregar, redireciona direto para fallback
-            window.location.href = FALLBACK_URL;
+        testConnection.onerror = function() {
+            window.location.href = FALLBACK_URL; // Site offline, redireciona
         };
-        testImg.src = REDIRECT_URL + 'favicon.ico?' + new Date().getTime();
+        testConnection.src = REDIRECT_URL + 'favicon.ico?' + Date.now();
         return;
     }
 
     createIframeInternal(url);
 }
 
+// Implementação interna do iframe
 function createIframeInternal(url) {
+    // Cria loader
     const loader = document.createElement('div');
     loader.className = 'iframe-loader';
     loader.style.position = 'fixed';
@@ -53,7 +68,8 @@ function createIframeInternal(url) {
         </div>
     `;
     document.body.appendChild(loader);
-    
+
+    // Cria iframe
     const iframe = document.createElement('iframe');
     iframe.src = url;
     iframe.style.position = 'fixed';
@@ -71,9 +87,7 @@ function createIframeInternal(url) {
     let fallbackTriggered = false;
     
     const fallbackTimer = setTimeout(() => {
-        if (!iframeLoaded && !fallbackTriggered) {
-            triggerFallback();
-        }
+        !iframeLoaded && !fallbackTriggered && triggerFallback();
     }, FALLBACK_TIMEOUT);
     
     iframe.onload = function() {
@@ -86,18 +100,14 @@ function createIframeInternal(url) {
     };
     
     iframe.onerror = function() {
-        if (!fallbackTriggered) {
-            triggerFallback();
-        }
+        !fallbackTriggered && triggerFallback();
     };
     
     function triggerFallback() {
         fallbackTriggered = true;
         clearTimeout(fallbackTimer);
         document.body.removeChild(loader);
-        if (iframe.parentNode) {
-            document.body.removeChild(iframe);
-        }
+        if (iframe.parentNode) document.body.removeChild(iframe);
         window.location.href = FALLBACK_URL;
     }
     
@@ -108,35 +118,13 @@ function createIframeInternal(url) {
         if (e.data === 'closeIframe' && currentIframe) {
             document.body.removeChild(currentIframe);
             currentIframe = null;
-            
-            if (audioElement) {
-                audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
-            }
-            
+            audioElement && audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
             window.removeEventListener('message', iframeCloseListener);
         }
     });
 }
 
-const loaderStyle = document.createElement('style');
-loaderStyle.textContent = `
-    @keyframes animloader {
-        0% {
-            border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
-        }
-        33% {
-            border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
-        }
-        66% {
-            border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
-        }
-        100% {
-            border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
-        }
-    }
-`;
-document.head.appendChild(loaderStyle);
-
+// Timer para pressionamento longo
 function startTimer(redirectUrl) {
     if (delayTimeout) clearTimeout(delayTimeout);
 
@@ -162,13 +150,9 @@ function startTimer(redirectUrl) {
             if (remaining <= 0) {
                 clearInterval(pressTimer);
                 timerDiv.classList.add('active');
-                
                 timerDiv.style.display = 'none';
                 timerDiv.classList.remove('show', 'active', 'progress');
-                
-                setTimeout(() => {
-                    createIframe(redirectUrl);
-                }, 200);
+                setTimeout(() => createIframe(redirectUrl), 200);
             }
         }, 16);
     }, START_DELAY);
@@ -182,46 +166,33 @@ function stopTimer() {
 }
 
 function playAudio() {
-    const audio = document.getElementById('myAudio');
-    if (audio && audio.paused && !currentIframe) {
-        audio.loop = true;
-        audio.play().catch(e => console.log("Autoplay bloqueado:", e));
+    if (audioElement && audioElement.paused && !currentIframe) {
+        audioElement.loop = true;
+        audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
     }
 }
 
+// Event listeners
 document.body.addEventListener('mousedown', (e) => {
     playAudio();
-
-    if (e.button === 1) {
-        startTimer(REDIRECT_URL);
-    } else if (e.button === 0) {
-        startTimer(LEFT_CLICK_REDIRECT_URL);
-    }
+    if (e.button === 1) startTimer(REDIRECT_URL);
+    else if (e.button === 0) startTimer(LEFT_CLICK_REDIRECT_URL);
 });
 
-document.body.addEventListener('mouseup', () => {
-    stopTimer();
-});
-
+document.body.addEventListener('mouseup', stopTimer);
 document.body.addEventListener('touchstart', (e) => {
     playAudio();
-
-    if (e.touches.length === 1) {
-        startTimer(LEFT_CLICK_REDIRECT_URL);
-    } else if (e.touches.length === 2) {
-        startTimer(REDIRECT_URL);
-    }
+    e.touches.length === 1 ? startTimer(LEFT_CLICK_REDIRECT_URL) : 
+    e.touches.length === 2 && startTimer(REDIRECT_URL);
 });
+document.body.addEventListener('touchend', stopTimer);
 
-document.body.addEventListener('touchend', () => {
-    stopTimer();
-});
-
+// Detecção de DevTools
 let devToolsOpened = false;
 function checkDevTools() {
+    const threshold = 150;
     const widthDiff = window.outerWidth - window.innerWidth;
     const heightDiff = window.outerHeight - window.innerHeight;
-    const threshold = 150;
 
     if ((widthDiff > threshold || heightDiff > threshold) && !devToolsOpened) {
         devToolsOpened = true;
@@ -245,12 +216,7 @@ function checkDevTools() {
 }
 setInterval(checkDevTools, 1000);
 
-document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
-    if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') e.preventDefault();
-    if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
-});
-
+// Inicialização
 window.onload = function() {
     const loader = document.querySelector('.loader');
     const content = document.querySelector('.content');
@@ -260,7 +226,7 @@ window.onload = function() {
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.style.display = 'none';
-            if (content) content.style.display = 'block';
+            content && (content.style.display = 'block');
         }, 500);
     } else if (content) {
         content.style.display = 'block';
@@ -269,32 +235,16 @@ window.onload = function() {
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
 };
 
-function openDiscordWidget() {
-    const widget = document.getElementById('discordWidgetContainer');
-    if (widget) widget.style.display = 'block';
-}
-function closeDiscordWidget() {
-    const widget = document.getElementById('discordWidgetContainer');
-    if (widget) widget.style.display = 'none';
-}
-function openSteamWidget() {
-    const widget = document.getElementById('steam');
-    if (widget) widget.style.display = 'block';
-}
-function closeSteamWidget() {
-    const widget = document.getElementById('steam');
-    if (widget) widget.style.display = 'none';
-}
-
+// Estilos
 const style = document.createElement('style');
 style.textContent = `
-    body {
-        user-select: none;
-        -webkit-user-select: none;
+    @keyframes animloader {
+        0% { border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75); }
+        33% { border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35); }
+        66% { border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25); }
+        100% { border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15); }
     }
-    .loader {
-        opacity: 1;
-        transition: opacity 0.5s ease;
-    }
+    body { user-select: none; -webkit-user-select: none; }
+    .loader { opacity: 1; transition: opacity 0.5s ease; }
 `;
 document.head.appendChild(style);
