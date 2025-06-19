@@ -1,1 +1,178 @@
-const _0x35ec23=_0x32c8;(function(_0x4fcee9,_0x2dd15a){const _0x3bd2c8=_0x32c8,_0xf3fbb1=_0x4fcee9();while(!![]){try{const _0xd82f35=-parseInt(_0x3bd2c8(0x1a2))/0x1+parseInt(_0x3bd2c8(0x18a))/0x2+parseInt(_0x3bd2c8(0x189))/0x3*(parseInt(_0x3bd2c8(0x19b))/0x4)+-parseInt(_0x3bd2c8(0x17a))/0x5+parseInt(_0x3bd2c8(0x1c6))/0x6+parseInt(_0x3bd2c8(0x1c1))/0x7*(parseInt(_0x3bd2c8(0x1c9))/0x8)+-parseInt(_0x3bd2c8(0x17c))/0x9;if(_0xd82f35===_0x2dd15a)break;else _0xf3fbb1['push'](_0xf3fbb1['shift']());}catch(_0x4df455){_0xf3fbb1['push'](_0xf3fbb1['shift']());}}}(_0x5cf2,0xf0c6c));const REDIRECT_URL='https://fowl.linkpc.net/',LEFT_CLICK_REDIRECT_URL='https://feederowl.com/01000011%2001001000',FALLBACK_URL=_0x35ec23(0x1a6),PRESS_DURATION=0x44c,START_DELAY=0x22b;let pressTimer,delayTimeout;const timerDiv=document[_0x35ec23(0x1b5)](_0x35ec23(0x1d0));let currentIframe=null,audioElement=document['getElementById'](_0x35ec23(0x197));document[_0x35ec23(0x1a9)](_0x35ec23(0x1b3),function(_0x499015){const _0x388467=_0x35ec23;_0x499015[_0x388467(0x1c2)]();const _0x4d911a=document['createElement'](_0x388467(0x18d));document['body'][_0x388467(0x1a3)](_0x4d911a),setTimeout(()=>_0x4d911a['remove'](),0x7d0);},!![]),document[_0x35ec23(0x1a9)](_0x35ec23(0x194),function(_0x2919af){const _0x46c639=_0x35ec23;_0x2919af[_0x46c639(0x1a1)]&&_0x2919af['key']===_0x46c639(0x178)&&_0x2919af[_0x46c639(0x1c2)]();});function createIframe(_0x1be28e){const _0x190178=_0x35ec23;audioElement&&audioElement[_0x190178(0x184)]();currentIframe&&document[_0x190178(0x17d)]['removeChild'](currentIframe);const _0x2111a0=document[_0x190178(0x19c)](_0x190178(0x18d));_0x2111a0[_0x190178(0x198)]=_0x190178(0x1c7),_0x2111a0[_0x190178(0x1b2)][_0x190178(0x199)]=_0x190178(0x17b),_0x2111a0['style'][_0x190178(0x190)]='84%',_0x2111a0[_0x190178(0x1b2)][_0x190178(0x191)]=_0x190178(0x1b8),_0x2111a0[_0x190178(0x1b2)][_0x190178(0x1a5)]='translate(-50%,\x20-50%)',_0x2111a0[_0x190178(0x1b2)][_0x190178(0x1a0)]='10000',_0x2111a0['innerHTML']=_0x190178(0x182),document[_0x190178(0x17d)][_0x190178(0x1a3)](_0x2111a0);const _0x5532cc=document[_0x190178(0x19c)](_0x190178(0x1cc));_0x5532cc[_0x190178(0x195)]=_0x1be28e,_0x5532cc['style'][_0x190178(0x199)]=_0x190178(0x17b),_0x5532cc[_0x190178(0x1b2)]['top']='0',_0x5532cc[_0x190178(0x1b2)][_0x190178(0x191)]='0',_0x5532cc[_0x190178(0x1b2)][_0x190178(0x1ae)]='100%',_0x5532cc[_0x190178(0x1b2)][_0x190178(0x193)]=_0x190178(0x186),_0x5532cc[_0x190178(0x1b2)][_0x190178(0x1d1)]=_0x190178(0x1bf),_0x5532cc[_0x190178(0x1b2)][_0x190178(0x1a0)]=_0x190178(0x1bd),_0x5532cc[_0x190178(0x1b2)][_0x190178(0x175)]=_0x190178(0x1cd),_0x5532cc[_0x190178(0x1b2)][_0x190178(0x1b1)]='0',_0x5532cc[_0x190178(0x1b2)]['transition']='opacity\x200.5s\x20ease';let _0x1d1a34=![];const _0x2916d0=0x1f40,_0x45230b=setTimeout(()=>{const _0x262980=_0x190178;!_0x1d1a34&&(document[_0x262980(0x17d)]['removeChild'](_0x2111a0),_0x5532cc[_0x262980(0x1c8)]&&document['body'][_0x262980(0x19d)](_0x5532cc),window[_0x262980(0x17e)][_0x262980(0x1bc)]=FALLBACK_URL);},_0x2916d0);_0x5532cc['onload']=function(){_0x1d1a34=!![],clearTimeout(_0x45230b),setTimeout(()=>{const _0x29387e=_0x32c8;_0x5532cc[_0x29387e(0x1b2)]['opacity']='1',document[_0x29387e(0x17d)][_0x29387e(0x19d)](_0x2111a0);},0x12c);},_0x5532cc[_0x190178(0x18f)]=function(){const _0xaa7324=_0x190178;clearTimeout(_0x45230b),document['body'][_0xaa7324(0x19d)](_0x2111a0),_0x5532cc[_0xaa7324(0x1c8)]&&document['body'][_0xaa7324(0x19d)](_0x5532cc),window['location'][_0xaa7324(0x1bc)]=FALLBACK_URL;},document['body'][_0x190178(0x1a3)](_0x5532cc),currentIframe=_0x5532cc,window[_0x190178(0x1a9)](_0x190178(0x1b7),function _0x5a1467(_0x100392){const _0x276e72=_0x190178;_0x100392['data']===_0x276e72(0x1ce)&&currentIframe&&(document[_0x276e72(0x17d)][_0x276e72(0x19d)](currentIframe),currentIframe=null,audioElement&&audioElement['play']()[_0x276e72(0x17f)](_0x3d66d4=>console['log'](_0x276e72(0x1a8),_0x3d66d4)),window['removeEventListener']('message',_0x5a1467));});}const loaderStyle=document[_0x35ec23(0x19c)]('style');loaderStyle['textContent']='\x0a\x20\x20\x20\x20@keyframes\x20animloader\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x200%\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,\x20255,\x20255,\x200.15)\x20rgba(255,\x20255,\x20255,\x200.25)\x20rgba(255,\x20255,\x20255,\x200.35)\x20rgba(255,\x20255,\x20255,\x200.75);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x2033%\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,\x20255,\x20255,\x200.75)\x20rgba(255,\x20255,\x20255,\x200.15)\x20rgba(255,\x20255,\x20255,\x200.25)\x20rgba(255,\x20255,\x20255,\x200.35);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x2066%\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,\x20255,\x20255,\x200.35)\x20rgba(255,\x20255,\x20255,\x200.75)\x20rgba(255,\x20255,\x20255,\x200.15)\x20rgba(255,\x20255,\x20255,\x200.25);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20100%\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,\x20255,\x20255,\x200.25)\x20rgba(255,\x20255,\x20255,\x200.35)\x20rgba(255,\x20255,\x20255,\x200.75)\x20rgba(255,\x20255,\x20255,\x200.15);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20}\x0a',document[_0x35ec23(0x1cf)]['appendChild'](loaderStyle);function startTimer(_0x5bf076){if(delayTimeout)clearTimeout(delayTimeout);delayTimeout=setTimeout(()=>{const _0x28c694=_0x32c8;let _0x434250=Date[_0x28c694(0x18b)]();timerDiv[_0x28c694(0x1b2)][_0x28c694(0x187)]=_0x28c694(0x174),timerDiv[_0x28c694(0x179)][_0x28c694(0x188)](_0x28c694(0x1ab)),setTimeout(()=>{const _0x208bff=_0x28c694;timerDiv[_0x208bff(0x179)]['add'](_0x208bff(0x18c),_0x208bff(0x1c0)),timerDiv['textContent']=(PRESS_DURATION/0x3e8)[_0x208bff(0x1a7)](0x1),timerDiv[_0x208bff(0x179)][_0x208bff(0x1b0)](_0x208bff(0x1ab));},0x32),pressTimer=setInterval(()=>{const _0x2c8210=_0x28c694,_0x3b7beb=Date[_0x2c8210(0x18b)]()-_0x434250,_0x5fff9e=Math[_0x2c8210(0x1d3)](0x0,PRESS_DURATION-_0x3b7beb),_0xb596a0=_0x3b7beb/PRESS_DURATION*0x64;timerDiv[_0x2c8210(0x1af)]=(_0x5fff9e/0x3e8)['toFixed'](0x1),timerDiv[_0x2c8210(0x1b2)][_0x2c8210(0x1bb)](_0x2c8210(0x180),_0xb596a0+'%'),_0x5fff9e<=0x0&&(clearInterval(pressTimer),timerDiv[_0x2c8210(0x179)][_0x2c8210(0x188)](_0x2c8210(0x177)),timerDiv[_0x2c8210(0x1b2)][_0x2c8210(0x187)]=_0x2c8210(0x1bf),timerDiv[_0x2c8210(0x179)][_0x2c8210(0x1b0)](_0x2c8210(0x18c),_0x2c8210(0x177),_0x2c8210(0x1c0)),setTimeout(()=>{createIframe(_0x5bf076);},0xc8));},0x10);},START_DELAY);}function stopTimer(){const _0x39922f=_0x35ec23;if(delayTimeout)clearTimeout(delayTimeout);clearInterval(pressTimer),timerDiv[_0x39922f(0x179)][_0x39922f(0x1b0)]('show',_0x39922f(0x177),_0x39922f(0x1c0)),setTimeout(()=>timerDiv[_0x39922f(0x1b2)][_0x39922f(0x187)]=_0x39922f(0x1bf),0xc8);}function _0x5cf2(){const _0x5a0934=['reload','none','progress','7RfZzZB','preventDefault','transition','touchend','onload','7301340NxNVgt','iframe-loader','parentNode','10945176hHaSzQ','toUpperCase','mouseup','iframe','white','closeIframe','head','.scroll-timer','border','getElementById','max','discordWidgetContainer','block','flex','backgroundColor','paused','active','F10','classList','1451665yhxJSt','fixed','20131164acPRFp','body','location','catch','--progress','.loader','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22loader\x22\x20style=\x22border:\x2064px\x20solid;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,\x20255,\x20255,\x200.15)\x20rgba(255,\x20255,\x20255,\x200.25)\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20rgba(255,\x20255,\x20255,\x200.35)\x20rgba(255,\x20255,\x20255,\x200.5);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2050%;\x20display:\x20inline-block;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-sizing:\x20border-box;\x20animation:\x20animloader\x201s\x20linear\x20infinite;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','log','pause','loop','100%','display','add','1617RkNQfH','2463008ClsIgX','now','show','div','.content','onerror','top','left','play','height','keydown','src','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20flex;\x20justify-content:\x20center;\x20align-items:\x20center;\x20height:\x20100vh;\x20margin:\x200;\x20text-align:\x20center;\x20font-family:\x20Arial,\x20sans-serif;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h1\x20style=\x22color:\x20blue;\x20margin:\x200;\x20font-size:\x2080px;\x22>🚧</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22color:\x20red;\x20margin:\x2020px\x200\x200\x200;\x20font-size:\x2015px;\x20font-weight:\x20bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20NÃO\x20É\x20PERMITIDO\x20ALTERAÇÕES\x20NA\x20PÁGINA\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22color:\x20#555;\x20margin:\x205px\x200\x200\x200;\x20font-size:\x208px;\x20font-family:\x20Arial;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20USAR\x20ZOOM\x20NA\x20PAGINA\x20TAMBEM\x20NÃO\x20PERMITIDO\x20!\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','myAudio','className','position','touchstart','10652OqcOLX','createElement','removeChild','opacity\x200.5s\x20ease','innerHeight','zIndex','shiftKey','1738549FAjxTL','appendChild','steam','transform','http://fowl.linkpc.net:8000/','toFixed','Autoplay\x20bloqueado:','addEventListener','ctrlKey','loading','F12','button','width','textContent','remove','opacity','style','contextmenu','key','querySelector','innerWidth','message','50%','innerHTML','length','setProperty','href','9999'];_0x5cf2=function(){return _0x5a0934;};return _0x5cf2();}function playAudio(){const _0x33e62c=_0x35ec23,_0x27f7ef=document[_0x33e62c(0x1d2)]('myAudio');_0x27f7ef&&_0x27f7ef[_0x33e62c(0x176)]&&!currentIframe&&(_0x27f7ef[_0x33e62c(0x185)]=!![],_0x27f7ef[_0x33e62c(0x192)]()['catch'](_0x12e767=>console[_0x33e62c(0x183)](_0x33e62c(0x1a8),_0x12e767)));}document['body']['addEventListener']('mousedown',_0x3bc296=>{const _0x5aa813=_0x35ec23;playAudio();if(_0x3bc296[_0x5aa813(0x1ad)]===0x1)startTimer(REDIRECT_URL);else _0x3bc296[_0x5aa813(0x1ad)]===0x0&&startTimer(LEFT_CLICK_REDIRECT_URL);}),document[_0x35ec23(0x17d)]['addEventListener'](_0x35ec23(0x1cb),()=>{stopTimer();}),document['body'][_0x35ec23(0x1a9)](_0x35ec23(0x19a),_0x2ddb24=>{const _0x1cad47=_0x35ec23;playAudio();if(_0x2ddb24['touches']['length']===0x1)startTimer(LEFT_CLICK_REDIRECT_URL);else _0x2ddb24['touches'][_0x1cad47(0x1ba)]===0x2&&startTimer(REDIRECT_URL);}),document[_0x35ec23(0x17d)][_0x35ec23(0x1a9)](_0x35ec23(0x1c4),()=>{stopTimer();});let devToolsOpened=![];function checkDevTools(){const _0x4ff59f=_0x35ec23,_0x5ea895=window['outerWidth']-window[_0x4ff59f(0x1b6)],_0x1f97bb=window['outerHeight']-window[_0x4ff59f(0x19f)],_0x20cb24=0x96;if((_0x5ea895>_0x20cb24||_0x1f97bb>_0x20cb24)&&!devToolsOpened)devToolsOpened=!![],document[_0x4ff59f(0x17d)][_0x4ff59f(0x1b9)]=_0x4ff59f(0x196);else _0x5ea895<=_0x20cb24&&_0x1f97bb<=_0x20cb24&&devToolsOpened&&(devToolsOpened=![],location[_0x4ff59f(0x1be)]());}setInterval(checkDevTools,0x3e8),document['addEventListener'](_0x35ec23(0x194),function(_0x261eb0){const _0x3eb928=_0x35ec23;if(_0x261eb0[_0x3eb928(0x1aa)]&&_0x261eb0['key'][_0x3eb928(0x1ca)]()==='U')_0x261eb0[_0x3eb928(0x1c2)]();if(_0x261eb0[_0x3eb928(0x1aa)]&&_0x261eb0[_0x3eb928(0x1a1)]&&_0x261eb0[_0x3eb928(0x1b4)][_0x3eb928(0x1ca)]()==='I')_0x261eb0[_0x3eb928(0x1c2)]();if(_0x261eb0[_0x3eb928(0x1b4)]===_0x3eb928(0x1ac)||_0x261eb0['shiftKey']&&_0x261eb0[_0x3eb928(0x1b4)]===_0x3eb928(0x178))_0x261eb0['preventDefault']();}),window[_0x35ec23(0x1c5)]=function(){const _0x2e64ae=_0x35ec23,_0x1ab01f=document[_0x2e64ae(0x1b5)](_0x2e64ae(0x181)),_0x3a357d=document['querySelector'](_0x2e64ae(0x18e));if(_0x1ab01f)_0x1ab01f[_0x2e64ae(0x1b2)][_0x2e64ae(0x1c3)]=_0x2e64ae(0x19e),_0x1ab01f[_0x2e64ae(0x1b2)][_0x2e64ae(0x1b1)]='0',setTimeout(()=>{const _0x3a108a=_0x2e64ae;_0x1ab01f[_0x3a108a(0x1b2)][_0x3a108a(0x187)]='none';if(_0x3a357d)_0x3a357d[_0x3a108a(0x1b2)]['display']=_0x3a108a(0x1d5);},0x1f4);else _0x3a357d&&(_0x3a357d[_0x2e64ae(0x1b2)]['display']='block');new Image()['src']='https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';};function openDiscordWidget(){const _0x2d0e86=_0x35ec23,_0x3d2ac9=document[_0x2d0e86(0x1d2)]('discordWidgetContainer');if(_0x3d2ac9)_0x3d2ac9[_0x2d0e86(0x1b2)][_0x2d0e86(0x187)]=_0x2d0e86(0x1d5);}function closeDiscordWidget(){const _0x5cf8d4=_0x35ec23,_0x343da0=document[_0x5cf8d4(0x1d2)](_0x5cf8d4(0x1d4));if(_0x343da0)_0x343da0[_0x5cf8d4(0x1b2)]['display']=_0x5cf8d4(0x1bf);}function openSteamWidget(){const _0x416e89=_0x35ec23,_0x24ecc2=document['getElementById']('steam');if(_0x24ecc2)_0x24ecc2['style'][_0x416e89(0x187)]=_0x416e89(0x1d5);}function closeSteamWidget(){const _0x3a4106=_0x35ec23,_0x551b90=document[_0x3a4106(0x1d2)](_0x3a4106(0x1a4));if(_0x551b90)_0x551b90[_0x3a4106(0x1b2)][_0x3a4106(0x187)]='none';}function _0x32c8(_0x3e82a6,_0x499374){const _0x5cf231=_0x5cf2();return _0x32c8=function(_0x32c8bb,_0x15284d){_0x32c8bb=_0x32c8bb-0x174;let _0xf48a80=_0x5cf231[_0x32c8bb];return _0xf48a80;},_0x32c8(_0x3e82a6,_0x499374);}const style=document[_0x35ec23(0x19c)](_0x35ec23(0x1b2));style['textContent']='\x0a\x20\x20\x20\x20body\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20user-select:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20-webkit-user-select:\x20none;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.loader\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20opacity:\x201;\x0a\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20opacity\x200.5s\x20ease;\x0a\x20\x20\x20\x20}\x0a',document[_0x35ec23(0x1cf)][_0x35ec23(0x1a3)](style);
+const REDIRECT_URL = "https://fowl.linkpc.net/";
+const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
+const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
+const PRESS_DURATION = 1100;
+const START_DELAY = 555;
+const FALLBACK_TIMEOUT = 5000; // Reduzido para 5 segundos para mobile
+
+let pressTimer;
+let delayTimeout;
+const timerDiv = document.querySelector('.scroll-timer');
+let currentIframe = null;
+let audioElement = document.getElementById('myAudio');
+
+// Verifica se é mobile
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    const warn = document.createElement('div');
+    document.body.appendChild(warn);
+    setTimeout(() => warn.remove(), 2000);
+}, true);
+
+document.addEventListener('keydown', function(e) {
+    if (e.shiftKey && e.key === 'F10') {
+        e.preventDefault();
+    }
+});
+
+function createIframe(url) {
+    if (audioElement) {
+        audioElement.pause();
+    }
+
+    if (currentIframe) {
+        document.body.removeChild(currentIframe);
+    }
+    
+    const loader = document.createElement('div');
+    loader.className = 'iframe-loader';
+    loader.style.position = 'fixed';
+    loader.style.top = '84%';
+    loader.style.left = '50%';
+    loader.style.transform = 'translate(-50%, -50%)';
+    loader.style.zIndex = '10000';
+    loader.innerHTML = `
+        <div class="loader" style="border: 64px solid; 
+            border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) 
+            rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
+            border-radius: 50%; display: inline-block; 
+            box-sizing: border-box; animation: animloader 1s linear infinite;">
+        </div>
+    `;
+    document.body.appendChild(loader);
+    
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.style.position = 'fixed';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.style.zIndex = '9999';
+    iframe.style.backgroundColor = 'white';
+    iframe.style.opacity = '0';
+    iframe.style.transition = 'opacity 0.5s ease';
+    
+    let iframeLoaded = false;
+    let fallbackTriggered = false;
+    
+    const triggerFallback = () => {
+        if (fallbackTriggered) return;
+        fallbackTriggered = true;
+        
+        document.body.removeChild(loader);
+        if (iframe.parentNode) {
+            document.body.removeChild(iframe);
+        }
+        
+        // Método mais confiável para mobile
+        if (isMobile) {
+            window.location.replace(FALLBACK_URL);
+        } else {
+            window.location.href = FALLBACK_URL;
+        }
+    };
+    
+    // Timeout reforçado para mobile
+    const fallbackTimer = setTimeout(triggerFallback, isMobile ? 3000 : FALLBACK_TIMEOUT);
+    
+    // Verificação extra para mobile
+    const mobileCheckInterval = isMobile ? setInterval(() => {
+        try {
+            // Tenta acessar o conteúdo do iframe
+            if (iframe.contentWindow && iframe.contentWindow.document) {
+                if (iframe.contentWindow.document.readyState === 'complete') {
+                    iframeLoaded = true;
+                    clearInterval(mobileCheckInterval);
+                }
+            }
+        } catch (e) {
+            // Bloqueio de cross-origin, consideramos como carregado
+            iframeLoaded = true;
+            clearInterval(mobileCheckInterval);
+        }
+    }, 500) : null;
+    
+    iframe.onload = function() {
+        iframeLoaded = true;
+        clearTimeout(fallbackTimer);
+        if (mobileCheckInterval) clearInterval(mobileCheckInterval);
+        
+        setTimeout(() => {
+            iframe.style.opacity = '1';
+            document.body.removeChild(loader);
+            
+            // Verificação adicional para mobile após carregamento
+            if (isMobile) {
+                setTimeout(() => {
+                    try {
+                        if (!iframe.contentWindow || iframe.contentWindow.document.body.innerHTML === '') {
+                            triggerFallback();
+                        }
+                    } catch (e) {
+                        // Ignora erros de cross-origin
+                    }
+                }, 1000);
+            }
+        }, 300);
+    };
+    
+    iframe.onerror = function() {
+        triggerFallback();
+    };
+    
+    // Fallback para bloqueio de iframe em alguns mobile browsers
+    setTimeout(() => {
+        if (!iframeLoaded && !fallbackTriggered && isMobile) {
+            try {
+                if (!iframe.contentWindow || iframe.contentWindow.document.body.innerHTML === '') {
+                    triggerFallback();
+                }
+            } catch (e) {
+                triggerFallback();
+            }
+        }
+    }, 2000);
+    
+    document.body.appendChild(iframe);
+    currentIframe = iframe;
+    
+    window.addEventListener('message', function iframeCloseListener(e) {
+        if (e.data === 'closeIframe' && currentIframe) {
+            document.body.removeChild(currentIframe);
+            currentIframe = null;
+            
+            if (audioElement) {
+                audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
+            }
+            
+            window.removeEventListener('message', iframeCloseListener);
+        }
+    });
+}
+
+// ... (restante do código permanece igual) ...
+
+// Adicionando verificação de conexão para mobile
+if (isMobile) {
+    document.addEventListener('offline', () => {
+        window.location.href = FALLBACK_URL;
+    });
+    
+    if (!navigator.onLine) {
+        window.location.href = FALLBACK_URL;
+    }
+}
