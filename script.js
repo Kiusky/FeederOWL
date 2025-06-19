@@ -3,6 +3,7 @@ const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
 const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
+const FALLBACK_TIMEOUT = 10000; // 10 segundos
 
 let pressTimer;
 let delayTimeout;
@@ -10,6 +11,7 @@ const timerDiv = document.querySelector('.scroll-timer');
 let currentIframe = null;
 let audioElement = document.getElementById('myAudio');
 
+// Bloqueia o menu de contexto
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
     const warn = document.createElement('div');
@@ -17,12 +19,14 @@ document.addEventListener('contextmenu', function(e) {
     setTimeout(() => warn.remove(), 2000);
 }, true);
 
+// Bloqueia atalhos de teclado
 document.addEventListener('keydown', function(e) {
     if (e.shiftKey && e.key === 'F10') {
         e.preventDefault();
     }
 });
 
+// Função para criar iframe com fallback
 function createIframe(url) {
     if (audioElement) {
         audioElement.pause();
@@ -32,6 +36,7 @@ function createIframe(url) {
         document.body.removeChild(currentIframe);
     }
     
+    // Cria o loader
     const loader = document.createElement('div');
     loader.className = 'iframe-loader';
     loader.style.position = 'fixed';
@@ -49,6 +54,7 @@ function createIframe(url) {
     `;
     document.body.appendChild(loader);
     
+    // Cria o iframe
     const iframe = document.createElement('iframe');
     iframe.src = url;
     iframe.style.position = 'fixed';
@@ -63,39 +69,83 @@ function createIframe(url) {
     iframe.style.transition = 'opacity 0.5s ease';
     
     let iframeLoaded = false;
-    const FALLBACK_TIMEOUT = 8000;
+    let fallbackTriggered = false;
     
+    // Timer principal para fallback
     const fallbackTimer = setTimeout(() => {
-        if (!iframeLoaded) {
+        if (!iframeLoaded && !fallbackTriggered) {
+            fallbackTriggered = true;
             document.body.removeChild(loader);
             if (iframe.parentNode) {
                 document.body.removeChild(iframe);
             }
-            window.location.href = FALLBACK_URL;
+            // Tenta redirecionar, se falhar abre em nova aba
+            try {
+                window.location.href = FALLBACK_URL;
+            } catch (e) {
+                window.open(FALLBACK_URL, '_blank');
+            }
         }
     }, FALLBACK_TIMEOUT);
     
+    // Verificação adicional para mobile (apenas uma verificação)
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    let mobileCheckTimer;
+    
+    if (isMobile) {
+        mobileCheckTimer = setTimeout(() => {
+            if (!iframeLoaded && !fallbackTriggered) {
+                try {
+                    // Tenta forçar o evento de erro
+                    iframe.dispatchEvent(new Event('error'));
+                } catch (e) {
+                    // Fallback manual se necessário
+                    if (!fallbackTriggered) {
+                        fallbackTriggered = true;
+                        document.body.removeChild(loader);
+                        if (iframe.parentNode) {
+                            document.body.removeChild(iframe);
+                        }
+                        window.location.href = FALLBACK_URL;
+                    }
+                }
+            }
+        }, FALLBACK_TIMEOUT - 2000); // Verifica 2s antes do timeout total
+    }
+    
+    // Evento quando o iframe carrega
     iframe.onload = function() {
         iframeLoaded = true;
         clearTimeout(fallbackTimer);
+        clearTimeout(mobileCheckTimer);
         setTimeout(() => {
             iframe.style.opacity = '1';
             document.body.removeChild(loader);
         }, 300);
     };
     
+    // Evento de erro do iframe
     iframe.onerror = function() {
-        clearTimeout(fallbackTimer);
-        document.body.removeChild(loader);
-        if (iframe.parentNode) {
-            document.body.removeChild(iframe);
+        if (!fallbackTriggered) {
+            fallbackTriggered = true;
+            clearTimeout(fallbackTimer);
+            clearTimeout(mobileCheckTimer);
+            document.body.removeChild(loader);
+            if (iframe.parentNode) {
+                document.body.removeChild(iframe);
+            }
+            try {
+                window.location.href = FALLBACK_URL;
+            } catch (e) {
+                window.open(FALLBACK_URL, '_blank');
+            }
         }
-        window.location.href = FALLBACK_URL;
     };
     
     document.body.appendChild(iframe);
     currentIframe = iframe;
     
+    // Listener para fechar o iframe
     window.addEventListener('message', function iframeCloseListener(e) {
         if (e.data === 'closeIframe' && currentIframe) {
             document.body.removeChild(currentIframe);
@@ -110,6 +160,7 @@ function createIframe(url) {
     });
 }
 
+// Estilos para o loader
 const loaderStyle = document.createElement('style');
 loaderStyle.textContent = `
     @keyframes animloader {
@@ -129,6 +180,7 @@ loaderStyle.textContent = `
 `;
 document.head.appendChild(loaderStyle);
 
+// Timer para pressionamento longo
 function startTimer(redirectUrl) {
     if (delayTimeout) clearTimeout(delayTimeout);
 
@@ -166,6 +218,7 @@ function startTimer(redirectUrl) {
     }, START_DELAY);
 }
 
+// Para o timer
 function stopTimer() {
     if (delayTimeout) clearTimeout(delayTimeout);
     clearInterval(pressTimer);
@@ -173,6 +226,7 @@ function stopTimer() {
     setTimeout(() => timerDiv.style.display = 'none', 200);
 }
 
+// Toca o áudio
 function playAudio() {
     const audio = document.getElementById('myAudio');
     if (audio && audio.paused && !currentIframe) {
@@ -181,12 +235,13 @@ function playAudio() {
     }
 }
 
+// Eventos de clique/touch
 document.body.addEventListener('mousedown', (e) => {
     playAudio();
 
-    if (e.button === 1) {
+    if (e.button === 1) { // Botão do meio
         startTimer(REDIRECT_URL);
-    } else if (e.button === 0) {
+    } else if (e.button === 0) { // Botão esquerdo
         startTimer(LEFT_CLICK_REDIRECT_URL);
     }
 });
@@ -209,6 +264,7 @@ document.body.addEventListener('touchend', () => {
     stopTimer();
 });
 
+// Detecção de DevTools
 let devToolsOpened = false;
 function checkDevTools() {
     const widthDiff = window.outerWidth - window.innerWidth;
@@ -237,12 +293,14 @@ function checkDevTools() {
 }
 setInterval(checkDevTools, 1000);
 
+// Bloqueia outros atalhos
 document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
     if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') e.preventDefault();
     if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
 });
 
+// Inicialização
 window.onload = function() {
     const loader = document.querySelector('.loader');
     const content = document.querySelector('.content');
@@ -258,9 +316,11 @@ window.onload = function() {
         content.style.display = 'block';
     }
 
+    // Pré-carrega imagem
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
 };
 
+// Funções para widgets (opcional)
 function openDiscordWidget() {
     const widget = document.getElementById('discordWidgetContainer');
     if (widget) widget.style.display = 'block';
@@ -278,6 +338,7 @@ function closeSteamWidget() {
     if (widget) widget.style.display = 'none';
 }
 
+// Estilos adicionais
 const style = document.createElement('style');
 style.textContent = `
     body {
