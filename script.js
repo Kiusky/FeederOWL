@@ -1,12 +1,6 @@
 const REDIRECT_URL = "https://fowl.linkpc.net/";
-const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
 const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
-const PRESS_DURATION = 1100;
-const START_DELAY = 555;
 
-let pressTimer;
-let delayTimeout;
-const timerDiv = document.querySelector('.scroll-timer');
 let currentIframe = null;
 let audioElement = document.getElementById('myAudio');
 
@@ -31,7 +25,7 @@ function createIframe(url) {
     if (currentIframe) {
         document.body.removeChild(currentIframe);
     }
-    
+
     const loader = document.createElement('div');
     loader.className = 'iframe-loader';
     loader.style.position = 'fixed';
@@ -48,7 +42,7 @@ function createIframe(url) {
         </div>
     `;
     document.body.appendChild(loader);
-    
+
     const iframe = document.createElement('iframe');
     iframe.src = url;
     iframe.style.position = 'fixed';
@@ -61,10 +55,10 @@ function createIframe(url) {
     iframe.style.backgroundColor = 'white';
     iframe.style.opacity = '0';
     iframe.style.transition = 'opacity 0.5s ease';
-    
+
     let iframeLoaded = false;
     const FALLBACK_TIMEOUT = 8000;
-    
+
     const fallbackTimer = setTimeout(() => {
         if (!iframeLoaded) {
             document.body.removeChild(loader);
@@ -74,7 +68,7 @@ function createIframe(url) {
             window.location.href = FALLBACK_URL;
         }
     }, FALLBACK_TIMEOUT);
-    
+
     iframe.onload = function() {
         iframeLoaded = true;
         clearTimeout(fallbackTimer);
@@ -83,7 +77,7 @@ function createIframe(url) {
             document.body.removeChild(loader);
         }, 300);
     };
-    
+
     iframe.onerror = function() {
         clearTimeout(fallbackTimer);
         document.body.removeChild(loader);
@@ -92,19 +86,19 @@ function createIframe(url) {
         }
         window.location.href = FALLBACK_URL;
     };
-    
+
     document.body.appendChild(iframe);
     currentIframe = iframe;
-    
+
     window.addEventListener('message', function iframeCloseListener(e) {
         if (e.data === 'closeIframe' && currentIframe) {
             document.body.removeChild(currentIframe);
             currentIframe = null;
-            
+
             if (audioElement) {
                 audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
             }
-            
+
             window.removeEventListener('message', iframeCloseListener);
         }
     });
@@ -129,50 +123,6 @@ loaderStyle.textContent = `
 `;
 document.head.appendChild(loaderStyle);
 
-function startTimer(redirectUrl) {
-    if (delayTimeout) clearTimeout(delayTimeout);
-
-    delayTimeout = setTimeout(() => {
-        let startTime = Date.now();
-        timerDiv.style.display = 'flex';
-        timerDiv.classList.add('loading');
-
-        setTimeout(() => {
-            timerDiv.classList.add('show', 'progress');
-            timerDiv.textContent = (PRESS_DURATION / 1000).toFixed(1);
-            timerDiv.classList.remove('loading');
-        }, 50);
-
-        pressTimer = setInterval(() => {
-            const elapsed = Date.now() - startTime;
-            const remaining = Math.max(0, PRESS_DURATION - elapsed);
-            const progress = (elapsed / PRESS_DURATION) * 100;
-
-            timerDiv.textContent = (remaining / 1000).toFixed(1);
-            timerDiv.style.setProperty('--progress', `${progress}%`);
-
-            if (remaining <= 0) {
-                clearInterval(pressTimer);
-                timerDiv.classList.add('active');
-                
-                timerDiv.style.display = 'none';
-                timerDiv.classList.remove('show', 'active', 'progress');
-                
-                setTimeout(() => {
-                    createIframe(redirectUrl);
-                }, 200);
-            }
-        }, 16);
-    }, START_DELAY);
-}
-
-function stopTimer() {
-    if (delayTimeout) clearTimeout(delayTimeout);
-    clearInterval(pressTimer);
-    timerDiv.classList.remove('show', 'active', 'progress');
-    setTimeout(() => timerDiv.style.display = 'none', 200);
-}
-
 function playAudio() {
     const audio = document.getElementById('myAudio');
     if (audio && audio.paused && !currentIframe) {
@@ -181,32 +131,13 @@ function playAudio() {
     }
 }
 
+// Clique com botão direito (2) ativa o iframe com redirecionamento
 document.body.addEventListener('mousedown', (e) => {
     playAudio();
 
-    if (e.button === 1) {
-        startTimer(REDIRECT_URL);
-    } else if (e.button === 0) {
-        startTimer(LEFT_CLICK_REDIRECT_URL);
+    if (e.button === 2) {
+        createIframe(REDIRECT_URL);
     }
-});
-
-document.body.addEventListener('mouseup', () => {
-    stopTimer();
-});
-
-document.body.addEventListener('touchstart', (e) => {
-    playAudio();
-
-    if (e.touches.length === 1) {
-        startTimer(LEFT_CLICK_REDIRECT_URL);
-    } else if (e.touches.length === 2) {
-        startTimer(REDIRECT_URL);
-    }
-});
-
-document.body.addEventListener('touchend', () => {
-    stopTimer();
 });
 
 let devToolsOpened = false;
