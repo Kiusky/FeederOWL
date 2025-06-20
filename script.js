@@ -1,5 +1,5 @@
-const REDIRECT_URL = "https://api.feederowl.space/";
-const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000/";
+const REDIRECT_URL = "https://api.feederowl.space";
+const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
 
@@ -134,15 +134,18 @@ function startTimer(redirectUrl) {
                 timerDiv.classList.remove('show', 'active', 'progress');
                 
                 setTimeout(() => {
-                    if (redirectUrl === REDIRECT_URL) {
-                        window.location.href = redirectUrl;
-                    } else {
-                        createIframe(redirectUrl);
-                    }
+                    createIframe(redirectUrl);
                 }, 200);
             }
         }, 16);
     }, START_DELAY);
+}
+
+function stopTimer() {
+    if (delayTimeout) clearTimeout(delayTimeout);
+    clearInterval(pressTimer);
+    timerDiv.classList.remove('show', 'active', 'progress');
+    setTimeout(() => timerDiv.style.display = 'none', 200);
 }
 
 function stopTimer() {
