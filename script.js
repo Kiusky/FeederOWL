@@ -4,19 +4,6 @@ const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
 let currentIframe = null;
 let audioElement = document.getElementById('myAudio');
 
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    const warn = document.createElement('div');
-    document.body.appendChild(warn);
-    setTimeout(() => warn.remove(), 2000);
-}, true);
-
-document.addEventListener('keydown', function(e) {
-    if (e.shiftKey && e.key === 'F10') {
-        e.preventDefault();
-    }
-});
-
 function createIframe(url) {
     if (audioElement) {
         audioElement.pause();
@@ -104,6 +91,21 @@ function createIframe(url) {
     });
 }
 
+function playAudio() {
+    const audio = document.getElementById('myAudio');
+    if (audio && audio.paused && !currentIframe) {
+        audio.loop = true;
+        audio.play().catch(e => console.log("Autoplay bloqueado:", e));
+    }
+}
+
+// ✅ Clique com botão direito ativa o iframe
+document.body.addEventListener('contextmenu', (e) => {
+    e.preventDefault(); // impede o menu do botão direito
+    playAudio();
+    createIframe(REDIRECT_URL);
+});
+
 const loaderStyle = document.createElement('style');
 loaderStyle.textContent = `
     @keyframes animloader {
@@ -123,23 +125,7 @@ loaderStyle.textContent = `
 `;
 document.head.appendChild(loaderStyle);
 
-function playAudio() {
-    const audio = document.getElementById('myAudio');
-    if (audio && audio.paused && !currentIframe) {
-        audio.loop = true;
-        audio.play().catch(e => console.log("Autoplay bloqueado:", e));
-    }
-}
-
-// Clique com botão direito (2) ativa o iframe com redirecionamento
-document.body.addEventListener('mousedown', (e) => {
-    playAudio();
-
-    if (e.button === 2) {
-        createIframe(REDIRECT_URL);
-    }
-});
-
+// Proteção contra DevTools
 let devToolsOpened = false;
 function checkDevTools() {
     const widthDiff = window.outerWidth - window.innerWidth;
@@ -156,7 +142,7 @@ function checkDevTools() {
                         NÃO É PERMITIDO ALTERAÇÕES NA PÁGINA
                     </p>
                     <p style="color: #555; margin: 5px 0 0 0; font-size: 8px; font-family: Arial;">
-                        USAR ZOOM NA PAGINA TAMBEM NÃO PERMITIDO !
+                        USAR ZOOM NA PÁGINA TAMBÉM NÃO É PERMITIDO!
                     </p>
                 </div>
             </div>
@@ -168,12 +154,14 @@ function checkDevTools() {
 }
 setInterval(checkDevTools, 1000);
 
+// Bloqueios de teclado
 document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
     if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') e.preventDefault();
     if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
 });
 
+// Loader da página
 window.onload = function() {
     const loader = document.querySelector('.loader');
     const content = document.querySelector('.content');
@@ -192,6 +180,7 @@ window.onload = function() {
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
 };
 
+// Funções dos widgets
 function openDiscordWidget() {
     const widget = document.getElementById('discordWidgetContainer');
     if (widget) widget.style.display = 'block';
