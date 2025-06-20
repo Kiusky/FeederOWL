@@ -1,5 +1,6 @@
-const REDIRECT_URL = "https://api.feederowl.space/";
-const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000/";
+const REDIRECT_URL = "https://api.feederowl.space/";";
+const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
+const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
 
@@ -61,11 +62,35 @@ function createIframe(url) {
     iframe.style.opacity = '0';
     iframe.style.transition = 'opacity 0.5s ease';
     
+    let iframeLoaded = false;
+    const FALLBACK_TIMEOUT = 8000;
+    
+    const fallbackTimer = setTimeout(() => {
+        if (!iframeLoaded) {
+            document.body.removeChild(loader);
+            if (iframe.parentNode) {
+                document.body.removeChild(iframe);
+            }
+            window.location.href = FALLBACK_URL;
+        }
+    }, FALLBACK_TIMEOUT);
+    
     iframe.onload = function() {
+        iframeLoaded = true;
+        clearTimeout(fallbackTimer);
         setTimeout(() => {
             iframe.style.opacity = '1';
             document.body.removeChild(loader);
         }, 300);
+    };
+    
+    iframe.onerror = function() {
+        clearTimeout(fallbackTimer);
+        document.body.removeChild(loader);
+        if (iframe.parentNode) {
+            document.body.removeChild(iframe);
+        }
+        window.location.href = FALLBACK_URL;
     };
     
     document.body.appendChild(iframe);
@@ -134,11 +159,7 @@ function startTimer(redirectUrl) {
                 timerDiv.classList.remove('show', 'active', 'progress');
                 
                 setTimeout(() => {
-                    if (redirectUrl === REDIRECT_URL) {
-                        window.location.href = redirectUrl;
-                    } else {
-                        createIframe(redirectUrl);
-                    }
+                    createIframe(redirectUrl);
                 }, 200);
             }
         }, 16);
