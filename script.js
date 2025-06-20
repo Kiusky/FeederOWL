@@ -1,15 +1,17 @@
-const REDIRECT_URL = "http://fowl.linkpc.net:8000/";
+const REDIRECT_URL = "https://feederowl.feederowl.space/";
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
+const FALLBACK_URL = "http://fowl.linkpc.net:8000/";
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
 
 let pressTimer;
 let delayTimeout;
 const timerDiv = document.querySelector('.scroll-timer');
+let currentIframe = null;
+let audioElement = document.getElementById('myAudio');
 
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
-
     const warn = document.createElement('div');
     document.body.appendChild(warn);
     setTimeout(() => warn.remove(), 2000);
@@ -21,6 +23,111 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+function createIframe(url) {
+    if (audioElement) {
+        audioElement.pause();
+    }
+
+    if (currentIframe) {
+        document.body.removeChild(currentIframe);
+    }
+    
+    const loader = document.createElement('div');
+    loader.className = 'iframe-loader';
+    loader.style.position = 'fixed';
+    loader.style.top = '84%';
+    loader.style.left = '50%';
+    loader.style.transform = 'translate(-50%, -50%)';
+    loader.style.zIndex = '10000';
+    loader.innerHTML = `
+        <div class="loader" style="border: 64px solid; 
+            border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) 
+            rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
+            border-radius: 50%; display: inline-block; 
+            box-sizing: border-box; animation: animloader 1s linear infinite;">
+        </div>
+    `;
+    document.body.appendChild(loader);
+    
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.style.position = 'fixed';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.style.zIndex = '9999';
+    iframe.style.backgroundColor = 'white';
+    iframe.style.opacity = '0';
+    iframe.style.transition = 'opacity 0.5s ease';
+    
+    let iframeLoaded = false;
+    const FALLBACK_TIMEOUT = 8000;
+    
+    const fallbackTimer = setTimeout(() => {
+        if (!iframeLoaded) {
+            document.body.removeChild(loader);
+            if (iframe.parentNode) {
+                document.body.removeChild(iframe);
+            }
+            window.location.href = FALLBACK_URL;
+        }
+    }, FALLBACK_TIMEOUT);
+    
+    iframe.onload = function() {
+        iframeLoaded = true;
+        clearTimeout(fallbackTimer);
+        setTimeout(() => {
+            iframe.style.opacity = '1';
+            document.body.removeChild(loader);
+        }, 300);
+    };
+    
+    iframe.onerror = function() {
+        clearTimeout(fallbackTimer);
+        document.body.removeChild(loader);
+        if (iframe.parentNode) {
+            document.body.removeChild(iframe);
+        }
+        window.location.href = FALLBACK_URL;
+    };
+    
+    document.body.appendChild(iframe);
+    currentIframe = iframe;
+    
+    window.addEventListener('message', function iframeCloseListener(e) {
+        if (e.data === 'closeIframe' && currentIframe) {
+            document.body.removeChild(currentIframe);
+            currentIframe = null;
+            
+            if (audioElement) {
+                audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
+            }
+            
+            window.removeEventListener('message', iframeCloseListener);
+        }
+    });
+}
+
+const loaderStyle = document.createElement('style');
+loaderStyle.textContent = `
+    @keyframes animloader {
+        0% {
+            border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
+        }
+        33% {
+            border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
+        }
+        66% {
+            border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
+        }
+        100% {
+            border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
+        }
+    }
+`;
+document.head.appendChild(loaderStyle);
 
 function startTimer(redirectUrl) {
     if (delayTimeout) clearTimeout(delayTimeout);
@@ -47,7 +154,13 @@ function startTimer(redirectUrl) {
             if (remaining <= 0) {
                 clearInterval(pressTimer);
                 timerDiv.classList.add('active');
-                setTimeout(() => window.location.href = redirectUrl, 200);
+                
+                timerDiv.style.display = 'none';
+                timerDiv.classList.remove('show', 'active', 'progress');
+                
+                setTimeout(() => {
+                    createIframe(redirectUrl);
+                }, 200);
             }
         }, 16);
     }, START_DELAY);
@@ -62,7 +175,7 @@ function stopTimer() {
 
 function playAudio() {
     const audio = document.getElementById('myAudio');
-    if (audio && audio.paused) {
+    if (audio && audio.paused && !currentIframe) {
         audio.loop = true;
         audio.play().catch(e => console.log("Autoplay bloqueado:", e));
     }
