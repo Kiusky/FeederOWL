@@ -1,6 +1,6 @@
 const REDIRECT_URL = "https://api.feederowl.space";
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
-const COMBINED_CLICK_REDIRECT_URL = "https://api.feederowl.space"; // <-- EXTRA
+const COMBINED_CLICK_REDIRECT_URL = "http://fowl.linkpc.net/"; // <-- EXTRA
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
 
