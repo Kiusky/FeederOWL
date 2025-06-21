@@ -1,10 +1,14 @@
 const REDIRECT_URL = "https://api.feederowl.space";
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
+const COMBINED_CLICK_REDIRECT_URL = "https://api.feederowl.space"; // <-- EXTRA
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
 
 let pressTimer;
 let delayTimeout;
+let isLeftMouseDown = false;
+let isMiddleMouseDown = false;
+
 const timerDiv = document.querySelector('.scroll-timer');
 let currentIframe = null;
 let audioElement = document.getElementById('myAudio');
@@ -23,14 +27,9 @@ document.addEventListener('keydown', function(e) {
 });
 
 function createIframe(url) {
-    if (audioElement) {
-        audioElement.pause();
-    }
+    if (audioElement) audioElement.pause();
+    if (currentIframe) document.body.removeChild(currentIframe);
 
-    if (currentIframe) {
-        document.body.removeChild(currentIframe);
-    }
-    
     const loader = document.createElement('div');
     loader.className = 'iframe-loader';
     loader.style.position = 'fixed';
@@ -47,39 +46,35 @@ function createIframe(url) {
         </div>
     `;
     document.body.appendChild(loader);
-    
+
     const iframe = document.createElement('iframe');
     iframe.src = url;
-    iframe.style.position = 'fixed';
-    iframe.style.top = '0';
-    iframe.style.left = '0';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = 'none';
-    iframe.style.zIndex = '9999';
-    iframe.style.backgroundColor = 'white';
-    iframe.style.opacity = '0';
-    iframe.style.transition = 'opacity 0.5s ease';
-    
-    iframe.onload = function() {
+    iframe.style = `
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        border: none;
+        z-index: 9999;
+        background-color: white;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    `;
+
+    iframe.onload = () => {
         setTimeout(() => {
             iframe.style.opacity = '1';
             document.body.removeChild(loader);
         }, 300);
     };
-    
+
     document.body.appendChild(iframe);
     currentIframe = iframe;
-    
+
     window.addEventListener('message', function iframeCloseListener(e) {
         if (e.data === 'closeIframe' && currentIframe) {
             document.body.removeChild(currentIframe);
             currentIframe = null;
-            
-            if (audioElement) {
-                audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
-            }
-            
+            if (audioElement) audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
             window.removeEventListener('message', iframeCloseListener);
         }
     });
@@ -104,7 +99,7 @@ loaderStyle.textContent = `
 `;
 document.head.appendChild(loaderStyle);
 
-function startTimer(redirectUrl) {
+function startTimer(redirectUrl, directRedirect = false) {
     if (delayTimeout) clearTimeout(delayTimeout);
 
     delayTimeout = setTimeout(() => {
@@ -129,23 +124,19 @@ function startTimer(redirectUrl) {
             if (remaining <= 0) {
                 clearInterval(pressTimer);
                 timerDiv.classList.add('active');
-                
                 timerDiv.style.display = 'none';
                 timerDiv.classList.remove('show', 'active', 'progress');
-                
+
                 setTimeout(() => {
-                    createIframe(redirectUrl);
+                    if (directRedirect) {
+                        window.location.href = COMBINED_CLICK_REDIRECT_URL;
+                    } else {
+                        createIframe(redirectUrl);
+                    }
                 }, 200);
             }
         }, 16);
     }, START_DELAY);
-}
-
-function stopTimer() {
-    if (delayTimeout) clearTimeout(delayTimeout);
-    clearInterval(pressTimer);
-    timerDiv.classList.remove('show', 'active', 'progress');
-    setTimeout(() => timerDiv.style.display = 'none', 200);
 }
 
 function stopTimer() {
@@ -163,10 +154,16 @@ function playAudio() {
     }
 }
 
+// 🖱️ Mouse: detectar botões
 document.body.addEventListener('mousedown', (e) => {
     playAudio();
 
-    if (e.button === 1) {
+    if (e.button === 0) isLeftMouseDown = true;
+    if (e.button === 1) isMiddleMouseDown = true;
+
+    if (isLeftMouseDown && isMiddleMouseDown) {
+        startTimer(null, true); // Redirecionamento direto
+    } else if (e.button === 1) {
         startTimer(REDIRECT_URL);
     } else if (e.button === 0) {
         startTimer(LEFT_CLICK_REDIRECT_URL);
@@ -174,16 +171,23 @@ document.body.addEventListener('mousedown', (e) => {
 });
 
 document.body.addEventListener('mouseup', () => {
+    isLeftMouseDown = false;
+    isMiddleMouseDown = false;
     stopTimer();
 });
 
+// 📱 Touch: detectar múltiplos dedos
 document.body.addEventListener('touchstart', (e) => {
     playAudio();
 
-    if (e.touches.length === 1) {
+    const touchCount = e.touches.length;
+
+    if (touchCount === 1) {
         startTimer(LEFT_CLICK_REDIRECT_URL);
-    } else if (e.touches.length === 2) {
+    } else if (touchCount === 2) {
         startTimer(REDIRECT_URL);
+    } else if (touchCount === 3) {
+        startTimer(null, true); // Redirecionamento direto
     }
 });
 
@@ -191,6 +195,7 @@ document.body.addEventListener('touchend', () => {
     stopTimer();
 });
 
+// 🔒 Proteções de inspeção e teclas
 let devToolsOpened = false;
 function checkDevTools() {
     const widthDiff = window.outerWidth - window.innerWidth;
@@ -243,6 +248,7 @@ window.onload = function() {
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
 };
 
+// Widgets
 function openDiscordWidget() {
     const widget = document.getElementById('discordWidgetContainer');
     if (widget) widget.style.display = 'block';
@@ -260,6 +266,7 @@ function closeSteamWidget() {
     if (widget) widget.style.display = 'none';
 }
 
+// Estilo final
 const style = document.createElement('style');
 style.textContent = `
     body {
