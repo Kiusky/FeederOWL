@@ -1,6 +1,6 @@
 const REDIRECT_URL = "https://api.feederowl.space"; // <-- SCROLL PRINCIPAL / 2 DEDOS (REDIRECIONA DIRETO)
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000"; // <-- ESQUERDO PRINCIPAL / 1 DEDO (ABRE NO IFRAME)
-const COMBINED_CLICK_REDIRECT_URL = "http://fowl.linkpc.net:8000/"; // <-- EXTRA / 3 DEDOS (REDIRECIONA DIRETO)
+const COMBINED_CLICK_REDIRECT_URL = "http://feederowl.linkpc.net:8000/"; // <-- EXTRA / 3 DEDOS (REDIRECIONA DIRETO)
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
 
