@@ -1,6 +1,6 @@
-const REDIRECT_URL = "https://api.feederowl.space"; // <-- SCROLL PRINCIPAL / 2 DEDOS (REDIRECIONA DIRETO)
-const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000"; // <-- ESQUERDO PRINCIPAL / 1 DEDO (ABRE NO IFRAME)
-const COMBINED_CLICK_REDIRECT_URL = "http://feederowl.linkpc.net:8000/"; // <-- EXTRA / 3 DEDOS (REDIRECIONA DIRETO)
+const REDIRECT_URL = "https://hfs.feederowl.com";
+const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
+const COMBINED_CLICK_REDIRECT_URL = "http://feederowl.linkpc.net:8000/"; // <-- EXTRA
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
 
@@ -80,12 +80,26 @@ function createIframe(url) {
     });
 }
 
-function redirectTo(url) {
-    if (audioElement) audioElement.pause();
-    window.location.href = url;
-}
+const loaderStyle = document.createElement('style');
+loaderStyle.textContent = `
+    @keyframes animloader {
+        0% {
+            border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
+        }
+        33% {
+            border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
+        }
+        66% {
+            border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
+        }
+        100% {
+            border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
+        }
+    }
+`;
+document.head.appendChild(loaderStyle);
 
-function startTimer(redirectUrl, useIframe = false) {
+function startTimer(redirectUrl, directRedirect = false) {
     if (delayTimeout) clearTimeout(delayTimeout);
 
     delayTimeout = setTimeout(() => {
@@ -114,10 +128,10 @@ function startTimer(redirectUrl, useIframe = false) {
                 timerDiv.classList.remove('show', 'active', 'progress');
 
                 setTimeout(() => {
-                    if (useIframe) {
-                        createIframe(redirectUrl);
+                    if (directRedirect) {
+                        window.location.href = COMBINED_CLICK_REDIRECT_URL;
                     } else {
-                        redirectTo(redirectUrl);
+                        createIframe(redirectUrl);
                     }
                 }, 200);
             }
@@ -140,6 +154,7 @@ function playAudio() {
     }
 }
 
+// 🖱️ Mouse: detectar botões
 document.body.addEventListener('mousedown', (e) => {
     playAudio();
 
@@ -147,11 +162,11 @@ document.body.addEventListener('mousedown', (e) => {
     if (e.button === 1) isMiddleMouseDown = true;
 
     if (isLeftMouseDown && isMiddleMouseDown) {
-        startTimer(COMBINED_CLICK_REDIRECT_URL);
+        startTimer(null, true); // Redirecionamento direto
     } else if (e.button === 1) {
         startTimer(REDIRECT_URL);
     } else if (e.button === 0) {
-        startTimer(LEFT_CLICK_REDIRECT_URL, true);
+        startTimer(LEFT_CLICK_REDIRECT_URL);
     }
 });
 
@@ -161,17 +176,18 @@ document.body.addEventListener('mouseup', () => {
     stopTimer();
 });
 
+// 📱 Touch: detectar múltiplos dedos
 document.body.addEventListener('touchstart', (e) => {
     playAudio();
 
     const touchCount = e.touches.length;
 
     if (touchCount === 1) {
-        startTimer(LEFT_CLICK_REDIRECT_URL, true);
+        startTimer(LEFT_CLICK_REDIRECT_URL);
     } else if (touchCount === 2) {
         startTimer(REDIRECT_URL);
     } else if (touchCount === 3) {
-        startTimer(COMBINED_CLICK_REDIRECT_URL);
+        startTimer(null, true); // Redirecionamento direto
     }
 });
 
@@ -179,6 +195,7 @@ document.body.addEventListener('touchend', () => {
     stopTimer();
 });
 
+// 🔒 Proteções de inspeção e teclas
 let devToolsOpened = false;
 function checkDevTools() {
     const widthDiff = window.outerWidth - window.innerWidth;
@@ -231,7 +248,7 @@ window.onload = function() {
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
 };
 
-// Widgets (MANTIDO IGUAL)
+// Widgets
 function openDiscordWidget() {
     const widget = document.getElementById('discordWidgetContainer');
     if (widget) widget.style.display = 'block';
@@ -249,6 +266,7 @@ function closeSteamWidget() {
     if (widget) widget.style.display = 'none';
 }
 
+// Estilo final
 const style = document.createElement('style');
 style.textContent = `
     body {
