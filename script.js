@@ -1,4 +1,4 @@
-const REDIRECT_URL = "https://hfs.feederowl.com";
+const REDIRECT_URL = "https://host.feederowl.com";
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
 const COMBINED_CLICK_REDIRECT_URL = "http://feederowl.linkpc.net:8000/"; // <-- EXTRA
 const PRESS_DURATION = 1100;
