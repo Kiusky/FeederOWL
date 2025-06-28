@@ -448,16 +448,16 @@
 
 <!-- Popup de Erro de Canal -->
 <div class="channel-error-popup" id="channelErrorPopup">
-    <h2>⚠️ Canal Indisponível</h2>
-    <p>Parece que este canal não está funcionando no momento. Você pode tentar:</p>
+    <h2>⚠️</h2>
+    <p>Parece que os canais não está funcionando por algum motivo ou seu provedor de internet esteja bloqueando o sinal. Voce pode tentar:</p>
     <ul>
         <li>Recarregar a página</li>
         <li>Verificar sua conexão com a internet</li>
-        <li>Instalar nosso aplicativo para melhor experiência</li>
+        <li>Instalar VPN Cloudflare "WARP" </li>
     </ul>
     <div class="channel-error-buttons">
-        <button class="channel-error-button primary" onclick="installApp()">Instalar App</button>
-        <button class="channel-error-button secondary" onclick="closeChannelError()">Fechar</button>
+        <button class="channel-error-button primary" onclick="installApp()">Instalar WARP</button>
+        <button class="channel-error-button secondary" onclick="reloadPage()">Atualizar</button>
     </div>
 </div>
 
@@ -616,8 +616,12 @@
     }
 
     function installApp() {
-        window.open('https://www.feederowl.com/app', '_blank');
+        window.open('https://1.1.1.1/', '_blank'); // Link para o WARP da Cloudflare
         closeChannelError();
+    }
+
+    function reloadPage() {
+        window.location.reload();
     }
 
     function verificarEmbed(tipo) {
