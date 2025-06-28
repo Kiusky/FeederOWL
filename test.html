@@ -335,7 +335,7 @@
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        z-index: 2001; /* Maior que o embed */
+        z-index: 2000;
         text-align: center;
         color: white;
     }
@@ -485,7 +485,6 @@
 
 <script>
     let embedAberto = false;
-    let embedCheckInterval;
 
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
@@ -584,8 +583,6 @@
         if (embed && iframe) {
             iframe.src = `https://embedcanaistv.com/${tipo}/`;
             embed.classList.add('active-embed');
-            
-            // Inicia a verificação do embed
             verificarEmbed(tipo);
         }
     }
@@ -602,12 +599,6 @@
             iframe.src = 'about:blank';
             embed.classList.remove('active-embed');
         }
-        
-        // Limpa o intervalo de verificação
-        if (embedCheckInterval) {
-            clearInterval(embedCheckInterval);
-            embedCheckInterval = null;
-        }
     }
 
     // Funções para o popup de erro de canal
@@ -621,6 +612,7 @@
         document.getElementById('channelErrorPopup').style.display = 'none';
         document.getElementById('blockingOverlay').style.display = 'none';
         document.body.style.overflow = '';
+        fecharEmbed('combate'); // Fecha o embed atual
     }
 
     function installApp() {
@@ -634,42 +626,39 @@
 
     function verificarEmbed(tipo) {
         const iframe = document.getElementById(`iframe-${tipo}`);
-        if (!iframe) return;
-
-        // Verificação inicial
-        checkIframeContent(iframe);
-
-        // Verificação contínua a cada segundo
-        embedCheckInterval = setInterval(() => {
-            checkIframeContent(iframe);
-        }, 1000);
-    }
-
-    function checkIframeContent(iframe) {
-        try {
-            // Verifica se o iframe está com erro
-            if (iframe.contentWindow.location.href === 'about:blank' || 
-                iframe.contentDocument.body.innerHTML.includes('error') || 
-                iframe.contentDocument.body.innerHTML.includes('404') || 
-                iframe.contentDocument.body.innerHTML.trim() === '') {
-                showChannelError();
-                if (embedCheckInterval) {
-                    clearInterval(embedCheckInterval);
-                    embedCheckInterval = null;
-                }
-            }
-        } catch (e) {
-            // Se houver erro de CORS, verifica outras condições
-            if (iframe.src && iframe.src !== 'about:blank') {
-                // Se o iframe não carregou após 5 segundos
-                setTimeout(() => {
-                    if (iframe.contentWindow.location.href === 'about:blank') {
+        if (iframe) {
+            // Verifica se o iframe carregou corretamente
+            iframe.onload = function() {
+                // Se o iframe carregar uma página de erro ou estiver vazio
+                try {
+                    // Tentamos acessar o conteúdo do iframe (pode ser bloqueado por CORS)
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    if (iframeDoc.body.innerHTML.includes("error") || 
+                        iframeDoc.body.innerHTML.includes("404") || 
+                        iframeDoc.body.innerHTML.trim() === "") {
                         showChannelError();
                     }
-                }, 5000);
-            } else {
-                showChannelError();
-            }
+                } catch (e) {
+                    // Se houver erro de CORS, assumimos que o conteúdo carregou
+                    console.log("Não foi possível verificar o conteúdo do iframe devido a políticas de segurança");
+                }
+            };
+            
+            // Timeout para verificar se o iframe não carregou
+            setTimeout(function() {
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    if (iframeDoc.readyState === 'complete' && 
+                        (iframeDoc.body.innerHTML.includes("error") || 
+                         iframeDoc.body.innerHTML.includes("404") || 
+                         iframeDoc.body.innerHTML.trim() === "")) {
+                        showChannelError();
+                    }
+                } catch (e) {
+                    // Não é possível acessar o conteúdo do iframe
+                    console.log("Verificação de erro não pode ser concluída");
+                }
+            }, 5000); // Verifica após 5 segundos
         }
     }
 
