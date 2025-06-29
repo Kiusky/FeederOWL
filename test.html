@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁">
@@ -457,8 +457,8 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+
+
     <div class="blocking-overlay" id="blockingOverlay"></div>
 
     <!-- Popup AdGuard -->
@@ -491,22 +491,32 @@
     </div>
 
     <div class="container" id="container-botoes">
-        <div class="botao-imagem" data-nome="combate" onclick="mostrarEmbed('combate')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Canal-combate-logo.png/960px-Canal-combate-logo.png" alt="COMBATE">
-        </div>
-    </div>
+<div class="botao-imagem" data-nome="combate" onclick="mostrarEmbed('combate')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Canal-combate-logo.png/960px-Canal-combate-logo.png" alt="COMBATE">
+</div>
+<div class="botao-imagem" data-nome="canalgoat" onclick="mostrarEmbed('canalgoat')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/F_Jf0NdWAAAa2Ld.png" alt="Canal GOAT">
+</div></div>
 
     <p class="sem-resultado">𝗔𝗤𝗨𝗜 𝗡𝗔𝗢 𝗧𝗘𝗠 𝗘𝗦𝗦𝗘 𝗖𝗔𝗡𝗔𝗟 𝗙𝗜𝗟𝗛𝗢 𝗗𝗔 𝗣𝗨𝗧𝗔 ⵑ</p>
 
-    <div id="embed-combate" class="embed-container">
-        <iframe id="iframe-combate" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
-        <div class="embed-buttons">
-            <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
-            <button class="help-embed" onclick="showChannelError()">Ajuda</button>
-        </div>
-    </div>
+    
 
-    <div class="overlay" id="overlay"></div>
+    
+<div id="embed-combate" class="embed-container">
+    <iframe id="iframe-combate" src="https://embedcanaistv.com/combate/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-canalgoat" class="embed-container">
+    <iframe id="iframe-canalgoat" src="https://embedcanaistv.com/canalgoat/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('canalgoat')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div><div class="overlay" id="overlay"></div>
 
     <div class="search-container" id="search-container">
         <input type="text" id="campo-busca" placeholder="Tenta achar por aqui cego do caralho...">
@@ -736,5 +746,4 @@
             }
         });
     </script>
-</body>
-</html>
+
