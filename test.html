@@ -692,6 +692,26 @@
             closeChannelError();
         }
 
+		function ajustarAlturaEmbed() {
+    const embeds = document.querySelectorAll('.embed-container');
+    embeds.forEach(embed => {
+        if (embed.classList.contains('active-embed')) {
+            const alturaJanela = window.innerHeight;
+            const alturaMaxima = alturaJanela * 0.9; // 90% da altura da janela
+            embed.style.height = `${alturaMaxima}px`;
+        }
+    });
+}
+
+// Chamar a função quando a janela for redimensionada
+window.addEventListener('resize', ajustarAlturaEmbed);
+
+// Chamar também quando um embed for aberto
+function mostrarEmbed(tipo) {
+    // ... seu código existente ...
+    ajustarAlturaEmbed();
+}
+
         function showChannelError() {
             document.getElementById('channelErrorPopup').style.display = 'block';
             document.getElementById('blockingOverlay').style.display = 'block';
