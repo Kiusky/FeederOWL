@@ -2,7 +2,7 @@
 
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁">
     <meta property="og:description" content="Somos uma comunidade online na Steam e Discord, reunindo jogadores para partidas em grupo. Oferecemos anúncios de jogos grátis, ofertas imperdíveis e fórum para discussões e soluções. Junte-se a nós para encontrar companheiros de equipe e aproveitar a diversão dos jogos em grupo!">
     <meta property="og:image" content="https://feederowl.com/img/feederowl/logo%20database.gif">
@@ -32,6 +32,16 @@
             padding: 20px;
             flex: 1;
         }
+
+    .channel-name {
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        color: #C0C0C0;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 12px;
+        text-shadow: 1px 1px 2px rgba(0,0,0);
+    }
 
         .botao-imagem {
             position: relative;
@@ -115,9 +125,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 90%;
-			max-width: 800px;
-			height: 80vh;
+            width: 95%;
+            max-width: 800px;
+            height: auto;
+            max-height: 80vh;
+            aspect-ratio: 16/9;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(255, 255, 255);
@@ -197,6 +209,7 @@
         iframe {
             width: 100%;
             height: calc(100% - 50px);
+            min-height: 300px;
             border: none;
         }
 
@@ -431,17 +444,22 @@
                 height: 150px;
             }
 
-            iframe {
-                height: 300px;
+            .embed-container {
+                width: 98%;
+                max-height: 70vh;
+            }
+
+            .embed-buttons {
+                padding: 5px;
+            }
+            
+            .close-embed, .help-embed {
+                padding: 6px 10px;
+                font-size: 12px;
             }
 
             #campo-busca.active {
                 width: 250px;
-            }
-
-            .embed-container {
-                width: 95%;
-                max-height: 80vh;
             }
             
             .search-container {
@@ -455,13 +473,39 @@
                 gap: 10px;
             }
         }
+
+        @media (max-width: 480px) {
+            .embed-container {
+                width: 98%;
+                max-height: 60vh;
+            }
+            
+            iframe {
+                min-height: 250px;
+            }
+            
+            .search-button {
+                width: 50px;
+                height: 50px;
+            }
+            
+            #campo-busca {
+                bottom: 60px;
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+			
+            
+            #campo-busca.active {
+                width: 220px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
     <div class="blocking-overlay" id="blockingOverlay"></div>
 
-    <!-- Popup AdGuard -->
     <div class="adguard-popup" id="adguardPopup">
         <h2>🛡️</h2>
         <p>Para uma experiência ideal ao navegar na internet, recomendamos instalar a extensão AdGuard. Isso ajudará a bloquear todos os anúncios, protege sua privacidade e acelera sua navegação.</p>
@@ -475,7 +519,6 @@
         <span class="dont-show-again" onclick="dontShowAgain()">NAO MOSTRAR NOVAMENTE</span>
     </div>
 
-    <!-- Popup de Erro de Canal -->
     <div class="channel-error-popup" id="channelErrorPopup">
         <h2>⚠️</h2>
         <p>Se caso os canais não estão funcionando por algum motivo ou o seu provedor de internet esteja bloqueando o sinal. Você pode tentar:</p>
@@ -493,27 +536,29 @@
     <div class="container" id="container-botoes">
 <div class="botao-imagem" data-nome="combate" onclick="mostrarEmbed('combate')">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Canal-combate-logo.png/960px-Canal-combate-logo.png" alt="COMBATE">
+    <div class="channel-name">COMBATE</div>
 </div>
-<div class="botao-imagem" data-nome="canalgoat" onclick="mostrarEmbed('canalgoat')">
-    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/F_Jf0NdWAAAa2Ld.png" alt="Canal GOAT">
+<div class="botao-imagem" data-nome="amazonprimevideo" onclick="mostrarEmbed('amazonprimevideo')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/Prime_Video.png" alt="VIDEO PRIME">
+    <div class="channel-name">VIDEO PRIME</div>
 </div></div>
 
-    <p class="sem-resultado">𝗔𝗤𝗨𝗜 𝗡𝗔𝗢 𝗧𝗘𝗠 𝗘𝗦𝗦𝗘 𝗖𝗔𝗡𝗔𝗟 𝗙𝗜𝗟𝗛𝗢 𝗗𝗔 𝗣𝗨𝗧𝗔 ⵑ</p>
+    
 
     
 
     
 <div id="embed-combate" class="embed-container">
-    <iframe id="iframe-combate" src="https://embedcanaistv.com/combate/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <iframe id="iframe-combate" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
     <div class="embed-buttons">
         <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
         <button class="help-embed" onclick="showChannelError()">Ajuda</button>
     </div>
 </div>
-<div id="embed-canalgoat" class="embed-container">
-    <iframe id="iframe-canalgoat" src="https://embedcanaistv.com/canalgoat/" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+<div id="embed-amazonprimevideo" class="embed-container">
+    <iframe id="iframe-amazonprimevideo" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
     <div class="embed-buttons">
-        <button class="close-embed" onclick="fecharEmbed('canalgoat')">Fechar</button>
+        <button class="close-embed" onclick="fecharEmbed('amazonprimevideo')">Fechar</button>
         <button class="help-embed" onclick="showChannelError()">Ajuda</button>
     </div>
 </div><div class="overlay" id="overlay"></div>
@@ -623,8 +668,17 @@
             const iframe = document.getElementById(`iframe-${tipo}`);
             
             if (embed && iframe) {
+                if (window.innerWidth <= 768) {
+                    embed.style.width = '98%';
+                    embed.style.maxHeight = '70vh';
+                }
+                
                 iframe.src = `https://embedcanaistv.com/${tipo}/`;
                 embed.classList.add('active-embed');
+                
+                setTimeout(() => {
+                    iframe.focus();
+                }, 100);
             }
         }
 
@@ -639,6 +693,9 @@
             if (embed && iframe) {
                 iframe.src = 'about:blank';
                 embed.classList.remove('active-embed');
+                
+                embed.style.width = '';
+                embed.style.maxHeight = '';
             }
             
             closeChannelError();
