@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁">
@@ -32,6 +32,16 @@
             padding: 20px;
             flex: 1;
         }
+
+    .channel-name {
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        color: #C0C0C0;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 12px;
+        text-shadow: 1px 1px 2px rgba(0,0,0);
+    }
 
         .botao-imagem {
             position: relative;
@@ -127,14 +137,6 @@
             background-color: #333333;
         }
 
-        .embed-inner-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
         .active-embed {
             display: block;
         }
@@ -146,7 +148,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85);
+            background-color: rgba(0,0,0,0.7);
             z-index: 999;
             pointer-events: none;
         }
@@ -160,8 +162,6 @@
             justify-content: space-between;
             padding: 10px;
             background-color: #333333;
-            position: relative;
-            z-index: 2;
         }
 
         .close-embed {
@@ -208,8 +208,8 @@
 
         iframe {
             width: 100%;
-            flex-grow: 1;
-            min-height: 200px;
+            height: calc(100% - 50px);
+            min-height: 300px;
             border: none;
         }
 
@@ -450,12 +450,12 @@
             }
 
             .embed-buttons {
-                padding: 8px;
+                padding: 5px;
             }
             
             .close-embed, .help-embed {
-                padding: 8px 12px;
-                font-size: 14px;
+                padding: 6px 10px;
+                font-size: 12px;
             }
 
             #campo-busca.active {
@@ -481,16 +481,7 @@
             }
             
             iframe {
-                min-height: 180px;
-            }
-            
-            .embed-buttons {
-                padding: 6px;
-            }
-            
-            .close-embed, .help-embed {
-                padding: 6px 10px;
-                font-size: 12px;
+                min-height: 250px;
             }
             
             .search-button {
@@ -503,6 +494,7 @@
                 padding: 10px 15px;
                 font-size: 14px;
             }
+			
             
             #campo-busca.active {
                 width: 220px;
@@ -510,11 +502,10 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+
+
     <div class="blocking-overlay" id="blockingOverlay"></div>
 
-    <!-- Popup AdGuard -->
     <div class="adguard-popup" id="adguardPopup">
         <h2>🛡️</h2>
         <p>Para uma experiência ideal ao navegar na internet, recomendamos instalar a extensão AdGuard. Isso ajudará a bloquear todos os anúncios, protege sua privacidade e acelera sua navegação.</p>
@@ -528,7 +519,6 @@
         <span class="dont-show-again" onclick="dontShowAgain()">NAO MOSTRAR NOVAMENTE</span>
     </div>
 
-    <!-- Popup de Erro de Canal -->
     <div class="channel-error-popup" id="channelErrorPopup">
         <h2>⚠️</h2>
         <p>Se caso os canais não estão funcionando por algum motivo ou o seu provedor de internet esteja bloqueando o sinal. Você pode tentar:</p>
@@ -544,24 +534,504 @@
     </div>
 
     <div class="container" id="container-botoes">
-        <div class="botao-imagem" data-nome="combate" onclick="mostrarEmbed('combate')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Canal-combate-logo.png/960px-Canal-combate-logo.png" alt="COMBATE">
-        </div>
-    </div>
+<div class="botao-imagem" data-nome="combate" onclick="mostrarEmbed('combate')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Canal-combate-logo.png/960px-Canal-combate-logo.png" alt="COMBATE">
+    <div class="channel-name">COMBATE</div>
+</div>
+<div class="botao-imagem" data-nome="amazonprimevideo" onclick="mostrarEmbed('amazonprimevideo')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/Prime_Video.png" alt="PRIME VIDEO">
+    <div class="channel-name">PRIME VIDEO</div>
+</div>
+<div class="botao-imagem" data-nome="bandsports" onclick="mostrarEmbed('bandsports')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/EuPvzJe.png" alt="BAND SPORTS">
+    <div class="channel-name">BAND SPORTS</div>
+</div>
+<div class="botao-imagem" data-nome="canalgoat" onclick="mostrarEmbed('canalgoat')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/F_Jf0NdWAAAa2Ld.png" alt="GOAT">
+    <div class="channel-name">GOAT</div>
+</div>
+<div class="botao-imagem" data-nome="cazetv" onclick="mostrarEmbed('cazetv')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/Perfil-casimito.webp" alt="TV CAZÈ">
+    <div class="channel-name">TV CAZÈ</div>
+</div>
+<div class="botao-imagem" data-nome="dazn" onclick="mostrarEmbed('dazn')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/DAZN_BoxedLogo_01_RGB.png" alt="DAZN">
+    <div class="channel-name">DAZN</div>
+</div>
+<div class="botao-imagem" data-nome="disneyplus" onclick="mostrarEmbed('disneyplus')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/logo-disneyplus-1024.png" alt="DISNEY +">
+    <div class="channel-name">DISNEY +</div>
+</div>
+<div class="botao-imagem" data-nome="espn" onclick="mostrarEmbed('espn')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/ESPN_wordmark.svg_.png" alt="ESPN">
+    <div class="channel-name">ESPN</div>
+</div>
+<div class="botao-imagem" data-nome="espn2" onclick="mostrarEmbed('espn2')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/ESPN_wordmark.svg_.png" alt="ESPN 2">
+    <div class="channel-name">ESPN 2</div>
+</div>
+<div class="botao-imagem" data-nome="espn3" onclick="mostrarEmbed('espn3')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/ESPN_wordmark.svg_.png" alt="ESPN 3">
+    <div class="channel-name">ESPN 3</div>
+</div>
+<div class="botao-imagem" data-nome="espn4" onclick="mostrarEmbed('espn4')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/ESPN_wordmark.svg_.png" alt="ESPN 4">
+    <div class="channel-name">ESPN 4</div>
+</div>
+<div class="botao-imagem" data-nome="espn5" onclick="mostrarEmbed('espn5')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/ESPN_wordmark.svg_.png" alt="ESPN 5">
+    <div class="channel-name">ESPN 5</div>
+</div>
+<div class="botao-imagem" data-nome="espn6" onclick="mostrarEmbed('espn6')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/ESPN_wordmark.svg_.png" alt="ESPN 6">
+    <div class="channel-name">ESPN 6</div>
+</div>
+<div class="botao-imagem" data-nome="max" onclick="mostrarEmbed('max')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/Max_logo.svg_.png" alt="MAX">
+    <div class="channel-name">MAX</div>
+</div>
+<div class="botao-imagem" data-nome="nossofutebol" onclick="mostrarEmbed('nossofutebol')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/fe1ae9abc45d5d2c7f6cf83e0c76ac7b.webp" alt="NOSSO FUTEBOL">
+    <div class="channel-name">NOSSO FUTEBOL</div>
+</div>
+<div class="botao-imagem" data-nome="paramountplus" onclick="mostrarEmbed('paramountplus')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/paramount-plus-logo-0-scaled.png" alt="PARAMOUNT +">
+    <div class="channel-name">PARAMOUNT +</div>
+</div>
+<div class="botao-imagem" data-nome="premiereclubes" onclick="mostrarEmbed('premiereclubes')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/premiere.png" alt="PREMIERE CLUBES">
+    <div class="channel-name">PREMIERE CLUBES</div>
+</div>
+<div class="botao-imagem" data-nome="premiere2" onclick="mostrarEmbed('premiere2')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/premiere.png" alt="PREMIERE 2">
+    <div class="channel-name">PREMIERE 2</div>
+</div>
+<div class="botao-imagem" data-nome="premiere3" onclick="mostrarEmbed('premiere3')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/premiere.png" alt="PREMIERE 3">
+    <div class="channel-name">PREMIERE 3</div>
+</div>
+<div class="botao-imagem" data-nome="premiere4" onclick="mostrarEmbed('premiere4')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/premiere.png" alt="PREMIERE 4">
+    <div class="channel-name">PREMIERE 4</div>
+</div>
+<div class="botao-imagem" data-nome="premiere5" onclick="mostrarEmbed('premiere5')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/premiere.png" alt="PREMIERE 5">
+    <div class="channel-name">PREMIERE 5</div>
+</div>
+<div class="botao-imagem" data-nome="premiere6" onclick="mostrarEmbed('premiere6')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/premiere.png" alt="PREMIERE 6">
+    <div class="channel-name">PREMIERE 6</div>
+</div>
+<div class="botao-imagem" data-nome="premiere7" onclick="mostrarEmbed('premiere7')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/premiere.png" alt="PREMIERE 7">
+    <div class="channel-name">PREMIERE 7</div>
+</div>
+<div class="botao-imagem" data-nome="premiere8" onclick="mostrarEmbed('premiere8')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/premiere.png" alt="PREMIERE 8">
+    <div class="channel-name">PREMIERE 8</div>
+</div>
+<div class="botao-imagem" data-nome="sporttvportugal1" onclick="mostrarEmbed('sporttvportugal1')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/Sport_TV1_2023.png" alt="SPORT TV PORTUGAL 1">
+    <div class="channel-name">SPORT TV PORTUGAL 1</div>
+</div>
+<div class="botao-imagem" data-nome="sporttvportugal2" onclick="mostrarEmbed('sporttvportugal2')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/Sport_TV2_2023.png" alt="SPORT TV PORTUGAL 2">
+    <div class="channel-name">SPORT TV PORTUGAL 2</div>
+</div>
+<div class="botao-imagem" data-nome="sporttvportugal3" onclick="mostrarEmbed('sporttvportugal3')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/Sport_TV3_2023.png" alt="SPORT TV PORTUGAL 3">
+    <div class="channel-name">SPORT TV PORTUGAL 3</div>
+</div>
+<div class="botao-imagem" data-nome="sporttvportugal4" onclick="mostrarEmbed('sporttvportugal4')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/Sport_TV4_2023.png" alt="SPORT TV PORTUGAL 4">
+    <div class="channel-name">SPORT TV PORTUGAL 4</div>
+</div>
+<div class="botao-imagem" data-nome="sporttvportugal5" onclick="mostrarEmbed('sporttvportugal5')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/Sport_TV5_2023.png" alt="SPORT TV PORTUGAL 5">
+    <div class="channel-name">SPORT TV PORTUGAL 5</div>
+</div>
+<div class="botao-imagem" data-nome="sportv" onclick="mostrarEmbed('sportv')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/SporTV_2021.png" alt="SPORTV">
+    <div class="channel-name">SPORTV</div>
+</div>
+<div class="botao-imagem" data-nome="sportv2" onclick="mostrarEmbed('sportv2')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/SporTV2_2021.png" alt="SPORTV 2">
+    <div class="channel-name">SPORTV 2</div>
+</div>
+<div class="botao-imagem" data-nome="sportv3" onclick="mostrarEmbed('sportv3')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/SporTV3_2021.png" alt="SPORTV 3">
+    <div class="channel-name">SPORTV 3</div>
+</div>
+<div class="botao-imagem" data-nome="starplus" onclick="mostrarEmbed('starplus')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/Star_logo.svg_.png" alt="STAR +">
+    <div class="channel-name">STAR +</div>
+</div>
+<div class="botao-imagem" data-nome="tnt" onclick="mostrarEmbed('tnt')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/TNT_Logo_2016.svg_.png" alt="TNT">
+    <div class="channel-name">TNT</div>
+</div>
+<div class="botao-imagem" data-nome="ufcfightpass" onclick="mostrarEmbed('ufcfightpass')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/UFC_Fight_Pass_Logo.svg_.png" alt="UFC FIGHT PASS">
+    <div class="channel-name">UFC FIGHT PASS</div>
+</div>
+<div class="botao-imagem" data-nome="bandsp" onclick="mostrarEmbed('bandsp')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/band.png" alt="BAND SP">
+    <div class="channel-name">BAND SP</div>
+</div>
+<div class="botao-imagem" data-nome="globomg" onclick="mostrarEmbed('globomg')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/TVGlobo2025.webp" alt="GLOBO MG">
+    <div class="channel-name">GLOBO MG</div>
+</div>
+<div class="botao-imagem" data-nome="globorj" onclick="mostrarEmbed('globorj')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/TVGlobo2025.webp" alt="GLOBO RJ">
+    <div class="channel-name">GLOBO RJ</div>
+</div>
+<div class="botao-imagem" data-nome="globosp" onclick="mostrarEmbed('globosp')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/TVGlobo2025.webp" alt="GLOBO SP">
+    <div class="channel-name">GLOBO SP</div>
+</div>
+<div class="botao-imagem" data-nome="recordrj" onclick="mostrarEmbed('recordrj')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/record.png" alt="RECORD RJ">
+    <div class="channel-name">RECORD RJ</div>
+</div>
+<div class="botao-imagem" data-nome="recordsp" onclick="mostrarEmbed('recordsp')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/record.png" alt="RECORD SP">
+    <div class="channel-name">RECORD SP</div>
+</div>
+<div class="botao-imagem" data-nome="redetv" onclick="mostrarEmbed('redetv')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/redetv.png" alt="REDE TV">
+    <div class="channel-name">REDE TV</div>
+</div>
+<div class="botao-imagem" data-nome="redevida" onclick="mostrarEmbed('redevida')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/mP1qfp2.png" alt="REDE VIDA">
+    <div class="channel-name">REDE VIDA</div>
+</div>
+<div class="botao-imagem" data-nome="sbtsp" onclick="mostrarEmbed('sbtsp')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/sbt.png" alt="SBT SP">
+    <div class="channel-name">SBT SP</div>
+</div>
+<div class="botao-imagem" data-nome="tvcultura" onclick="mostrarEmbed('tvcultura')">
+    <img src="https://embedcanaistv.com/wp-content/uploads/2025/06/hcApLfE.png" alt="TV CULTURA">
+    <div class="channel-name">TV CULTURA</div>
+</div></div>
 
     <p class="sem-resultado">𝗔𝗤𝗨𝗜 𝗡𝗔𝗢 𝗧𝗘𝗠 𝗘𝗦𝗦𝗘 𝗖𝗔𝗡𝗔𝗟 𝗙𝗜𝗟𝗛𝗢 𝗗𝗔 𝗣𝗨𝗧𝗔 ⵑ</p>
 
-    <div id="embed-combate" class="embed-container">
-        <div class="embed-inner-container">
-            <iframe id="iframe-combate" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
-            <div class="embed-buttons">
-                <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
-                <button class="help-embed" onclick="showChannelError()">Ajuda</button>
-            </div>
-        </div>
+<div id="embed-combate" class="embed-container">
+    <iframe id="iframe-combate" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
     </div>
-
-    <div class="overlay" id="overlay"></div>
+</div>
+<div id="embed-amazonprimevideo" class="embed-container">
+    <iframe id="iframe-amazonprimevideo" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('amazonprimevideo')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-bandsports" class="embed-container">
+    <iframe id="iframe-bandsports" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('bandsports')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-canalgoat" class="embed-container">
+    <iframe id="iframe-canalgoat" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('canalgoat')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-cazetv" class="embed-container">
+    <iframe id="iframe-cazetv" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('cazetv')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-dazn" class="embed-container">
+    <iframe id="iframe-dazn" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('dazn')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-disneyplus" class="embed-container">
+    <iframe id="iframe-disneyplus" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('disneyplus')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-espn" class="embed-container">
+    <iframe id="iframe-espn" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('espn')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-espn2" class="embed-container">
+    <iframe id="iframe-espn2" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('espn2')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-espn3" class="embed-container">
+    <iframe id="iframe-espn3" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('espn3')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-espn4" class="embed-container">
+    <iframe id="iframe-espn4" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('espn4')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-espn5" class="embed-container">
+    <iframe id="iframe-espn5" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('espn5')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-espn6" class="embed-container">
+    <iframe id="iframe-espn6" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('espn6')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-max" class="embed-container">
+    <iframe id="iframe-max" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('max')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-nossofutebol" class="embed-container">
+    <iframe id="iframe-nossofutebol" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('nossofutebol')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-paramountplus" class="embed-container">
+    <iframe id="iframe-paramountplus" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('paramountplus')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-premiereclubes" class="embed-container">
+    <iframe id="iframe-premiereclubes" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('premiereclubes')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-premiere2" class="embed-container">
+    <iframe id="iframe-premiere2" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('premiere2')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-premiere3" class="embed-container">
+    <iframe id="iframe-premiere3" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('premiere3')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-premiere4" class="embed-container">
+    <iframe id="iframe-premiere4" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('premiere4')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-premiere5" class="embed-container">
+    <iframe id="iframe-premiere5" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('premiere5')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-premiere6" class="embed-container">
+    <iframe id="iframe-premiere6" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('premiere6')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-premiere7" class="embed-container">
+    <iframe id="iframe-premiere7" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('premiere7')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-premiere8" class="embed-container">
+    <iframe id="iframe-premiere8" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('premiere8')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-sporttvportugal1" class="embed-container">
+    <iframe id="iframe-sporttvportugal1" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('sporttvportugal1')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-sporttvportugal2" class="embed-container">
+    <iframe id="iframe-sporttvportugal2" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('sporttvportugal2')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-sporttvportugal3" class="embed-container">
+    <iframe id="iframe-sporttvportugal3" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('sporttvportugal3')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-sporttvportugal4" class="embed-container">
+    <iframe id="iframe-sporttvportugal4" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('sporttvportugal4')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-sporttvportugal5" class="embed-container">
+    <iframe id="iframe-sporttvportugal5" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('sporttvportugal5')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-sportv" class="embed-container">
+    <iframe id="iframe-sportv" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('sportv')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-sportv2" class="embed-container">
+    <iframe id="iframe-sportv2" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('sportv2')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-sportv3" class="embed-container">
+    <iframe id="iframe-sportv3" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('sportv3')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-starplus" class="embed-container">
+    <iframe id="iframe-starplus" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('starplus')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-tnt" class="embed-container">
+    <iframe id="iframe-tnt" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('tnt')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-ufcfightpass" class="embed-container">
+    <iframe id="iframe-ufcfightpass" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('ufcfightpass')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-bandsp" class="embed-container">
+    <iframe id="iframe-bandsp" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('bandsp')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-globomg" class="embed-container">
+    <iframe id="iframe-globomg" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('globomg')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-globorj" class="embed-container">
+    <iframe id="iframe-globorj" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('globorj')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-globosp" class="embed-container">
+    <iframe id="iframe-globosp" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('globosp')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-recordrj" class="embed-container">
+    <iframe id="iframe-recordrj" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('recordrj')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-recordsp" class="embed-container">
+    <iframe id="iframe-recordsp" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('recordsp')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-redetv" class="embed-container">
+    <iframe id="iframe-redetv" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('redetv')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-redevida" class="embed-container">
+    <iframe id="iframe-redevida" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('redevida')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-sbtsp" class="embed-container">
+    <iframe id="iframe-sbtsp" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('sbtsp')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>
+<div id="embed-tvcultura" class="embed-container">
+    <iframe id="iframe-tvcultura" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('tvcultura')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div><div class="overlay" id="overlay"></div>
 
     <div class="search-container" id="search-container">
         <input type="text" id="campo-busca" placeholder="Tenta achar por aqui cego do caralho...">
@@ -668,22 +1138,14 @@
             const iframe = document.getElementById(`iframe-${tipo}`);
             
             if (embed && iframe) {
-                // Ajustes específicos para mobile
                 if (window.innerWidth <= 768) {
                     embed.style.width = '98%';
-                    embed.style.maxHeight = '80vh';
-                    
-                    // Garante que os botões sejam visíveis
-                    const buttons = embed.querySelector('.embed-buttons');
-                    if (buttons) {
-                        buttons.style.display = 'flex';
-                    }
+                    embed.style.maxHeight = '70vh';
                 }
                 
                 iframe.src = `https://embedcanaistv.com/${tipo}/`;
                 embed.classList.add('active-embed');
                 
-                // Foco no iframe para melhor experiência mobile
                 setTimeout(() => {
                     iframe.focus();
                 }, 100);
@@ -702,7 +1164,6 @@
                 iframe.src = 'about:blank';
                 embed.classList.remove('active-embed');
                 
-                // Resetar estilos específicos
                 embed.style.width = '';
                 embed.style.maxHeight = '';
             }
@@ -812,5 +1273,4 @@
             }
         });
     </script>
-</body>
-</html>
+
