@@ -127,6 +127,14 @@
             background-color: #333333;
         }
 
+        .embed-inner-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
         .active-embed {
             display: block;
         }
@@ -152,6 +160,8 @@
             justify-content: space-between;
             padding: 10px;
             background-color: #333333;
+            position: relative;
+            z-index: 2;
         }
 
         .close-embed {
@@ -198,8 +208,8 @@
 
         iframe {
             width: 100%;
-            height: calc(100% - 50px);
-            min-height: 300px;
+            flex-grow: 1;
+            min-height: 200px;
             border: none;
         }
 
@@ -440,12 +450,12 @@
             }
 
             .embed-buttons {
-                padding: 5px;
+                padding: 8px;
             }
             
             .close-embed, .help-embed {
-                padding: 6px 10px;
-                font-size: 12px;
+                padding: 8px 12px;
+                font-size: 14px;
             }
 
             #campo-busca.active {
@@ -471,7 +481,16 @@
             }
             
             iframe {
-                min-height: 250px;
+                min-height: 180px;
+            }
+            
+            .embed-buttons {
+                padding: 6px;
+            }
+            
+            .close-embed, .help-embed {
+                padding: 6px 10px;
+                font-size: 12px;
             }
             
             .search-button {
@@ -533,10 +552,12 @@
     <p class="sem-resultado">𝗔𝗤𝗨𝗜 𝗡𝗔𝗢 𝗧𝗘𝗠 𝗘𝗦𝗦𝗘 𝗖𝗔𝗡𝗔𝗟 𝗙𝗜𝗟𝗛𝗢 𝗗𝗔 𝗣𝗨𝗧𝗔 ⵑ</p>
 
     <div id="embed-combate" class="embed-container">
-        <iframe id="iframe-combate" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
-        <div class="embed-buttons">
-            <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
-            <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+        <div class="embed-inner-container">
+            <iframe id="iframe-combate" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
+            <div class="embed-buttons">
+                <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
+                <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+            </div>
         </div>
     </div>
 
@@ -650,7 +671,13 @@
                 // Ajustes específicos para mobile
                 if (window.innerWidth <= 768) {
                     embed.style.width = '98%';
-                    embed.style.maxHeight = '70vh';
+                    embed.style.maxHeight = '80vh';
+                    
+                    // Garante que os botões sejam visíveis
+                    const buttons = embed.querySelector('.embed-buttons');
+                    if (buttons) {
+                        buttons.style.display = 'flex';
+                    }
                 }
                 
                 iframe.src = `https://embedcanaistv.com/${tipo}/`;
