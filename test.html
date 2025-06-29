@@ -116,8 +116,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
+			max-width: 800px;
+			height: 80vh;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(255, 255, 255);
@@ -145,6 +145,13 @@
             display: block;
         }
 
+        .embed-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #333333;
+        }
+
         .close-embed {
             background-color: #f44336;
             color: white;
@@ -152,10 +159,23 @@
             padding: 8px 15px;
             border-radius: 5px;
             cursor: default !important;
-            margin: 10px auto;
-            display: block;
             font-size: 14px;
             transition: all 0.3s;
+            flex-grow: 1;
+            margin-right: 5px;
+        }
+
+        .help-embed {
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: default !important;
+            font-size: 12px;
+            transition: all 0.3s;
+            flex-grow: 0;
+            margin-left: 5px;
         }
 
         .close-embed:hover {
@@ -164,13 +184,19 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        .close-embed:active {
+        .help-embed:hover {
+            background-color: #e69500;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .close-embed:active, .help-embed:active {
             transform: scale(0.95);
         }
 
         iframe {
             width: 100%;
-            height: 450px;
+            height: calc(100% - 50px);
             border: none;
         }
 
@@ -452,7 +478,7 @@
     <!-- Popup de Erro de Canal -->
     <div class="channel-error-popup" id="channelErrorPopup">
         <h2>⚠️</h2>
-        <p>Parece que os canais não está funcionando por algum motivo ou seu provedor de internet esteja bloqueando o sinal. Voce pode tentar:</p>
+        <p>Se caso os canais não estão funcionando por algum motivo ou o seu provedor de internet esteja bloqueando o sinal. Você pode tentar:</p>
         <ul>
             <li>Recarregar a página</li>
             <li>Verificar sua conexão com a internet</li>
@@ -474,7 +500,10 @@
 
     <div id="embed-combate" class="embed-container">
         <iframe id="iframe-combate" src="about:blank" allow="encrypted-media" allowfullscreen="" frameborder="0"></iframe>
-        <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
+        <div class="embed-buttons">
+            <button class="close-embed" onclick="fecharEmbed('combate')">Fechar</button>
+            <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+        </div>
     </div>
 
     <div class="overlay" id="overlay"></div>
@@ -488,9 +517,6 @@
 
     <script>
         let embedAberto = false;
-        let currentCheckInterval = null;
-        let playerLoaded = false;
-        let errorDetected = false;
 
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
@@ -587,15 +613,8 @@
             const iframe = document.getElementById(`iframe-${tipo}`);
             
             if (embed && iframe) {
-                // Reseta completamente o iframe
-                iframe.src = 'about:blank';
-                setTimeout(() => {
-                    iframe.src = `https://embedcanaistv.com/${tipo}/`;
-                    embed.classList.add('active-embed');
-                    
-                    // Inicia a verificação
-                    currentCheckInterval = verificarEmbed(tipo);
-                }, 100);
+                iframe.src = `https://embedcanaistv.com/${tipo}/`;
+                embed.classList.add('active-embed');
             }
         }
 
@@ -612,17 +631,6 @@
                 embed.classList.remove('active-embed');
             }
             
-            // Limpa o intervalo de verificação
-            if (currentCheckInterval) {
-                clearInterval(currentCheckInterval);
-                currentCheckInterval = null;
-            }
-            
-            // Reseta os estados
-            playerLoaded = false;
-            errorDetected = false;
-            
-            // Fecha o popup de erro se estiver aberto
             closeChannelError();
         }
 
@@ -645,70 +653,6 @@
 
         function reloadPage() {
             window.location.reload();
-        }
-
-        function verificarEmbed(tipo) {
-            const iframe = document.getElementById(`iframe-${tipo}`);
-            if (!iframe) return;
-
-            playerLoaded = false;
-            errorDetected = false;
-
-            function checkPlayer() {
-                try {
-                    // Verifica se existe um elemento de vídeo ou player no iframe
-                    if (iframe.contentDocument && 
-                        iframe.contentDocument.querySelector('video, embed, object, iframe')) {
-                        return true;
-                    }
-                    
-                    // Verifica se o conteúdo não contém mensagens de erro
-                    if (iframe.contentDocument.body.innerHTML.includes('error') || 
-                        iframe.contentDocument.body.innerHTML.includes('404') || 
-                        iframe.contentDocument.body.innerHTML.trim() === '') {
-                        return false;
-                    }
-                    
-                    return true;
-                } catch (e) {
-                    // Se houver erro de CORS, considera que carregou se a URL não for about:blank
-                    return iframe.src && iframe.src !== 'about:blank';
-                }
-            }
-
-            // Primeira verificação após 3 segundos
-            setTimeout(() => {
-                if (checkPlayer()) {
-                    playerLoaded = true;
-                } else if (!errorDetected) {
-                    errorDetected = true;
-                    showChannelError();
-                }
-            }, 3000);
-
-            // Verificação contínua a cada segundo
-            currentCheckInterval = setInterval(() => {
-                if (playerLoaded || errorDetected) {
-                    clearInterval(currentCheckInterval);
-                    return;
-                }
-                
-                if (checkPlayer()) {
-                    playerLoaded = true;
-                    clearInterval(currentCheckInterval);
-                } else {
-                    // Verificação final após 5 segundos no total
-                    setTimeout(() => {
-                        if (!playerLoaded && !errorDetected) {
-                            errorDetected = true;
-                            showChannelError();
-                            clearInterval(currentCheckInterval);
-                        }
-                    }, 2000);
-                }
-            }, 1000);
-
-            return currentCheckInterval;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
