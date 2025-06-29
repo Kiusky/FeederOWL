@@ -92,6 +92,7 @@
         textarea {
             min-height: 200px;
             font-family: monospace;
+            resize: vertical;
         }
 
         button {
@@ -103,17 +104,23 @@
             font-size: 16px;
             margin-right: 10px;
             margin-top: 10px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         button:hover {
             opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
         }
 
         .button-group {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .primary-btn {
@@ -155,60 +162,84 @@
             transition: border-color 0.3s;
         }
 
+        .section:last-child {
+            border-bottom: none;
+        }
+
         .section-title {
             font-size: 18px;
             color: var(--text-color);
             margin-bottom: 15px;
+            font-weight: bold;
         }
 
         .channel-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
 
         .channel-item {
             background-color: var(--channel-bg);
-            padding: 10px;
-            border-radius: 4px;
+            padding: 15px;
+            border-radius: 6px;
             border: 1px solid var(--border-color);
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .channel-item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
         }
 
         .channel-item img {
             max-width: 100%;
             height: auto;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            align-self: center;
         }
 
         .channel-name {
             font-weight: bold;
-            word-break: break-all;
+            word-break: break-word;
+            margin-bottom: 5px;
+        }
+
+        .channel-info {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--text-color);
+            opacity: 0.8;
         }
 
         .channel-buttons {
             display: flex;
-            gap: 5px;
-            margin-top: 5px;
+            gap: 8px;
+            margin-top: auto;
         }
 
         .channel-buttons button {
-            padding: 3px 6px;
-            font-size: 12px;
-            margin-top: 5px;
+            padding: 6px 10px;
+            font-size: 13px;
+            margin-top: 0;
             flex: 1;
         }
 
         .file-input-container {
             margin-bottom: 15px;
+            flex: 1;
         }
 
         .load-options {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 15px;
+            flex-wrap: wrap;
         }
 
         .theme-toggle {
@@ -225,10 +256,14 @@
             cursor: pointer;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             z-index: 1000;
+            border: none;
+            color: white;
+            font-size: 18px;
         }
 
         .theme-toggle:hover {
             background-color: var(--button-primary-hover);
+            transform: scale(1.1);
         }
 
         .modal {
@@ -246,27 +281,69 @@
 
         .modal-content {
             background-color: var(--panel-bg);
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
-            width: 80%;
+            width: 90%;
             max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .modal-title {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--text-color);
         }
 
         .modal-buttons {
             display: flex;
             justify-content: flex-end;
             gap: 10px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
-		
-		 .delete-btn {
-        background-color: var(--button-delete) !important;
-        padding: 3px 6px;
-        font-size: 12px;
-        margin-top: 5px;
-        color: white !important;
-    }
-	
+        
+        .delete-btn {
+            background-color: var(--button-delete) !important;
+            padding: 6px 10px;
+            font-size: 13px;
+            color: white !important;
+        }
+        
+        .delete-btn:hover {
+            background-color: var(--button-delete-hover) !important;
+        }
+
+        @media (max-width: 768px) {
+            .panel-container {
+                padding: 15px;
+            }
+            
+            .channel-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .load-options {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+        }
+
+        /* Adicionando animações suaves */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .channel-item {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        .modal-content {
+            animation: fadeIn 0.2s ease-out;
+        }
     </style>
 </head>
 <body>
@@ -274,20 +351,21 @@
         🌓
     </div>
 
+    <!-- Modal de Edição -->
     <div class="modal" id="edit-modal">
         <div class="modal-content">
-            <h2>Editar Canal</h2>
+            <h2 class="modal-title">Editar Canal</h2>
             <div class="form-group">
-                <label for="edit-nome-canal">(ID) Canal:</label>
-                <input type="text" id="edit-nome-canal">
+                <label for="edit-nome-canal">ID do Canal:</label>
+                <input type="text" id="edit-nome-canal" placeholder="Ex: combate">
             </div>
             <div class="form-group">
-                <label for="edit-nome-exibicao">Nome do Canal:</label>
-                <input type="text" id="edit-nome-exibicao">
+                <label for="edit-nome-exibicao">Nome de Exibição:</label>
+                <input type="text" id="edit-nome-exibicao" placeholder="Ex: COMBATE">
             </div>
             <div class="form-group">
-                <label for="edit-url-imagem">Imagem:</label>
-                <input type="text" id="edit-url-imagem">
+                <label for="edit-url-imagem">URL da Imagem:</label>
+                <input type="text" id="edit-url-imagem" placeholder="Ex: https://exemplo.com/logo.png">
             </div>
             <div class="modal-buttons">
                 <button id="cancel-edit" class="delete-btn">Cancelar</button>
@@ -299,67 +377,78 @@
     <div class="panel-container">
         <h1>Gerenciamento de Canais</h1>
         
+        <!-- Seção de Carregamento de HTML -->
         <div class="section">
-            <div class="section-title"></div>
+            <div class="section-title">Carregar HTML Existente</div>
             
             <div class="load-options">
                 <div class="file-input-container">
-                    <label for="file-input"></label>
+                    <label for="file-input">Carregar arquivo HTML:</label>
                     <input type="file" id="file-input" accept=".html,.htm">
                 </div>
                 
                 <div style="flex-grow: 1;">
-                    <label for="html-content"></label>
-                    <textarea id="html-content" placeholder=""></textarea>
+                    <label for="html-content">Ou cole o HTML aqui:</label>
+                    <textarea id="html-content" placeholder="Cole o conteúdo HTML aqui..."></textarea>
                 </div>
             </div>
             
-            <button id="load-html" class="primary-btn">Carregar HTML</button>
-            <button id="analyze-html" class="copy-btn">Mostrar Canais</button>
-        </div>
-        
-        <div class="section">
-            <div class="section-title"></div>
-            <div id="existing-channels" class="channel-list">
+            <div class="button-group">
+                <button id="load-html" class="primary-btn">Carregar HTML</button>
+                <button id="analyze-html" class="copy-btn">Analisar Canais</button>
             </div>
         </div>
         
+        <!-- Seção de Canais Existentes -->
+        <div class="section">
+            <div class="section-title">Canais Detectados</div>
+            <div id="existing-channels" class="channel-list">
+                <p>Nenhum canal carregado ainda. Carregue um HTML para começar.</p>
+            </div>
+        </div>
+        
+        <!-- Seção de Adição de Novo Canal -->
         <div class="section">
             <div class="section-title">Adicionar Novo Canal</div>
             <div class="form-group">
-                <label for="nome-canal">(ID) Canal:</label>
-                <input type="text" id="nome-canal" placeholder="">
+                <label for="nome-canal">ID do Canal (sem espaços ou caracteres especiais):</label>
+                <input type="text" id="nome-canal" placeholder="Ex: combate">
             </div>
             
             <div class="form-group">
-                <label for="nome-exibicao">Nome do Canal:</label>
-                <input type="text" id="nome-exibicao" placeholder="">
+                <label for="nome-exibicao">Nome de Exibição:</label>
+                <input type="text" id="nome-exibicao" placeholder="Ex: COMBATE">
             </div>
             
             <div class="form-group">
-                <label for="url-imagem">Imagem:</label>
-                <input type="text" id="url-imagem" placeholder="">
+                <label for="url-imagem">URL da Imagem:</label>
+                <input type="text" id="url-imagem" placeholder="Ex: https://exemplo.com/logo.png">
             </div>
             
             <button id="add-channel" class="primary-btn">Adicionar Canal</button>
         </div>
         
+        <!-- Seção de Saída HTML -->
         <div class="section">
-            <div class="section-title"></div>
+            <div class="section-title">HTML Gerado</div>
             <div class="form-group">
-                <label for="modified-html">HTML Pronto:</label>
+                <label for="modified-html">Código HTML pronto para uso:</label>
                 <textarea id="modified-html" readonly></textarea>
             </div>
-            <button id="copy-html" class="copy-btn">Copiar</button>
-            <button id="download-html" class="download-btn">Baixar</button>
+            <div class="button-group">
+                <button id="copy-html" class="copy-btn">Copiar HTML</button>
+                <button id="download-html" class="download-btn">Baixar HTML</button>
+            </div>
         </div>
     </div>
 
     <script>
+        // Variáveis globais
         let currentHTML = '';
         let channels = [];
         let currentEditIndex = -1;
         
+        // Elementos DOM
         const htmlContentTextarea = document.getElementById('html-content');
         const modifiedHTMLTextarea = document.getElementById('modified-html');
         const existingChannelsDiv = document.getElementById('existing-channels');
@@ -371,21 +460,28 @@
         const editUrlImagem = document.getElementById('edit-url-imagem');
         const cancelEditBtn = document.getElementById('cancel-edit');
         const saveEditBtn = document.getElementById('save-edit');
+        const nomeCanalInput = document.getElementById('nome-canal');
+        const nomeExibicaoInput = document.getElementById('nome-exibicao');
+        const urlImagemInput = document.getElementById('url-imagem');
         
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark-mode');
+        // Inicialização - Verifica preferência de tema
+        function initTheme() {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const savedTheme = localStorage.getItem('darkMode');
+            
+            if (savedTheme === 'true' || (savedTheme === null && prefersDark)) {
+                document.body.classList.add('dark-mode');
+            }
         }
         
+        // Alternar tema claro/escuro
         themeToggle.addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
             localStorage.setItem('darkMode', isDark);
         });
         
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-        }
-        
+        // Carregar arquivo HTML
         fileInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -397,38 +493,64 @@
             reader.readAsText(file);
         });
         
+        // Carregar HTML manualmente
         document.getElementById('load-html').addEventListener('click', function() {
-            currentHTML = htmlContentTextarea.value;
-            modifiedHTMLTextarea.value = currentHTML;
-        });
-        
-        document.getElementById('analyze-html').addEventListener('click', function() {
-            if (!currentHTML) {
+            if (!htmlContentTextarea.value.trim()) {
+                alert('Por favor, insira ou carregue um HTML primeiro!');
                 return;
             }
             
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = currentHTML;
-            
-            const channelButtons = tempDiv.querySelectorAll('.botao-imagem');
-            channels = [];
-            
-            channelButtons.forEach(button => {
-                const channelName = button.getAttribute('data-nome');
-                const imgElement = button.querySelector('img');
-                const channelAlt = imgElement ? imgElement.getAttribute('alt') : '';
-                const channelImg = imgElement ? imgElement.getAttribute('src') : '';
-                
-                channels.push({
-                    name: channelName,
-                    alt: channelAlt,
-                    img: channelImg
-                });
-            });
-            
-            displayExistingChannels();
+            currentHTML = htmlContentTextarea.value;
+            modifiedHTMLTextarea.value = currentHTML;
+            alert('HTML carregado com sucesso!');
         });
         
+        // Analisar HTML e extrair canais
+        document.getElementById('analyze-html').addEventListener('click', function() {
+            if (!currentHTML && !htmlContentTextarea.value.trim()) {
+                alert('Nenhum HTML para analisar! Carregue ou cole um HTML primeiro.');
+                return;
+            }
+            
+            if (!currentHTML) {
+                currentHTML = htmlContentTextarea.value;
+            }
+            
+            try {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = currentHTML;
+                
+                const channelButtons = tempDiv.querySelectorAll('.botao-imagem');
+                channels = [];
+                
+                channelButtons.forEach(button => {
+                    const channelName = button.getAttribute('data-nome') || '';
+                    const imgElement = button.querySelector('img');
+                    const channelAlt = imgElement ? imgElement.getAttribute('alt') || '' : '';
+                    const channelImg = imgElement ? imgElement.getAttribute('src') || '' : '';
+                    
+                    if (channelName) {
+                        channels.push({
+                            name: channelName,
+                            alt: channelAlt,
+                            img: channelImg
+                        });
+                    }
+                });
+                
+                if (channels.length === 0) {
+                    alert('Nenhum canal encontrado no HTML. Verifique a estrutura.');
+                } else {
+                    displayExistingChannels();
+                    alert(`Encontrados ${channels.length} canais!`);
+                }
+            } catch (error) {
+                console.error('Erro ao analisar HTML:', error);
+                alert('Ocorreu um erro ao analisar o HTML. Verifique o console para detalhes.');
+            }
+        });
+        
+        // Exibir canais existentes
         function displayExistingChannels() {
             existingChannelsDiv.innerHTML = '';
             
@@ -442,18 +564,19 @@
                 channelItem.className = 'channel-item';
                 
                 channelItem.innerHTML = `
-    <div class="channel-name">${channel.name}</div>
-    <div>Nome: ${channel.alt}</div>
-    ${channel.img ? `<img src="${channel.img}" alt="Preview" style="max-height: 50px;">` : ''}
-    <div class="channel-buttons">
-        <button class="edit-btn" data-index="${index}">Editar</button>
-        <button class="delete-btn" data-index="${index}">Remover</button>
-    </div>
-`;
+                    <div class="channel-name">${escapeHtml(channel.name)}</div>
+                    <div class="channel-info">Exibição: ${escapeHtml(channel.alt)}</div>
+                    ${channel.img ? `<img src="${escapeHtml(channel.img)}" alt="Preview" style="max-height: 50px;">` : ''}
+                    <div class="channel-buttons">
+                        <button class="edit-btn" data-index="${index}">Editar</button>
+                        <button class="delete-btn" data-index="${index}">Remover</button>
+                    </div>
+                `;
                 
                 existingChannelsDiv.appendChild(channelItem);
             });
             
+            // Adiciona eventos aos botões
             document.querySelectorAll('.delete-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     const index = parseInt(this.getAttribute('data-index'));
@@ -469,29 +592,38 @@
             });
         }
         
+        // Remover canal
         function removeChannel(index) {
-            if (confirm(`Tem certeza que deseja remover o canal "${channels[index].name}"?`)) {
-                channels.splice(index, 1);
-                updateHTML();
-                displayExistingChannels();
+            if (index >= 0 && index < channels.length) {
+                if (confirm(`Tem certeza que deseja remover o canal "${channels[index].name}"?`)) {
+                    channels.splice(index, 1);
+                    updateHTML();
+                    displayExistingChannels();
+                }
             }
         }
         
+        // Editar canal
         function editChannel(index) {
-            currentEditIndex = index;
-            const channel = channels[index];
-            
-            editNomeCanal.value = channel.name;
-            editNomeExibicao.value = channel.alt;
-            editUrlImagem.value = channel.img;
-            
-            editModal.style.display = 'flex';
+            if (index >= 0 && index < channels.length) {
+                currentEditIndex = index;
+                const channel = channels[index];
+                
+                editNomeCanal.value = channel.name;
+                editNomeExibicao.value = channel.alt;
+                editUrlImagem.value = channel.img;
+                
+                editModal.style.display = 'flex';
+            }
         }
         
+        // Fechar modal de edição
         cancelEditBtn.addEventListener('click', function() {
             editModal.style.display = 'none';
+            currentEditIndex = -1;
         });
         
+        // Salvar edição do canal
         saveEditBtn.addEventListener('click', function() {
             const nomeCanal = editNomeCanal.value.trim();
             const nomeExibicao = editNomeExibicao.value.trim();
@@ -502,34 +634,58 @@
                 return;
             }
             
-            if (channels.some((ch, i) => ch.name === nomeCanal && i !== currentEditIndex)) {
-                alert('Já existe um canal com este nome!');
+            if (!isValidChannelId(nomeCanal)) {
+                alert('ID do canal inválido! Use apenas letras, números e hífens.');
                 return;
             }
             
-            channels[currentEditIndex] = {
-                name: nomeCanal,
-                alt: nomeExibicao,
-                img: urlImagem
-            };
+            // Verifica se o nome já existe (exceto para o item atual)
+            const nomeExistente = channels.some((ch, i) => 
+                ch.name.toLowerCase() === nomeCanal.toLowerCase() && i !== currentEditIndex
+            );
             
-            editModal.style.display = 'none';
-            updateHTML();
-            displayExistingChannels();
+            if (nomeExistente) {
+                alert('Já existe um canal com este ID!');
+                return;
+            }
+            
+            if (currentEditIndex >= 0 && currentEditIndex < channels.length) {
+                channels[currentEditIndex] = {
+                    name: nomeCanal,
+                    alt: nomeExibicao,
+                    img: urlImagem
+                };
+                
+                editModal.style.display = 'none';
+                currentEditIndex = -1;
+                updateHTML();
+                displayExistingChannels();
+            }
         });
         
+        // Adicionar novo canal
         document.getElementById('add-channel').addEventListener('click', function() {
-            const nomeCanal = document.getElementById('nome-canal').value.trim();
-            const nomeExibicao = document.getElementById('nome-exibicao').value.trim();
-            const urlImagem = document.getElementById('url-imagem').value.trim();
+            const nomeCanal = nomeCanalInput.value.trim();
+            const nomeExibicao = nomeExibicaoInput.value.trim();
+            const urlImagem = urlImagemInput.value.trim();
             
             if (!nomeCanal || !nomeExibicao || !urlImagem) {
                 alert('Por favor, preencha todos os campos!');
                 return;
             }
             
-            if (channels.some(ch => ch.name === nomeCanal)) {
-                alert('Já existe um canal com este nome!');
+            if (!isValidChannelId(nomeCanal)) {
+                alert('ID do canal inválido! Use apenas letras, números e hífens.');
+                return;
+            }
+            
+            if (channels.some(ch => ch.name.toLowerCase() === nomeCanal.toLowerCase())) {
+                alert('Já existe um canal com este ID!');
+                return;
+            }
+            
+            if (!isValidUrl(urlImagem)) {
+                alert('URL da imagem inválida! Deve começar com http:// ou https://');
                 return;
             }
             
@@ -539,78 +695,163 @@
                 img: urlImagem
             });
             
-            document.getElementById('nome-canal').value = '';
-            document.getElementById('nome-exibicao').value = '';
-            document.getElementById('url-imagem').value = '';
+            // Limpa os campos
+            nomeCanalInput.value = '';
+            nomeExibicaoInput.value = '';
+            urlImagemInput.value = '';
             
             updateHTML();
             displayExistingChannels();
+            
+            // Foca no primeiro campo para novo cadastro
+            nomeCanalInput.focus();
         });
         
+        // Atualizar HTML com os canais
         function updateHTML() {
             if (!currentHTML) {
-                return;
+                currentHTML = htmlContentTextarea.value || `
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Metadados básicos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canais</title>
+    <!-- Seus estilos aqui -->
+</head>
+<body>
+    <div class="container" id="container-botoes">
+        <!-- Canais serão inseridos aqui -->
+    </div>
+    <!-- Outros elementos do seu template -->
+</body>
+</html>`;
             }
             
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = currentHTML;
-            
-            const buttonsContainer = tempDiv.querySelector('.container#container-botoes');
-            const embedContainer = tempDiv.querySelector('.overlay + div:not(.embed-container)') || 
-                                 tempDiv.querySelector('.sem-resultado + div:not(.embed-container)');
-            
-            if (buttonsContainer) {
-                buttonsContainer.innerHTML = '';
-            }
-            
-            const existingEmbeds = tempDiv.querySelectorAll('.embed-container');
-            existingEmbeds.forEach(embed => embed.remove());
-            
-            channels.forEach(channel => {
-                if (buttonsContainer) {
-                    const botaoHTML = `
-        <div class="botao-imagem" data-nome="${channel.name}" onclick="mostrarEmbed('${channel.name}')">
-            <img src="${channel.img}" alt="${channel.alt}">
-        </div>`;
-                    buttonsContainer.innerHTML += botaoHTML;
+            try {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = currentHTML;
+                
+                // Encontra ou cria o container de botões
+                let buttonsContainer = tempDiv.querySelector('.container#container-botoes');
+                if (!buttonsContainer) {
+                    buttonsContainer = document.createElement('div');
+                    buttonsContainer.className = 'container';
+                    buttonsContainer.id = 'container-botoes';
+                    tempDiv.appendChild(buttonsContainer);
                 }
                 
-                if (embedContainer) {
+                // Limpa o container existente
+                buttonsContainer.innerHTML = '';
+                
+                // Remove embeds antigos
+                const oldEmbeds = tempDiv.querySelectorAll('[id^="embed-"]');
+                oldEmbeds.forEach(embed => embed.remove());
+                
+                // Adiciona cada canal
+                channels.forEach(channel => {
+                    // Adiciona botão do canal
+                    const botaoHTML = `
+<div class="botao-imagem" data-nome="${escapeHtml(channel.name)}" onclick="mostrarEmbed('${escapeHtml(channel.name)}')">
+    <img src="${escapeHtml(channel.img)}" alt="${escapeHtml(channel.alt)}">
+</div>`;
+                    buttonsContainer.insertAdjacentHTML('beforeend', botaoHTML);
+                    
+                    // Adiciona embed do canal
                     const embedHTML = `
-    <div id="embed-${channel.name}" class="embed-container">
-        <iframe id="iframe-${channel.name}" src="https://embedcanaistv.com/${channel.name}/" allow="encrypted-media" allowfullscreen frameborder="0"></iframe>
-        <button class="close-embed" onclick="fecharEmbed('${channel.name}')">Fechar</button>
-    </div>`;
-                    embedContainer.insertAdjacentHTML('beforebegin', embedHTML);
-                }
-            });
-            
-            currentHTML = tempDiv.innerHTML;
-            modifiedHTMLTextarea.value = currentHTML;
+<div id="embed-${escapeHtml(channel.name)}" class="embed-container">
+    <iframe id="iframe-${escapeHtml(channel.name)}" src="https://embedcanaistv.com/${escapeHtml(channel.name)}/" allow="encrypted-media" allowfullscreen frameborder="0"></iframe>
+    <div class="embed-buttons">
+        <button class="close-embed" onclick="fecharEmbed('${escapeHtml(channel.name)}')">Fechar</button>
+        <button class="help-embed" onclick="showChannelError()">Ajuda</button>
+    </div>
+</div>`;
+                    
+                    // Insere antes do overlay ou no final do body
+                    const overlay = tempDiv.querySelector('.overlay');
+                    if (overlay) {
+                        overlay.insertAdjacentHTML('beforebegin', embedHTML);
+                    } else {
+                        tempDiv.insertAdjacentHTML('beforeend', embedHTML);
+                    }
+                });
+                
+                currentHTML = tempDiv.innerHTML;
+                modifiedHTMLTextarea.value = currentHTML;
+                
+            } catch (error) {
+                console.error('Erro ao atualizar HTML:', error);
+                alert('Ocorreu um erro ao gerar o HTML. Verifique o console para detalhes.');
+            }
         }
         
+        // Copiar HTML para área de transferência
         document.getElementById('copy-html').addEventListener('click', function() {
-            modifiedHTMLTextarea.select();
-            document.execCommand('copy');
-            alert('HTML copiado para a área de transferência!');
-        });
-        
-        document.getElementById('download-html').addEventListener('click', function() {
-            if (!currentHTML) {
-                alert('Nenhum HTML para baixar!');
+            if (!modifiedHTMLTextarea.value) {
+                alert('Nenhum HTML para copiar! Gere o HTML primeiro.');
                 return;
             }
             
-            const blob = new Blob([currentHTML], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'canais-atualizado.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+            modifiedHTMLTextarea.select();
+            try {
+                document.execCommand('copy');
+                alert('HTML copiado para a área de transferência!');
+            } catch (err) {
+                console.error('Erro ao copiar:', err);
+                alert('Erro ao copiar. Tente novamente ou use Ctrl+C.');
+            }
         });
+        
+        // Baixar HTML como arquivo
+        document.getElementById('download-html').addEventListener('click', function() {
+            if (!modifiedHTMLTextarea.value) {
+                alert('Nenhum HTML para baixar! Gere o HTML primeiro.');
+                return;
+            }
+            
+            try {
+                const blob = new Blob([modifiedHTMLTextarea.value], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'canais-' + new Date().toISOString().slice(0, 10) + '.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                setTimeout(() => URL.revokeObjectURL(url), 100);
+            } catch (error) {
+                console.error('Erro ao baixar:', error);
+                alert('Erro ao baixar o arquivo. Verifique o console para detalhes.');
+            }
+        });
+        
+        // Funções auxiliares
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe.toString()
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+        
+        function isValidChannelId(id) {
+            return /^[a-zA-Z0-9-]+$/.test(id);
+        }
+        
+        function isValidUrl(url) {
+            try {
+                new URL(url);
+                return true;
+            } catch {
+                return false;
+            }
+        }
+        
+        // Inicializa o tema ao carregar
+        initTheme();
     </script>
 </body>
 </html>
