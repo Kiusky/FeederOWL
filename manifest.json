@@ -3,7 +3,7 @@
   "short_name": "FeederOwl",
   "description": "Comunidade de jogadores na Steam e Discord",
   "start_url": "/",
-  "display": "standalone",
+  "display": "standalone",  // Tela cheia como um app
   "background_color": "#1a1a1a",
   "theme_color": "#1a1a1a",
   "icons": [
