@@ -1,0 +1,21 @@
+{
+  "name": "Feeder Owl",
+  "short_name": "FeederOwl",
+  "description": "Comunidade de jogadores na Steam e Discord",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "icons": [
+    {
+      "src": "/img/feederowl/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/feederowl/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
