@@ -259,7 +259,7 @@ function checkDevTools() {
     }
 }
 setInterval(checkDevTools, 1000);
-document.body.appendChild(iframe); // ou onde você quiser colocar
+
 document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
     if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') e.preventDefault();
