@@ -1,1 +1,244 @@
-[class~=loader]{border-left-width:48pt;}[class~=loader]{border-bottom-width:48pt;}[class~=loader]{border-right-width:48pt;}[class~=loader]{border-top-width:48pt;}[class~=loader]{border-left-style:solid;}[class~=loader]{border-bottom-style:solid;}[class~=loader]{border-right-style:solid;}[class~=loader]{border-top-style:solid;}[class~=loader]{border-left-color:rgba(255,255,255,.5);}[class~=loader]{border-bottom-color:rgba(255,255,255,.35);}[class~=loader]{border-right-color:rgba(255,255,255,.25);}[class~=loader]{border-top-color:rgba(255,255,255,.15);}[class~=loader]{border-image:none;}[class~=loader]{border-radius:50%;}[class~=loader]{display:inline-block;}[class~=loader]{box-sizing:border-box;}[class~=loader]{animation:animloader 1s linear infinite;}@keyframes animloader{0%{border-color:rgba(255,255,255,.15) rgba(255,255,255,.25) rgba(255,255,255,.35) rgba(255,255,255,.75);}33%{border-color:rgba(255,255,255,.75) rgba(255,255,255,.15) rgba(255,255,255,.25) rgba(255,255,255,.35);}66%{border-color:rgba(255,255,255,.35) rgba(255,255,255,.75) rgba(255,255,255,.15) rgba(255,255,255,.25);}100%{border-color:rgba(255,255,255,.25) rgba(255,255,255,.35) rgba(255,255,255,.75) rgba(255,255,255,.15);}}html{user-select:none;}[class~=link] img{max-width:52.5pt;}[class~=content],#discordWidgetContainer{display:none;}*:focus{outline:none;}#steam ul li{list-style:none;}#discordWidgetContainer{position:fixed;}#discordWidgetContainer{top:50%;}#discordWidgetContainer,#closeButtonBottom{left:50%;}#steam ul li a{display:inline-block;}#steam ul li a{padding-left:.125pc;}.content{text-align:center;}#discordWidgetContainer{transform:translate(-50%,-50%);}[class~=logo],.links{width:90%;}.links,#steam ul{margin-left:auto;}.links,[class~=logo]{max-width:450pt;}#steam ul li a{padding-bottom:.125pc;}#discordWidgetContainer{background-size:cover;}[class~=logo]{margin-bottom:.416666667in;}[class~=logo]{pointer-events:none;}[class~=link] img{margin-bottom:10px;}[class~=scroll-timer]::before{content:"";}#discordWidgetContainer{background-position:center;}html{-webkit-user-select:none;}#closeButtonBottom,[class~=scroll-timer]::before{position:absolute;}#discordWidget{width:270pt;}#discordWidget{height:29.6875pc;}#discordWidget{font-size:.166666667in;}[class~=scroll-timer]::before{width:7.5pc;}[class~=scroll-timer]::before{height:7.5pc;}.links{margin-bottom:0;}#closeButtonBottom{bottom:-2.5pc;}html{-moz-user-select:none;}#steam ul{margin-bottom:150px;}.links,#steam ul{margin-right:auto;}.links{margin-top:0;}[class~=link],.links{display:flex;}#closeButtonBottom{transform:translateX(-50%);}#closeButtonBottom,[class~=link]{background-color:transparent;}#closeButtonBottom,[class~=link]{border-left-width:medium;}.links{justify-content:space-around;}[class~=scroll-timer]::before{border-radius:50%;}#steam ul li a{padding-right:.125pc;}[class~=link],#closeButtonBottom{border-bottom-width:medium;}#steam ul{margin-top:150px;}#steam ul li a{padding-top:.125pc;}#closeButtonBottom,[class~=link]{border-right-width:medium;}[class~=link],#closeButtonBottom{border-top-width:medium;}[class~=link],#closeButtonBottom{border-left-style:none;}[class~=scroll-timer]::before{border-left-width:.03125in;}html{-ms-user-select:none;}[class~=link]:hover{transform:scale(1.3);}[class~=scroll-timer]::before{border-bottom-width:.03125in;}.links{flex-wrap:wrap;}.links{gap:20px;}[class~=link],#closeButtonBottom{border-bottom-style:none;}[class~=link]{text-decoration:none;}#closeButtonBottom,[class~=link]{border-right-style:none;}[class~=link]{flex-direction:column;}[class~=scroll-timer]::before{border-right-width:.03125in;}#closeButtonBottom,[class~=link]{border-top-style:none;}body{overflow-x:hidden;}body{overflow:hidden;}[class~=link],#closeButtonBottom{border-left-color:currentColor;}[class~=link]{align-items:center;}#closeButtonBottom,[class~=link]{border-bottom-color:currentColor;}[class~=scroll-timer]::before{border-top-width:.03125in;}[class~=link]{transition:transform .2s;}[class~=link],#closeButtonBottom{border-right-color:currentColor;}[class~=link],#closeButtonBottom{border-top-color:currentColor;}#closeButtonBottom,[class~=link]{border-image:none;}body{margin-left:0;}#steam ul li a{margin-left:.020833333in;}#closeButtonBottom{color:black;}body{margin-bottom:0;}body{margin-right:0;}#closeButtonBottom{font-size:16px;}#closeButtonBottom{cursor:pointer;}#steam{position:fixed;}#steam{top:50%;}#closeSteamWidgetButton,[class~=scroll-timer],[class~=widget-logo],#steam{left:50%;}body{margin-top:0;}#steam ul li{margin-bottom:15px;}#steam{transform:translate(-50%,-50%);}[class~=scroll-timer],#steam{display:none;}#steam{background-color:rgba(0,0,0,.8);}#steam,#steam ul li a,#steam ul li,[class~=scroll-timer]{color:white;}[class~=audio-controls]{margin-top:15pt;}[class~=scroll-timer]::before{border-left-style:solid;}#closeSteamWidgetButton,[class~=widget-logo]{position:absolute;}[class~=widget-logo]{top:30px;}#steam{padding-left:.625pc;}#steam ul{text-align:center;}#steam ul{max-width:300px;}#steam{padding-bottom:.625pc;}#steam ul,body{padding-left:0;}#steam ul li a{margin-bottom:.020833333in;}[class~=widget-logo],#closeSteamWidgetButton,[class~=scroll-timer]{transform:translateX(-50%);}[class~=scroll-timer]::before{border-bottom-style:solid;}[class~=widget-logo]{max-width:15.625pc;}#steam{padding-right:.625pc;}body,#steam ul{padding-bottom:0;}#steam{padding-top:.625pc;}[class~=widget-logo]{margin-bottom:10px;}#steam{border-radius:10px;}[class~=scroll-timer]{position:fixed;}#steam,[class~=scroll-timer]{z-index:9999;}body,#steam ul{padding-right:0;}[class~=scroll-timer]{bottom:6.25pc;}[class~=scroll-timer]::before{border-right-style:solid;}#steam{background-image:url("https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp");}[class~=scroll-timer]{width:6.25pc;}[class~=link]:hover{transition:transform .3s ease;}[class~=scroll-timer]{height:6.25pc;}#steam{background-position:center;}#steam{width:21.875pc;}#steam{height:465px;}#steam ul,body{padding-top:0;}body{display:flex;}[class~=scroll-timer]{border-radius:50%;}[class~=scroll-timer]{background:rgba(0,0,0,.8);}body,[class~=scroll-timer]{justify-content:center;}#steam ul li a{margin-right:.020833333in;}#steam ul li a{margin-top:.020833333in;}[class~=scroll-timer],body{align-items:center;}body{min-height:100vh;}body{min-width:100vw;}#closeSteamWidgetButton{bottom:-2.5pc;}#closeSteamWidgetButton{background-color:transparent;}#closeSteamWidgetButton{border-left-width:medium;}#closeSteamWidgetButton{border-bottom-width:medium;}#closeSteamWidgetButton{border-right-width:medium;}body{background-color:#2f3135;}[class~=scroll-timer]::before{border-top-style:solid;}#steam ul li a,[class~=scroll-timer]{font-family:Arial,sans-serif;}#steam ul li a{text-decoration:none;}[class~=scroll-timer]{font-size:24pt;}#steam ul li a,[class~=scroll-timer]{font-weight:bold;}#steam ul li a{font-size:15px;}#closeSteamWidgetButton{border-top-width:medium;}[class~=scroll-timer]::before{border-left-color:transparent;}[class~=scroll-timer]{transition:opacity .2s ease;}body{background-color:rgba(47,49,53,255);}[class~=scroll-timer]{opacity:0;}#closeSteamWidgetButton{border-left-style:none;}[class~=scroll-timer]::before{border-bottom-color:transparent;}#closeSteamWidgetButton{border-bottom-style:none;}#closeSteamWidgetButton{border-right-style:none;}#closeSteamWidgetButton{border-top-style:none;}#closeSteamWidgetButton{border-left-color:currentColor;}#closeSteamWidgetButton{border-bottom-color:currentColor;}[class~=scroll-timer]::before{border-right-color:transparent;}[class~=scroll-timer]::before{border-top-color:rgba(100,149,237,.7);}#steam ul li a{user-select:none;}#steam ul li a{draggable:false;}#closeSteamWidgetButton{border-right-color:currentColor;}#closeSteamWidgetButton{border-top-color:currentColor;}[class~=scroll-timer]::before,#closeSteamWidgetButton{border-image:none;}#closeSteamWidgetButton{color:black;}[class~=scroll-timer][class~=loading]::before{display:block;}[class~=scroll-timer]::before{animation:spin 1s linear infinite;}.scroll-timer.show{opacity:1;}#closeSteamWidgetButton{font-size:16px;}[class~=scroll-timer]::before{display:none;}#closeSteamWidgetButton{cursor:pointer;}#steam ul li a:hover{transform:scale(1.8);}#steam ul li a:hover{transition:transform .3s;}[class~=scroll-timer][class~=active]{background:rgba(70,130,180,.9);}[class~=scroll-timer][class~=progress]{background:conic-gradient(rgba(47,49,53,255) var(--progress),rgba(0,0,0,.8) var(--progress));}@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+.loader {
+    border: 64px solid;
+    border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: animloader 1s linear infinite;
+  }
+
+@keyframes animloader {
+    0% {
+      border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
+}
+    33% {
+      border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
+}
+    66% {
+      border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
+}
+    100% {
+      border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
+}
+  }
+
+.content {
+    display: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+html {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+body {
+    overflow-x: hidden;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #c9c2c4;
+    background-color: rgba(47, 49, 53, 255);
+}
+
+.content {
+    text-align: center;
+}
+
+.logo {
+    width: 90%;
+    max-width: 600px;
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+
+.links {
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+    background-color: transparent;
+    border: none;
+}
+
+.link img {
+    max-width: 70px;
+    margin-bottom: 10px;
+}
+
+.audio-controls {
+    margin-top: 20px;
+}
+
+#discordWidgetContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-size: cover;
+    background-position: center;
+}
+
+#discordWidget {
+    width: 360px;
+    height: 475px;
+    font-size: 16px;
+}
+
+#closeButtonBottom {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#steam {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 9999;
+    background-image: url('https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp');
+    background-position: center;
+    width: 350px;
+    height: 465px;
+}
+
+#image-button {
+    cursor: pointer;
+}
+#image-button:active, #image-button * {
+    cursor: default !important;
+}
+
+#closeSteamWidgetButton {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.widget-logo {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 250px;
+    margin-bottom: 10px;
+}
+
+#steam ul {
+    margin: 150px auto;
+    text-align: center;
+    max-width: 300px;
+    padding: 0;
+}
+
+#steam ul li {
+    list-style: none;
+    margin-bottom: 15px;
+    color: white;
+}
+
+#steam ul li a {
+    display: inline-block;
+    padding: 2px;
+    margin: 2px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    user-select: none;
+    ...
+    draggable: false;
+}
+
+#steam ul li a:hover {
+    transform: scale(1.8);
+    transition: transform 0.3s;
+}
+
+.link:hover {
+    transform: scale(1.3);
+    transition: transform 0.3s ease;
+}
+.scroll-timer {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(169,169,169);
+    z-index: 9999;
+    transition: opacity 0.2s ease;
+    opacity: 0;
+}
+.scroll-timer.show { opacity: 1; }
+.scroll-timer.active { background: rgba(70, 130, 180, 0.9); }
+.scroll-timer.progress {
+    background: conic-gradient(rgba(47, 49, 53, 255) var(--progress), rgba(0, 0, 0, 0.8) var(--progress));
+}
+.scroll-timer::before {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgba(100, 149, 237, 0.7);
+    animation: spin 1s linear infinite;
+    display: none;
+}
+.scroll-timer.loading::before { display: block; }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
