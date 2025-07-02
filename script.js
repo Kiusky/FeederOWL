@@ -82,6 +82,8 @@ function createIframe(url) {
     const iframe = document.createElement('iframe');
     iframe.src = url;
     iframe.style = `
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('allow', 'fullscreen');
         position: fixed;
         top: 0; left: 0;
         width: 100%; height: 100%;
