@@ -80,11 +80,19 @@ function createIframe(url) {
     document.body.appendChild(loader);
 
     const iframe = document.createElement('iframe');
-    iframe.src = 'https://feederowl.com/'; // Substitua pela sua URL
-    iframe.width = '100%';
-    iframe.height = '600';
-    iframe.setAttribute('allowfullscreen', ''); // importante
-    iframe.setAttribute('allow', 'fullscreen'); // alguns navegadores requerem isso também
+iframe.src = url;
+iframe.setAttribute('allowfullscreen', '');
+iframe.setAttribute('allow', 'fullscreen');
+iframe.style.position = 'fixed';
+iframe.style.top = '0';
+iframe.style.left = '0';
+iframe.style.width = '100%';
+iframe.style.height = '100%';
+iframe.style.border = 'none';
+iframe.style.zIndex = '9999';
+iframe.style.backgroundColor = 'white';
+iframe.style.opacity = '0';
+iframe.style.transition = 'opacity 0.5s ease';
     ;
 
     iframe.onload = () => {
