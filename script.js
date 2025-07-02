@@ -80,19 +80,12 @@ function createIframe(url) {
     document.body.appendChild(loader);
 
     const iframe = document.createElement('iframe');
-    iframe.src = url;
-    iframe.style = `
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('allow', 'fullscreen');
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        border: none;
-        z-index: 9999;
-        background-color: white;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    `;
+    iframe.src = 'https://exemplo.com'; // Substitua pela sua URL
+    iframe.width = '100%';
+    iframe.height = '600';
+    iframe.setAttribute('allowfullscreen', ''); // importante
+    iframe.setAttribute('allow', 'fullscreen'); // alguns navegadores requerem isso também
+    ;
 
     iframe.onload = () => {
         setTimeout(() => {
@@ -258,7 +251,7 @@ function checkDevTools() {
     }
 }
 setInterval(checkDevTools, 1000);
-
+document.body.appendChild(iframe); // ou onde você quiser colocar
 document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
     if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') e.preventDefault();
