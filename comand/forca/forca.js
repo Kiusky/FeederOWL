@@ -179,21 +179,22 @@ bntReiniciar.addEventListener("click", function(){
     location.reload();
 });
 
-function listaAutomatica(){
-    if (jogoAutomatico == true) {
-        document.getElementById("jogarAutomatico").innerHTML = "<i class='bx bx-play-circle'></i>"
+function listaAutomatica() {
+    if (jogoAutomatico === true) {
+        document.getElementById("jogarAutomatico").innerHTML = "<i class='bx bx-play-circle'></i>";
         palavras = [];
         jogoAutomatico = false;
 
-        document.getElementById("abreModalAddPalavra").style.display = "block";
         document.getElementById("status").innerHTML = "";
-    }
-    else if(jogoAutomatico == false){
-        document.getElementById("jogarAutomatico").innerHTML = "<i class='bx bx-pause-circle'></i>"
+
+        document.getElementById("modal-alerta").style.display = "block";
+    } else {
+        document.getElementById("jogarAutomatico").innerHTML = "<i class='bx bx-pause-circle'></i>";
         jogoAutomatico = true;
 
-        document.getElementById("abreModalAddPalavra").style.display = "none";
         document.getElementById("status").innerHTML = "";
+
+        document.getElementById("modal-alerta").style.display = "none";
     }
 }
 
@@ -473,7 +474,7 @@ function adicionarPalavra(){
     let addCategoria = document.getElementById("addCategoria").value.toUpperCase();
 
     if (isNullOrWhiteSpace(addPalavra) || isNullOrWhiteSpace(addCategoria) || addPalavra.length < 3 || addCategoria.length < 3) {
-        abreModal("ATENÇÃO"," Palavra chave ou dica inválidos");
+        abreModal("ATENÇÃO", "Palavra chave ou dica inválidos");
         return;
     }
 
@@ -484,10 +485,13 @@ function adicionarPalavra(){
 
     palavras.push(palavra);  
     sortear();
-    
+
     document.getElementById("addPalavra").value = "";
     document.getElementById("addCategoria").value = "";
+
+    document.getElementById("modal-alerta").style.display = "none";
 }
+
 
 function isNullOrWhiteSpace(input){
     return !input || !input.trim();
