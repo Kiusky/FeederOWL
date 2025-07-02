@@ -108,7 +108,6 @@ function createIframe(url) {
     iframe.style.opacity = '0';
     iframe.style.transition = 'opacity 0.5s ease';
 
-    // Ajustes para dispositivos móveis
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         iframe.style.width = '100vh';
         iframe.style.height = '100vw';
@@ -172,7 +171,6 @@ function showFullscreenButton(iframe) {
         btn.style.backgroundColor = 'rgba(0,0,0,0.5)';
     });
     
-    // Eventos de toque para mobile
     btn.addEventListener('touchstart', () => {
         btn.style.transform = 'scale(1.2)';
         btn.style.backgroundColor = 'rgba(0,0,0,0.7)';
@@ -202,7 +200,6 @@ function toggleFullscreen(element) {
             element.msRequestFullscreen();
         }
         
-        // Dispositivos móveis - tentar forçar landscape
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             if (screen.orientation && screen.orientation.lock) {
                 screen.orientation.lock('landscape').catch(e => {
