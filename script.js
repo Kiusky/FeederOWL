@@ -31,7 +31,7 @@ function createImageButton() {
     button.innerHTML = '<img src="img/feederowl/jogos.png" style="width:100%; height:100%; object-fit:cover;">';
     
     button.addEventListener('mouseenter', () => {
-        button.style.transform = 'scale(1.1)';
+        button.style.transform = 'scale(1.8)';
     });
     
     button.addEventListener('mouseleave', () => {
