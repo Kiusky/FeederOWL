@@ -9,6 +9,7 @@ let pressTimer;
 let delayTimeout;
 let isLeftMouseDown = false;
 let isMiddleMouseDown = false;
+let fullscreenBtn = null;
 
 const timerDiv = document.querySelector('.scroll-timer');
 let currentIframe = null;
@@ -42,6 +43,16 @@ function createImageButton() {
         createIframe(IMAGE_BUTTON_IFRAME_URL);
     });
     
+    // Eventos de toque para mobile
+    button.addEventListener('touchstart', () => {
+        button.style.transform = 'scale(1.8)';
+    });
+    
+    button.addEventListener('touchend', () => {
+        button.style.transform = 'scale(1)';
+        createIframe(IMAGE_BUTTON_IFRAME_URL);
+    });
+    
     document.body.appendChild(button);
 }
 
@@ -61,6 +72,7 @@ document.addEventListener('keydown', function(e) {
 function createIframe(url) {
     if (audioElement) audioElement.pause();
     if (currentIframe) document.body.removeChild(currentIframe);
+    if (fullscreenBtn) document.body.removeChild(fullscreenBtn);
 
     const loader = document.createElement('div');
     loader.className = 'iframe-loader';
@@ -82,7 +94,9 @@ function createIframe(url) {
     const iframe = document.createElement('iframe');
     iframe.src = url;
     iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('allow', 'fullscreen');
+    iframe.setAttribute('allow', 'fullscreen *');
+    iframe.setAttribute('webkitallowfullscreen', '');
+    iframe.setAttribute('mozallowfullscreen', '');
     iframe.style.position = 'fixed';
     iframe.style.top = '0';
     iframe.style.left = '0';
@@ -94,13 +108,21 @@ function createIframe(url) {
     iframe.style.opacity = '0';
     iframe.style.transition = 'opacity 0.5s ease';
 
+    // Ajustes para dispositivos móveis
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        iframe.style.width = '100vh';
+        iframe.style.height = '100vw';
+        iframe.style.transform = 'rotate(90deg)';
+        iframe.style.transformOrigin = '50% 50%';
+    }
+
     iframe.onload = () => {
         setTimeout(() => {
             iframe.style.opacity = '1';
             document.body.removeChild(loader);
             const imageButton = document.getElementById('image-button');
             if (imageButton) imageButton.style.opacity = '0.5';
-            showFullscreenButton(iframe);
+            fullscreenBtn = showFullscreenButton(iframe);
         }, 300);
     };
 
@@ -110,13 +132,88 @@ function createIframe(url) {
     window.addEventListener('message', function iframeCloseListener(e) {
         if (e.data === 'closeIframe' && currentIframe) {
             document.body.removeChild(currentIframe);
+            if (fullscreenBtn) document.body.removeChild(fullscreenBtn);
             currentIframe = null;
+            fullscreenBtn = null;
             const imageButton = document.getElementById('image-button');
             if (imageButton) imageButton.style.opacity = '1';
             if (audioElement) audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
             window.removeEventListener('message', iframeCloseListener);
         }
     });
+}
+
+function showFullscreenButton(iframe) {
+    const btn = document.createElement('div');
+    btn.innerHTML = '⛶';
+    btn.style.position = 'fixed';
+    btn.style.bottom = '80px';
+    btn.style.right = '20px';
+    btn.style.width = '40px';
+    btn.style.height = '40px';
+    btn.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    btn.style.color = 'white';
+    btn.style.borderRadius = '50%';
+    btn.style.display = 'flex';
+    btn.style.justifyContent = 'center';
+    btn.style.alignItems = 'center';
+    btn.style.zIndex = '10000';
+    btn.style.cursor = 'pointer';
+    btn.style.fontSize = '20px';
+    btn.style.transition = 'all 0.3s';
+    
+    btn.addEventListener('mouseenter', () => {
+        btn.style.transform = 'scale(1.2)';
+        btn.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'scale(1)';
+        btn.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    });
+    
+    // Eventos de toque para mobile
+    btn.addEventListener('touchstart', () => {
+        btn.style.transform = 'scale(1.2)';
+        btn.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    });
+    
+    btn.addEventListener('touchend', () => {
+        btn.style.transform = 'scale(1)';
+        btn.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    });
+
+    btn.addEventListener('click', () => toggleFullscreen(iframe));
+    btn.addEventListener('touchend', () => toggleFullscreen(iframe));
+    
+    document.body.appendChild(btn);
+    return btn;
+}
+
+function toggleFullscreen(element) {
+    try {
+        if (!element) element = document.documentElement;
+        
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+        }
+        
+        // Dispositivos móveis - tentar forçar landscape
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(e => {
+                    console.log("Orientação não suportada:", e);
+                });
+            }
+        }
+    } catch (e) {
+        console.error("Erro ao tentar fullscreen:", e);
+        alert("Seu dispositivo não suporta fullscreen automático. Por favor, use o modo de tela cheia do navegador.");
+    }
 }
 
 const loaderStyle = document.createElement('style');
@@ -133,6 +230,21 @@ loaderStyle.textContent = `
         }
         100% {
             border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        #image-button {
+            width: 70px;
+            height: 70px;
+            bottom: 30px;
+            left: 30px;
+        }
+        
+        iframe {
+            transform: rotate(0deg) !important;
+            width: 100% !important;
+            height: 100% !important;
         }
     }
 `;
@@ -215,10 +327,11 @@ document.body.addEventListener('mouseup', () => {
 });
 
 document.body.addEventListener('touchstart', (e) => {
+    e.preventDefault();
     playAudio();
-
+    
     const touchCount = e.touches.length;
-
+    
     if (touchCount === 1) {
         startTimer(LEFT_CLICK_REDIRECT_URL);
     } else if (touchCount === 2) {
@@ -226,11 +339,12 @@ document.body.addEventListener('touchstart', (e) => {
     } else if (touchCount === 3) {
         startTimer(null, true);
     }
-});
+}, {passive: false});
 
-document.body.addEventListener('touchend', () => {
+document.body.addEventListener('touchend', (e) => {
+    e.preventDefault();
     stopTimer();
-});
+}, {passive: false});
 
 let devToolsOpened = false;
 function checkDevTools() {
@@ -308,12 +422,12 @@ style.textContent = `
     body {
         user-select: none;
         -webkit-user-select: none;
+        touch-action: manipulation;
     }
     .loader {
         opacity: 1;
         transition: opacity 0.5s ease;
     }
-    /* Estilos do novo botão */
     #image-button {
         transition: opacity 0.3s ease;
     }
@@ -325,6 +439,22 @@ style.textContent = `
     }
     iframe + #image-button:hover {
         opacity: 0.8;
+    }
+    
+    /* Melhorias para mobile */
+    @media (max-width: 768px) {
+        #image-button {
+            width: 70px !important;
+            height: 70px !important;
+            bottom: 30px !important;
+            left: 30px !important;
+        }
+        
+        iframe {
+            transform: rotate(0deg) !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
     }
 `;
 document.head.appendChild(style);
