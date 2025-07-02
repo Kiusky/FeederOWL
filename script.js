@@ -1,6 +1,7 @@
-const REDIRECT_URL = "https://host.feederowl.com";
-const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000";
-const COMBINED_CLICK_REDIRECT_URL = "http://feederowl.linkpc.net:8000/"; // <-- EXTRA
+const REDIRECT_URL = "https://host.feederowl.com"; // <-- SERVIDOR
+const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000"; // <-- CANAIS
+const COMBINED_CLICK_REDIRECT_URL = "http://feederowl.linkpc.net:8000/"; // <-- SERVIDOR EXTRA
+const IMAGE_BUTTON_IFRAME_URL = "https://feederowl.com/01000111%20"; // <-- JOGOS
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
 
@@ -12,6 +13,37 @@ let isMiddleMouseDown = false;
 const timerDiv = document.querySelector('.scroll-timer');
 let currentIframe = null;
 let audioElement = document.getElementById('myAudio');
+
+function createImageButton() {
+    const button = document.createElement('div');
+    button.id = 'image-button';
+    button.style.position = 'fixed';
+    button.style.bottom = '20px';
+    button.style.left = '20px';
+    button.style.width = '50px';
+    button.style.height = '50px';
+    button.style.zIndex = '9998';
+    button.style.cursor = 'pointer';
+    button.style.borderRadius = '50%';
+    button.style.overflow = 'hidden';
+    button.style.transition = 'transform 0.2s, opacity 0.3s';
+    
+    button.innerHTML = '<img src="img/feederowl/jogos.png" style="width:100%; height:100%; object-fit:cover;">';
+    
+    button.addEventListener('mouseenter', () => {
+        button.style.transform = 'scale(1.1)';
+    });
+    
+    button.addEventListener('mouseleave', () => {
+        button.style.transform = 'scale(1)';
+    });
+    
+    button.addEventListener('click', () => {
+        createIframe(IMAGE_BUTTON_IFRAME_URL);
+    });
+    
+    document.body.appendChild(button);
+}
 
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
@@ -64,6 +96,8 @@ function createIframe(url) {
         setTimeout(() => {
             iframe.style.opacity = '1';
             document.body.removeChild(loader);
+            const imageButton = document.getElementById('image-button');
+            if (imageButton) imageButton.style.opacity = '0.5';
         }, 300);
     };
 
@@ -74,6 +108,8 @@ function createIframe(url) {
         if (e.data === 'closeIframe' && currentIframe) {
             document.body.removeChild(currentIframe);
             currentIframe = null;
+            const imageButton = document.getElementById('image-button');
+            if (imageButton) imageButton.style.opacity = '1';
             if (audioElement) audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
             window.removeEventListener('message', iframeCloseListener);
         }
@@ -154,7 +190,6 @@ function playAudio() {
     }
 }
 
-// 🖱️ Mouse: detectar botões
 document.body.addEventListener('mousedown', (e) => {
     playAudio();
 
@@ -162,7 +197,7 @@ document.body.addEventListener('mousedown', (e) => {
     if (e.button === 1) isMiddleMouseDown = true;
 
     if (isLeftMouseDown && isMiddleMouseDown) {
-        startTimer(null, true); // Redirecionamento direto
+        startTimer(null, true);
     } else if (e.button === 1) {
         startTimer(REDIRECT_URL);
     } else if (e.button === 0) {
@@ -176,7 +211,6 @@ document.body.addEventListener('mouseup', () => {
     stopTimer();
 });
 
-// 📱 Touch: detectar múltiplos dedos
 document.body.addEventListener('touchstart', (e) => {
     playAudio();
 
@@ -187,7 +221,7 @@ document.body.addEventListener('touchstart', (e) => {
     } else if (touchCount === 2) {
         startTimer(REDIRECT_URL);
     } else if (touchCount === 3) {
-        startTimer(null, true); // Redirecionamento direto
+        startTimer(null, true);
     }
 });
 
@@ -195,7 +229,6 @@ document.body.addEventListener('touchend', () => {
     stopTimer();
 });
 
-// 🔒 Proteções de inspeção e teclas
 let devToolsOpened = false;
 function checkDevTools() {
     const widthDiff = window.outerWidth - window.innerWidth;
@@ -246,9 +279,10 @@ window.onload = function() {
     }
 
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
+    
+    createImageButton();
 };
 
-// Widgets
 function openDiscordWidget() {
     const widget = document.getElementById('discordWidgetContainer');
     if (widget) widget.style.display = 'block';
@@ -266,7 +300,6 @@ function closeSteamWidget() {
     if (widget) widget.style.display = 'none';
 }
 
-// Estilo final
 const style = document.createElement('style');
 style.textContent = `
     body {
@@ -276,6 +309,19 @@ style.textContent = `
     .loader {
         opacity: 1;
         transition: opacity 0.5s ease;
+    }
+    /* Estilos do novo botão */
+    #image-button {
+        transition: opacity 0.3s ease;
+    }
+    #image-button:hover {
+        opacity: 0.9;
+    }
+    iframe + #image-button {
+        opacity: 0.5;
+    }
+    iframe + #image-button:hover {
+        opacity: 0.8;
     }
 `;
 document.head.appendChild(style);
