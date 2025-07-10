@@ -28,6 +28,23 @@ document.addEventListener("DOMContentLoaded", function() {
     montarPalavraNaTela();
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    preloadForcaImages();
+
+    var btnReiniciar = document.getElementById("btnReiniciar");
+    if (btnReiniciar) {
+        btnReiniciar.addEventListener("click", function() {
+            jogarNovamente = false;
+            location.reload();
+        });
+    }
+
+    carregaImagemForca();
+    carregaListaAutomatica();
+    criarPalavraSecreta();
+    montarPalavraNaTela();
+});
+
 function carregaImagemForca(){
     const imgElement = document.getElementById("imagem");
     if (!imgElement) return;
