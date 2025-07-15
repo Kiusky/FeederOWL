@@ -571,11 +571,10 @@ document.body.addEventListener('mouseup', () => {
 });
 
 document.body.addEventListener('touchstart', (e) => {
-    if (e.target.closest('button, a, input, textarea, iframe')) return;
-    e.preventDefault();
     playAudio();
 
     const touchCount = e.touches.length;
+
     if (touchCount === 1) {
         startTimer(LEFT_CLICK_REDIRECT_URL);
     } else if (touchCount === 2) {
@@ -583,47 +582,17 @@ document.body.addEventListener('touchstart', (e) => {
     } else if (touchCount === 3) {
         startTimer(null, true);
     }
+
+    if (touchCount > 1) {
+        e.preventDefault();
+    }
 }, {passive: false});
+
 
 document.body.addEventListener('touchend', (e) => {
-    if (e.target.closest('button, a, input, textarea, iframe')) return;
-    e.preventDefault();
+    if (e.touches.length > 1) e.preventDefault();
     stopTimer();
 }, {passive: false});
-
-let devToolsOpened = false;
-function checkDevTools() {
-    const widthDiff = window.outerWidth - window.innerWidth;
-    const heightDiff = window.outerHeight - window.innerHeight;
-    const threshold = 150;
-
-    if ((widthDiff > threshold || heightDiff > threshold) && !devToolsOpened) {
-        devToolsOpened = true;
-        document.body.innerHTML = `
-            <div style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; font-family: Arial, sans-serif;">
-                <div>
-                    <h1 style="color: blue; margin: 0; font-size: 80px;">🚧</h1>
-                    <p style="color: red; margin: 20px 0 0 0; font-size: 15px; font-weight: bold;">
-                        NÃO É PERMITIDO ALTERAÇÕES NA PÁGINA
-                    </p>
-                    <p style="color: #555; margin: 5px 0 0 0; font-size: 8px; font-family: Arial;">
-                        USAR ZOOM NA PAGINA TAMBEM NÃO PERMITIDO !
-                    </p>
-                </div>
-            </div>
-        `;
-    } else if (widthDiff <= threshold && heightDiff <= threshold && devToolsOpened) {
-        devToolsOpened = false;
-        location.reload();
-    }
-}
-setInterval(checkDevTools, 1000);
-
-document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
-    if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'I') e.preventDefault();
-    if (e.key === 'F12' || (e.shiftKey && e.key === 'F10')) e.preventDefault();
-});
 
 window.onload = function() {
     const loader = document.querySelector('.loader');
