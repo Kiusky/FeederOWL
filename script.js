@@ -571,11 +571,11 @@ document.body.addEventListener('mouseup', () => {
 });
 
 document.body.addEventListener('touchstart', (e) => {
+    if (e.target.closest('button, a, input, textarea, iframe')) return;
     e.preventDefault();
     playAudio();
-    
+
     const touchCount = e.touches.length;
-    
     if (touchCount === 1) {
         startTimer(LEFT_CLICK_REDIRECT_URL);
     } else if (touchCount === 2) {
@@ -586,6 +586,7 @@ document.body.addEventListener('touchstart', (e) => {
 }, {passive: false});
 
 document.body.addEventListener('touchend', (e) => {
+    if (e.target.closest('button, a, input, textarea, iframe')) return;
     e.preventDefault();
     stopTimer();
 }, {passive: false});
