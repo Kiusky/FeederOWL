@@ -1,197 +1,9 @@
-const REDIRECT_URL = "https://hơst.feederowl.com"; // <-- SERVIDOR
+const REDIRECT_URL = "https://hoost.feederowl.com/"; // <-- SERVIDOR
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000"; // <-- CANAIS
-const COMBINED_CLICK_REDIRECT_URL = "http://host.feederowl.com:8000"; // <-- SERVIDOR EXTRA
+const COMBINED_CLICK_REDIRECT_URL = "http://host.feederowl.com:8000/"; // <-- SERVIDOR EXTRA
 const IMAGE_BUTTON_IFRAME_URL = "https://feederowl.com/01000111%20"; // <-- JOGOS
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
-const img = new Image();
-img.src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
-img.onerror = function() {
-    console.error('Erro ao carregar a imagem', this.src);
-    this.src = 'caminho/para/fallback.png';
-};
-const FORM_HTML = `
-<form id="contactForm" action="https://formspree.io/f/xovlqjyv" method="POST" style="
-    padding: 25px; 
-    border-radius: 12px; 
-    width: 100%; 
-    height: 100%; 
-    margin: 0; 
-    box-sizing: border-box;
-    position: fixed + inset: 0
-">
-  <div id="formContent">
-    <label style="
-        display: block; 
-        margin-bottom: 20px; 
-        font-family: 'Segoe UI', Roboto, sans-serif;
-    ">
-      <span style="
-          display: block; 
-          margin-bottom: 8px; 
-          color: #b0b0b0; 
-          font-size: 14px;
-      ">Seu e-mail:</span>
-      <input type="email" name="email" placeholder="exemplo@email.com" required 
-             style="
-                width: 100%; 
-                padding: 12px; 
-                margin-top: 5px; 
-                border: 1px solid #444; 
-                border-radius: 6px; 
-                box-sizing: border-box;
-                background: #3d3d3d;
-                color: #f0f0f0;
-                font-size: 14px;
-                transition: all 0.3s;
-      ">
-    </label>
-    
-    <label style="
-        display: block; 
-        margin-bottom: 25px; 
-        font-family: 'Segoe UI', Roboto, sans-serif;
-    ">
-      <span style="
-          display: block; 
-          margin-bottom: 8px; 
-          color: #b0b0b0;
-          font-size: 14px;
-      ">Sua mensagem:</span>
-      <textarea name="message" placeholder="Escreva sua mensagem aqui..." required
-                style="
-                    width: 100%; 
-                    padding: 12px; 
-                    margin-top: 5px; 
-                    border: 1px solid #444; 
-                    border-radius: 6px; 
-                    min-height: 315px; 
-                    box-sizing: border-box;
-                    background: #3d3d3d;
-                    color: #f0f0f0;
-                    font-size: 14px;
-                    resize: none;
-                    transition: all 0.3s;
-      "></textarea>
-    </label>
-    
-    <button type="submit" id="submitBtn"
-            style="
-                background: #3a8f40; 
-                color: white; 
-                padding: 14px; 
-                border: none; 
-                border-radius: 6px; 
-                cursor: default; 
-                font-family: 'Segoe UI', Roboto, sans-serif; 
-                width: 100%;
-                font-weight: 315;
-                font-size: 15px;
-                letter-spacing: 0.5px;
-                transition: all 0.3s;
-                margin-top: 10px;
-    ">
-      Enviar Mensagem
-    </button>
-  </div>
-  
-  <div id="loadingIndicator" style="
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(45,45,45,0.9);
-      border-radius: 12px;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-family: 'Segoe UI', Roboto, sans-serif;
-  ">
-    <div style="
-        width: 50px;
-        height: 50px;
-        border: 5px solid rgba(255,255,255,0.3);
-        border-radius: 50%;
-        border-top-color: #3a8f40;
-        animation: spin 1s ease-in-out infinite;
-        margin-bottom: 20px;
-    "></div>
-    <p>Enviando mensagem...</p>
-  </div>
-  
-<div id="successMessage" style="
-    display: none; /* Mantenha como none inicial */
-    position: fixed; /* Mudei para fixed para melhor controle */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centralização perfeita */
-    width: 90%; /* Largura responsiva */
-    max-width: 500px; /* Largura máxima */
-    background: rgba(45, 45, 45, 0.95);
-    border-radius: 12px;
-    padding: 40px; /* Espaçamento interno generoso */
-    text-align: center;
-    box-sizing: border-box;
-    z-index: 1000; /* Garante que fique acima de outros elementos */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Sombra sutil */
-    flex-direction: column;
-    align-items: center;
-">
-    <svg style="width: 50px; height: 50px; margin-bottom: 20px; color: #3a8f40;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-    </svg>
-    <h3 style="color: #3a8f40; margin: 0 0 10px 0; width: 100%;">Mensagem enviada com sucesso!</h3>
-    <p style="margin: 0; color: #b0b0b0; width: 100%; max-width: 80%;">Obrigado pelo seu contato. Responderemos em breve.</p>
-  </div>
-</form>
-
-<style>
-  @keyframes spin {
-    to { transform: rotate(960deg); }
-  }
-</style>
-
-<script>
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Mostrar indicador de carregamento
-    document.getElementById('formContent').style.display = 'none';
-    document.getElementById('loadingIndicator').style.display = 'flex';
-    
-    // Enviar formulário via AJAX
-    fetch(this.action, {
-      method: 'POST',
-      body: new FormData(this),
-      headers: {
-        'Accept': 'application/json'
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        // Mostrar mensagem de sucesso
-        document.getElementById('loadingIndicator').style.display = 'none';
-        document.getElementById('successMessage').style.display = 'flex';
-        
-        // Fechar automaticamente após 3 segundos
-        setTimeout(() => {
-          window.parent.postMessage('closeIframe', '*');
-        }, 9000);
-      } else {
-        throw new Error('Erro no envio');
-      }
-    })
-    .catch(error => {
-      document.getElementById('loadingIndicator').style.display = 'none';
-      document.getElementById('formContent').style.display = 'block';
-      alert('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.');
-    });
-  });
-</script>
-`;
 
 let pressTimer;
 let delayTimeout;
@@ -231,77 +43,17 @@ function createImageButton() {
         createIframe(IMAGE_BUTTON_IFRAME_URL);
     });
     
+    // Eventos de toque para mobile
+    button.addEventListener('touchstart', () => {
+        button.style.transform = 'scale(1.8)';
+    });
+    
+    button.addEventListener('touchend', () => {
+        button.style.transform = 'scale(1)';
+        createIframe(IMAGE_BUTTON_IFRAME_URL);
+    });
+    
     document.body.appendChild(button);
-}
-
-function createContactButton() {
-    const contactButton = document.createElement('div');
-    contactButton.id = 'contact-button';
-    contactButton.style.position = 'fixed';
-    contactButton.style.bottom = '15px';
-    contactButton.style.right = '10px';
-    contactButton.style.width = '50px';
-    contactButton.style.height = '50px';
-    contactButton.style.zIndex = '9998';
-    contactButton.style.cursor = 'pointer';
-    contactButton.style.background = 'url("img/feederowl/owlsuport.png") no-repeat center center';
-    contactButton.style.backgroundSize = 'cover';
-    contactButton.style.borderRadius = '50%';
-    contactButton.style.transition = 'transform 0.2s';
-    
-    contactButton.addEventListener('mouseenter', () => {
-        contactButton.style.transform = 'scale(1.5)';
-    });
-    
-    contactButton.addEventListener('mouseleave', () => {
-        contactButton.style.transform = 'scale(1)';
-    });
-    
-    contactButton.addEventListener('click', () => {
-        if (currentIframe) {
-            document.body.removeChild(currentIframe);
-            if (fullscreenBtn) document.body.removeChild(fullscreenBtn);
-            currentIframe = null;
-            fullscreenBtn = null;
-            return;
-        }
-        
-        const formIframe = document.createElement('iframe');
-        formIframe.srcdoc = FORM_HTML;
-        formIframe.style.position = 'fixed';
-        formIframe.style.top = '50%';
-        formIframe.style.left = '50%';
-        formIframe.style.transform = 'translate(-50%, -50%)';
-        formIframe.style.width = '90%';
-        formIframe.style.maxWidth = '600px';
-        formIframe.style.height = '70%';
-        formIframe.style.maxHeight = '600px';
-        formIframe.style.border = 'none';
-        formIframe.style.borderRadius = '10px';
-        formIframe.style.boxShadow = '0 0 20px rgba(0,0,0,0.3)';
-        formIframe.style.zIndex = '10000';
-        formIframe.style.backgroundColor = '#303030';
-        
-        // Overlay para fechar ao clicar fora
-        const overlay = document.createElement('div');
-        overlay.style.position = 'fixed';
-        overlay.style.top = '0';
-        overlay.style.left = '0';
-        overlay.style.width = '100%';
-        overlay.style.height = '100%';
-        overlay.style.zIndex = '9999';
-        overlay.addEventListener('click', () => {
-            document.body.removeChild(formIframe);
-            document.body.removeChild(overlay);
-            currentIframe = null;
-        });
-        
-        document.body.appendChild(overlay);
-        document.body.appendChild(formIframe);
-        currentIframe = formIframe;
-    });
-    
-    document.body.appendChild(contactButton);
 }
 
 document.addEventListener('contextmenu', function(e) {
@@ -369,8 +121,7 @@ function createIframe(url) {
             document.body.removeChild(loader);
             const imageButton = document.getElementById('image-button');
             if (imageButton) imageButton.style.opacity = '0.5';
-            const contactButton = document.getElementById('contact-button');
-            if (contactButton) contactButton.style.opacity = '0.5';
+            fullscreenBtn = showFullscreenButton(iframe);
         }, 300);
     };
 
@@ -385,8 +136,6 @@ function createIframe(url) {
             fullscreenBtn = null;
             const imageButton = document.getElementById('image-button');
             if (imageButton) imageButton.style.opacity = '1';
-            const contactButton = document.getElementById('contact-button');
-            if (contactButton) contactButton.style.opacity = '1';
             if (audioElement) audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
             window.removeEventListener('message', iframeCloseListener);
         }
@@ -421,8 +170,19 @@ function showFullscreenButton(iframe) {
         btn.style.transform = 'scale(1)';
         btn.style.backgroundColor = 'rgba(0,0,0,0.5)';
     });
+    
+    btn.addEventListener('touchstart', () => {
+        btn.style.transform = 'scale(1.2)';
+        btn.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    });
+    
+    btn.addEventListener('touchend', () => {
+        btn.style.transform = 'scale(1)';
+        btn.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    });
 
     btn.addEventListener('click', () => toggleFullscreen(iframe));
+    btn.addEventListener('touchend', () => toggleFullscreen(iframe));
     
     document.body.appendChild(btn);
     return btn;
@@ -471,18 +231,11 @@ loaderStyle.textContent = `
     }
     
     @media (max-width: 768px) {
-        #image-button, #contact-button {
-            width: 70px !important;
-            height: 70px !important;
-            bottom: 30px !important;
-        }
-        
         #image-button {
-            left: 30px !important;
-        }
-        
-        #contact-button {
-            right: 30px !important;
+            width: 70px;
+            height: 70px;
+            bottom: 30px;
+            left: 30px;
         }
         
         iframe {
@@ -642,8 +395,24 @@ window.onload = function() {
     new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
     
     createImageButton();
-    createContactButton();
 };
+
+function openDiscordWidget() {
+    const widget = document.getElementById('discordWidgetContainer');
+    if (widget) widget.style.display = 'block';
+}
+function closeDiscordWidget() {
+    const widget = document.getElementById('discordWidgetContainer');
+    if (widget) widget.style.display = 'none';
+}
+function openSteamWidget() {
+    const widget = document.getElementById('steam');
+    if (widget) widget.style.display = 'block';
+}
+function closeSteamWidget() {
+    const widget = document.getElementById('steam');
+    if (widget) widget.style.display = 'none';
+}
 
 const style = document.createElement('style');
 style.textContent = `
@@ -656,33 +425,33 @@ style.textContent = `
         opacity: 1;
         transition: opacity 0.5s ease;
     }
-    #image-button, #contact-button {
+    #image-button {
         transition: opacity 0.3s ease;
     }
     #image-button:hover {
         opacity: 0.9;
     }
-    iframe ~ #image-button,
-    iframe ~ #contact-button {
+    iframe + #image-button {
         opacity: 0.5;
     }
-    iframe ~ #image-button:hover,
-    iframe ~ #contact-button:hover {
+    iframe + #image-button:hover {
         opacity: 0.8;
     }
     
-    /* Estilo para o formulário no mobile */
-    @media (max-width: 600px) {
-        iframe[src^="data:text/html"] {
-            width: 95% !important;
-            height: 70% !important;
+    /* Melhorias para mobile */
+    @media (max-width: 768px) {
+        #image-button {
+            width: 70px !important;
+            height: 70px !important;
+            bottom: 30px !important;
+            left: 30px !important;
         }
-    }
-    
-    /* Remover cursor de ponteiro */
-    #image-button, #contact-button, #image-button img, 
-    #contact-button img, button[type="submit"] {
-        cursor: default !important;
+        
+        iframe {
+            transform: rotate(0deg) !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
     }
 `;
 document.head.appendChild(style);
