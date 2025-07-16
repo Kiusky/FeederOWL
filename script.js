@@ -123,20 +123,20 @@ const FORM_HTML = `
   </div>
   
 <div id="successMessage" style="
-    display: none; /* Mantenha como none inicial */
-    position: fixed; /* Mudei para fixed para melhor controle */
+    display: none;
+    position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centralização perfeita */
-    width: 90%; /* Largura responsiva */
-    max-width: 500px; /* Largura máxima */
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
     background: rgba(45, 45, 45, 0.95);
     border-radius: 12px;
-    padding: 40px; /* Espaçamento interno generoso */
+    padding: 40px;
     text-align: center;
     box-sizing: border-box;
-    z-index: 1000; /* Garante que fique acima de outros elementos */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Sombra sutil */
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     flex-direction: column;
     align-items: center;
 ">
@@ -151,6 +151,28 @@ const FORM_HTML = `
 <style>
   @keyframes spin {
     to { transform: rotate(960deg); }
+  }
+  
+  /* Estilos para mobile */
+  @media (max-width: 600px) {
+    #contactForm {
+      padding: 15px !important;
+      height: 100% !important;
+      overflow-y: auto !important;
+    }
+    
+    #formContent {
+      height: auto !important;
+    }
+    
+    #successMessage {
+      width: 95% !important;
+      padding: 20px !important;
+    }
+    
+    #loadingIndicator {
+      font-size: 14px !important;
+    }
   }
 </style>
 
@@ -248,15 +270,15 @@ function createContactButton() {
     contactButton.style.backgroundSize = 'cover';
     contactButton.style.borderRadius = '50%';
     contactButton.style.transition = 'transform 0.2s';
-    
+
     contactButton.addEventListener('mouseenter', () => {
         contactButton.style.transform = 'scale(1.5)';
     });
-    
+
     contactButton.addEventListener('mouseleave', () => {
         contactButton.style.transform = 'scale(1)';
     });
-    
+
     contactButton.addEventListener('click', () => {
         if (currentIframe) {
             document.body.removeChild(currentIframe);
@@ -265,42 +287,52 @@ function createContactButton() {
             fullscreenBtn = null;
             return;
         }
-        
+
+        const container = document.createElement('div');
+        container.style.position = 'fixed';
+        container.style.top = '0';
+        container.style.left = '0';
+        container.style.width = '100%';
+        container.style.height = '100%';
+        container.style.display = 'flex';
+        container.style.justifyContent = 'center';
+        container.style.alignItems = 'center';
+        container.style.zIndex = '10000';
+
+        container.addEventListener('click', () => {
+            document.body.removeChild(container);
+            currentIframe = null;
+        });
+
         const formIframe = document.createElement('iframe');
         formIframe.srcdoc = FORM_HTML;
-        formIframe.style.position = 'fixed';
-        formIframe.style.top = '50%';
-        formIframe.style.left = '50%';
-        formIframe.style.transform = 'translate(-50%, -50%)';
-        formIframe.style.width = '90%';
+        formIframe.style.width = '95%';
         formIframe.style.maxWidth = '600px';
-        formIframe.style.height = '70%';
+        formIframe.style.height = '80%';
         formIframe.style.maxHeight = '600px';
         formIframe.style.border = 'none';
         formIframe.style.borderRadius = '10px';
         formIframe.style.boxShadow = '0 0 20px rgba(0,0,0,0.3)';
-        formIframe.style.zIndex = '10000';
         formIframe.style.backgroundColor = '#303030';
-        
-        // Overlay para fechar ao clicar fora
-        const overlay = document.createElement('div');
-        overlay.style.position = 'fixed';
-        overlay.style.top = '0';
-        overlay.style.left = '0';
-        overlay.style.width = '100%';
-        overlay.style.height = '100%';
-        overlay.style.zIndex = '9999';
-        overlay.addEventListener('click', () => {
-            document.body.removeChild(formIframe);
-            document.body.removeChild(overlay);
-            currentIframe = null;
+        formIframe.style.overflow = 'auto';
+        formIframe.style.webkitOverflowScrolling = 'touch';
+
+        formIframe.addEventListener('click', (e) => {
+            e.stopPropagation();
         });
-        
-        document.body.appendChild(overlay);
-        document.body.appendChild(formIframe);
-        currentIframe = formIframe;
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            formIframe.style.width = '95%';
+            formIframe.style.height = '90%';
+            formIframe.style.maxHeight = 'none';
+        }
+
+        container.appendChild(formIframe);
+        document.body.appendChild(container);
+
+        currentIframe = container;
     });
-    
+
     document.body.appendChild(contactButton);
 }
 
@@ -491,6 +523,37 @@ loaderStyle.textContent = `
             height: 100% !important;
         }
     }
+    
+    /* Estilos gerais para o body e elementos */
+    body {
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+    .loader {
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+    #image-button, #contact-button {
+        transition: opacity 0.3s ease;
+    }
+    #image-button:hover {
+        opacity: 0.9;
+    }
+    iframe ~ #image-button,
+    iframe ~ #contact-button {
+        opacity: 0.5;
+    }
+    iframe ~ #image-button:hover,
+    iframe ~ #contact-button:hover {
+        opacity: 0.8;
+    }
+    
+    /* Remover cursor de ponteiro */
+    #image-button, #contact-button, #image-button img, 
+    #contact-button img, button[type="submit"] {
+        cursor: default !important;
+    }
 `;
 document.head.appendChild(loaderStyle);
 
@@ -587,7 +650,6 @@ document.body.addEventListener('touchstart', (e) => {
         e.preventDefault();
     }
 }, {passive: false});
-
 
 document.body.addEventListener('touchend', (e) => {
     if (e.touches.length > 1) e.preventDefault();
