@@ -265,7 +265,8 @@ function createContactButton() {
     contactButton.style.background = 'url("img/feederowl/owlsuport.png") no-repeat center center';
     contactButton.style.backgroundSize = 'contain';
     contactButton.style.borderRadius = 'contain';
-    contactButton.style.transition = 'transform 0.2s';
+    contactButton.style.transition = 'transform 0.2s, opacity 0.2s';
+	contactButton.style.opacity = '0.8';
 
     contactButton.addEventListener('mouseenter', () => {
         contactButton.style.transform = 'scale(1.5)';
