@@ -153,7 +153,6 @@ const FORM_HTML = `
     to { transform: rotate(960deg); }
   }
   
-  /* Estilos para mobile */
   @media (max-width: 600px) {
     #contactForm {
       padding: 15px !important;
@@ -180,11 +179,9 @@ const FORM_HTML = `
   document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Mostrar indicador de carregamento
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('loadingIndicator').style.display = 'flex';
     
-    // Enviar formulário via AJAX
     fetch(this.action, {
       method: 'POST',
       body: new FormData(this),
@@ -198,7 +195,6 @@ const FORM_HTML = `
         document.getElementById('loadingIndicator').style.display = 'none';
         document.getElementById('successMessage').style.display = 'flex';
         
-        // Fechar automaticamente após 3 segundos
         setTimeout(() => {
           window.parent.postMessage('closeIframe', '*');
         }, 9000);
@@ -267,8 +263,8 @@ function createContactButton() {
     contactButton.style.zIndex = '9998';
     contactButton.style.cursor = 'pointer';
     contactButton.style.background = 'url("img/feederowl/owlsuport.png") no-repeat center center';
-    contactButton.style.backgroundSize = 'cover';
-    contactButton.style.borderRadius = '50%';
+    contactButton.style.backgroundSize = 'contain';
+    contactButton.style.borderRadius = 'contain';
     contactButton.style.transition = 'transform 0.2s';
 
     contactButton.addEventListener('mouseenter', () => {
@@ -524,7 +520,6 @@ loaderStyle.textContent = `
         }
     }
     
-    /* Estilos gerais para o body e elementos */
     body {
         user-select: none;
         -webkit-user-select: none;
@@ -549,7 +544,6 @@ loaderStyle.textContent = `
         opacity: 0.8;
     }
     
-    /* Remover cursor de ponteiro */
     #image-button, #contact-button, #image-button img, 
     #contact-button img, button[type="submit"] {
         cursor: default !important;
@@ -703,7 +697,6 @@ style.textContent = `
         opacity: 0.8;
     }
     
-    /* Estilo para o formulário no mobile */
     @media (max-width: 600px) {
         iframe[src^="data:text/html"] {
             width: 95% !important;
@@ -711,7 +704,6 @@ style.textContent = `
         }
     }
     
-    /* Remover cursor de ponteiro */
     #image-button, #contact-button, #image-button img, 
     #contact-button img, button[type="submit"] {
         cursor: default !important;
