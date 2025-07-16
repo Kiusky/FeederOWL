@@ -242,3 +242,19 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+@media (max-width: 768px) {
+    #discordWidgetContainer {
+        width: 95vw;
+        height: 60vh;
+    }
+    
+    #discordWidget {
+        width: 50%;
+        height: 50%;
+    }
+    
+    #closeButtonBottom {
+        bottom: -50px;
+        font-size: 14px;
+    }
+}
