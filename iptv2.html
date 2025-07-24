@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PLANETA X</title>
+<!-- Clappr + HLSJS -->
+<script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clappr-playback-hlsjs@latest/dist/clappr-playback-hlsjs.min.js"></script>
+<style>
+body {margin:0; background:#0a0d11; color:#fff; font-family:Arial,sans-serif;}
+.menu-topo {display:flex; justify-content:center; gap:10px; padding:15px; background:#101214; flex-wrap:wrap;}
+.menu-topo button {padding:10px 20px; background:#484f52; border:none; border-radius:5px; font-weight:bold; cursor:pointer;}
+.section {margin:20px 0;}
+.section h3 {margin:10px 20px; display:flex; justify-content:space-between; align-items:center; color:#ffcc00;}
+.scroll-horizontal {display:flex; overflow-x:auto; gap:10px; padding:0 20px 10px;}
+.scroll-horizontal .card {flex:0 0 auto; width:180px; background:#111; border-radius:10px; overflow:hidden; cursor:pointer; position:relative;}
+.scroll-horizontal .card img {width:100%; height:270px; object-fit:cover;}
+.scroll-horizontal .card p {margin:0; padding:5px; font-size:0.9em; color:#fff; text-align:center;}
+.barra-progresso {height:4px; background:#333; width:100%;}
+.barra-progresso .progresso {height:100%; background:#484f52;}
+.episodio-btn {flex:1 1 calc(45% - 10px); padding:10px; background:#484f52; border:none; border-radius:5px; font-weight:bold; margin:5px;}
+.btn-episodios-toggle {margin:10px 0; padding:10px 20px; background:#222; border:none; color:#484f52; font-weight:bold; border-radius:5px;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login" style="max-width:400px; margin:100px auto; background:#101214; padding:50px; border-radius:16px; text-align:center;">
+  <h1 style="color:gold; margin-bottom:5px;">
+    <span style='font-size:28px; font-weight:bold;'>PLANETA X<span style='color:brown;'> 🪐 </span></span>
+  </h1>
+  <input id="servidor" placeholder="Servidor" style="width:100%; padding:12px; margin:10px 0; font-size:16px;" type="text"/>
+  <input id="usuario" placeholder="Usuário" style="width:100%; padding:12px; margin:10px 0; font-size:16px;" type="text"/>
+  <input id="senha" placeholder="Senha" style="width:100%; padding:12px; margin:10px 0; font-size:16px;" type="password"/>
+  <button onclick="logar()" style="width:50%; padding:8px; background:gold; border:none; border-radius:6px; font-weight:bold; font-size:16px;">Entrar</button>
+  <label style="color:gold; display:block; margin-top:10px;">
+    <input id="lembrarLogin" type="checkbox"/> Salvar Login
+  </label>
+</div>
+
+<!-- APP PRINCIPAL -->
+<div id="app" style="display:none;">
+  <div style="text-align:center; margin-top:15px;">
+    <h1 style="color:#gold; margin:0; font-size:22px;">
+      <span style='font-size:28px; font-weight:bold; color:brown;'>PLANETA X</span></span>
+    </h1>
+    <div id="exp-date-top" style="color:gold; font-size:14px; font-weight:bold; margin:5px 0;"></div>
+  </div>
+
+  <!-- Menu de navegação atualizado com botão de busca -->
+  <div class="menu-topo">
+    <button onclick="voltarHome()" style="background:gray; color:#000;">🏠 Home</button>
+    <button onclick="filtrarTipo('Canais')">Canais</button>
+    <button onclick="filtrarTipo('Filmes')">Filmes</button>
+    <button onclick="filtrarTipo('Séries')">Séries</button>
+    <button onclick="toggleBusca()" style="background:#00baff;">🔍 Buscar</button>
+  </div>
+
+  <!-- Container do campo de busca (inicialmente escondido) -->
+  <div id="busca-container" style="display:none;">
+    <input id="busca" oninput="filtrarBusca()" placeholder="🔍 Buscar..." style="width:100%; padding:12px; margin:10px 0; font-size:16px; background:#1a1d21; color:#00baff; border:none;"/>
+  </div>
+
+  <div id="player-area" style="width:100%; height:240px; background:#000; display:none;"></div>
+  <div id="episodios-area" style="display:none; padding:10px;"></div>
+  <div id="conteudo" style="padding:10px;"></div>
+</div>
+
+<!-- MODAL DE QUALIDADES -->
+<div id="modalQualidade" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center; flex-direction:column;">
+  <div style="text-align:center;">
+    <img alt="" id="modalImg" src="" style="width:150px; border-radius:10px; margin-bottom:10px;"/>
+    <h2 id="modalTitulo" style="color:#484f52; margin-bottom:20px;"></h2>
+    <div id="modalSinopse" style="font-size:0.9em; color:#ccc; margin-bottom:15px;"></div>
+    <button onclick="tocar(linkFHD)" style="padding:10px 20px; margin:5px; background:orange; border:none; border-radius:5px; font-weight:bold;">FHD</button>
+    <button onclick="tocar(linkHD)" style="padding:10px 20px; margin:5px; background:gold; border:none; border-radius:5px; font-weight:bold;">HD</button>
+    <button onclick="tocar(linkSD)" style="padding:10px 20px; margin:5px; background:yellow; border:none; border-radius:5px; font-weight:bold;">SD</button>
+    <br/><br/>
+    <button onclick="fecharModal()" style="padding:10px 20px; background:#ff3333; border:none; border-radius:5px; font-weight:bold;">Fechar</button>
+  </div>
+</div>
+
+<script>
+let todos = [], player = null, info = {};
+let linkFHD = "", linkHD = "", linkSD = "";
+
+// Função para mostrar/esconder o campo de busca
+function toggleBusca() {
+  const buscaContainer = document.getElementById("busca-container");
+  buscaContainer.style.display = buscaContainer.style.display === "none" ? "block" : "none";
+  
+  // Foca no campo de busca quando é mostrado
+  if (buscaContainer.style.display === "block") {
+    document.getElementById("busca").focus();
+  } else {
+    // Se estiver escondendo, limpa a busca e volta para a home
+    document.getElementById("busca").value = "";
+    voltarHome();
+  }
+}
+
+// LOGIN
+function logar() {
+  const lembrar = document.getElementById("lembrarLogin").checked;
+  const servidor = document.getElementById("servidor").value.trim();
+  const usuario = document.getElementById("usuario").value.trim();
+  const senha = document.getElementById("senha").value.trim();
+  if (!servidor || !usuario || !senha) {
+    alert("Preencha todos os campos.");
+    return;
+  }
+  if (lembrar) {
+    localStorage.setItem("servidor", servidor);
+    localStorage.setItem("usuario", usuario);
+    localStorage.setItem("senha", senha);
+  } else {
+    localStorage.removeItem("servidor");
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("senha");
+  }
+  info = { servidor, usuario, senha };
+  carregarAPI();
+}
+
+// CARREGAR API
+async function carregarAPI() {
+  const token = `username=${info.usuario}&password=${info.senha}`;
+  const base = `${info.servidor}/player_api.php?${token}`;
+  try {
+    document.getElementById("conteudo").innerHTML = "<div style='text-align:center; margin-top:50px;'>🔄 Carregando conteúdo...</div>";
+
+    const [auth, vods, series, lives] = await Promise.all([
+      fetch(base).then(r => r.json()),
+      fetch(base + "&action=get_vod_streams").then(r => r.json()),
+      fetch(base + "&action=get_series").then(r => r.json()),
+      fetch(base + "&action=get_live_streams").then(r => r.json())
+    ]);
+    if (!auth || auth.user_info?.status !== "Active") throw new Error("Usuário inativo.");
+
+    const exp = new Date(parseInt(auth.user_info.exp_date) * 1000);
+    const expStr = exp.toLocaleDateString();
+    // Só mostra depois do login
+    document.getElementById("exp-date-top").innerText = "vencimento: " + expStr;
+
+    todos = [];
+
+    lives.forEach(c => {
+      todos.push({
+        nome: c.name,
+        logo: c.stream_icon,
+        link: `${info.servidor}/live/${info.usuario}/${info.senha}/${c.stream_id}.m3u8`,
+        tipo: "Canais | " + (c.category_name || "📺")
+      });
+    });
+
+    vods.forEach(c => {
+      todos.push({
+        nome: c.name,
+        logo: c.stream_icon || c.cover,
+        link: `${info.servidor}/movie/${info.usuario}/${info.senha}/${c.stream_id}.mp4`,
+        tipo: "Filmes | " + (c.category_name || "🎞"),
+        vod_id: c.stream_id
+      });
+    });
+
+    series.forEach(c => {
+      todos.push({
+        nome: c.name,
+        logo: c.cover,
+        serie_id: c.series_id,
+        tipo: "Séries | " + (c.category_name || "🎬")
+      });
+    });
+
+    document.getElementById("login").style.display = "none";
+    document.getElementById("app").style.display = "block";
+    renderCarrosseis();
+
+  } catch (e) {
+    console.error(e);
+    alert("Erro ao carregar dados da API: " + e.message);
+  }
+}
+
+// RENDER CARROSSEIS
+function renderCarrosseis() {
+  const div = document.getElementById("conteudo");
+  const grupos = {};
+  todos.forEach(item => {
+    if (!grupos[item.tipo]) grupos[item.tipo] = [];
+    grupos[item.tipo].push(item);
+  });
+  div.innerHTML = Object.keys(grupos).map(tipo => {
+    const cards = grupos[tipo].slice(0, 10).map(c => {
+      const acao = c.serie_id
+        ? `abrirSerieDetalhe(${c.serie_id}, '${c.nome.replace(/'/g, "")}')`
+        : `abrirQualidades('${c.nome.replace(/'/g, "")}', '${c.logo}', '${c.link}', '${c.link}', '${c.link}', '${c.vod_id || ""}')`;
+      return `<div class="card">
+        <img src="${c.logo || 'https://via.placeholder.com/120x150'}" loading="lazy" onclick="${acao}">
+        <p>${c.nome}</p>
+      </div>`;
+    }).join('');
+    return `<div class="section">
+      <h3>${tipo}
+        <span onclick="verMais('${tipo}')" style="cursor:pointer; font-size:0.8em; color:#ccc;">Ver Mais</span>
+      </h3>
+      <div class="scroll-horizontal">${cards}</div>
+    </div>`;
+  }).join('');
+}
+
+// VER MAIS
+function verMais(tipo) {
+  if (player) player.destroy(); player = null;
+  document.getElementById("player-area").innerHTML = "";
+  document.getElementById("player-area").style.display = "none";
+  document.getElementById("episodios-area").style.display = "none";
+  document.getElementById("busca-container").style.display = "none"; // Esconde a busca
+  const filtrado = todos.filter(c => c.tipo === tipo);
+  const html = filtrado.map(c => {
+    const acao = c.serie_id
+      ? `abrirSerieDetalhe(${c.serie_id}, '${c.nome.replace(/'/g, "")}')`
+      : `abrirQualidades('${c.nome.replace(/'/g, "")}', '${c.logo}', '${c.link}', '${c.link}', '${c.link}', '${c.vod_id || ""}')`;
+    return `<div class="card">
+      <img src="${c.logo || 'https://via.placeholder.com/120x150'}" loading="lazy" onclick="${acao}">
+      <p>${c.nome}</p>
+    </div>`;
+  }).join('');
+  document.getElementById("conteudo").innerHTML = `
+    <div class="section">
+      <h3>${tipo}
+        <button onclick="renderCarrosseis()" style="padding:5px 10px; background:#ff3333; border:none; border-radius:5px; font-weight:bold; margin-left:10px;">← Voltar</button>
+      </h3>
+      <div class="scroll-horizontal" style="flex-wrap:wrap;">${html}</div>
+    </div>`;
+}
+
+// ABRIR SÉRIE DETALHE
+async function abrirSerieDetalhe(serieId, nome) {
+  try {
+    document.getElementById("episodios-area").style.display = "block";
+    document.getElementById("busca-container").style.display = "none"; // Esconde a busca
+    const area = document.getElementById("episodios-area");
+    area.innerHTML = `<div style='color:gray; font-size:20px; font-weight:bold;'>${nome}</div><div style='color:#ccc;'>🔄 Carregando...</div>`;
+
+    const res = await fetch(`${info.servidor}/player_api.php?username=${info.usuario}&password=${info.senha}&action=get_series_info&series_id=${serieId}`);
+    const json = await res.json();
+    const temporadas = json.episodes || {};
+    const temporadasKeys = Object.keys(temporadas).sort((a,b)=>a-b);
+
+    // Tocar primeiro episódio automaticamente
+    const primeiro = temporadasKeys.length > 0 && temporadas[temporadasKeys[0]][0];
+    if (primeiro) {
+      const urlPrimeiro = `${info.servidor}/series/${info.usuario}/${info.senha}/${primeiro.id}.mp4`;
+      tocar(urlPrimeiro);
+    }
+
+    let html = `<img src="${json.info.cover}" style="width:150px; border-radius:10px; margin:10px 0;" alt="Capa"/>`;
+    html += `<div style='margin:10px 0;'>${json.info.plot || "Sem descrição."}</div>`;
+    html += `<button onclick="toggleEpisodios()" class="btn-episodios-toggle">📂 Episódios</button>`;
+    html += `<div id="listaEpisodios" style="display:none;">`;
+
+    temporadasKeys.forEach(temp => {
+      html += `<div style='color:#ffcc00; margin-top:10px; font-weight:bold;'>Temporada ${temp}</div>`;
+      html += `<div style='display:flex; flex-wrap:wrap;'>`;
+      temporadas[temp].sort((a,b)=>a.episode_num - b.episode_num).forEach(ep => {
+        const titulo = `Ep ${ep.episode_num}: ${ep.title}`;
+        const url = `${info.servidor}/series/${info.usuario}/${info.senha}/${ep.id}.mp4`;
+        html += `<button class="episodio-btn" onclick="tocar('${url}')">${titulo}</button>`;
+      });
+      html += `</div>`;
+    });
+
+    html += `</div>`;
+    area.innerHTML = html;
+  } catch(e){
+    console.error(e);
+    alert("Erro ao carregar série.");
+  }
+}
+
+// Alternar Episódios
+function toggleEpisodios(){
+  const lista = document.getElementById("listaEpisodios");
+  lista.style.display = (lista.style.display === "none") ? "block" : "none";
+}
+
+// PLAYER
+function tocar(url) {
+  if (!url) return alert("Sem link disponível.");
+  if (player) player.destroy();
+  document.getElementById("player-area").style.display = "block";
+  player = new Clappr.Player({
+    parentId: "#player-area",
+    source: url,
+    autoPlay: true,
+    width: "100%",
+    height: "100%",
+    events: {
+      onReady: function () {
+        const salvo = parseFloat(localStorage.getItem("progresso_" + url) || "0");
+        if (salvo > 0) setTimeout(() => player.seek(salvo), 1000);
+      },
+      onTimeUpdate: function (e) {
+        if (e && e.current) {
+          localStorage.setItem("progresso_" + url, e.current);
+          localStorage.setItem("duracao_" + url, e.total);
+        }
+      },
+      onError: () => {
+        window.location.href = `intent:${url}#Intent;package=org.videolan.vlc;type=video/*;end;`;
+      }
+    }
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  fecharModal();
+}
+
+// MODAL QUALIDADES COM SINOPSE
+async function abrirQualidades(nome, img, fhd, hd, sd, vodId) {
+  document.getElementById("modalTitulo").innerText = nome;
+  document.getElementById("modalImg").src = img || 'https://via.placeholder.com/120x150';
+  linkFHD = fhd; linkHD = hd; linkSD = sd;
+  document.getElementById("modalSinopse").innerText = "🔄 Carregando sinopse...";
+  if (vodId) {
+    try {
+      const res = await fetch(`${info.servidor}/player_api.php?username=${info.usuario}&password=${info.senha}&action=get_vod_info&vod_id=${vodId}`);
+      const json = await res.json();
+      const sinopse = json.info?.plot || "Sem descrição disponível.";
+      document.getElementById("modalSinopse").innerText = sinopse;
+    } catch {
+      document.getElementById("modalSinopse").innerText = "Erro ao carregar sinopse.";
+    }
+  } else {
+    document.getElementById("modalSinopse").innerText = "";
+  }
+  document.getElementById("modalQualidade").style.display = "flex";
+}
+
+function fecharModal() {
+  document.getElementById("modalQualidade").style.display = "none";
+}
+
+// FILTRAR TIPO
+function filtrarTipo(tipo){
+  if (player) player.destroy(); player = null;
+  document.getElementById("player-area").innerHTML = "";
+  document.getElementById("player-area").style.display = "none";
+  document.getElementById("episodios-area").style.display = "none";
+  document.getElementById("busca-container").style.display = "none"; // Esconde a busca
+  const filtrado = todos.filter(c => c.tipo.includes(tipo));
+  const html = filtrado.map(c => {
+    const acao = c.serie_id
+      ? `abrirSerieDetalhe(${c.serie_id}, '${c.nome.replace(/'/g, "")}')`
+      : `abrirQualidades('${c.nome.replace(/'/g, "")}', '${c.logo}', '${c.link}', '${c.link}', '${c.link}', '${c.vod_id || ""}')`;
+    return `<div class="card">
+      <img src="${c.logo || 'https://via.placeholder.com/120x150'}" loading="lazy" onclick="${acao}">
+      <p>${c.nome}</p>
+    </div>`;
+  }).join('');
+  document.getElementById("conteudo").innerHTML = `<div class="scroll-horizontal" style="flex-wrap:wrap;">${html}</div>`;
+}
+
+// BUSCA
+function filtrarBusca(){
+  if (player) player.destroy(); player = null;
+  document.getElementById("player-area").innerHTML = "";
+  document.getElementById("player-area").style.display = "none";
+  document.getElementById("episodios-area").style.display = "none";
+  const termo = document.getElementById("busca").value.toLowerCase();
+  const filtrado = todos.filter(c => c.nome.toLowerCase().includes(termo));
+  const html = filtrado.map(c => {
+    const acao = c.serie_id
+      ? `abrirSerieDetalhe(${c.serie_id}, '${c.nome.replace(/'/g, "")}')`
+      : `abrirQualidades('${c.nome.replace(/'/g, "")}', '${c.logo}', '${c.link}', '${c.link}', '${c.link}', '${c.vod_id || ""}')`;
+    return `<div class="card">
+      <img src="${c.logo || 'https://via.placeholder.com/120x150'}" loading="lazy" onclick="${acao}">
+      <p>${c.nome}</p>
+    </div>`;
+  }).join('');
+  document.getElementById("conteudo").innerHTML = `<div class="scroll-horizontal" style="flex-wrap:wrap;">${html}</div>`;
+}
+
+// VOLTAR HOME
+function voltarHome(){
+  if (player) player.destroy(); player = null;
+  document.getElementById("player-area").innerHTML = "";
+  document.getElementById("player-area").style.display = "none";
+  document.getElementById("episodios-area").style.display = "none";
+  document.getElementById("busca").value = "";
+  document.getElementById("busca-container").style.display = "none"; // Esconde a busca
+  renderCarrosseis();
+}
+</script>
+
+<!-- SPLASH -->
+<div id="splash" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#101214; display:flex; justify-content:center; align-items:center; flex-direction:column; z-index:99999;">
+  <img alt="Logo" src="https://i.imgur.com/BG5SmGQ.png" style="width:120px; margin-bottom:20px;"/>
+  <div class="loader"></div>
+</div>
+
+<!-- RODAPÉ -->
+<div style="position:fixed; bottom:0; width:100%; background:#101214; text-align:center; padding:10px; font-size:12px; color:brown;">
+  ⚜️ Desenvolvido por Planeta X - (77) 999827674
+</div>
+
+<style>
+.loader {
+  border:6px solid #333;
+  border-top:6px solid #gray;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+::-webkit-scrollbar {height:8px;}
+::-webkit-scrollbar-thumb {background:gray; border-radius:4px;}
+button:active {transform:scale(0.95);}
+</style>
+
+<script>
+// Splash e lembrar login
+window.addEventListener("DOMContentLoaded", () => {
+  const servidor = localStorage.getItem("servidor");
+  const usuario = localStorage.getItem("usuario");
+  const senha = localStorage.getItem("senha");
+  if (servidor && usuario && senha) {
+    document.getElementById("servidor").value = servidor;
+    document.getElementById("usuario").value = usuario;
+    document.getElementById("senha").value = senha;
+    document.getElementById("lembrarLogin").checked = true;
+  }
+});
+window.onload = () => {
+  document.getElementById("splash").style.display = "none";
+};
+</script>
+</body>
+</html>
