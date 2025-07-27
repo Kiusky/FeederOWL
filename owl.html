@@ -7,14 +7,19 @@
       window.onload = function () {
         const link = document.createElement("a");
         link.href = "/owl.apk";
-        link.download = "owl.apk"; // nome sugerido para salvar
+        link.download = "owl.apk"; // Nome sugerido
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
+        // Aguarda um pouco e volta para a página principal
+        setTimeout(function () {
+          window.location.href = "/";
+        }, 1000); // 1 segundo
       };
     </script>
   </head>
   <body>
-    <p>Iniciando o download...</p>
+    <p>Baixando o aplicativo...</p>
   </body>
 </html>
