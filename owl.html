@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
-    <meta http-equiv="refresh" content="0; url=/owl.apk" />
+    <meta charset="UTF-8" />
+    <title>Baixando...</title>
+    <script>
+      window.onload = function () {
+        const link = document.createElement("a");
+        link.href = "/owl.apk";
+        link.download = "owl.apk"; // nome sugerido para salvar
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      };
+    </script>
   </head>
   <body>
-    <p>Redirecionando para o download...</p>
+    <p>Iniciando o download...</p>
   </body>
 </html>
