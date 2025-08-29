@@ -1,4 +1,4 @@
-const REDIRECT_URL = "https://feederowl.lykoi-ionian.ts.net/"; // <-- SERVIDOR
+const REDIRECT_URL = "https://hơst.feederowl.com/"; // <-- SERVIDOR
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000/"; // <-- CANAIS
 const COMBINED_CLICK_REDIRECT_URL = "http://host.feederowl.com:80/"; // <-- SERVIDOR EXTRA
 const IMAGE_BUTTON_IFRAME_URL = "https://feederowl.com/01000111%20"; // <-- JOGOS
@@ -711,5 +711,6 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
 
 
