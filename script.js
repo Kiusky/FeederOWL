@@ -1,6 +1,6 @@
 const REDIRECT_URL = "https://hơst.feederowl.com/"; // <-- SERVIDOR
 const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000/"; // <-- CANAIS
-const COMBINED_CLICK_REDIRECT_URL = "http://host.feederowl.com:80/"; // <-- SERVIDOR EXTRA
+const COMBINED_CLICK_REDIRECT_URL = "https://hơst.feederowl.com/"; // <-- SERVIDOR EXTRA
 const IMAGE_BUTTON_IFRAME_URL = "https://feederowl.com/01000111%20"; // <-- JOGOS
 const PRESS_DURATION = 1100;
 const START_DELAY = 555;
@@ -717,6 +717,7 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
 
 
 
