@@ -116,7 +116,35 @@
         .then(reg => console.log("SW registrado:", reg))
         .catch(err => console.error("Falha no SW:", err));
     }
-    
+
+    let deferredPrompt;
+    window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+
+        const btn = document.createElement("button");
+        btn.innerText = "📲 Instalar FeederOwl";
+        btn.style.position = "fixed";
+        btn.style.bottom = "20px";
+        btn.style.right = "20px";
+        btn.style.padding = "12px 20px";
+        btn.style.background = "#3a8f40";
+        btn.style.color = "#fff";
+        btn.style.border = "none";
+        btn.style.borderRadius = "8px";
+        btn.style.fontSize = "15px";
+        btn.style.cursor = "pointer";
+        btn.style.zIndex = "10000";
+        document.body.appendChild(btn);
+
+        btn.addEventListener("click", async () => {
+            btn.remove();
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log("Resultado da instalação:", outcome);
+            deferredPrompt = null;
+        });
+    });
 </script>
 
 <footer style="text-align: center; font-size: 10px; line-height: -1;">
@@ -125,4 +153,5 @@
 </footer>
 </body>
 </html>
+
 
