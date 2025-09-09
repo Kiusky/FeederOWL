@@ -672,6 +672,12 @@ window.onload = function() {
     createContactButton();
 };
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js")
+    .then(reg => console.log("SW registrado", reg))
+    .catch(err => console.error("SW falhou", err));
+}
+
 const style = document.createElement('style');
 style.textContent = `
     body {
@@ -711,6 +717,7 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
 
 
 
