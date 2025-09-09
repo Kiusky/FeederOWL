@@ -1,7 +1,7 @@
 {
-  "name": "Driver OWL",
-  "short_name": "DriverOWL",
-  "start_url": "https://hơst.feederowl.com",
+  "name": "ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁",
+  "short_name": "ᚪ𝑒𝑒𝒹𝑒𝓇𝒪𝓌𝓁",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#2f3135",
@@ -19,6 +19,7 @@
     }
   ]
 }
+
 
 
 
