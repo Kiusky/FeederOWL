@@ -1,22 +1,13 @@
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open("feederowl-cache").then(cache => {
-      return cache.addAll([
-        "/",
-        "/index.html",
-        "/styles.css",
-        "/script.js",
-        "/img/feederowl/logo steam.png",
-        "/img/feederowl/logo discord.png"
-      ]);
-    })
-  );
+self.addEventListener("install", e => {
+  console.log("SW instalado");
+  self.skipWaiting();
 });
 
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
-  );
+self.addEventListener("activate", e => {
+  console.log("SW ativado");
+  return self.clients.claim();
+});
+
+self.addEventListener("fetch", e => {
+  e.respondWith(fetch(e.request).catch(() => new Response("Offline")));
 });
