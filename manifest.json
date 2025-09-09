@@ -1,7 +1,7 @@
 {
   "name": "FeederOwl",
   "short_name": "FeederOwl",
-  "start_url": "/",
+  "start_url": "https://hơst.feederowl.com",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#3a8f40",
@@ -19,3 +19,4 @@
     }
   ]
 }
+
