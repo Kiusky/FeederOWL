@@ -1,6 +1,6 @@
 {
-  "name": "FeederOwl",
-  "short_name": "FeederOwl",
+  "name": "Feeder Owl",
+  "short_name": "Feeder Owl",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
@@ -19,6 +19,7 @@
     }
   ]
 }
+
 
 
 
