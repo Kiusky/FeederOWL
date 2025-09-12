@@ -581,10 +581,11 @@ function startTimer(redirectUrl, directRedirect = false) {
                 timerDiv.classList.remove('show', 'active', 'progress');
 
                 setTimeout(() => {
-                    if (directRedirect) {
-                        window.location.href = COMBINED_CLICK_REDIRECT_URL;
+                    const finalURL = directRedirect ? COMBINED_CLICK_REDIRECT_URL : redirectUrl;
+                    if (finalURL) {
+                        window.location.href = finalURL;
                     } else {
-                        createIframe(redirectUrl);
+                        console.warn("Nenhuma URL de redirecionamento definida.");
                     }
                 }, 200);
             }
@@ -717,6 +718,7 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
 
 
 
