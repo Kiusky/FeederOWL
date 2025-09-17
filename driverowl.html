@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Driver OWL</title>
   <link id="favicon" rel="icon" href="https://hơst.feederowl.com/favicon.ico">
   <style>
@@ -16,7 +17,6 @@
       background-color: #2f3135;
     }
 
-    /* Loader */
     .loader {
       border: 64px solid;
       border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
@@ -41,15 +41,12 @@
       width: 100vw;
       height: 100vh;
       border: none;
-      display: none; /* começa escondido */
+      display: none;
     }
   </style>
 </head>
 <body>
-  <!-- Loader -->
   <div id="loader" class="loader"></div>
-
-  <!-- Iframe -->
   <iframe id="myFrame" src="https://hơst.feederowl.com" allowfullscreen></iframe>
 
   <script>
@@ -57,22 +54,35 @@
     const loader = document.getElementById("loader");
     const favicon = document.getElementById("favicon");
 
+    const primaryUrl = "https://hơst.feederowl.com";
+
+    function tryLoad(url) {
+      iframe.src = url;
+      loader.style.display = "block";
+      iframe.style.display = "none";
+
+      // tenta carregar, se não carregar em 5s mantém loader
+      setTimeout(() => {
+        if (iframe.style.display === "none") {
+          console.warn("⚠️ O site não respondeu em 5s.");
+        }
+      }, 5000);
+    }
+
     iframe.onload = () => {
       loader.style.display = "none";
       iframe.style.display = "block";
 
       try {
-        // Se for mesmo domínio, pega título e favicon do iframe
         document.title = iframe.contentDocument.title;
-
         let icon = iframe.contentDocument.querySelector("link[rel~='icon']");
-        if (icon) {
-          favicon.href = icon.href;
-        }
+        if (icon) favicon.href = icon.href;
       } catch (e) {
-        console.warn("⚠️ Conteúdo do iframe é de outro domínio, usando título e ícone padrão.");
+        console.warn("⚠️ Conteúdo externo, mantendo título e ícone padrão.");
       }
     };
+
+    tryLoad(primaryUrl);
   </script>
 </body>
 </html>
