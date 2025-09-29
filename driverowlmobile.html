@@ -17,7 +17,6 @@
       background-color: #2f3135;
     }
 
-    /* Loader bonito */
     .loader {
       border: 64px solid;
       border-color: rgba(255,255,255,0.15) rgba(255,255,255,0.25) rgba(255,255,255,0.35) rgba(255,255,255,0.5);
@@ -47,14 +46,13 @@
 </head>
 <body>
   <div id="loader" class="loader"></div>
-  <!-- iframe apontando para HFS -->
+
   <iframe id="hfsFrame" src="https://hơst.feederowl.com"></iframe>
 
   <script>
     const loader = document.getElementById('loader');
     const iframe = document.getElementById('hfsFrame');
 
-    // Quando o iframe terminar de carregar, esconde o loader
     iframe.onload = () => {
       loader.style.display = 'none';
       iframe.style.display = 'block';
@@ -62,3 +60,4 @@
   </script>
 </body>
 </html>
+
