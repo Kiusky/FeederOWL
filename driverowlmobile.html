@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DRIVER OWL</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #2f3135;
+    }
+
+    /* Loader bonito */
+    .loader {
+      border: 64px solid;
+      border-color: rgba(255,255,255,0.15) rgba(255,255,255,0.25) rgba(255,255,255,0.35) rgba(255,255,255,0.5);
+      border-radius: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      animation: animloader 1s linear infinite;
+      position: absolute;
+      z-index: 9999;
+    }
+
+    @keyframes animloader {
+      0%   { border-color: rgba(255,255,255,0.15) rgba(255,255,255,0.25) rgba(255,255,255,0.35) rgba(255,255,255,0.75); }
+      33%  { border-color: rgba(255,255,255,0.75) rgba(255,255,255,0.15) rgba(255,255,255,0.25) rgba(255,255,255,0.35); }
+      66%  { border-color: rgba(255,255,255,0.35) rgba(255,255,255,0.75) rgba(255,255,255,0.15) rgba(255,255,255,0.25); }
+      100% { border-color: rgba(255,255,255,0.25) rgba(255,255,255,0.35) rgba(255,255,255,0.75) rgba(255,255,255,0.15); }
+    }
+
+    /* iframe do HFS */
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="loader" class="loader"></div>
+  <!-- iframe apontando para HFS -->
+  <iframe id="hfsFrame" src="https://hơst.feederowl.com"></iframe>
+
+  <script>
+    const loader = document.getElementById('loader');
+    const iframe = document.getElementById('hfsFrame');
+
+    // Quando o iframe terminar de carregar, esconde o loader
+    iframe.onload = () => {
+      loader.style.display = 'none';
+      iframe.style.display = 'block';
+    };
+  </script>
+</body>
+</html>
