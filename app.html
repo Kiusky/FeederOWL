@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      window.onload = function () {
+        const a = document.createElement("a");
+        a.href = "/owl.apk";
+        a.download = "Driver OWL.apk";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 100);
+      };
+    </script>
+  </head>
+  <body></body>
+</html>
+
