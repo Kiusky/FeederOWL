@@ -1,42 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Driver OWL</title>
   <style>
-    html,body{height:100%;margin:0;background:#2F3135;}
-    .loader {
-      position: fixed; top:0; left:0; width:100%; height:100%;
-      display:flex; justify-content:center; align-items:center; background:#2F3135;
-      color:#fff; font-family:sans-serif; font-size:1.2em;
-    }
+    html, body {height:100%; margin:0; background:#2F3135; display:flex; justify-content:center; align-items:center; color:white; font-family:sans-serif;}
+    #loader {text-align:center;}
+    iframe {display:none;}
   </style>
 </head>
 <body>
+  <div id="loader">
+    <p>Verificando links, aguarde...</p>
+  </div>
+
+  <iframe id="tester"></iframe>
+
 <script>
 const urls = [
   'http://[2804:14d:5a82:5b70:3146:ec5f:5f47:3235]/',
+  'http://187.181.6.171/',
   'https://hơst.feederowl.com/'
 ];
 
-// Tenta redirecionar sequencialmente
-function redirectNext(index = 0) {
-  if(index >= urls.length) return; // acabou a lista
-  try {
-    window.location.href = urls[index];
-  } catch(e) {
-    // se falhar, tenta próxima
-    setTimeout(()=>redirectNext(index+1), 500);
-  }
+const TIMEOUT = 2000; // 2s para considerar offline
+
+function testUrl(url, timeout = TIMEOUT) {
+  return new Promise(resolve => {
+    let done = false;
+
+    // Criar iframe para testar o link
+    const iframe = document.getElementById('tester');
+    iframe.src = url;
+
+    // Se carregar antes do timeout, consideramos online
+    iframe.onload = () => { if(!done){ done = true; resolve(true); } };
+    
+    // Timeout: se não carregar, consideramos offline
+    setTimeout(() => { if(!done){ done = true; resolve(false); } }, timeout);
+  });
 }
 
-// Inicia redirecionamento
-window.addEventListener('load', () => redirectNext());
+async function findWorkingUrl() {
+  for(const url of urls){
+    const ok = await testUrl(url);
+    if(ok) return url;
+  }
+  return urls[urls.length-1]; // fallback final
+}
+
+async function redirect() {
+  const workingUrl = await findWorkingUrl();
+  window.location.href = workingUrl;
+}
+
+window.addEventListener('load', redirect);
 </script>
 </body>
 </html>
-
-
-
-
