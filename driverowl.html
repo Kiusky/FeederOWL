@@ -3,127 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta property="og:title" content="Driver OWL">
-  <meta property="og:description" content="Somos uma comunidade online na Steam e Discord, reunindo jogadores para partidas em grupo. Oferecemos anúncios de jogos grátis, ofertas imperdíveis e fórum para discussões e soluções. Junte-se a nós para encontrar companheiros de equipe e aproveitar a diversão dos jogos em grupo!">
-  <meta property="og:image" content="https://feederowl.com/img/feederowl/logo%20database.gif">
-  <meta property="og:url" content="https://feederowl.com/driverowl/">
-  <meta name="google-adsense-account" content="ca-pub-5124901329251101">
-  <meta name="theme-color" content="#484e55">
-  <link rel="manifest" href="https://hơst.feederowl.com/manifest.json">
   <title>Driver OWL</title>
-  <link rel="icon" type="image/x-icon" href="https://hơst.feederowl.com/favicon.ico">
-  <meta name="robots" content="noindex,nofollow">
   <style>
-    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#2F3135;color:#2F3135}
-
+    html,body{height:100%;margin:0;background:#2F3135;}
     .loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #2F3135;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
+      position: fixed; top:0; left:0; width:100%; height:100%;
+      display:flex; justify-content:center; align-items:center; background:#2F3135;
+      color:#fff; font-family:sans-serif; font-size:1.2em;
     }
-
-    .loader:before {
-      content: "";
-      border: 64px solid;
-      border-color:
-        rgba(255, 255, 255, 0.15)
-        rgba(255, 255, 255, 0.25)
-        rgba(255, 255, 255, 0.35)
-        rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-      animation: animloader 1s linear infinite;
-    }
-
-    @keyframes animloader {
-      0% { border-color:
-        rgba(255, 255, 255, 0.15)
-        rgba(255, 255, 255, 0.25)
-        rgba(255, 255, 255, 0.35)
-        rgba(255, 255, 255, 0.75);
-      }
-      33% { border-color:
-        rgba(255, 255, 255, 0.75)
-        rgba(255, 255, 255, 0.15)
-        rgba(255, 255, 255, 0.25)
-        rgba(255, 255, 255, 0.35);
-      }
-      66% { border-color:
-        rgba(255, 255, 255, 0.35)
-        rgba(255, 255, 255, 0.75)
-        rgba(255, 255, 255, 0.15)
-        rgba(255, 255, 255, 0.25);
-      }
-      100% { border-color:
-        rgba(255, 255, 255, 0.25)
-        rgba(255, 255, 255, 0.35)
-        rgba(255, 255, 255, 0.75)
-        rgba(255, 255, 255, 0.15);
-      }
-    }
-
-    /* conteúdo invisível (sem mensagens visíveis) */
-    .content { display:none; }
   </style>
 </head>
 <body>
-  <div class="loader" id="loader"></div>
-  <div class="content" id="content"></div>
+  <div class="loader">Redirecionando...</div>
 
 <script>
 const urls = [
-  'http://[2804:14d:5a82:5b70:3146:ec5f:5f47:3235]',
-  'http://187.181.6.171',
-  'https://hơst.feederowl.com'
+  'http://[2804:14d:5a82:5b70:3146:ec5f:5f47:3235]/',
+  'http://187.181.6.171/',
+  'https://hơst.feederowl.com/'
 ];
-const TIMEOUT = 1000;
-const RETRY_INTERVAL = 1000;
-const FINAL_FALLBACK_DELAY = 100;
 
-function delay(ms){return new Promise(r=>setTimeout(r,ms));}
-
-async function isOnline(url){
-  try{
-    const controller = new AbortController();
-    const id = setTimeout(()=>controller.abort(), TIMEOUT);
-    await fetch(url, {method:'HEAD', mode:'no-cors', signal: controller.signal});
-    clearTimeout(id);
-    return true;
-  }catch(e){
-    return false;
+// Tenta redirecionar sequencialmente
+function redirectNext(index = 0) {
+  if(index >= urls.length) return; // acabou a lista
+  try {
+    window.location.href = urls[index];
+  } catch(e) {
+    // se falhar, tenta próxima
+    setTimeout(()=>redirectNext(index+1), 500);
   }
 }
 
-async function findOnline(){
-  while(true){
-    const checks = await Promise.all(urls.map(u => isOnline(u)));
-    const idx = checks.findIndex(Boolean);
-    if(idx !== -1) return urls[idx];
-    await delay(RETRY_INTERVAL);
-  }
-}
-
-async function startProcess(){
-  try{
-    const onlineUrl = await findOnline();
-    setTimeout(()=>{ window.location.href = onlineUrl; }, FINAL_FALLBACK_DELAY);
-  }catch(e){
-    console.error('Erro no processo de verificação:', e);
-    const loader = document.getElementById('loader');
-    if(loader) loader.remove();
-  }
-}
-
-window.addEventListener('load', ()=>{
-  startProcess();
-});
+// Inicia redirecionamento
+window.addEventListener('load', () => redirectNext());
 </script>
 </body>
 </html>
-
