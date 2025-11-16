@@ -35,6 +35,8 @@
             background: rgba(0, 0, 0, 0.5);
             padding: 30px;
             border-radius: 15px;
+            width: 500px;
+            max-width: 90%;
         }
 
         h1 {
@@ -48,6 +50,7 @@
             justify-content: center;
             gap: 10px;
             width: 250px;
+            max-width: 100%;
             padding: 15px;
             margin: 10px auto;
             text-decoration: none;
@@ -70,6 +73,7 @@
 
         .fade-img {
             width: 600px;
+            max-width: 100%;
             margin-bottom: 0px;
             border-radius: 0px;
             mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
@@ -80,6 +84,24 @@
             margin-top: 20px;
             text-align: center;
             font-size: 10px;
+        }
+
+        /* RESPONSIVIDADE PARA CELULAR */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .btn {
+                width: 100%;
+                font-size: 1rem;
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -132,4 +154,3 @@
 
 </body>
 </html>
-
