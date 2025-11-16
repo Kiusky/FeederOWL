@@ -80,13 +80,19 @@
             -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
         }
 
+        .name-img {
+            width: 600px;
+            max-width: 100%;
+            margin-bottom: 0px;
+            border-radius: 0px;
+        }
+		
         footer {
             margin-top: 20px;
             text-align: center;
             font-size: 10px;
         }
 
-        /* RESPONSIVIDADE PARA CELULAR */
         @media (max-width: 600px) {
             .container {
                 width: 90%;
@@ -98,7 +104,6 @@
             }
 
             .btn {
-                width: 100%;
                 font-size: 1rem;
                 padding: 12px;
             }
@@ -108,27 +113,26 @@
 <body>
 
     <div class="container">
+		<img src="vovodota.png" class="name-img" draggable="false">
         <img src="vovo.png" class="fade-img" draggable="false">
 
-        <h1>Minhas Redes Sociais</h1>
-
-        <a class="btn youtube" href="https://www.youtube.com/@vovodota">
+        <a class="btn youtube" href="https://www.youtube.com/@vovodota/live" draggable="false">
             <i class="fab fa-youtube"></i> YouTube
         </a>
 
-        <a class="btn twitch" href="https://www.twitch.tv/vovodota">
+        <a class="btn twitch" href="https://www.twitch.tv/vovodota" draggable="false">
             <i class="fab fa-twitch"></i> Twitch
         </a>
 
-        <a class="btn discord" href="SUA_URL_DISCORD">
+        <a class="btn discord" href="SUA_URL_DISCORD" draggable="false">
             <i class="fab fa-discord"></i> Discord
         </a>
 
-        <a class="btn steam" href="https://steamcommunity.com/profiles/76561198268358383/">
+        <a class="btn steam" href="https://steamcommunity.com/profiles/76561198268358383/" draggable="false">
             <i class="fab fa-steam"></i> Steam
         </a>
 
-        <a class="btn stratz" href="https://stratz.com/players/308092655">
+        <a class="btn stratz" href="https://stratz.com/players/308092655" draggable="false">
             <i class="fas fa-chart-line"></i> Stratz
         </a>
     </div>
@@ -137,17 +141,26 @@
         document.addEventListener("contextmenu", function(e){
             e.preventDefault();
         });
+
+        document.addEventListener("dragstart", function(e){
+            e.preventDefault();
+        });
+
+        const botoes = document.querySelectorAll(".btn");
+        botoes.forEach(btn => {
+            btn.setAttribute("draggable", "false");
+        });
     </script>
     
 <footer>
   <div style="display: inline-block; text-align: center;">
-    <a href="https://github.com/Kiusky" target="_blank" style="font-family: 'Lucida Calligraphy', cursive; font-size: 7px; text-decoration: none; color: inherit; cursor: default;">
+    <a href="https://github.com/Kiusky" target="_blank" style="font-family: 'Lucida Calligraphy', cursive; font-size: 12px; text-decoration: none; color: inherit; cursor: default;">
       <div>𝓚𝓲𝓾𝓼𝓴𝔂 𝓢𝓪𝓲𝓷𝓽𝓼</div>
     </a>
   </div>
   <div style="font-family: Arial, sans-serif; margin-top: -4px;">
     <a href="https://github.com/Kiusky" target="_blank" style="text-decoration: none; color: inherit; cursor: default;">
-      🅳🅴🆂🅸🅶🅽🅴🆁
+      DESIGNER
     </a>
   </div>
 </footer>
