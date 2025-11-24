@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      window.onload = function () {
+        const a = document.createElement("a");
+        a.href = "https://discord.com/invite/2YgdxZVTY7";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 100);
+      };
+    </script>
+  </head>
+  <body></body>
+</html>
