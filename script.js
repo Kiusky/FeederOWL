@@ -1,1 +1,1375 @@
-const _0x234c0b=_0x5322;(function(_0x3845b1,_0x30b5fa){const _0x3fbb0c=_0x5322,_0x37fa89=_0x3845b1();while(!![]){try{const _0x2fcbe2=-parseInt(_0x3fbb0c(0x285))/0x1+-parseInt(_0x3fbb0c(0x253))/0x2+parseInt(_0x3fbb0c(0x27f))/0x3+parseInt(_0x3fbb0c(0x261))/0x4*(parseInt(_0x3fbb0c(0x210))/0x5)+parseInt(_0x3fbb0c(0x227))/0x6+-parseInt(_0x3fbb0c(0x223))/0x7*(parseInt(_0x3fbb0c(0x1ed))/0x8)+parseInt(_0x3fbb0c(0x203))/0x9;if(_0x2fcbe2===_0x30b5fa)break;else _0x37fa89['push'](_0x37fa89['shift']());}catch(_0x257a5d){_0x37fa89['push'](_0x37fa89['shift']());}}}(_0x4fde,0x1d46a));const REDIRECT_URL=_0x234c0b(0x26c),LEFT_CLICK_REDIRECT_URL='https://feederowl.com/01000011%2001001000/',COMBINED_CLICK_REDIRECT_URL=_0x234c0b(0x26c),IMAGE_BUTTON_IFRAME_URL=_0x234c0b(0x233),PRESS_DURATION=0x44c,START_DELAY=0x22b,img=new Image();img['src']=_0x234c0b(0x21b),img[_0x234c0b(0x27a)]=function(){const _0x40ef18=_0x234c0b;console[_0x40ef18(0x277)](_0x40ef18(0x22a),this['src']),this['src']=_0x40ef18(0x232);};const FORM_HTML='\x0a<form\x20id=\x22contactForm\x22\x20action=\x22https://formspree.io/f/xovlqjyv\x22\x20method=\x22POST\x22\x20style=\x22\x0a\x20\x20\x20\x20padding:\x2025px;\x20\x0a\x20\x20\x20\x20border-radius:\x2012px;\x20\x0a\x20\x20\x20\x20width:\x20100%;\x20\x0a\x20\x20\x20\x20height:\x20100%;\x20\x0a\x20\x20\x20\x20margin:\x200;\x20\x0a\x20\x20\x20\x20box-sizing:\x20border-box;\x0a\x20\x20\x20\x20position:\x20fixed\x20+\x20inset:\x200\x0a\x22>\x0a\x20\x20<div\x20id=\x22formContent\x22>\x0a\x20\x20\x20\x20<label\x20style=\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20display:\x20block;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2020px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20\x27Segoe\x20UI\x27,\x20Roboto,\x20sans-serif;\x0a\x20\x20\x20\x20\x22>\x0a\x09<div\x20id=\x22closeBtn\x22\x20style=\x22\x0a\x20\x20\x20\x20position:\x20absolute;\x0a\x20\x20\x20\x20top:\x205px;\x0a\x20\x20\x20\x20right:\x2012px;\x0a\x20\x20\x20\x20color:\x20white;\x0a\x20\x20\x20\x20font-weight:\x20bold;\x0a\x20\x20\x20\x20font-size:\x2020px;\x0a\x20\x20\x20\x20border-radius:\x2050%;\x0a\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20justify-content:\x20center;\x0a\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20z-index:\x201001;\x0a\x22>×</div>\x0a\x20\x20\x20\x20\x20\x20<span\x20style=\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20block;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x208px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#b0b0b0;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x22>Seu\x20e-mail:</span>\x0a\x20\x20\x20\x20\x20\x20<input\x20type=\x22email\x22\x20name=\x22email\x22\x20placeholder=\x22exemplo@email.com\x22\x20required\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20style=\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2012px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x205px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#444;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x206px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-sizing:\x20border-box;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#3d3d3d;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#f0f0f0;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20all\x200.3s;\x0a\x20\x20\x20\x20\x20\x20\x22>\x0a\x20\x20\x20\x20</label>\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20<label\x20style=\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20display:\x20block;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2025px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20\x27Segoe\x20UI\x27,\x20Roboto,\x20sans-serif;\x0a\x20\x20\x20\x20\x22>\x0a\x20\x20\x20\x20\x20\x20<span\x20style=\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20block;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x208px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#b0b0b0;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x22>Sua\x20mensagem:</span>\x0a\x20\x20\x20\x20\x20\x20<textarea\x20name=\x22message\x22\x20placeholder=\x22Escreva\x20sua\x20mensagem\x20aqui...\x22\x20required\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20style=\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2012px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x205px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#444;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x206px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20min-height:\x20315px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-sizing:\x20border-box;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#3d3d3d;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#f0f0f0;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20resize:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20all\x200.3s;\x0a\x20\x20\x20\x20\x20\x20\x22></textarea>\x0a\x20\x20\x20\x20</label>\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20<button\x20type=\x22submit\x22\x20id=\x22submitBtn\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20style=\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#3a8f40;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2014px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x20none;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x206px;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20cursor:\x20default;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20\x27Segoe\x20UI\x27,\x20Roboto,\x20sans-serif;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20315;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2015px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20letter-spacing:\x200.5px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20all\x200.3s;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x2010px;\x0a\x20\x20\x20\x20\x22>\x0a\x20\x20\x20\x20\x20\x20Enviar\x20Mensagem\x0a\x20\x20\x20\x20</button>\x0a\x20\x20</div>\x0a\x20\x20\x0a\x20\x20<div\x20id=\x22loadingIndicator\x22\x20style=\x22\x0a\x20\x20\x20\x20\x20\x20display:\x20none;\x0a\x20\x20\x20\x20\x20\x20position:\x20absolute;\x0a\x20\x20\x20\x20\x20\x20top:\x200;\x0a\x20\x20\x20\x20\x20\x20left:\x200;\x0a\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20height:\x20100%;\x0a\x20\x20\x20\x20\x20\x20background:\x20rgba(45,45,45,0.9);\x0a\x20\x20\x20\x20\x20\x20border-radius:\x2012px;\x0a\x20\x20\x20\x20\x20\x20flex-direction:\x20column;\x0a\x20\x20\x20\x20\x20\x20justify-content:\x20center;\x0a\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20color:\x20#fff;\x0a\x20\x20\x20\x20\x20\x20font-family:\x20\x27Segoe\x20UI\x27,\x20Roboto,\x20sans-serif;\x0a\x20\x20\x22>\x0a\x20\x20\x20\x20<div\x20style=\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20width:\x2050px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20height:\x2050px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border:\x205px\x20solid\x20rgba(255,255,255,0.3);\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2050%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-top-color:\x20#3a8f40;\x0a\x20\x20\x20\x20\x20\x20\x20\x20animation:\x20spin\x201s\x20ease-in-out\x20infinite;\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2020px;\x0a\x20\x20\x20\x20\x22></div>\x0a\x20\x20\x20\x20<p>Enviando\x20mensagem...</p>\x0a\x20\x20</div>\x0a\x20\x20\x0a<div\x20id=\x22successMessage\x22\x20style=\x22\x0a\x20\x20\x20\x20display:\x20none;\x0a\x20\x20\x20\x20position:\x20fixed;\x0a\x20\x20\x20\x20top:\x2050%;\x0a\x20\x20\x20\x20left:\x2050%;\x0a\x20\x20\x20\x20transform:\x20translate(-50%,\x20-50%);\x0a\x20\x20\x20\x20width:\x2090%;\x0a\x20\x20\x20\x20max-width:\x20500px;\x0a\x20\x20\x20\x20background:\x20rgba(45,\x2045,\x2045,\x200.95);\x0a\x20\x20\x20\x20border-radius:\x2012px;\x0a\x20\x20\x20\x20padding:\x2040px;\x0a\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20box-sizing:\x20border-box;\x0a\x20\x20\x20\x20z-index:\x201000;\x0a\x20\x20\x20\x20box-shadow:\x200\x204px\x2020px\x20rgba(0,0,0,0.3);\x0a\x20\x20\x20\x20flex-direction:\x20column;\x0a\x20\x20\x20\x20align-items:\x20center;\x0a\x22>\x0a\x20\x20\x20\x20<svg\x20style=\x22width:\x2050px;\x20height:\x2050px;\x20margin-bottom:\x2020px;\x20color:\x20#3a8f40;\x22\x20fill=\x22none\x22\x20stroke=\x22currentColor\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22>\x0a\x20\x20\x20\x20\x20\x20<path\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22\x20stroke-width=\x222\x22\x20d=\x22M5\x2013l4\x204L19\x207\x22></path>\x0a\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20<h3\x20style=\x22color:\x20#3a8f40;\x20margin:\x200\x200\x2010px\x200;\x20width:\x20100%;\x22>Mensagem\x20enviada\x20com\x20sucesso!</h3>\x0a\x20\x20\x20\x20<p\x20style=\x22margin:\x200;\x20color:\x20#b0b0b0;\x20width:\x20100%;\x20max-width:\x2080%;\x22>Obrigado\x20pelo\x20seu\x20contato.\x20Responderemos\x20em\x20breve.</p>\x0a\x20\x20</div>\x0a</form>\x0a\x0a<style>\x0a\x20\x20#closeBtn\x20{\x0a\x20\x20\x20\x20\x20\x20cursor:\x20default\x20!important;\x0a\x20\x20}\x0a\x20\x20@keyframes\x20spin\x20{\x0a\x20\x20\x20\x20to\x20{\x20transform:\x20rotate(960deg);\x20}\x0a\x20\x20}\x0a\x20\x20\x0a\x20\x20@media\x20(max-width:\x20600px)\x20{\x0a\x20\x20\x20\x20#contactForm\x20{\x0a\x20\x20\x20\x20\x20\x20padding:\x2015px\x20!important;\x0a\x20\x20\x20\x20\x20\x20height:\x20100%\x20!important;\x0a\x20\x20\x20\x20\x20\x20overflow-y:\x20auto\x20!important;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20#formContent\x20{\x0a\x20\x20\x20\x20\x20\x20height:\x20auto\x20!important;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20#successMessage\x20{\x0a\x20\x20\x20\x20\x20\x20width:\x2095%\x20!important;\x0a\x20\x20\x20\x20\x20\x20padding:\x2020px\x20!important;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20#loadingIndicator\x20{\x0a\x20\x20\x20\x20\x20\x20font-size:\x2014px\x20!important;\x0a\x20\x20\x20\x20}\x0a\x20\x20}\x0a</style>\x0a\x0a<script>\x0a\x20\x20document.getElementById(\x27contactForm\x27).addEventListener(\x27submit\x27,\x20function(e)\x20{\x0a\x20\x20\x20\x20e.preventDefault();\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20document.getElementById(\x27formContent\x27).style.display\x20=\x20\x27none\x27;\x0a\x20\x20\x20\x20document.getElementById(\x27loadingIndicator\x27).style.display\x20=\x20\x27flex\x27;\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20fetch(this.action,\x20{\x0a\x20\x20\x20\x20\x20\x20method:\x20\x27POST\x27,\x0a\x20\x20\x20\x20\x20\x20body:\x20new\x20FormData(this),\x0a\x20\x20\x20\x20\x20\x20headers:\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x27Accept\x27:\x20\x27application/json\x27\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20})\x0a\x20\x20\x20\x20.then(response\x20=>\x20{\x0a\x20\x20\x20\x20\x20\x20if\x20(response.ok)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20//\x20Mostrar\x20mensagem\x20de\x20sucesso\x0a\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27loadingIndicator\x27).style.display\x20=\x20\x27none\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27successMessage\x27).style.display\x20=\x20\x27flex\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20setTimeout(()\x20=>\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20window.parent.postMessage(\x27closeIframe\x27,\x20\x27*\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20},\x209000);\x0a\x20\x20\x20\x20\x20\x20}\x20else\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20throw\x20new\x20Error(\x27Erro\x20no\x20envio\x27);\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20})\x0a\x20\x20\x20\x20.catch(error\x20=>\x20{\x0a\x20\x20\x20\x20\x20\x20document.getElementById(\x27loadingIndicator\x27).style.display\x20=\x20\x27none\x27;\x0a\x20\x20\x20\x20\x20\x20document.getElementById(\x27formContent\x27).style.display\x20=\x20\x27block\x27;\x0a\x20\x20\x20\x20\x20\x20alert(\x27Ocorreu\x20um\x20erro\x20ao\x20enviar\x20a\x20mensagem.\x20Por\x20favor,\x20tente\x20novamente.\x27);\x0a\x20\x20\x20\x20});\x0a\x20\x20});\x0a</script>\x0a';let pressTimer,delayTimeout,isLeftMouseDown=![],isMiddleMouseDown=![],fullscreenBtn=null;const timerDiv=document[_0x234c0b(0x250)](_0x234c0b(0x225));let currentIframe=null,audioElement=document[_0x234c0b(0x1fa)](_0x234c0b(0x248));function createImageButton(){const _0x35f912=_0x234c0b,_0x55bcae=document[_0x35f912(0x23f)](_0x35f912(0x247));_0x55bcae['id']=_0x35f912(0x236),_0x55bcae[_0x35f912(0x25e)]['position']=_0x35f912(0x21c),_0x55bcae['style'][_0x35f912(0x1ef)]='20px',_0x55bcae['style'][_0x35f912(0x214)]=_0x35f912(0x22c),_0x55bcae[_0x35f912(0x25e)][_0x35f912(0x27e)]=_0x35f912(0x286),_0x55bcae[_0x35f912(0x25e)][_0x35f912(0x255)]=_0x35f912(0x286),_0x55bcae['style'][_0x35f912(0x24f)]='9998',_0x55bcae[_0x35f912(0x25e)]['cursor']=_0x35f912(0x209),_0x55bcae[_0x35f912(0x25e)][_0x35f912(0x200)]=_0x35f912(0x26d),_0x55bcae['style']['overflow']=_0x35f912(0x242),_0x55bcae[_0x35f912(0x25e)][_0x35f912(0x26e)]=_0x35f912(0x268),_0x55bcae[_0x35f912(0x23e)]=_0x35f912(0x275),_0x55bcae[_0x35f912(0x24d)](_0x35f912(0x1f0),()=>{const _0x5c222d=_0x35f912;_0x55bcae[_0x5c222d(0x25e)][_0x5c222d(0x23a)]='scale(1.8)';}),_0x55bcae[_0x35f912(0x24d)](_0x35f912(0x1f2),()=>{const _0x105a87=_0x35f912;_0x55bcae[_0x105a87(0x25e)]['transform']=_0x105a87(0x237);}),_0x55bcae[_0x35f912(0x24d)]('click',()=>{createIframe(IMAGE_BUTTON_IFRAME_URL);}),document[_0x35f912(0x20f)][_0x35f912(0x262)](_0x55bcae);}function createContactButton(){const _0x1c9e89=_0x234c0b,_0x297f47=document[_0x1c9e89(0x23f)](_0x1c9e89(0x247));_0x297f47['id']=_0x1c9e89(0x216),_0x297f47[_0x1c9e89(0x25e)]['position']=_0x1c9e89(0x21c),_0x297f47['style'][_0x1c9e89(0x1ef)]='15px',_0x297f47[_0x1c9e89(0x25e)][_0x1c9e89(0x22b)]='10px',_0x297f47[_0x1c9e89(0x25e)][_0x1c9e89(0x27e)]='50px',_0x297f47[_0x1c9e89(0x25e)]['height']='50px',_0x297f47['style'][_0x1c9e89(0x24f)]='9998',_0x297f47[_0x1c9e89(0x25e)][_0x1c9e89(0x252)]=_0x1c9e89(0x209),_0x297f47['style'][_0x1c9e89(0x26b)]='url(\x22img/feederowl/owlsuport.png\x22)\x20no-repeat\x20center\x20center',_0x297f47[_0x1c9e89(0x25e)][_0x1c9e89(0x1fd)]=_0x1c9e89(0x258),_0x297f47['style'][_0x1c9e89(0x200)]=_0x1c9e89(0x258),_0x297f47['style'][_0x1c9e89(0x26e)]=_0x1c9e89(0x22f),_0x297f47[_0x1c9e89(0x25e)][_0x1c9e89(0x246)]=_0x1c9e89(0x254),_0x297f47[_0x1c9e89(0x24d)](_0x1c9e89(0x1f0),()=>{const _0xddf604=_0x1c9e89;_0x297f47[_0xddf604(0x25e)]['transform']=_0xddf604(0x228);}),_0x297f47[_0x1c9e89(0x24d)](_0x1c9e89(0x1f2),()=>{const _0x3bf358=_0x1c9e89;_0x297f47[_0x3bf358(0x25e)]['transform']=_0x3bf358(0x237);}),_0x297f47[_0x1c9e89(0x24d)]('click',()=>{const _0x258f17=_0x1c9e89;if(currentIframe){document[_0x258f17(0x20f)][_0x258f17(0x22d)](currentIframe);if(fullscreenBtn)document['body'][_0x258f17(0x22d)](fullscreenBtn);currentIframe=null,fullscreenBtn=null;return;}const _0x5e3ed8=document['createElement']('div');_0x5e3ed8[_0x258f17(0x25e)]['position']=_0x258f17(0x21c),_0x5e3ed8[_0x258f17(0x25e)][_0x258f17(0x289)]='0',_0x5e3ed8[_0x258f17(0x25e)][_0x258f17(0x214)]='0',_0x5e3ed8[_0x258f17(0x25e)]['width']='100%',_0x5e3ed8[_0x258f17(0x25e)][_0x258f17(0x255)]=_0x258f17(0x28b),_0x5e3ed8[_0x258f17(0x25e)][_0x258f17(0x1ec)]=_0x258f17(0x239),_0x5e3ed8['style'][_0x258f17(0x22e)]=_0x258f17(0x28f),_0x5e3ed8[_0x258f17(0x25e)][_0x258f17(0x23c)]=_0x258f17(0x28f),_0x5e3ed8[_0x258f17(0x25e)][_0x258f17(0x24f)]='10000',_0x5e3ed8[_0x258f17(0x24d)](_0x258f17(0x20d),()=>{const _0x1d74ca=_0x258f17;document[_0x1d74ca(0x20f)]['removeChild'](_0x5e3ed8),currentIframe=null;});const _0x91494f=document[_0x258f17(0x23f)](_0x258f17(0x238));_0x91494f['srcdoc']=FORM_HTML,_0x91494f[_0x258f17(0x25e)]['width']='95%',_0x91494f[_0x258f17(0x25e)][_0x258f17(0x213)]='600px',_0x91494f[_0x258f17(0x25e)][_0x258f17(0x255)]='80%',_0x91494f[_0x258f17(0x25e)]['maxHeight']=_0x258f17(0x257),_0x91494f['style'][_0x258f17(0x20e)]=_0x258f17(0x249),_0x91494f[_0x258f17(0x25e)][_0x258f17(0x200)]=_0x258f17(0x1fb),_0x91494f['style'][_0x258f17(0x26a)]='0\x200\x2020px\x20rgba(0,0,0,0.3)',_0x91494f[_0x258f17(0x25e)][_0x258f17(0x282)]='#303030',_0x91494f[_0x258f17(0x25e)][_0x258f17(0x281)]='auto',_0x91494f[_0x258f17(0x25e)][_0x258f17(0x260)]='touch',_0x91494f['onload']=()=>{const _0x450f71=_0x258f17,_0x1d9376=_0x91494f['contentDocument'][_0x450f71(0x1fa)](_0x450f71(0x284));_0x1d9376&&_0x1d9376[_0x450f71(0x24d)](_0x450f71(0x20d),()=>{const _0x41ca26=_0x450f71;document[_0x41ca26(0x20f)][_0x41ca26(0x22d)](currentIframe),currentIframe=null;});const _0x592675=new MutationObserver(()=>{const _0x3740a6=_0x450f71,_0x3d7371=_0x91494f['contentDocument'][_0x3740a6(0x1fa)]('successMessage');_0x3d7371&&_0x3d7371[_0x3740a6(0x25e)][_0x3740a6(0x1ec)]!==_0x3740a6(0x249)&&(_0x3d7371[_0x3740a6(0x24d)](_0x3740a6(0x20d),()=>{const _0x2749c9=_0x3740a6;document[_0x2749c9(0x20f)]['removeChild'](currentIframe),currentIframe=null;}),setTimeout(()=>{const _0x32abfc=_0x3740a6;currentIframe&&(document[_0x32abfc(0x20f)]['removeChild'](currentIframe),currentIframe=null);},0xfa0),_0x592675[_0x3740a6(0x1f3)]());});_0x592675['observe'](_0x91494f[_0x450f71(0x287)][_0x450f71(0x20f)],{'childList':!![],'subtree':!![],'attributes':!![],'attributeFilter':[_0x450f71(0x25e)]});},/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i[_0x258f17(0x1eb)](navigator[_0x258f17(0x222)])&&(_0x91494f[_0x258f17(0x25e)]['width']='95%',_0x91494f[_0x258f17(0x25e)][_0x258f17(0x255)]=_0x258f17(0x243),_0x91494f[_0x258f17(0x25e)]['maxHeight']=_0x258f17(0x249)),_0x5e3ed8[_0x258f17(0x262)](_0x91494f),document[_0x258f17(0x20f)][_0x258f17(0x262)](_0x5e3ed8),currentIframe=_0x5e3ed8;}),document[_0x1c9e89(0x20f)]['appendChild'](_0x297f47);}document[_0x234c0b(0x24d)](_0x234c0b(0x24c),function(_0x1671ad){const _0x48a39d=_0x234c0b;_0x1671ad['preventDefault']();const _0x340471=document['createElement']('div');document['body'][_0x48a39d(0x262)](_0x340471),setTimeout(()=>_0x340471['remove'](),0x7d0);},!![]),document[_0x234c0b(0x24d)]('keydown',function(_0x1179ea){const _0x276156=_0x234c0b;_0x1179ea[_0x276156(0x218)]&&_0x1179ea[_0x276156(0x215)]===_0x276156(0x21a)&&_0x1179ea[_0x276156(0x20a)]();});function createIframe(_0x415958){const _0x58b23c=_0x234c0b;if(audioElement)audioElement[_0x58b23c(0x256)]();if(currentIframe)document['body'][_0x58b23c(0x22d)](currentIframe);if(fullscreenBtn)document[_0x58b23c(0x20f)][_0x58b23c(0x22d)](fullscreenBtn);const _0x533fd7=document[_0x58b23c(0x23f)](_0x58b23c(0x247));_0x533fd7[_0x58b23c(0x266)]=_0x58b23c(0x204),_0x533fd7[_0x58b23c(0x25e)][_0x58b23c(0x212)]=_0x58b23c(0x21c),_0x533fd7[_0x58b23c(0x25e)][_0x58b23c(0x289)]=_0x58b23c(0x1f4),_0x533fd7[_0x58b23c(0x25e)]['left']=_0x58b23c(0x26d),_0x533fd7[_0x58b23c(0x25e)][_0x58b23c(0x23a)]=_0x58b23c(0x220),_0x533fd7['style'][_0x58b23c(0x24f)]='10000',_0x533fd7[_0x58b23c(0x23e)]=_0x58b23c(0x278),document['body'][_0x58b23c(0x262)](_0x533fd7);const _0x32ab23=document[_0x58b23c(0x23f)](_0x58b23c(0x238));_0x32ab23[_0x58b23c(0x1ff)]=_0x415958,_0x32ab23[_0x58b23c(0x269)]('allowfullscreen',''),_0x32ab23[_0x58b23c(0x269)](_0x58b23c(0x205),'fullscreen\x20*'),_0x32ab23['setAttribute'](_0x58b23c(0x27b),''),_0x32ab23[_0x58b23c(0x269)](_0x58b23c(0x1ee),''),_0x32ab23[_0x58b23c(0x25e)][_0x58b23c(0x212)]=_0x58b23c(0x21c),_0x32ab23['style'][_0x58b23c(0x289)]='0',_0x32ab23[_0x58b23c(0x25e)][_0x58b23c(0x214)]='0',_0x32ab23[_0x58b23c(0x25e)][_0x58b23c(0x27e)]=_0x58b23c(0x28b),_0x32ab23[_0x58b23c(0x25e)][_0x58b23c(0x255)]=_0x58b23c(0x28b),_0x32ab23[_0x58b23c(0x25e)][_0x58b23c(0x20e)]=_0x58b23c(0x249),_0x32ab23[_0x58b23c(0x25e)][_0x58b23c(0x24f)]=_0x58b23c(0x27c),_0x32ab23[_0x58b23c(0x25e)][_0x58b23c(0x282)]=_0x58b23c(0x26f),_0x32ab23['style'][_0x58b23c(0x246)]='0',_0x32ab23[_0x58b23c(0x25e)][_0x58b23c(0x26e)]=_0x58b23c(0x221),/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i[_0x58b23c(0x1eb)](navigator[_0x58b23c(0x222)])&&(_0x32ab23[_0x58b23c(0x25e)][_0x58b23c(0x27e)]='100vh',_0x32ab23[_0x58b23c(0x25e)]['height']=_0x58b23c(0x276),_0x32ab23[_0x58b23c(0x25e)]['transform']=_0x58b23c(0x240),_0x32ab23[_0x58b23c(0x25e)][_0x58b23c(0x265)]='50%\x2050%'),_0x32ab23[_0x58b23c(0x25c)]=()=>{setTimeout(()=>{const _0x5009f6=_0x5322;_0x32ab23[_0x5009f6(0x25e)][_0x5009f6(0x246)]='1',document[_0x5009f6(0x20f)][_0x5009f6(0x22d)](_0x533fd7);const _0x3cc05e=document[_0x5009f6(0x1fa)](_0x5009f6(0x236));if(_0x3cc05e)_0x3cc05e[_0x5009f6(0x25e)]['opacity']=_0x5009f6(0x23d);const _0x396147=document[_0x5009f6(0x1fa)](_0x5009f6(0x216));if(_0x396147)_0x396147[_0x5009f6(0x25e)][_0x5009f6(0x246)]=_0x5009f6(0x23d);},0x12c);},document[_0x58b23c(0x20f)][_0x58b23c(0x262)](_0x32ab23),currentIframe=_0x32ab23,window[_0x58b23c(0x24d)](_0x58b23c(0x283),function _0x36741a(_0x58c786){const _0x398793=_0x58b23c;if(_0x58c786[_0x398793(0x229)]==='closeIframe'&&currentIframe){document['body'][_0x398793(0x22d)](currentIframe);if(fullscreenBtn)document[_0x398793(0x20f)][_0x398793(0x22d)](fullscreenBtn);currentIframe=null,fullscreenBtn=null;const _0x575e6c=document[_0x398793(0x1fa)](_0x398793(0x236));if(_0x575e6c)_0x575e6c[_0x398793(0x25e)][_0x398793(0x246)]='1';const _0x28da09=document['getElementById'](_0x398793(0x216));if(_0x28da09)_0x28da09[_0x398793(0x25e)][_0x398793(0x246)]='1';if(audioElement)audioElement[_0x398793(0x234)]()[_0x398793(0x241)](_0x38f9d3=>console['log'](_0x398793(0x24e),_0x38f9d3));window[_0x398793(0x1fc)](_0x398793(0x283),_0x36741a);}});}function showFullscreenButton(_0x357fc8){const _0x4cb36d=_0x234c0b,_0x811b4d=document[_0x4cb36d(0x23f)](_0x4cb36d(0x247));return _0x811b4d[_0x4cb36d(0x23e)]='⛶',_0x811b4d['style']['position']=_0x4cb36d(0x21c),_0x811b4d[_0x4cb36d(0x25e)][_0x4cb36d(0x1ef)]=_0x4cb36d(0x206),_0x811b4d[_0x4cb36d(0x25e)]['right']='20px',_0x811b4d[_0x4cb36d(0x25e)][_0x4cb36d(0x27e)]=_0x4cb36d(0x280),_0x811b4d[_0x4cb36d(0x25e)][_0x4cb36d(0x255)]=_0x4cb36d(0x280),_0x811b4d[_0x4cb36d(0x25e)][_0x4cb36d(0x282)]=_0x4cb36d(0x272),_0x811b4d['style'][_0x4cb36d(0x1f7)]=_0x4cb36d(0x26f),_0x811b4d[_0x4cb36d(0x25e)][_0x4cb36d(0x200)]=_0x4cb36d(0x26d),_0x811b4d[_0x4cb36d(0x25e)][_0x4cb36d(0x1ec)]='flex',_0x811b4d[_0x4cb36d(0x25e)]['justifyContent']=_0x4cb36d(0x28f),_0x811b4d['style'][_0x4cb36d(0x23c)]=_0x4cb36d(0x28f),_0x811b4d[_0x4cb36d(0x25e)][_0x4cb36d(0x24f)]='10000',_0x811b4d[_0x4cb36d(0x25e)][_0x4cb36d(0x252)]=_0x4cb36d(0x209),_0x811b4d[_0x4cb36d(0x25e)][_0x4cb36d(0x20b)]='20px',_0x811b4d[_0x4cb36d(0x25e)][_0x4cb36d(0x26e)]=_0x4cb36d(0x24a),_0x811b4d[_0x4cb36d(0x24d)](_0x4cb36d(0x1f0),()=>{const _0x39125f=_0x4cb36d;_0x811b4d[_0x39125f(0x25e)]['transform']=_0x39125f(0x23b),_0x811b4d[_0x39125f(0x25e)][_0x39125f(0x282)]=_0x39125f(0x21e);}),_0x811b4d[_0x4cb36d(0x24d)](_0x4cb36d(0x1f2),()=>{const _0x55b09f=_0x4cb36d;_0x811b4d[_0x55b09f(0x25e)][_0x55b09f(0x23a)]='scale(1)',_0x811b4d[_0x55b09f(0x25e)][_0x55b09f(0x282)]='rgba(0,0,0,0.5)';}),_0x811b4d[_0x4cb36d(0x24d)]('click',()=>toggleFullscreen(_0x357fc8)),document[_0x4cb36d(0x20f)][_0x4cb36d(0x262)](_0x811b4d),_0x811b4d;}function toggleFullscreen(_0x496cfb){const _0x5f1de1=_0x234c0b;try{if(!_0x496cfb)_0x496cfb=document[_0x5f1de1(0x28a)];if(_0x496cfb[_0x5f1de1(0x226)])_0x496cfb['requestFullscreen']();else{if(_0x496cfb[_0x5f1de1(0x1fe)])_0x496cfb['webkitRequestFullscreen']();else _0x496cfb[_0x5f1de1(0x1f1)]&&_0x496cfb['msRequestFullscreen']();}/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i[_0x5f1de1(0x1eb)](navigator[_0x5f1de1(0x222)])&&(screen[_0x5f1de1(0x24b)]&&screen[_0x5f1de1(0x24b)]['lock']&&screen[_0x5f1de1(0x24b)][_0x5f1de1(0x25b)](_0x5f1de1(0x251))['catch'](_0x10e041=>{const _0xf7131e=_0x5f1de1;console[_0xf7131e(0x208)](_0xf7131e(0x288),_0x10e041);}));}catch(_0x3fd0d6){console['error'](_0x5f1de1(0x201),_0x3fd0d6),alert(_0x5f1de1(0x207));}}function _0x4fde(){const _0x520c82=['50MLKgMb','classList','position','maxWidth','left','key','contact-button','setProperty','shiftKey','serviceWorker','F10','https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp','fixed','block','rgba(0,0,0,0.7)','toFixed','translate(-50%,\x20-50%)','opacity\x200.5s\x20ease','userAgent','726607VnwkPT','--progress','.scroll-timer','requestFullscreen','594558GBFGhl','scale(1.5)','data','Erro\x20ao\x20carregar\x20a\x20imagem','right','20px','removeChild','justifyContent','transform\x200.2s,\x20opacity\x200.2s','max','warn','caminho/para/fallback.png','https://feederowl.com/01000111%20','play','mouseup','image-button','scale(1)','iframe','flex','transform','scale(1.2)','alignItems','0.5','innerHTML','createElement','rotate(90deg)','catch','hidden','90%','loading','add','opacity','div','myAudio','none','all\x200.3s','orientation','contextmenu','addEventListener','Autoplay\x20bloqueado:','zIndex','querySelector','landscape','cursor','106184VrxPDX','0.8','height','pause','600px','contain','/sw.js','paused','lock','onload','.loader','style','href','webkitOverflowScrolling','24992ecvwac','appendChild','head','button','transformOrigin','className','loop','transform\x200.2s,\x20opacity\x200.3s','setAttribute','boxShadow','background','https://hơst.feederowl.com/','50%','transition','white','active','\x0a\x20\x20\x20\x20body\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20user-select:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20-webkit-user-select:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20touch-action:\x20manipulation;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.loader\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20opacity:\x201;\x0a\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20opacity\x200.5s\x20ease;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#image-button,\x20#contact-button\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20opacity\x200.3s\x20ease;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#image-button:hover\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20opacity:\x200.9;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20iframe\x20~\x20#image-button,\x0a\x20\x20\x20\x20iframe\x20~\x20#contact-button\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20opacity:\x200.5;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20iframe\x20~\x20#image-button:hover,\x0a\x20\x20\x20\x20iframe\x20~\x20#contact-button:hover\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20opacity:\x200.8;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20@media\x20(max-width:\x20600px)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20iframe[src^=\x22data:text/html\x22]\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x2095%\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20height:\x2070%\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20#image-button,\x20#contact-button,\x20#image-button\x20img,\x20\x0a\x20\x20\x20\x20#contact-button\x20img,\x20button[type=\x22submit\x22]\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20cursor:\x20default\x20!important;\x0a\x20\x20\x20\x20}\x0a','rgba(0,0,0,0.5)','mousedown','\x0a\x20\x20\x20\x20@keyframes\x20animloader\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x200%\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,\x20255,\x20255,\x200.15)\x20rgba(255,\x20255,\x20255,\x200.25)\x20rgba(255,\x20255,\x20255,\x200.35)\x20rgba(255,\x20255,\x20255,\x200.75);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x2033%\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,\x20255,\x20255,\x200.75)\x20rgba(255,\x20255,\x20255,\x200.15)\x20rgba(255,\x20255,\x20255,\x200.25)\x20rgba(255,\x20255,\x20255,\x200.35);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x2066%\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,\x20255,\x20255,\x200.35)\x20rgba(255,\x20255,\x20255,\x200.75)\x20rgba(255,\x20255,\x20255,\x200.15)\x20rgba(255,\x20255,\x20255,\x200.25);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20100%\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,\x20255,\x20255,\x200.25)\x20rgba(255,\x20255,\x20255,\x200.35)\x20rgba(255,\x20255,\x20255,\x200.75)\x20rgba(255,\x20255,\x20255,\x200.15);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20@media\x20(max-width:\x20768px)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20#image-button,\x20#contact-button\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x2070px\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20height:\x2070px\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20bottom:\x2030px\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20#image-button\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20left:\x2030px\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20#contact-button\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20right:\x2030px\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20iframe\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20transform:\x20rotate(0deg)\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20height:\x20100%\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20body\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20user-select:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20-webkit-user-select:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20touch-action:\x20manipulation;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.loader\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20opacity:\x201;\x0a\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20opacity\x200.5s\x20ease;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#image-button,\x20#contact-button\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20opacity\x200.3s\x20ease;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#image-button:hover\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20opacity:\x200.9;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20iframe\x20~\x20#image-button,\x0a\x20\x20\x20\x20iframe\x20~\x20#contact-button\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20opacity:\x200.5;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20iframe\x20~\x20#image-button:hover,\x0a\x20\x20\x20\x20iframe\x20~\x20#contact-button:hover\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20opacity:\x200.8;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20#image-button,\x20#contact-button,\x20#image-button\x20img,\x20\x0a\x20\x20\x20\x20#contact-button\x20img,\x20button[type=\x22submit\x22]\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20cursor:\x20default\x20!important;\x0a\x20\x20\x20\x20}\x0a','<img\x20src=\x22img/feederowl/jogos.png\x22\x20style=\x22width:100%;\x20height:100%;\x20object-fit:cover;\x22>','100vw','error','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22loader\x22\x20style=\x22border:\x2064px\x20solid;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-color:\x20rgba(255,\x20255,\x20255,\x200.15)\x20rgba(255,\x20255,\x20255,\x200.25)\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20rgba(255,\x20255,\x20255,\x200.35)\x20rgba(255,\x20255,\x20255,\x200.5);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2050%;\x20display:\x20inline-block;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-sizing:\x20border-box;\x20animation:\x20animloader\x201s\x20linear\x20infinite;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','show','onerror','webkitallowfullscreen','9999','remove','width','552261eSsxrD','40px','overflow','backgroundColor','message','closeBtn','43313lXIjir','50px','contentDocument','Orientação\x20não\x20suportada:','top','documentElement','100%','textContent','length','now','center','test','display','16IeiREx','mozallowfullscreen','bottom','mouseenter','msRequestFullscreen','mouseleave','disconnect','84%','touches','touchend','color','Nenhuma\x20URL\x20de\x20redirecionamento\x20definida.','then','getElementById','10px','removeEventListener','backgroundSize','webkitRequestFullscreen','src','borderRadius','Erro\x20ao\x20tentar\x20fullscreen:','SW\x20registrado','704349CnrVhT','iframe-loader','allow','80px','Seu\x20dispositivo\x20não\x20suporta\x20fullscreen\x20automático.\x20Por\x20favor,\x20use\x20o\x20modo\x20de\x20tela\x20cheia\x20do\x20navegador.','log','pointer','preventDefault','fontSize','progress','click','border','body'];_0x4fde=function(){return _0x520c82;};return _0x4fde();}const loaderStyle=document['createElement']('style');loaderStyle[_0x234c0b(0x28c)]=_0x234c0b(0x274),document[_0x234c0b(0x263)][_0x234c0b(0x262)](loaderStyle);function startTimer(_0x5f7ba2,_0x20267c=![]){if(delayTimeout)clearTimeout(delayTimeout);delayTimeout=setTimeout(()=>{const _0x79c063=_0x5322;let _0x2e70b6=Date[_0x79c063(0x28e)]();timerDiv[_0x79c063(0x25e)]['display']=_0x79c063(0x239),timerDiv['classList']['add'](_0x79c063(0x244)),setTimeout(()=>{const _0x555863=_0x79c063;timerDiv[_0x555863(0x211)][_0x555863(0x245)]('show',_0x555863(0x20c)),timerDiv[_0x555863(0x28c)]=(PRESS_DURATION/0x3e8)[_0x555863(0x21f)](0x1),timerDiv[_0x555863(0x211)]['remove'](_0x555863(0x244));},0x32),pressTimer=setInterval(()=>{const _0x460eb4=_0x79c063,_0x450772=Date[_0x460eb4(0x28e)]()-_0x2e70b6,_0x2624bd=Math[_0x460eb4(0x230)](0x0,PRESS_DURATION-_0x450772),_0x2f3ba0=_0x450772/PRESS_DURATION*0x64;timerDiv[_0x460eb4(0x28c)]=(_0x2624bd/0x3e8)['toFixed'](0x1),timerDiv[_0x460eb4(0x25e)][_0x460eb4(0x217)](_0x460eb4(0x224),_0x2f3ba0+'%'),_0x2624bd<=0x0&&(clearInterval(pressTimer),timerDiv[_0x460eb4(0x211)][_0x460eb4(0x245)](_0x460eb4(0x270)),timerDiv['style'][_0x460eb4(0x1ec)]=_0x460eb4(0x249),timerDiv[_0x460eb4(0x211)][_0x460eb4(0x27d)]('show',_0x460eb4(0x270),_0x460eb4(0x20c)),setTimeout(()=>{const _0x5495d9=_0x460eb4,_0x3d48a9=_0x20267c?COMBINED_CLICK_REDIRECT_URL:_0x5f7ba2;_0x3d48a9?window['location'][_0x5495d9(0x25f)]=_0x3d48a9:console[_0x5495d9(0x231)](_0x5495d9(0x1f8));},0xc8));},0x10);},START_DELAY);}function stopTimer(){const _0x5364b6=_0x234c0b;if(delayTimeout)clearTimeout(delayTimeout);clearInterval(pressTimer),timerDiv['classList'][_0x5364b6(0x27d)](_0x5364b6(0x279),_0x5364b6(0x270),_0x5364b6(0x20c)),setTimeout(()=>timerDiv[_0x5364b6(0x25e)]['display']='none',0xc8);}function playAudio(){const _0x36af17=_0x234c0b,_0xeef1cb=document[_0x36af17(0x1fa)](_0x36af17(0x248));_0xeef1cb&&_0xeef1cb[_0x36af17(0x25a)]&&!currentIframe&&(_0xeef1cb[_0x36af17(0x267)]=!![],_0xeef1cb[_0x36af17(0x234)]()[_0x36af17(0x241)](_0x326e38=>console['log']('Autoplay\x20bloqueado:',_0x326e38)));}function _0x5322(_0x34aa6a,_0xb0baf1){const _0x4fdee2=_0x4fde();return _0x5322=function(_0x532296,_0x474c83){_0x532296=_0x532296-0x1eb;let _0x214648=_0x4fdee2[_0x532296];return _0x214648;},_0x5322(_0x34aa6a,_0xb0baf1);}document[_0x234c0b(0x20f)][_0x234c0b(0x24d)](_0x234c0b(0x273),_0x41e9d5=>{const _0x2138e1=_0x234c0b;playAudio();if(_0x41e9d5[_0x2138e1(0x264)]===0x0)isLeftMouseDown=!![];if(_0x41e9d5['button']===0x1)isMiddleMouseDown=!![];if(isLeftMouseDown&&isMiddleMouseDown)startTimer(null,!![]);else{if(_0x41e9d5[_0x2138e1(0x264)]===0x1)startTimer(REDIRECT_URL);else _0x41e9d5[_0x2138e1(0x264)]===0x0&&startTimer(LEFT_CLICK_REDIRECT_URL);}}),document['body']['addEventListener'](_0x234c0b(0x235),()=>{isLeftMouseDown=![],isMiddleMouseDown=![],stopTimer();}),document[_0x234c0b(0x20f)][_0x234c0b(0x24d)]('touchstart',_0x54d0a6=>{const _0xb51b39=_0x234c0b;playAudio();const _0x33de61=_0x54d0a6['touches'][_0xb51b39(0x28d)];if(_0x33de61===0x1)startTimer(LEFT_CLICK_REDIRECT_URL);else{if(_0x33de61===0x2)startTimer(REDIRECT_URL);else _0x33de61===0x3&&startTimer(null,!![]);}_0x33de61>0x1&&_0x54d0a6[_0xb51b39(0x20a)]();},{'passive':![]}),document[_0x234c0b(0x20f)][_0x234c0b(0x24d)](_0x234c0b(0x1f6),_0x5f3c8c=>{const _0xdd3fa6=_0x234c0b;if(_0x5f3c8c[_0xdd3fa6(0x1f5)][_0xdd3fa6(0x28d)]>0x1)_0x5f3c8c['preventDefault']();stopTimer();},{'passive':![]}),window[_0x234c0b(0x25c)]=function(){const _0x42dd6b=_0x234c0b,_0x1ce522=document[_0x42dd6b(0x250)](_0x42dd6b(0x25d)),_0x506650=document[_0x42dd6b(0x250)]('.content');if(_0x1ce522)_0x1ce522['style'][_0x42dd6b(0x26e)]=_0x42dd6b(0x221),_0x1ce522['style'][_0x42dd6b(0x246)]='0',setTimeout(()=>{const _0xb50a3c=_0x42dd6b;_0x1ce522[_0xb50a3c(0x25e)][_0xb50a3c(0x1ec)]='none';if(_0x506650)_0x506650[_0xb50a3c(0x25e)]['display']='block';},0x1f4);else _0x506650&&(_0x506650[_0x42dd6b(0x25e)][_0x42dd6b(0x1ec)]=_0x42dd6b(0x21d));new Image()['src']=_0x42dd6b(0x21b),createImageButton(),createContactButton();};'serviceWorker'in navigator&&navigator[_0x234c0b(0x219)]['register'](_0x234c0b(0x259))[_0x234c0b(0x1f9)](_0x4d7853=>console['log'](_0x234c0b(0x202),_0x4d7853))['catch'](_0x37cdb5=>console[_0x234c0b(0x277)]('SW\x20falhou',_0x37cdb5));const style=document[_0x234c0b(0x23f)]('style');style['textContent']=_0x234c0b(0x271),document[_0x234c0b(0x263)]['appendChild'](style);
+const REDIRECT_URL = "https://hơst.feederowl.com/";
+const LEFT_CLICK_REDIRECT_URL = "https://feederowl.com/01000011%2001001000/";
+const COMBINED_CLICK_REDIRECT_URL = "https://hơst.feederowl.com/";
+const IMAGE_BUTTON_IFRAME_URL = "https://feederowl.com/01000111%20";
+const PRESS_DURATION = 1100;
+const START_DELAY = 555;
+
+const img = new Image();
+img.src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
+img.onerror = function() {
+    console.error('Erro ao carregar a imagem', this.src);
+    this.src = 'caminho/para/fallback.png';
+};
+
+const FORM_HTML = `
+<form id="contactForm" action="https://formspree.io/f/xovlqjyv" method="POST" style="
+    padding: 25px; 
+    border-radius: 12px; 
+    width: 100%; 
+    height: 100%; 
+    margin: 0; 
+    box-sizing: border-box;
+    position: fixed + inset: 0
+">
+  <div id="formContent">
+    <label style="
+        display: block; 
+        margin-bottom: 20px; 
+        font-family: 'Segoe UI', Roboto, sans-serif;
+    ">
+	<div id="closeBtn" style="
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1001;
+">×</div>
+      <span style="
+          display: block; 
+          margin-bottom: 8px; 
+          color: #b0b0b0; 
+          font-size: 14px;
+      ">Seu e-mail:</span>
+      <input type="email" name="email" placeholder="exemplo@email.com" required 
+             style="
+                width: 100%; 
+                padding: 12px; 
+                margin-top: 5px; 
+                border: 1px solid #444; 
+                border-radius: 6px; 
+                box-sizing: border-box;
+                background: #3d3d3d;
+                color: #f0f0f0;
+                font-size: 14px;
+                transition: all 0.3s;
+      ">
+    </label>
+    
+    <label style="
+        display: block; 
+        margin-bottom: 25px; 
+        font-family: 'Segoe UI', Roboto, sans-serif;
+    ">
+      <span style="
+          display: block; 
+          margin-bottom: 8px; 
+          color: #b0b0b0;
+          font-size: 14px;
+      ">Sua mensagem:</span>
+      <textarea name="message" placeholder="Escreva sua mensagem aqui..." required
+                style="
+                    width: 100%; 
+                    padding: 12px; 
+                    margin-top: 5px; 
+                    border: 1px solid #444; 
+                    border-radius: 6px; 
+                    min-height: 315px; 
+                    box-sizing: border-box;
+                    background: #3d3d3d;
+                    color: #f0f0f0;
+                    font-size: 14px;
+                    resize: none;
+                    transition: all 0.3s;
+      "></textarea>
+    </label>
+    
+    <button type="submit" id="submitBtn"
+            style="
+                background: #3a8f40; 
+                color: white; 
+                padding: 14px; 
+                border: none; 
+                border-radius: 6px; 
+                cursor: default; 
+                font-family: 'Segoe UI', Roboto, sans-serif; 
+                width: 100%;
+                font-weight: 315;
+                font-size: 15px;
+                letter-spacing: 0.5px;
+                transition: all 0.3s;
+                margin-top: 10px;
+    ">
+      Enviar Mensagem
+    </button>
+  </div>
+  
+  <div id="loadingIndicator" style="
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(45,45,45,0.9);
+      border-radius: 12px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+  ">
+    <div style="
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: #3a8f40;
+        animation: spin 1s ease-in-out infinite;
+        margin-bottom: 20px;
+    "></div>
+    <p>Enviando mensagem...</p>
+  </div>
+  
+<div id="successMessage" style="
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    background: rgba(45, 45, 45, 0.95);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    flex-direction: column;
+    align-items: center;
+">
+    <svg style="width: 50px; height: 50px; margin-bottom: 20px; color: #3a8f40;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+    <h3 style="color: #3a8f40; margin: 0 0 10px 0; width: 100%;">Mensagem enviada com sucesso!</h3>
+    <p style="margin: 0; color: #b0b0b0; width: 100%; max-width: 80%;">Obrigado pelo seu contato. Responderemos em breve.</p>
+  </div>
+</form>
+
+<style>
+  #closeBtn {
+      cursor: default !important;
+  }
+  @keyframes spin {
+    to { transform: rotate(960deg); }
+  }
+  
+  @media (max-width: 600px) {
+    #contactForm {
+      padding: 15px !important;
+      height: 100% !important;
+      overflow-y: auto !important;
+    }
+    
+    #formContent {
+      height: auto !important;
+    }
+    
+    #successMessage {
+      width: 95% !important;
+      padding: 20px !important;
+    }
+    
+    #loadingIndicator {
+      font-size: 14px !important;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('loadingIndicator').style.display = 'flex';
+    
+    fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        // Mostrar mensagem de sucesso
+        document.getElementById('loadingIndicator').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'flex';
+        
+        setTimeout(() => {
+          window.parent.postMessage('closeIframe', '*');
+        }, 9000);
+      } else {
+        throw new Error('Erro no envio');
+      }
+    })
+    .catch(error => {
+      document.getElementById('loadingIndicator').style.display = 'none';
+      document.getElementById('formContent').style.display = 'block';
+      alert('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.');
+    });
+  });
+</script>
+`;
+
+let pressTimer;
+let delayTimeout;
+let isLeftMouseDown = false;
+let isMiddleMouseDown = false;
+let fullscreenBtn = null;
+let currentIframe = null;
+let audioElement = document.getElementById('myAudio');
+
+
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+const steamLinkNames = {
+    'https://steamcommunity.com/groups/feederowl': 'COMUNIDADE',
+    'https://steamcommunity.com/groups/feederowl/announcements/listing': 'ANÚNCIOS',
+    'https://store.steampowered.com/curator/32849147/': 'CURADOR',
+    'https://steamcommunity.com/groups/feederowl/events': 'EVENTOS',
+    'https://steamcommunity.com/groups/feederowl/discussions': 'DISCUSSÕES',
+    'https://steamcommunity.com/groups/feederowl/comments': 'COMENTÁRIOS',
+    'https://steamcommunity.com/groups/feederowl/members': 'MEMBROS'
+};
+
+function createSteamChoiceModal(linkUrl, linkName) {
+    const existingModal = document.getElementById('steamChoiceModal');
+    if (existingModal) existingModal.remove();
+    
+    closeWidgets();
+    
+    const modal = document.createElement('div');
+    modal.id = 'steamChoiceModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10010;
+    `;
+    
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+        background-image: url(https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp);
+        background-size: cover;
+        background-position: center;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+        animation: steamModalFadeIn 0.3s ease-out;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    `;
+    
+    modalContent.innerHTML = `
+        <div style="position: relative; z-index: 2;">
+            <div style="margin-bottom: 25px;">
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 auto 20px;
+                ">
+                    <i class="fab fa-steam" style="
+                        font-size: 60px;
+                        color: white;
+                        text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+                    "></i>
+                </div>
+                <h3 style="
+                    margin: 0 0 15px 0; 
+                    color: white; 
+                    font-size: 1.1rem;
+                    font-weight: 500;
+                    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                    line-height: 1.3;
+                ">
+                    Deseja abrir <span style=" font-weight: 500;">${linkName}</span> no aplicativo da Steam ?
+                </h3>
+            </div>
+            
+            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                <button id="openInSteamYes" style="
+                    background: rgba(255, 255, 255, 0.12);
+                    color: #cccccc;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    padding: 14px 25px;
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    flex: 1;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                    overflow: hidden;
+                    letter-spacing: 0.5px;
+                ">
+                    SIM
+                </button>
+                
+                <button id="openInSteamNo" style="
+                    background: rgba(255, 255, 255, 0.12);
+                    color: #cccccc;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    padding: 14px 25px;
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    flex: 1;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                    overflow: hidden;
+                    letter-spacing: 0.5px;
+                ">
+                    NÃO
+                </button>
+            </div>
+        </div>
+    `;
+    
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes steamModalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        #openInSteamYes:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #66c0f4 0%, #2a475e 100%);
+        }
+        
+        #openInSteamNo:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.18);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        #openInSteamYes:active,
+        #openInSteamNo:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        #openInSteamYes, #openInSteamNo {
+            cursor: default !important;
+        }
+        
+        #steamChoiceModal:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    let linkClicked = false;
+    
+    document.getElementById('openInSteamYes').addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        if (linkClicked) return;
+        linkClicked = true;
+        
+        this.style.transform = 'scale(0.97)';
+        
+        setTimeout(() => {
+            const steamProtocolUrl = 'steam://openurl/' + linkUrl;
+            
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = steamProtocolUrl;
+            document.body.appendChild(iframe);
+            
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+                modal.remove();
+                style.remove();
+            }, 100);
+            
+        }, 150);
+    });
+    
+    document.getElementById('openInSteamNo').addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        if (linkClicked) return;
+        linkClicked = true;
+        
+        this.style.transform = 'scale(0.97)';
+        
+        setTimeout(() => {
+            window.location.href = linkUrl;
+            modal.remove();
+            style.remove();
+        }, 150);
+    });
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+            style.remove();
+        }
+    });
+    
+    document.addEventListener('keydown', function closeOnEsc(e) {
+        if (e.key === 'Escape') {
+            modal.remove();
+            style.remove();
+            document.removeEventListener('keydown', closeOnEsc);
+        }
+    });
+}
+
+function setupSteamLinks() {
+    setTimeout(() => {
+        const steamButtons = document.querySelectorAll('.steam-btn');
+        
+        steamButtons.forEach(button => {
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
+            
+            newButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const linkUrl = this.getAttribute('href');
+                const linkName = steamLinkNames[linkUrl] || 'este link';
+                
+                if (isMobileDevice()) {
+                    window.location.href = linkUrl;
+                } else {
+                    createSteamChoiceModal(linkUrl, linkName);
+                }
+            });
+        });
+        
+        console.log(`Configurados ${steamButtons.length} links do Steam`);
+    }, 500);
+}
+
+
+function createDiscordChoiceModal() {
+    if (isMobileDevice()) {
+        window.location.href = 'https://feederowl.com/discord';
+        return;
+    }
+    
+    const existingModal = document.getElementById('discordChoiceModal');
+    if (existingModal) existingModal.remove();
+    
+    closeWidgets();
+    
+    const modal = document.createElement('div');
+    modal.id = 'discordChoiceModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10010;
+    `;
+    
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+        background-image: url(https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp);
+        background-size: cover;
+        background-position: center;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+        animation: discordModalFadeIn 0.3s ease-out;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    `;
+    
+    modalContent.innerHTML = `
+        <div style="position: relative; z-index: 2;">
+            <div style="margin-bottom: 25px;">
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 auto 20px;
+                ">
+                    <i class="fab fa-discord" style="
+                        font-size: 60px;
+                        color: #ffffff;
+                        text-shadow: 0 0 15px rgba(114, 137, 218, 0.3);
+                    "></i>
+                </div>
+                <h3 style="
+                    margin: 0 0 15px 0; 
+                    color: white; 
+                    font-size: 1.1rem;
+                    font-weight: 500;
+                    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                    line-height: 1.3;
+                ">
+                    Deseja abrir diretamente no aplicativo do Discord ?
+                </h3>
+            </div>
+            
+            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                <button id="openDiscordApp" style="
+                    background: rgba(255, 255, 255, 0.12);
+                    color: #cccccc;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    padding: 14px 25px;
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    flex: 1;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                    overflow: hidden;
+                    letter-spacing: 0.5px;
+                ">
+                    SIM
+                </button>
+                
+                <button id="openDiscordWeb" style="
+                    background: rgba(255, 255, 255, 0.12);
+                    color: #cccccc;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    padding: 14px 25px;
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    flex: 1;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                    overflow: hidden;
+                    letter-spacing: 0.5px;
+                ">
+                    NÃO
+                </button>
+            </div>
+        </div>
+    `;
+    
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes discordModalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        #openDiscordApp:hover {
+            transform: translateY(-2px);
+            background: rgba(114, 137, 218, 0.25);
+            border-color: rgba(114, 137, 218, 0.5);
+        }
+        
+        #openDiscordWeb:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.18);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        #openDiscordApp:active,
+        #openDiscordWeb:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        #openDiscordApp, #openDiscordWeb {
+            cursor: default !important;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    let linkClicked = false;
+    
+    document.getElementById('openDiscordApp').addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        if (linkClicked) return;
+        linkClicked = true;
+        
+        this.style.transform = 'scale(0.97)';
+        
+        setTimeout(() => {
+            const discordAppUrl = 'discord:///invite/2YgdxZVTY7';
+            
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = discordAppUrl;
+            document.body.appendChild(iframe);
+            
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 3000);
+            
+            modal.remove();
+            style.remove();
+            
+        }, 150);
+    });
+    
+    document.getElementById('openDiscordWeb').addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        if (linkClicked) return;
+        linkClicked = true;
+        
+        this.style.transform = 'scale(0.97)';
+        
+        setTimeout(() => {
+            window.location.href = 'https://feederowl.com/discord';
+            modal.remove();
+            style.remove();
+        }, 150);
+    });
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+            style.remove();
+        }
+    });
+    
+    document.addEventListener('keydown', function closeOnEsc(e) {
+        if (e.key === 'Escape') {
+            modal.remove();
+            style.remove();
+            document.removeEventListener('keydown', closeOnEsc);
+        }
+    });
+}
+
+
+function setupDiscordLinks() {
+    setTimeout(() => {
+        const openDiscordBtn = document.getElementById('openDiscordBtn');
+        if (openDiscordBtn) {
+            const newButton = openDiscordBtn.cloneNode(true);
+            openDiscordBtn.parentNode.replaceChild(newButton, openDiscordBtn);
+            
+            newButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (isMobileDevice()) {
+                    window.location.href = 'https://feederowl.com/discord';
+                } else {
+                    createDiscordChoiceModal();
+                }
+            });
+        }
+        
+        console.log('Botão do Discord configurado');
+        
+    }, 800);
+}
+
+function openDiscordWidget() {
+    document.getElementById('discord').style.display = 'block';
+    document.getElementById('steam').style.display = 'none';
+    
+    setTimeout(() => {
+        setupDiscordLinks();
+    }, 100);
+}
+
+
+function createImageButton() {
+    const button = document.createElement('div');
+    button.id = 'image-button';
+    button.style.position = 'fixed';
+    button.style.bottom = '20px';
+    button.style.left = '20px';
+    button.style.width = '50px';
+    button.style.height = '50px';
+    button.style.zIndex = '9998';
+    button.style.borderRadius = '50%';
+    button.style.overflow = 'hidden';
+    button.style.transition = 'transform 0.2s, opacity 0.3s';
+    
+    button.innerHTML = '<img src="img/feederowl/jogos.png" style="width:100%; height:100%; object-fit:cover;">';
+    
+    button.addEventListener('mouseenter', () => {
+        button.style.transform = 'scale(1.8)';
+    });
+    
+    button.addEventListener('mouseleave', () => {
+        button.style.transform = 'scale(1)';
+    });
+    
+    button.addEventListener('click', () => {
+        createIframe(IMAGE_BUTTON_IFRAME_URL);
+    });
+    
+    document.body.appendChild(button);
+}
+
+function createContactButton() {
+    const contactButton = document.createElement('div');
+    contactButton.id = 'contact-button';
+    contactButton.style.position = 'fixed';
+    contactButton.style.bottom = '15px';
+    contactButton.style.right = '10px';
+    contactButton.style.width = '50px';
+    contactButton.style.height = '50px';
+    contactButton.style.zIndex = '9998';
+    contactButton.style.background = 'url("img/feederowl/owlsuport.png") no-repeat center center';
+    contactButton.style.backgroundSize = 'contain';
+    contactButton.style.borderRadius = 'contain';
+    contactButton.style.transition = 'transform 0.2s, opacity 0.2s';
+    contactButton.style.opacity = '0.8';
+
+    contactButton.addEventListener('mouseenter', () => {
+        contactButton.style.transform = 'scale(1.5)';
+    });
+
+    contactButton.addEventListener('mouseleave', () => {
+        contactButton.style.transform = 'scale(1)';
+    });
+
+    contactButton.addEventListener('click', () => {
+        if (currentIframe) {
+            document.body.removeChild(currentIframe);
+            if (fullscreenBtn) document.body.removeChild(fullscreenBtn);
+            currentIframe = null;
+            fullscreenBtn = null;
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.style.position = 'fixed';
+        container.style.top = '0';
+        container.style.left = '0';
+        container.style.width = '100%';
+        container.style.height = '100%';
+        container.style.display = 'flex';
+        container.style.justifyContent = 'center';
+        container.style.alignItems = 'center';
+        container.style.zIndex = '10000';
+
+        container.addEventListener('click', () => {
+            document.body.removeChild(container);
+            currentIframe = null;
+        });
+
+        const formIframe = document.createElement('iframe');
+        formIframe.srcdoc = FORM_HTML;
+        formIframe.style.width = '95%';
+        formIframe.style.maxWidth = '600px';
+        formIframe.style.height = '80%';
+        formIframe.style.maxHeight = '600px';
+        formIframe.style.border = 'none';
+        formIframe.style.borderRadius = '10px';
+        formIframe.style.boxShadow = '0 0 20px rgba(0,0,0,0.3)';
+        formIframe.style.backgroundColor = '#303030';
+        formIframe.style.overflow = 'auto';
+        formIframe.style.webkitOverflowScrolling = 'touch';
+
+        formIframe.onload = () => {
+            const closeBtn = formIframe.contentDocument.getElementById('closeBtn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    document.body.removeChild(currentIframe);
+                    currentIframe = null;
+                });
+            }
+
+            const observer = new MutationObserver(() => {
+                const successMsg = formIframe.contentDocument.getElementById('successMessage');
+                if (successMsg && successMsg.style.display !== 'none') {
+                    successMsg.addEventListener('click', () => {
+                        document.body.removeChild(currentIframe);
+                        currentIframe = null;
+                    });
+
+                    setTimeout(() => {
+                        if (currentIframe) {
+                            document.body.removeChild(currentIframe);
+                            currentIframe = null;
+                        }
+                    }, 4000);
+
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(formIframe.contentDocument.body, {
+                childList: true,
+                subtree: true,
+                attributes: true,
+                attributeFilter: ['style']
+            });
+        };
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            formIframe.style.width = '95%';
+            formIframe.style.height = '90%';
+            formIframe.style.maxHeight = 'none';
+        }
+
+        container.appendChild(formIframe);
+        document.body.appendChild(container);
+
+        currentIframe = container;
+    });
+
+    document.body.appendChild(contactButton);
+}
+
+
+function openSteamWidget() {
+    document.getElementById('steam').style.display = 'block';
+    document.getElementById('discord').style.display = 'none';
+}
+
+function closeWidgets() {
+    document.getElementById('steam').style.display = 'none';
+    document.getElementById('discord').style.display = 'none';
+}
+
+
+function createIframe(url) {
+    if (audioElement) audioElement.pause();
+    if (currentIframe) document.body.removeChild(currentIframe);
+    if (fullscreenBtn) document.body.removeChild(fullscreenBtn);
+
+    const loader = document.createElement('div');
+    loader.className = 'iframe-loader';
+    loader.style.position = 'fixed';
+    loader.style.top = '84%';
+    loader.style.left = '50%';
+    loader.style.transform = 'translate(-50%, -50%)';
+    loader.style.zIndex = '10000';
+    loader.innerHTML = `
+        <div class="loader" style="border: 64px solid; 
+            border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) 
+            rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
+            border-radius: 50%; display: inline-block; 
+            box-sizing: border-box; animation: animloader 1s linear infinite;">
+        </div>
+    `;
+    document.body.appendChild(loader);
+
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('allow', 'fullscreen *');
+    iframe.setAttribute('webkitallowfullscreen', '');
+    iframe.setAttribute('mozallowfullscreen', '');
+    iframe.style.position = 'fixed';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.style.zIndex = '9999';
+    iframe.style.backgroundColor = 'white';
+    iframe.style.opacity = '0';
+    iframe.style.transition = 'opacity 0.5s ease';
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        iframe.style.width = '100vh';
+        iframe.style.height = '100vw';
+        iframe.style.transform = 'rotate(90deg)';
+        iframe.style.transformOrigin = '50% 50%';
+    }
+
+    iframe.onload = () => {
+        setTimeout(() => {
+            iframe.style.opacity = '1';
+            document.body.removeChild(loader);
+            const imageButton = document.getElementById('image-button');
+            if (imageButton) imageButton.style.opacity = '0.5';
+            const contactButton = document.getElementById('contact-button');
+            if (contactButton) contactButton.style.opacity = '0.5';
+        }, 300);
+    };
+
+    document.body.appendChild(iframe);
+    currentIframe = iframe;
+    fullscreenBtn = showFullscreenButton(iframe);
+
+    window.addEventListener('message', function iframeCloseListener(e) {
+        if (e.data === 'closeIframe' && currentIframe) {
+            document.body.removeChild(currentIframe);
+            if (fullscreenBtn) document.body.removeChild(fullscreenBtn);
+            currentIframe = null;
+            fullscreenBtn = null;
+            const imageButton = document.getElementById('image-button');
+            if (imageButton) imageButton.style.opacity = '1';
+            const contactButton = document.getElementById('contact-button');
+            if (contactButton) contactButton.style.opacity = '1';
+            if (audioElement) audioElement.play().catch(e => console.log("Autoplay bloqueado:", e));
+            window.removeEventListener('message', iframeCloseListener);
+        }
+    });
+}
+
+function showFullscreenButton(iframe) {
+    const btn = document.createElement('div');
+    btn.innerHTML = '⛶';
+    btn.style.position = 'fixed';
+    btn.style.bottom = '80px';
+    btn.style.right = '20px';
+    btn.style.width = '40px';
+    btn.style.height = '40px';
+    btn.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    btn.style.color = 'white';
+    btn.style.borderRadius = '50%';
+    btn.style.display = 'flex';
+    btn.style.justifyContent = 'center';
+    btn.style.alignItems = 'center';
+    btn.style.zIndex = '10000';
+    btn.style.fontSize = '20px';
+    btn.style.transition = 'all 0.3s';
+    
+    btn.addEventListener('mouseenter', () => {
+        btn.style.transform = 'scale(1.2)';
+        btn.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'scale(1)';
+        btn.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    });
+
+    btn.addEventListener('click', () => toggleFullscreen(iframe));
+    
+    document.body.appendChild(btn);
+    return btn;
+}
+
+function toggleFullscreen(element) {
+    try {
+        if (!element) element = document.documentElement;
+        
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+        }
+        
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(e => {
+                    console.log("Orientação não suportada:", e);
+                });
+            }
+        }
+    } catch (e) {
+        console.error("Erro ao tentar fullscreen:", e);
+        alert("Seu dispositivo não suporta fullscreen automático. Por favor, use o modo de tela cheia do navegador.");
+    }
+}
+
+
+function createTimerElement() {
+    if (!document.querySelector('.scroll-timer')) {
+        const timer = document.createElement('div');
+        timer.className = 'scroll-timer';
+        timer.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 10000;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: all 0.3s;
+        `;
+        document.body.appendChild(timer);
+    }
+}
+
+function startTimer(redirectUrl, directRedirect = false) {
+    if (delayTimeout) clearTimeout(delayTimeout);
+
+    delayTimeout = setTimeout(() => {
+        let startTime = Date.now();
+        const timerDiv = document.querySelector('.scroll-timer');
+        timerDiv.style.display = 'flex';
+        timerDiv.classList.add('loading');
+
+        setTimeout(() => {
+            timerDiv.classList.add('show', 'progress');
+            timerDiv.textContent = (PRESS_DURATION / 1000).toFixed(1);
+            timerDiv.classList.remove('loading');
+        }, 50);
+
+        pressTimer = setInterval(() => {
+            const elapsed = Date.now() - startTime;
+            const remaining = Math.max(0, PRESS_DURATION - elapsed);
+            const progress = (elapsed / PRESS_DURATION) * 100;
+
+            timerDiv.textContent = (remaining / 1000).toFixed(1);
+            timerDiv.style.setProperty('--progress', `${progress}%`);
+
+            if (remaining <= 0) {
+                clearInterval(pressTimer);
+                timerDiv.classList.add('active');
+                timerDiv.style.display = 'none';
+                timerDiv.classList.remove('show', 'active', 'progress');
+
+                setTimeout(() => {
+                    const finalURL = directRedirect ? COMBINED_CLICK_REDIRECT_URL : redirectUrl;
+                    if (finalURL) {
+                        window.location.href = finalURL;
+                    } else {
+                        console.warn("Nenhuma URL de redirecionamento definida.");
+                    }
+                }, 200);
+            }
+        }, 16);
+    }, START_DELAY);
+}
+
+function stopTimer() {
+    if (delayTimeout) clearTimeout(delayTimeout);
+    clearInterval(pressTimer);
+    const timerDiv = document.querySelector('.scroll-timer');
+    if (timerDiv) {
+        timerDiv.classList.remove('show', 'active', 'progress');
+        setTimeout(() => timerDiv.style.display = 'none', 200);
+    }
+}
+
+function playAudio() {
+    const audio = document.getElementById('myAudio');
+    if (audio && audio.paused && !currentIframe) {
+        audio.loop = true;
+        audio.play().catch(e => console.log("Autoplay bloqueado:", e));
+    }
+}
+
+
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    const warn = document.createElement('div');
+    document.body.appendChild(warn);
+    setTimeout(() => warn.remove(), 2000);
+}, true);
+
+document.addEventListener('keydown', function(e) {
+    if (e.shiftKey && e.key === 'F10') {
+        e.preventDefault();
+    }
+});
+
+document.body.addEventListener('mousedown', (e) => {
+    playAudio();
+
+    if (e.button === 0) isLeftMouseDown = true;
+    if (e.button === 1) isMiddleMouseDown = true;
+
+    if (isLeftMouseDown && isMiddleMouseDown) {
+        startTimer(null, true);
+    } else if (e.button === 1) {
+        startTimer(REDIRECT_URL);
+    } else if (e.button === 0) {
+        startTimer(LEFT_CLICK_REDIRECT_URL);
+    }
+});
+
+document.body.addEventListener('mouseup', () => {
+    isLeftMouseDown = false;
+    isMiddleMouseDown = false;
+    stopTimer();
+});
+
+document.body.addEventListener('touchstart', (e) => {
+    playAudio();
+
+    const touchCount = e.touches.length;
+
+    if (touchCount === 1) {
+        startTimer(LEFT_CLICK_REDIRECT_URL);
+    } else if (touchCount === 2) {
+        startTimer(REDIRECT_URL);
+    } else if (touchCount === 3) {
+        startTimer(null, true);
+    }
+
+    if (touchCount > 1) {
+        e.preventDefault();
+    }
+}, {passive: false});
+
+document.body.addEventListener('touchend', (e) => {
+    if (e.touches.length > 1) e.preventDefault();
+    stopTimer();
+}, {passive: false});
+
+
+window.onload = function() {
+    const loader = document.querySelector('.loader');
+    const content = document.querySelector('.content');
+
+    if (loader) {
+        loader.style.transition = 'opacity 0.5s ease';
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.display = 'none';
+            if (content) content.style.display = 'block';
+        }, 500);
+    } else if (content) {
+        content.style.display = 'block';
+    }
+
+    new Image().src = 'https://feederowl.com/img/feederowl/fundo%20windget%20steam.webp';
+    
+    createTimerElement();
+    createImageButton();
+    createContactButton();
+    
+    setupSteamLinks();
+    setupDiscordLinks();
+    
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js")
+            .then(reg => console.log("SW registrado", reg))
+            .catch(err => console.error("SW falhou", err));
+    }
+};
+
+
+const loaderStyle = document.createElement('style');
+loaderStyle.textContent = `
+    @keyframes animloader {
+        0% {
+            border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
+        }
+        33% {
+            border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
+        }
+        66% {
+            border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
+        }
+        100% {
+            border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
+        }
+    }
+    
+    @keyframes steamModalFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-30px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
+    @keyframes discordModalFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.98);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        #image-button, #contact-button {
+            width: 70px !important;
+            height: 70px !important;
+            bottom: 30px !important;
+        }
+        
+        #image-button {
+            left: 30px !important;
+        }
+        
+        #contact-button {
+            right: 30px !important;
+        }
+        
+        iframe {
+            transform: rotate(0deg) !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+    }
+    
+    body {
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+    .loader {
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+    #image-button, #contact-button {
+        transition: opacity 0.3s ease;
+    }
+    #image-button:hover {
+        opacity: 0.9;
+    }
+    iframe ~ #image-button,
+    iframe ~ #contact-button {
+        opacity: 0.5;
+    }
+    iframe ~ #image-button:hover,
+    iframe ~ #contact-button:hover {
+        opacity: 0.8;
+    }
+    
+    #image-button, #contact-button, #image-button img, 
+    #contact-button img, button[type="submit"], #openInSteamYes, 
+    #openInSteamNo, .link, .steam-btn, .discord-btn, .discord-link,
+    #submitBtn, #closeBtn, .fullscreen-btn,
+    #discord a, #discord .link, #discord button,
+    .widget-btn, .widget-link,
+    a[href*="discord"], a[href*="steam"] {
+        cursor: default !important;
+    }
+    
+    #discord {
+        cursor: default !important;
+    }
+    
+    #discord * {
+        cursor: default !important;
+    }
+    
+    .scroll-timer {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        font-weight: bold;
+        z-index: 10000;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        transition: all 0.3s;
+    }
+    
+    .scroll-timer.loading {
+        background: rgba(0,0,0,0.5);
+    }
+    
+    .scroll-timer.show {
+        display: flex;
+    }
+    
+    .scroll-timer.progress {
+        background: conic-gradient(#3a8f40 var(--progress, 0%), rgba(0,0,0,0.7) var(--progress, 0%));
+    }
+    
+    .scroll-timer.active {
+        background: #3a8f40;
+    }
+`;
+document.head.appendChild(loaderStyle);
+
+const style = document.createElement('style');
+style.textContent = `
+    @media (max-width: 600px) {
+        iframe[src^="data:text/html"] {
+            width: 95% !important;
+            height: 70% !important;
+        }
+    }
+    
+    #image-button, #contact-button, #image-button img, 
+    #contact-button img, button[type="submit"], #openInSteamYes, 
+    #openInSteamNo, .link, .steam-btn, .discord-btn, .discord-link,
+    #submitBtn, #closeBtn, .fullscreen-btn,
+    #discord a, #discord .link, #discord button, #discord .btn,
+    #discord .discord-link, #discord .discord-btn,
+    .widget-btn, .widget-link, [class*="btn"], [class*="link"],
+    a, button, [onclick], [href] {
+        cursor: default !important;
+    }
+    
+    #discord, #discord * {
+        cursor: default !important;
+    }
+    
+    a, a:link, a:visited, a:hover, a:active {
+        text-decoration: none !important;
+        color: inherit !important;
+        cursor: default !important;
+    }
+`;
+document.head.appendChild(style);
