@@ -27,147 +27,179 @@
             position: absolute;
             z-index: 999;
         }
+        
+        .loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 64px solid;
+            border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: animloader 1s linear infinite;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        @keyframes animloader {
+            0% {
+                border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75);
+            }
+            33% {
+                border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35);
+            }
+            66% {
+                border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25);
+            }
+            100% {
+                border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.15);
+            }
+        }
+        
+        .content {
+            display: none;
+        }
     </style>
 </head>
 <body>
-<audio id="myAudio" loop>
-    <source src="aud/feederowl/musica fundo.mp3" type="audio/mp3" />
-</audio>
-<div class="scroll-timer"></div>
-<div class="loader"></div>
-<div class="content">
-    <video class="logo" autoplay loop muted preload="auto">
-        <source src="vid/feederowl/fundo animado.webm" type="video/webm">
-    </video>
-    <video autoplay loop muted id="background-video">
-        <source src="https://feederowl.com/vid/feederowl/fundo.webm" type="video/webm">
-    </video>
-
-    <div class="links">
-        <button class="link" onclick="openSteamWidget()">
-            <img src="img/feederowl/logo steam.png" alt="Logo do Steam" draggable="false">
-        </button>
-        <button class="link" onclick="openDiscordWidget()">
-            <img src="img/feederowl/logo discord.png" alt="Logo do Discord" draggable="false">
-        </button>
-    </div>
-</div>
-
-<div id="steam" class="floating-widget" style="display: none;">
-    <div id="steam-loading-overlay"></div>
-    <div class="widget-header">
-        <i class="fab fa-steam widget-icon"></i>
-        <div class="widget-title">STEAM</div>
-    </div>
+    <div class="loader"></div>
     
-    <div class="steam-buttons">
-        <a href="https://steamcommunity.com/groups/feederowl" target="_blank" class="steam-btn">
-            <i class="fas fa-users btn-icon"></i>
-            <span class="btn-text">COMUNIDADE</span>
-        </a>
-        
-        <a href="https://steamcommunity.com/groups/feederowl/announcements/listing" target="_blank" class="steam-btn">
-            <i class="fas fa-bullhorn btn-icon"></i>
-            <span class="btn-text">ANÚNCIOS</span>
-        </a>
-        
-        <a href="https://store.steampowered.com/curator/32849147/" target="_blank" class="steam-btn">
-            <i class="fas fa-gamepad btn-icon"></i>
-            <span class="btn-text">CURADOR</span>
-        </a>
-        
-        <a href="https://steamcommunity.com/groups/feederowl/events" target="_blank" class="steam-btn">
-            <i class="fas fa-calendar-alt btn-icon"></i>
-            <span class="btn-text">EVENTOS</span>
-        </a>
-        
-        <a href="https://steamcommunity.com/groups/feederowl/discussions" target="_blank" class="steam-btn">
-            <i class="fas fa-comments btn-icon"></i>
-            <span class="btn-text">DISCUSSÕES</span>
-        </a>
-        
-        <a href="https://steamcommunity.com/groups/feederowl/comments" target="_blank" class="steam-btn">
-            <i class="fas fa-comment-dots btn-icon"></i>
-            <span class="btn-text">COMENTÁRIOS</span>
-        </a>
-        
-        <a href="https://steamcommunity.com/groups/feederowl/members" target="_blank" class="steam-btn">
-            <i class="fas fa-users btn-icon"></i>
-            <span class="btn-text">MEMBROS</span>
-        </a>
+    <audio id="myAudio" loop>
+        <source src="aud/feederowl/musica fundo.mp3" type="audio/mp3" />
+    </audio>
+    <div class="scroll-timer"></div>
+    <div class="content">
+        <video class="logo" autoplay loop muted preload="auto">
+            <source src="vid/feederowl/fundo animado.webm" type="video/webm">
+        </video>
+        <video autoplay loop muted id="background-video">
+            <source src="https://feederowl.com/vid/feederowl/fundo.webm" type="video/webm">
+        </video>
+
+        <div class="links">
+            <button class="link" onclick="openSteamWidget()">
+                <img src="img/feederowl/logo steam.png" alt="Logo do Steam" draggable="false">
+            </button>
+            <button class="link" onclick="openDiscordWidget()">
+                <img src="img/feederowl/logo discord.png" alt="Logo do Discord" draggable="false">
+            </button>
+        </div>
     </div>
-</div>
 
-<div id="discord" class="floating-widget" style="display: none;">
-    <div id="discord-loading-overlay"></div>
-    <div class="widget-header">
-        <i class="fab fa-discord widget-icon"></i>
-        <div class="widget-title">DISCORD</div>
-    </div>
-    
-    <div class="discord-buttons">
-        <button class="discord-btn" id="openDiscordBtn">
-            <span class="btn-text">ENTRAR</span>
-        </button>
-    </div>
-</div>
-
-<script>
-    function preloadImage(url) {
-        var img = new Image();
-        img.src = url;
-    }
-    preloadImage('img/feederowl/fundo windget steam.webp');
-    preloadImage('img/feederowl/logo discord.png');
-
-    function openSteamWidget() {
-        document.getElementById('steam').style.display = 'block';
-        document.getElementById('discord').style.display = 'none';
-    }
-
-    function openDiscordWidget() {
-        document.getElementById('discord').style.display = 'block';
-        document.getElementById('steam').style.display = 'none';
-    }
-
-    function closeWidgets() {
-        document.getElementById('steam').style.display = 'none';
-        document.getElementById('discord').style.display = 'none';
-    }
-
-    document.addEventListener('click', function(event) {
-        const steamWidget = document.getElementById('steam');
-        const discordWidget = document.getElementById('discord');
+    <div id="steam" class="floating-widget" style="display: none;">
+        <div id="steam-loading-overlay"></div>
+        <div class="widget-header">
+            <i class="fab fa-steam widget-icon"></i>
+            <div class="widget-title">STEAM</div>
+        </div>
         
-        if (!steamWidget.contains(event.target) && !discordWidget.contains(event.target) && 
-            !event.target.closest('.link')) {
-            closeWidgets();
+        <div class="steam-buttons">
+            <a href="https://steamcommunity.com/groups/feederowl" target="_blank" class="steam-btn">
+                <i class="fas fa-users btn-icon"></i>
+                <span class="btn-text">COMUNIDADE</span>
+            </a>
+            
+            <a href="https://steamcommunity.com/groups/feederowl/announcements/listing" target="_blank" class="steam-btn">
+                <i class="fas fa-bullhorn btn-icon"></i>
+                <span class="btn-text">ANÚNCIOS</span>
+            </a>
+            
+            <a href="https://store.steampowered.com/curator/32849147/" target="_blank" class="steam-btn">
+                <i class="fas fa-gamepad btn-icon"></i>
+                <span class="btn-text">CURADOR</span>
+            </a>
+            
+            <a href="https://steamcommunity.com/groups/feederowl/events" target="_blank" class="steam-btn">
+                <i class="fas fa-calendar-alt btn-icon"></i>
+                <span class="btn-text">EVENTOS</span>
+            </a>
+            
+            <a href="https://steamcommunity.com/groups/feederowl/discussions" target="_blank" class="steam-btn">
+                <i class="fas fa-comments btn-icon"></i>
+                <span class="btn-text">DISCUSSÕES</span>
+            </a>
+            
+            <a href="https://steamcommunity.com/groups/feederowl/comments" target="_blank" class="steam-btn">
+                <i class="fas fa-comment-dots btn-icon"></i>
+                <span class="btn-text">COMENTÁRIOS</span>
+            </a>
+            
+            <a href="https://steamcommunity.com/groups/feederowl/members" target="_blank" class="steam-btn">
+                <i class="fas fa-users btn-icon"></i>
+                <span class="btn-text">MEMBROS</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="discord" class="floating-widget" style="display: none;">
+        <div id="discord-loading-overlay"></div>
+        <div class="widget-header">
+            <i class="fab fa-discord widget-icon"></i>
+            <div class="widget-title">DISCORD</div>
+        </div>
+        
+        <div class="discord-buttons">
+            <button class="discord-btn" id="openDiscordBtn">
+                <span class="btn-text">ENTRAR</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function preloadImage(url) {
+            var img = new Image();
+            img.src = url;
         }
-    });
+        preloadImage('img/feederowl/fundo windget steam.webp');
+        preloadImage('img/feederowl/logo discord.png');
 
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js")
-        .then(reg => console.log("SW registrado:", reg))
-        .catch(err => console.error("Falha no SW:", err));
-    }
-</script>
+        function openSteamWidget() {
+            document.getElementById('steam').style.display = 'block';
+            document.getElementById('discord').style.display = 'none';
+        }
 
-<footer style="text-align: center; font-size: 10px; line-height: -1;">
-  <div style="display: inline-block; text-align: center;">
-    <a href="https://github.com/Kiusky" target="_blank" style="font-family: 'Lucida Calligraphy', cursive; font-size: 7px; text-decoration: none; color: inherit; cursor: default;">
-      <div>𝓚𝓲𝓾𝓼𝓴𝔂 𝓢𝓪𝓲𝓷𝓽𝓼</div>
-    </a>
-  </div>
-  <div style="font-family: Arial, sans-serif; margin-top: -4px;">
-    <a href="https://github.com/Kiusky" target="_blank" style="text-decoration: none; color: inherit; cursor: default;">
-      🅳🅴🆂🅸🅶🅽🅴🆁
-    </a>
-  </div>
-</footer>
-<script src="script.js" defer></script>
+        function openDiscordWidget() {
+            document.getElementById('discord').style.display = 'block';
+            document.getElementById('steam').style.display = 'none';
+        }
+
+        function closeWidgets() {
+            document.getElementById('steam').style.display = 'none';
+            document.getElementById('discord').style.display = 'none';
+        }
+
+        document.addEventListener('click', function(event) {
+            const steamWidget = document.getElementById('steam');
+            const discordWidget = document.getElementById('discord');
+            
+            if (!steamWidget.contains(event.target) && !discordWidget.contains(event.target) && 
+                !event.target.closest('.link')) {
+                closeWidgets();
+            }
+        });
+
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("/sw.js")
+            .then(reg => console.log("SW registrado:", reg))
+            .catch(err => console.error("Falha no SW:", err));
+        }
+    </script>
+
+    <footer style="text-align: center; font-size: 10px; line-height: -1;">
+      <div style="display: inline-block; text-align: center;">
+        <a href="https://github.com/Kiusky" target="_blank" style="font-family: 'Lucida Calligraphy', cursive; font-size: 7px; text-decoration: none; color: inherit; cursor: default;">
+          <div>𝓚𝓲𝓾𝓼𝓴𝔂 𝓢𝓪𝓲𝓷𝓽𝓼</div>
+        </a>
+      </div>
+      <div style="font-family: Arial, sans-serif; margin-top: -4px;">
+        <a href="https://github.com/Kiusky" target="_blank" style="text-decoration: none; color: inherit; cursor: default;">
+          🅳🅴🆂🅸🅶🅽🅴🆁
+        </a>
+      </div>
+    </footer>
+    <script src="script.js" defer></script>
 </body>
 </html>
-
-
-
-
