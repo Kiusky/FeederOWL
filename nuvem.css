@@ -1,0 +1,166 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #E0E0E0;
+  background-color: #121212;
+}
+
+#bgVideo {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#topVideo {
+  width: 500px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+#topbar {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#currentPath {
+  margin-left: 10px;
+  font-weight: bold;
+  flex-grow: 1;
+  overflow-x: auto;
+}
+
+#controls {
+  width:100%;
+  max-width:900px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-bottom:10px;
+  gap:5px;
+}
+
+#folderControls {
+  display: flex;
+  align-items: center;
+  gap:5px;
+}
+
+#fileInput {
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: none;
+  color: #E0E0E0;
+}
+
+#fileInput::file-selector-button {
+  background-color: rgba(42,42,42,0.8);
+  color: #E0E0E0;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button {
+  background-color: rgba(42,42,42,0.8);
+  color: #E0E0E0;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: rgba(60,60,60,0.8);
+}
+
+#newFolderContainer {
+  display: none;
+}
+
+input#newFolder {
+  padding:5px 8px;
+  border-radius:5px;
+  border:none;
+  background-color: rgba(42,42,42,0.8);
+  color: #E0E0E0;
+}
+
+ul#fileList {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 900px;
+}
+
+ul#fileList li {
+  background-color: rgba(31,31,31,0.8);
+  margin-bottom: 8px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.2s;
+}
+
+ul#fileList li:hover {
+  background-color: rgba(42,42,42,0.8);
+}
+
+.folder-name, .file-name {
+  flex-grow: 1;
+  cursor: pointer;
+  word-break: break-word;
+}
+
+input.rename-input {
+  flex-grow: 1;
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(42,42,42,0.8);
+  color: #E0E0E0;
+}
+
+#status {
+  margin: 10px 0;
+  font-style: italic;
+  color: #A0A0A0;
+}
+
+.folder-name::before { content: "📁 "; }
+.file-name::before { content: "📄 "; }
+
+#linksBox {
+  display:none;
+  width:100%;
+  max-width:900px;
+  height:150px;
+  margin-top:10px;
+  background-color: rgba(42,42,42,0.8);
+  color:#E0E0E0;
+  border:none;
+  border-radius:5px;
+  padding:5px;
+  resize:none;
+}
+
+hr {
+  width:100%;
+  max-width:900px;
+  border-color:rgba(42,42,42,0.8);
+}

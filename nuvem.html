@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Nuvem</title>
+<link rel="icon" href="https://feederowl.com/img/icons/Driver%20OWL.ico" type="image/png">
+<link rel="stylesheet" href="nuvem.css">
+</head>
+
+<body>
+
+<video id="bgVideo" autoplay muted loop playsinline src="https://feederowl.com/vid/feederowl/fundo.webm" disablePictureInPicture></video>
+
+<video 
+    id="topVideo" 
+    autoplay muted loop playsinline 
+    src="https://feederowl.com/vid/feederowl/fundo%20animado.webm"
+    disablePictureInPicture
+></video>
+
+<div id="topbar">
+  <button onclick="goBack()">⬅ Voltar</button>
+  <span id="currentPath"></span>
+</div>
+
+<div id="controls">
+  <input type="file" id="fileInput" multiple>
+  <button onclick="upload()">Enviar</button>
+
+  <div id="folderControls">
+    <button id="toggleFolderBtn">Criar Pasta</button>
+    <div id="newFolderContainer">
+      <input type="text" id="newFolder" placeholder="Nome da pasta">
+    </div>
+  </div>
+
+  <button id="listLinksBtn" style="display:none;">Listar links</button>
+</div>
+
+<textarea id="linksBox"></textarea>
+<p id="status"></p>
+<hr>
+<ul id="fileList"></ul>
+
+<script src="nuvem.js"></script>
+</body>
+</html>
