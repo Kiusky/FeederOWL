@@ -28,7 +28,6 @@ body {
 
 #topbar {
   width: 100%;
-  max-width: 900px;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -43,7 +42,6 @@ body {
 
 #controls {
   width:100%;
-  max-width:900px;
   display:flex;
   flex-wrap:wrap;
   align-items:center;
@@ -103,7 +101,6 @@ ul#fileList {
   list-style: none;
   padding: 0;
   width: 100%;
-  max-width: 900px;
 }
 
 ul#fileList li {
@@ -148,7 +145,6 @@ input.rename-input {
 #linksBox {
   display:none;
   width:100%;
-  max-width:900px;
   height:150px;
   margin-top:10px;
   background-color: rgba(42,42,42,0.8);
@@ -161,7 +157,5 @@ input.rename-input {
 
 hr {
   width:100%;
-  max-width:900px;
   border-color:rgba(42,42,42,0.8);
 }
-
