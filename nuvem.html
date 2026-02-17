@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Nuvem</title>
-<link rel="icon" href="https://feederowl.com/img/icons/Driver%20OWL.ico" type="image/png">
-<link rel="stylesheet" href="nuvem.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Nuvem</title>
+  <link rel="icon" href="https://feederowl.com/img/icons/Driver%20OWL.ico" type="image/png">
+  <link rel="stylesheet" href="nuvem.css">
 </head>
-
 <body>
 
 <video id="bgVideo" autoplay muted loop playsinline src="https://feederowl.com/vid/feederowl/fundo.webm" disablePictureInPicture></video>
@@ -40,7 +40,27 @@
 <textarea id="linksBox"></textarea>
 <p id="status"></p>
 <hr>
-<ul id="fileList"></ul>
+
+<div id="fileListContainer">
+  <ul id="fileList"></ul>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <p id="confirmMessage"></p>
+    <div class="modal-buttons">
+      <button id="confirmYes">Sim</button>
+      <button id="confirmNo">Não</button>
+    </div>
+  </div>
+</div>
+
+<div id="loadingOverlay" class="loading-overlay">
+  <div class="spinner"></div>
+  <p id="loadingMessage">Carregando...</p>
+</div>
 
 <script src="nuvem.js"></script>
 </body>
