@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta property="og:title" content="ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁">
+  <meta property="og:description" content="Somos uma comunidade online na Steam e Discord, reunindo jogadores para partidas em grupo. Oferecemos anúncios de jogos grátis, ofertas imperdíveis e fórum para discussões e soluções. Junte-se a nós para encontrar companheiros de equipe e aproveitar a diversão dos jogos em grupo!">
+  <meta property="og:image" content="https://feederowl.com/img/feederowl/logo%20database.gif">
+  <meta property="og:url" content="https://www.feederowl.com/">
+  <meta name="google-adsense-account" content="ca-pub-5124901329251101">
+  <meta name="theme-color" content="#2f3135">
+  <title>ᚪ𝑒𝑒𝒹𝑒𝓇 𝒪𝓌𝓁</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/x-icon" href="https://feederowl.com//img/feederowl/icone.ico">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #2F3135; overflow: hidden; }
+
+    #pageContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 1;
+    }
+
+    #pageContainer.visible { opacity: 1; }
+
+    #pageContainer iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #2F3135;
+    }
+
+    .loader {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 128px;
+      height: 128px;
+      border: 64px solid;
+      border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      box-sizing: border-box;
+      animation: animloader 1s linear infinite;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes animloader {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* tentativa de ocultar caso o DOM do iframe seja acessível */
+    .hide-login {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loader" id="pageLoader"></div>
+
+  <div id="pageContainer">
+    <iframe id="contentFrame" src="about:blank"></iframe>
+  </div>
+
+  <script>
+    (function () {
+      const loader = document.getElementById('pageLoader');
+      const pageContainer = document.getElementById('pageContainer');
+      const iframe = document.getElementById('contentFrame');
+
+      function openInNewTab(url) {
+        if (confirm('O iframe não respondeu. Abrir em nova guia?')) {
+          window.open(url, '_blank');
+        }
+      }
+
+      function showPage() {
+        loader.classList.add('hidden');
+
+        setTimeout(() => {
+          pageContainer.classList.add('visible');
+        }, 300);
+
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 800);
+      }
+
+      function tryHideLoginButton() {
+        try {
+          const doc = iframe.contentWindow.document;
+
+          const style = doc.createElement('style');
+          style.innerHTML = `
+            #login-button {
+              display: none !important;
+              visibility: hidden !important;
+              pointer-events: none !important;
+            }
+          `;
+
+          doc.head.appendChild(style);
+
+        } catch (e) {
+          // Bloqueado por cross-origin (normal)
+        }
+      }
+
+      function loadPage(url) {
+        iframe.src = url;
+
+        let loaded = false;
+
+        iframe.onload = function () {
+          loaded = true;
+
+          // tenta esconder botão se for permitido
+          tryHideLoginButton();
+
+          showPage();
+        };
+
+        setTimeout(() => {
+          if (!loaded) {
+            showPage();
+            openInNewTab(url);
+          }
+        }, 5000);
+      }
+
+      async function tryLocalhost() {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 200);
+
+          await fetch('http://192.168.0.10', {
+            mode: 'no-cors',
+            cache: 'no-cache',
+            signal: controller.signal
+          });
+
+          clearTimeout(timeoutId);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      (async function () {
+        const ok = await tryLocalhost();
+
+        if (ok) {
+          loadPage('http://192.168.0.10');
+        } else {
+          loadPage('https://xn--hst-c7a.feederowl.com/');
+        }
+      })();
+
+    })();
+  </script>
+</body>
+</html>
