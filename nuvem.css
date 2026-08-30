@@ -111,6 +111,26 @@ button:hover {
   background-color: rgba(60,60,60,0.9);
 }
 
+#generateM3uBtn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#generateM3uBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+#generateM3uBtn:active {
+  transform: translateY(0);
+}
+
 #newFolderContainer {
   display: none;
 }
@@ -347,6 +367,7 @@ input.rename-input {
   background-color: #d32f2f;
 }
 
+/* Loading Overlay */
 .loading-overlay {
   display: none;
   position: fixed;
