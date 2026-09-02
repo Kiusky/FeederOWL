@@ -19,27 +19,34 @@
     disablePictureInPicture
 ></video>
 
-<div id="topbar">
-  <button onclick="goBack()">⬅ Voltar</button>
-  <span id="currentPath"></span>
-</div>
-
 <div id="controls">
-  <input type="file" id="fileInput" multiple>
-  <button onclick="upload()">Enviar</button>
+  <div id="leftControls">
+    <button onclick="goBack()">⬅ Voltar</button>
+    <button id="listLinksBtn" style="display:none;">Listar links</button>
+    <button id="generateM3uBtn" style="display:none;" onclick="generateM3u()">🎵 Gerar M3U</button>
+    <button id="openPlayerBtn" style="display:none;" onclick="openPlayer()">
+      <i class="fas fa-bolt"></i> Winamp
+    </button>
+  </div>
 
-  <div id="folderControls">
+  <div id="rightControls">
     <button id="toggleFolderBtn">Criar Pasta</button>
     <div id="newFolderContainer">
       <input type="text" id="newFolder" placeholder="Nome da pasta">
+      <button id="confirmFolderBtn"><i class="fa-solid fa-check"></i></button>
     </div>
+    
+    <div id="fileInputWrapper">
+      <label for="fileInput" id="fileLabel">
+        <i class="fas fa-folder-open"></i> Escolher Arquivos
+      </label>
+      <input type="file" id="fileInput" multiple>
+    </div>
+    
+    <button id="uploadBtn" style="display:none;" onclick="upload()">
+      <i class="fas fa-upload"></i> <span id="uploadBtnText">Enviar</span>
+    </button>
   </div>
-
-  <button id="listLinksBtn" style="display:none;">Listar links</button>
-  <button id="generateM3uBtn" style="display:none;" onclick="generateM3u()">🎵 Gerar M3U</button>
-  <button id="openPlayerBtn" style="display:none;" onclick="openPlayer()">
-    <i class="fas fa-bolt"></i> Winamp
-  </button>
 </div>
 
 <textarea id="linksBox"></textarea>
