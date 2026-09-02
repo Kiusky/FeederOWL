@@ -6,6 +6,7 @@
   <title>Nuvem</title>
   <link rel="icon" href="https://feederowl.com/img/icons/Driver%20OWL.ico" type="image/png">
   <link rel="stylesheet" href="nuvem.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -36,7 +37,9 @@
 
   <button id="listLinksBtn" style="display:none;">Listar links</button>
   <button id="generateM3uBtn" style="display:none;" onclick="generateM3u()">🎵 Gerar M3U</button>
-  <button id="openPlayerBtn" style="display:none;" onclick="openPlayer()">⚡​ Winamp</button>
+  <button id="openPlayerBtn" style="display:none;" onclick="openPlayer()">
+    <i class="fas fa-bolt"></i> Winamp
+  </button>
 </div>
 
 <textarea id="linksBox"></textarea>
@@ -63,6 +66,20 @@
   <div class="spinner"></div>
   <p id="loadingMessage">Carregando...</p>
   <p id="currentFileUpload" style="font-size: 1rem; margin-top: 10px; color: #ccc;"></p>
+</div>
+
+<div id="floatingPlayer" class="floating-player" style="display:none;">
+  <div class="player-header-drag">
+    <span><i class="fas fa-bolt"></i> Winamp</span>
+    <div>
+      <button id="minimizePlayerBtn" class="player-window-btn" title="Minimizar">─</button>
+      <button id="maximizePlayerBtn" class="player-window-btn" title="Maximizar">⤢</button>
+      <button id="closePlayerBtn" class="player-window-btn" title="Fechar">✕</button>
+    </div>
+  </div>
+  <div class="player-content">
+    <div id="playerContent"></div>
+  </div>
 </div>
 
 <script src="nuvem.js"></script>
