@@ -21,8 +21,14 @@
 
 <div id="controls">
   <div id="leftControls">
-    <button onclick="goBack()">⬅ Voltar</button>
-    <button id="listLinksBtn" style="display:none;">Listar links</button>
+
+    <button onclick="goBack()" class="btn-back">
+      <i class="fa-solid fa-circle-arrow-left" style="color: rgb(255, 212, 59);"></i> Voltar
+    </button>
+        <button id="listLinksBtn" style="display:none;" class="btn-list-links">
+      <i class="fa-solid fa-list" style="color: rgb(255, 212, 59);"></i> Listar links
+    </button>
+
     <button id="generateM3uBtn" style="display:none;" onclick="generateM3u()">🎵 Gerar M3U</button>
     <button id="openPlayerBtn" style="display:none;" onclick="openPlayer()">
       <i class="fas fa-bolt"></i> Winamp
@@ -30,7 +36,9 @@
   </div>
 
   <div id="rightControls">
-    <button id="toggleFolderBtn">Criar Pasta</button>
+        <button id="toggleFolderBtn" class="btn-folder">
+      <i class="fa-solid fa-folder-plus" style="color: rgb(255, 212, 59);"></i> Criar Pasta
+    </button>
     <div id="newFolderContainer">
       <input type="text" id="newFolder" placeholder="Nome da pasta">
       <button id="confirmFolderBtn"><i class="fa-solid fa-check"></i></button>
